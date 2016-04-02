@@ -1,0 +1,145 @@
+.camera_wrap {
+	margin: 20px 0px 0px 0px !important;
+	width: auto;
+	direction: ltr;
+	display: none;
+	position: relative;
+	z-index: 1;
+}
+
+	#slider .fullwidth .camera_wrap {
+		margin: 0px !important;
+		padding: 0px;
+	}
+	
+	.camera_wrap img {
+		display: block;
+	}
+
+		.camera_wrap .owl-controls .owl-buttons {
+		}
+		
+			.camera_wrap .owl-controls .owl-buttons .owl-prev {
+				position: absolute;
+				left: 15px;
+				top: 50%;
+				margin: -16px 0px 0px 0px !important;
+				height: 35px;
+				width: 35px;
+				margin: 0px;
+				text-indent: -10000px;
+				opacity: 0;
+				filter: alpha(opacity=0);
+				-webkit-transition: all 0.4s;
+				-moz-transition: all 0.4s;
+				-o-transition: all 0.4s;
+				transition: all 0.4s;
+				background: #fff;
+				border-radius:         20px;
+				-webkit-border-radius: 20px;
+				-moz-border-radius:    20px;
+				border: 1px solid #e6e6e6;
+				text-align: center;
+				-webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+				-moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+				box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+			}
+			
+			.camera_wrap .owl-controls .owl-buttons .owl-next {
+				position: absolute;
+				right: 15px;
+				top: 50%;
+				margin: -16px 0px 0px 0px !important;
+				height: 35px;
+				width: 35px;
+				margin: 0px;
+				text-indent: -10000px;
+				opacity: 0;
+				filter: alpha(opacity=0);
+				-webkit-transition: all 0.4s;
+				-moz-transition: all 0.4s;
+				-o-transition: all 0.4s;
+				transition: all 0.4s;
+				background: #fff;
+				border-radius:         20px;
+				-webkit-border-radius: 20px;
+				-moz-border-radius:    20px;
+				border: 1px solid #e6e6e6;
+				text-align: center;
+				-webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+				-moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+				box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+			}
+			
+				.camera_wrap .owl-controls .owl-buttons .owl-next:hover,
+				.camera_wrap .owl-controls .owl-buttons .owl-prev:hover {
+					background: #f7f7f7;
+				}
+
+				.camera_wrap .owl-controls .owl-buttons .owl-next:after,
+				.camera_wrap .owl-controls .owl-buttons .owl-prev:after {
+					position: absolute;
+					content: "\f105";
+					display: block;
+					height: 35px;
+					width: 35px;
+					z-index: 1;
+					top: 0;
+					left: 0;
+					font-family: FontAwesome;
+					font-style: normal;
+					font-weight: normal;
+					line-height: 1.2;
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
+					color: #f36909;
+					text-indent: 0;
+					font-size: 20px;
+					padding: 4px 0px 0px 0px;
+				}
+				
+					.camera_wrap .owl-controls .owl-buttons .owl-prev:after {
+						content: "\f104";
+						padding-right: 2px;
+					}
+					
+				.camera_wrap:hover .owl-controls .owl-buttons .owl-prev,
+				.camera_wrap:hover .owl-controls .owl-buttons .owl-next {
+					opacity: 1;
+					filter: alpha(opacity=100);
+				}
+			
+		.camera_wrap .owl-controls .owl-pagination {
+			position: absolute;
+			bottom: 0;
+			text-align: center;
+			width: 100%;
+			padding: 0px;
+		}
+		
+			.camera_wrap .owl-controls .owl-pagination .owl-page {
+				display: inline-block;
+			}
+			
+				.camera_wrap .owl-controls .owl-pagination span {
+					cursor: pointer;
+					margin: 0px 3px 12px 3px;
+					width: 10px;
+					height: 10px;
+					padding: 0px;
+					background: #e5e5e5;
+					border: none;
+					transition:         all 0.4s;
+					-o-transition:      all 0.4s;
+					-ms-transition:     all 0.4s;
+					-moz-transition:    all 0.4s;
+					-webkit-transition: all 0.4s;
+					display: block;
+					border-radius:         20px;
+					-moz-border-radius:    20px;
+					-webkit-border-radius: 20px;
+				}
+				
+					.camera_wrap .owl-controls .owl-pagination .active span {
+						background: #f25e08;
+					}

@@ -1,0 +1,27 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+s|Button
+{
+	skinClass: ClassReference("components.hmtystyle.BtnComm");
+}
+
+.popwindowOkButton
+{
+	skinClass: ClassReference("components.hmtystyle.BtnComm");
+}
+
+.myAlertOkButton
+{
+	skinClass: ClassReference("components.hmtystyle.BtnComm");
+}
+
+.mainBackground
+{
+	skinClass: ClassReference("components.hmtystyle.CanvasBackground")
+}
+
+.CanvasDefaultLogo
+{
+	skinClass: ClassReference("components.hmtystyle.CanvasDefaultLogo")
+}

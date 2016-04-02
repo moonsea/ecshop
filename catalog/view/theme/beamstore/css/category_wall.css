@@ -1,0 +1,41 @@
+.category-wall {
+	
+}
+
+	.category-wall > div > div {
+		padding-top: 30px;
+		text-align: center;
+	}
+		
+		.category-wall .name {
+			padding: 7px 0px 2px 0px;
+		}
+		
+			.category-wall .name a {
+				font-size: 14px;
+				color: #4acac1;
+			}
+		
+		.category-wall ul {
+			list-style: none;
+			margin: 0px;
+			padding: 5px 0px 0px 0px;
+		}
+			
+			.category-wall ul li a,
+			.more-link {
+				display: block;
+				text-align: left;
+				border-bottom: 1px solid #e6e6e6;
+				padding: 3px 0px;
+			}
+			
+				.more-link {
+					border-bottom: none;
+				}
+				
+@media (max-width: 767px) {
+	.responsive .category-wall > div > div {
+		padding-top: 20px;
+	}
+}

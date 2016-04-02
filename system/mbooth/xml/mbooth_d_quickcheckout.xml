@@ -1,0 +1,49 @@
+<extension>
+    <id>d_quickcheckout</id>
+    <name>Ajax 单页结账</name>
+    <description></description>
+    <type>module</type>
+    <version>1.0.0.0</version>
+	<mycncart_version>1.0.2.0</mycncart_version>
+    <mbooth_version>1.0</mbooth_version>
+    <author>mycncart.com</author>
+    <files>
+	<!-- xml -->
+		<file>system/mbooth/xml/mbooth_d_quickcheckout.xml</file>
+	<!-- admin -->
+		<file>admin/controller/module/d_quickcheckout.php</file>
+		<file>admin/language/english/module/d_quickcheckout.php</file>		
+		<file>admin/view/template/module/d_quickcheckout.tpl</file>
+		<file>admin/view/stylesheet/d_quickcheckout.css</file>
+	<!-- model -->
+		<file>catalog/model/d_quickcheckout/order.php</file>	
+	<!-- catalog -->	
+		<file>catalog/controller/module/d_quickcheckout.php</file>
+		<file>catalog/language/english/module/d_quickcheckout.php</file>
+	<!-- view -->
+		<file>catalog/view/theme/default/template/checkout/d_quickcheckout.tpl</file>
+		<file>catalog/view/theme/default/template/module/d_quickcheckout.tpl</file>
+	<!-- vqmod -->
+		<file>vqmod/xml/a_vqmod_d_quickcheckout.xml</file>
+	<!-- system -->	
+		<file>system/config/d_quickcheckout.php</file>
+		<file>system/library/ubench.php</file>
+	</files>
+	<dirs>
+	<!--<dir>admin/view/image/d_quickcheckout</dir> -->
+		<dir>system/library/monolog</dir>
+		<dir>system/library/psr</dir>
+		<dir>admin/view/javascript/shopunity</dir>
+		<dir>admin/view/stylesheet/shopunity</dir>
+		<dir>catalog/view/javascript/d_quickcheckout</dir>
+		<dir>catalog/view/theme/default/image/d_quickcheckout</dir>
+		<dir>catalog/view/theme/default/stylesheet/d_quickcheckout</dir>
+		<dir>catalog/view/theme/default/template/d_quickcheckout</dir>
+		<dir>image/data/payment</dir>
+	</dirs>
+	<required>
+		<require version="5.0.0">vqmod</require>
+		<require version="3.0.0">shopunity</require>
+	</required>
+	
+</extension>
