@@ -1,0 +1,2 @@
+<?php if (!defined('THINK_PATH')) exit(); echo '<?'; ?>
+xml version='1.0' encoding='utf-8'?><decorateCategory><category><id>0</id><name>全部</name></category><category><id>1</id><name>小清新</name></category><category><id>2</id><name>糖果屋</name></category><category><id>3</id><name>猫咪</name></category></decorateCategory>
