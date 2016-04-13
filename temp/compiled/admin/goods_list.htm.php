@@ -14,20 +14,19 @@
 <table cellpadding="3" cellspacing="1">
   <tr>
     <th>
-      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />
-      <a href="javascript:listTable.sort('goods_id'); "><?php echo $this->_var['lang']['record_id']; ?></a><?php echo $this->_var['sort_goods_id']; ?>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" /><?php echo $this->_var['lang']['record_id']; ?><?php echo $this->_var['sort_goods_id']; ?>
     </th>
-    <th><a href="javascript:listTable.sort('goods_thumb'); "><?php echo $this->_var['lang']['goods_thumb']; ?></a><?php echo $this->_var['sort_goods_thumb']; ?></th>
-    <th><a href="javascript:listTable.sort('goods_name'); "><?php echo $this->_var['lang']['goods_name']; ?></a><?php echo $this->_var['sort_goods_name']; ?></th>
-    <th><a href="javascript:listTable.sort('goods_sn'); "><?php echo $this->_var['lang']['goods_sn']; ?></a><?php echo $this->_var['sort_goods_sn']; ?></th>
-    <th><a href="javascript:listTable.sort('shop_price'); "><?php echo $this->_var['lang']['shop_price']; ?></a><?php echo $this->_var['sort_shop_price']; ?></th>
-    <th><a href="javascript:listTable.sort('is_on_sale'); "><?php echo $this->_var['lang']['is_on_sale']; ?></a><?php echo $this->_var['sort_is_on_sale']; ?></th>
-    <th><a href="javascript:listTable.sort('is_best'); "><?php echo $this->_var['lang']['is_best']; ?></a><?php echo $this->_var['sort_is_best']; ?></th>
-    <th><a href="javascript:listTable.sort('is_new'); "><?php echo $this->_var['lang']['is_new']; ?></a><?php echo $this->_var['sort_is_new']; ?></th>
-    <th><a href="javascript:listTable.sort('is_hot'); "><?php echo $this->_var['lang']['is_hot']; ?></a><?php echo $this->_var['sort_is_hot']; ?></th>
-    <th><a href="javascript:listTable.sort('sort_order'); "><?php echo $this->_var['lang']['sort_order']; ?></a><?php echo $this->_var['sort_sort_order']; ?></th>
+    <th><?php echo $this->_var['lang']['goods_thumb']; ?><?php echo $this->_var['sort_goods_thumb']; ?></th>
+    <th><?php echo $this->_var['lang']['goods_name']; ?><?php echo $this->_var['sort_goods_name']; ?></th>
+    <th><?php echo $this->_var['lang']['goods_sn']; ?><?php echo $this->_var['sort_goods_sn']; ?></th>
+    <th><?php echo $this->_var['lang']['shop_price']; ?><?php echo $this->_var['sort_shop_price']; ?></th>
+    <th><?php echo $this->_var['lang']['is_on_sale']; ?><?php echo $this->_var['sort_is_on_sale']; ?></th>
+    <th><?php echo $this->_var['lang']['is_best']; ?><?php echo $this->_var['sort_is_best']; ?></th>
+    <th><?php echo $this->_var['lang']['is_new']; ?><?php echo $this->_var['sort_is_new']; ?></th>
+    <th><?php echo $this->_var['lang']['is_hot']; ?><?php echo $this->_var['sort_is_hot']; ?></th>
+    <th><?php echo $this->_var['lang']['sort_order']; ?><?php echo $this->_var['sort_sort_order']; ?></th>
     <?php if ($this->_var['use_storage']): ?>
-    <th><a href="javascript:listTable.sort('goods_number'); "><?php echo $this->_var['lang']['goods_number']; ?></a><?php echo $this->_var['sort_goods_number']; ?></th>
+    <th><?php echo $this->_var['lang']['goods_number']; ?><?php echo $this->_var['sort_goods_number']; ?></th>
     <?php endif; ?>
     <th><?php echo $this->_var['lang']['handler']; ?></th>
   <tr>
@@ -36,7 +35,7 @@
 ?>
   <tr>
     <td><input type="checkbox" name="checkboxes[]" value="<?php echo $this->_var['goods']['goods_id']; ?>" /><?php echo $this->_var['goods']['goods_id']; ?></td>
-    <td class="first-cell" style="<?php if ($this->_var['goods']['is_promote']): ?>color:red;<?php endif; ?>"><span onclick="listTable.edit(this, 'edit_goods_name', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo htmlspecialchars($this->_var['goods']['goods_name']); ?></span></td>
+    <td align="center"><img src= "/ecshop/<?php echo $this->_var['goods']['goods_thumb']; ?>" width="50" height="50" border="0" /></td>
     <td class="first-cell" style="<?php if ($this->_var['goods']['is_promote']): ?>color:red;<?php endif; ?>"><span onclick="listTable.edit(this, 'edit_goods_name', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo htmlspecialchars($this->_var['goods']['goods_name']); ?></span></td>
     <td><span onclick="listTable.edit(this, 'edit_goods_sn', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['goods_sn']; ?></span></td>
     <td align="right"><span onclick="listTable.edit(this, 'edit_goods_price', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['shop_price']; ?>

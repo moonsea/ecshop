@@ -59,14 +59,14 @@ $_LANG['goods_brand'] = '所有品牌';
 $_LANG['intro_type'] = '全部';
 $_LANG['keyword'] = '关键字';
 $_LANG['is_best'] = '精品';
-$_LANG['is_new'] = '新品';
+$_LANG['is_new'] = '商品属性';
 $_LANG['is_hot'] = '热销';
 $_LANG['is_promote'] = '特价';
 $_LANG['all_type'] = '全部推荐';
 $_LANG['sort_order'] = '推荐排序';
 
-$_LANG['goods_thumb'] = '缩略图';
-$_LANG['goods_name'] = '产品名称';
+$_LANG['goods_thumb'] = '商品图片';
+$_LANG['goods_name'] = '商品名称';
 $_LANG['goods_sn'] = '货号';
 $_LANG['shop_price'] = '价格';
 $_LANG['is_on_sale'] = '上架';
