@@ -82,6 +82,10 @@ if ($_REQUEST['act'] == 'list' || $_REQUEST['act'] == 'trash')
     $smarty->assign('record_count', $goods_list['record_count']);
     $smarty->assign('page_count',   $goods_list['page_count']);
     $smarty->assign('full_page',    1);
+    
+    /*pageheader父标题*/
+    $smarty->assign('pageheader_title',  $_LANG['02_cat_and_goods']);
+
 
     /* 排序标记 */
     $sort_flag  = sort_flag($goods_list['filter']);

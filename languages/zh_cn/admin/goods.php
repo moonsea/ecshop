@@ -65,7 +65,8 @@ $_LANG['is_promote'] = '特价';
 $_LANG['all_type'] = '全部推荐';
 $_LANG['sort_order'] = '推荐排序';
 
-$_LANG['goods_name'] = '商品名称';
+$_LANG['goods_thumb'] = '缩略图';
+$_LANG['goods_name'] = '产品名称';
 $_LANG['goods_sn'] = '货号';
 $_LANG['shop_price'] = '价格';
 $_LANG['is_on_sale'] = '上架';
@@ -75,8 +76,7 @@ $_LANG['copy'] = '复制';
 $_LANG['item_list'] = '货品列表';
 
 $_LANG['integral'] = '积分额度';
-$_LANG['on_sale'] = '上架';
-$_LANG['not_on_sale'] = '下架';
+
 $_LANG['best'] = '精品';
 $_LANG['not_best'] = '取消精品';
 $_LANG['new'] = '新品';
@@ -84,6 +84,22 @@ $_LANG['not_new'] = '取消新品';
 $_LANG['hot'] = '热销';
 $_LANG['not_hot'] = '取消热销';
 $_LANG['move_to'] = '转移到分类';
+
+// 销售状态
+$_LANG['is_on_sale_title'] = '当前显示:';
+$_LANG['on_sale'] = '销售中';
+$_LANG['not_on_sale'] = '停止销售';
+
+//商品分类
+$_LANG['cat_id_label'] = '商品分类:';
+
+//排序方式
+$_LANG['order_type_label'] = '排序方式:';
+$_LANG['order_click_count_asc'] = '按点击数升序';
+$_LANG['order_click_count_desc'] = '按点击数降序';
+$_LANG['order_market_price_asc'] = '按价格升序';
+$_LANG['order_market_price_desc'] = '按价格降序';
+$_LANG['order_add_time_desc'] = '按添加时间降序';
 
 // ajax
 $_LANG['goods_name_null'] = '请输入商品名称';
@@ -288,4 +304,10 @@ $_LANG['exist_same_goods_attr'] = '货品规格属性重复';
 $_LANG['cannot_goods_number'] = '此商品存在货品，不能修改商品库存';
 $_LANG['not_exist_goods_attr'] = '此商品不存在规格，请为其添加规格';
 $_LANG['goods_sn_exists'] = '您输入的货号已存在，请换一个';
+
+/*------------------------------------------------------ */
+//-- 文件头信息
+/*------------------------------------------------------ */
+$_LANG['pageheader_title'] = '商品管理';
+
 ?>

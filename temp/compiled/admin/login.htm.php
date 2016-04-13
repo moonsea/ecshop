@@ -67,7 +67,7 @@ a {
 <form method="post" action="privilege.php" name='theForm' onsubmit="return validate()">
   <table cellspacing="0" cellpadding="0" style="width:521px; height:327px;background:url(images/loginbg.png); color:#727272; font-size:#727272; margin:auto; margin-top:212px;" align="center">
     <tr>
-      <td height="99" align="center" valign="middle"><img src="images/logo.jpg" style="border:none; display:block; margin-top:15px; text-align:center;"/></td>
+      <td height="99" align="center" valign="middle"><?php echo $this->_var['lang']['signin_title']; ?></td>
     </tr>
     <tr>
       <td height="201" align="center" ><table width="328" height="180">
@@ -79,28 +79,28 @@ a {
             <td><?php echo $this->_var['lang']['label_password']; ?></td>
             <td colspan="2"><input type="password" name="password" style=" width:216px; line-height:24px; padding:0; height:24px; background:url(images/txtbg.png) no-repeat; border:none; padding:0px 3px;" /></td>
           </tr>
-          <?php if ($this->_var['gd_version'] < 0): ?>
+        <!--   <?php if ($this->_var['gd_version'] < 0): ?>
           <tr>
             <td><?php echo $this->_var['lang']['label_captcha']; ?></td>
             <td width="106"><input type="text" name="captcha" class="capital" style=" width:108px; height:24px; padding:0; background:url(images/txtbg.png) no-repeat; border:none; padding:0px 3px;"  /></td>
             <td width="103"><img src="index.php?act=captcha&amp;<?php echo $this->_var['random']; ?>" width="105" height="20" alt="CAPTCHA" border="1" onclick= "this.src=&quot;index.php?act=captcha&amp;&quot;+Math.random()" style="cursor: pointer;" title="<?php echo $this->_var['lang']['click_for_another']; ?>" /></td>
           </tr>
-          <?php endif; ?>
-          <tr>
+          <?php endif; ?> -->
+          <!-- <tr>
             <td align="right">&nbsp;</td>
             <td colspan="2" align="left"><input type="checkbox" value="1" name="remember" id="remember"/>
               <label for="remember"><?php echo $this->_var['lang']['remember']; ?></label></td>
           </tr>
           <tr>
             <td colspan="3"></td>
-          </tr>
+          </tr> -->
           <tr>
             <td height="34">&nbsp;</td>
             <td colspan="2" align="left"><input type="submit" value="<?php echo $this->_var['lang']['signin_now']; ?>" class="button" style="background:url(images/btn.jpg); width:118px; height:28px; padding:0; color:#FFF; line-height:28px; border:none;" /></td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td colspan="3" align="center" >&raquo; <a href="../" style="color:#727272"><?php echo $this->_var['lang']['back_home']; ?></a> &nbsp;&nbsp;&raquo; <a href="get_password.php?act=forget_pwd" style="color:#727272"><?php echo $this->_var['lang']['forget_pwd']; ?></a></td>
-          </tr>
+          </tr> -->
         </table></td>
     </tr>
     <tr>

@@ -21,12 +21,15 @@ var <?php echo $this->_var['key']; ?> = "<?php echo $this->_var['item']; ?>";
 <body>
 
 <h1>
-<?php if ($this->_var['action_link']): ?>
+<!-- <?php if ($this->_var['action_link']): ?>
 <span class="action-span"><a href="<?php echo $this->_var['action_link']['href']; ?>"><?php echo $this->_var['action_link']['text']; ?></a></span>
 <?php endif; ?>
 <?php if ($this->_var['action_link2']): ?>
 <span class="action-span"><a href="<?php echo $this->_var['action_link2']['href']; ?>"><?php echo $this->_var['action_link2']['text']; ?></a>&nbsp;&nbsp;</span>
+<?php endif; ?> -->
+<?php if ($this->_var['pageheader_title']): ?>
+	<span class="action-span1"><a href="#"><?php echo $this->_var['pageheader_title']; ?></a> </span>
 <?php endif; ?>
-<span class="action-span1"><a href="index.php?act=main"><?php echo $this->_var['lang']['cp_home']; ?></a> </span><span id="search_id" class="action-span1"><?php if ($this->_var['ur_here']): ?> - <?php echo $this->_var['ur_here']; ?> <?php endif; ?></span>
+	<span id="search_id" class="action-span1">/<a href="#"><?php if ($this->_var['ur_here']): ?> <?php echo $this->_var['ur_here']; ?> <?php endif; ?> </a></span>
 <div style="clear:both"></div>
 </h1>

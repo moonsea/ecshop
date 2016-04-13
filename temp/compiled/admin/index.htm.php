@@ -14,7 +14,7 @@ if (window.top != window)
 //-->
 </script>
 
-<frameset rows="126,*" framespacing="0" border="0">
+<frameset rows="122,*" framespacing="0" border="0">
   <frame src="index.php?act=top" id="header-frame" name="header-frame" frameborder="no" scrolling="no">
   <frameset cols="180, 10, *" framespacing="0" border="0" id="frame-body">
     <frame src="index.php?act=menu" id="menu-frame" name="menu-frame" frameborder="no" scrolling="yes">

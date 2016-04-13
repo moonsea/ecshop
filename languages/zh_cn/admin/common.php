@@ -38,7 +38,7 @@ $_LANG['role_describe'] = '角色描述';
 $_LANG['require_field'] = '<span class="require-field">*</span>';
 $_LANG['yes'] = '是';
 $_LANG['no'] = '否';
-$_LANG['record_id'] = '编号';
+$_LANG['record_id'] = '产品ID';
 $_LANG['handler'] = '操作';
 $_LANG['install'] = '安装';
 $_LANG['uninstall'] = '卸载';
@@ -146,7 +146,7 @@ $_LANG['15_rec'] = '推荐管理';
 $_LANG['16_email_manage'] = '邮件群发管理';
 
 /* 商品管理 */
-$_LANG['01_goods_list'] = '商品列表';
+$_LANG['01_goods_list'] = '商品管理';
 $_LANG['02_goods_add'] = '添加新商品';
 $_LANG['03_category_list'] = '商品分类';
 $_LANG['04_category_add'] = '添加分类';
