@@ -20,14 +20,15 @@
     <th><?php echo $this->_var['lang']['goods_name']; ?><?php echo $this->_var['sort_goods_name']; ?></th>
     <th><?php echo $this->_var['lang']['goods_sn']; ?><?php echo $this->_var['sort_goods_sn']; ?></th>
     <th><?php echo $this->_var['lang']['shop_price']; ?><?php echo $this->_var['sort_shop_price']; ?></th>
-    <th><?php echo $this->_var['lang']['is_on_sale']; ?><?php echo $this->_var['sort_is_on_sale']; ?></th>
-    <th><?php echo $this->_var['lang']['is_best']; ?><?php echo $this->_var['sort_is_best']; ?></th>
     <th><?php echo $this->_var['lang']['is_new']; ?><?php echo $this->_var['sort_is_new']; ?></th>
+    <th><?php echo $this->_var['lang']['is_best']; ?><?php echo $this->_var['sort_is_best']; ?></th>
     <th><?php echo $this->_var['lang']['is_hot']; ?><?php echo $this->_var['sort_is_hot']; ?></th>
+    <th><?php echo $this->_var['lang']['is_on_sale']; ?><?php echo $this->_var['sort_is_on_sale']; ?></th>
+<!--     
     <th><?php echo $this->_var['lang']['sort_order']; ?><?php echo $this->_var['sort_sort_order']; ?></th>
     <?php if ($this->_var['use_storage']): ?>
     <th><?php echo $this->_var['lang']['goods_number']; ?><?php echo $this->_var['sort_goods_number']; ?></th>
-    <?php endif; ?>
+    <?php endif; ?> -->
     <th><?php echo $this->_var['lang']['handler']; ?></th>
   <tr>
   <?php $_from = $this->_var['goods_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'goods');if (count($_from)):
@@ -38,17 +39,15 @@
     <td align="center"><img src= "/ecshop/<?php echo $this->_var['goods']['goods_thumb']; ?>" width="50" height="50" border="0" /></td>
     <td class="first-cell" style="<?php if ($this->_var['goods']['is_promote']): ?>color:red;<?php endif; ?>"><span onclick="listTable.edit(this, 'edit_goods_name', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo htmlspecialchars($this->_var['goods']['goods_name']); ?></span></td>
     <td><span onclick="listTable.edit(this, 'edit_goods_sn', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['goods_sn']; ?></span></td>
-    <td align="right"><span onclick="listTable.edit(this, 'edit_goods_price', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['shop_price']; ?>
-
-    </span></td>
-    <td align="center"><img src="images/<?php if ($this->_var['goods']['is_on_sale']): ?>yes<?php else: ?>no<?php endif; ?>.gif" onclick="listTable.toggle(this, 'toggle_on_sale', <?php echo $this->_var['goods']['goods_id']; ?>)" /></td>
-    <td align="center"><img src="images/<?php if ($this->_var['goods']['is_best']): ?>yes<?php else: ?>no<?php endif; ?>.gif" onclick="listTable.toggle(this, 'toggle_best', <?php echo $this->_var['goods']['goods_id']; ?>)" /></td>
+    <td align="right"><span onclick="listTable.edit(this, 'edit_goods_price', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['shop_price']; ?></span></td>
     <td align="center"><img src="images/<?php if ($this->_var['goods']['is_new']): ?>yes<?php else: ?>no<?php endif; ?>.gif" onclick="listTable.toggle(this, 'toggle_new', <?php echo $this->_var['goods']['goods_id']; ?>)" /></td>
+    <td align="center"><img src="images/<?php if ($this->_var['goods']['is_best']): ?>yes<?php else: ?>no<?php endif; ?>.gif" onclick="listTable.toggle(this, 'toggle_best', <?php echo $this->_var['goods']['goods_id']; ?>)" /></td>
     <td align="center"><img src="images/<?php if ($this->_var['goods']['is_hot']): ?>yes<?php else: ?>no<?php endif; ?>.gif" onclick="listTable.toggle(this, 'toggle_hot', <?php echo $this->_var['goods']['goods_id']; ?>)" /></td>
-    <td align="center"><span onclick="listTable.edit(this, 'edit_sort_order', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['sort_order']; ?></span></td>
+    <td align="center"><img src="images/<?php if ($this->_var['goods']['is_on_sale']): ?>yes<?php else: ?>no<?php endif; ?>.gif" onclick="listTable.toggle(this, 'toggle_on_sale', <?php echo $this->_var['goods']['goods_id']; ?>)" /></td>
+    <!-- <td align="center"><span onclick="listTable.edit(this, 'edit_sort_order', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['sort_order']; ?></span></td>
     <?php if ($this->_var['use_storage']): ?>
     <td align="right"><span onclick="listTable.edit(this, 'edit_goods_number', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['goods_number']; ?></span></td>
-    <?php endif; ?>
+    <?php endif; ?> -->
     <td align="center">
       <a href="../goods.php?id=<?php echo $this->_var['goods']['goods_id']; ?>" target="_blank" title="<?php echo $this->_var['lang']['view']; ?>"><img src="images/icon_view.gif" width="21" height="21" border="0" /></a>
       <a href="goods.php?act=edit&goods_id=<?php echo $this->_var['goods']['goods_id']; ?><?php if ($this->_var['code'] != 'real_goods'): ?>&extension_code=<?php echo $this->_var['code']; ?><?php endif; ?>" title="<?php echo $this->_var['lang']['edit']; ?>"><img src="images/icon_edit.gif" width="21" height="21" border="0" /></a>
