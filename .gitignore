@@ -2,3 +2,6 @@
 # .gitignore
 # ignore temp folder
 temp/
+# ingore install.lock file
+./data/install.lock
+./mobile/data/install.lock

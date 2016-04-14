@@ -108,7 +108,50 @@
               <span class="notice-span">{$lang.notice_goods_min_buy}</span>
             </td>
           </tr>
-
+          <!-- 库存数量 -->
+          {if $cfg.use_storage}
+          <tr>
+            <td class="label">{$lang.lab_goods_number}</td>
+            <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" /></td>
+          </tr>
+          <!-- 库存报警下限 -->
+          <tr>
+            <td class="label">{$lang.lab_warn_number}</td>
+            <td><input type="text" name="warn_number" value="{$goods.warn_number}" size="20" /></td>
+          </tr>
+          {/if}
+          <!-- 点击数 -->
+          <tr>
+            <td class="label">{$lang.lab_click_count}</td>
+            <td><input type="text" name="click_count" value="{$goods.click_count}" size="20" /></td>
+          </tr>
+          <!-- 点击数 -->
+          <tr>
+            <td class="label">{$lang.lab_intro}</td>
+            <td><input type="checkbox" name="is_new" value="1" {if $goods.is_new}checked="checked"{/if} />{$lang.is_new} <input type="checkbox" name="is_hot" value="1" {if $goods.is_hot}checked="checked"{/if} />{$lang.is_hot} <input type="checkbox" name="is_best" value="1" {if $goods.is_best}checked="checked"{/if} />{$lang.is_best} <input type="checkbox" name="is_promote" value="1" {if $goods.is_promote}checked="checked"{/if} />{$lang.is_promote}</td>
+          </tr>
+          <!-- 销售操作 -->
+          <tr id="alone_sale_1">
+            <td class="label" id="alone_sale_2">{$lang.lab_is_on_sale}</td>
+            <td id="alone_sale_3"><input type="checkbox" name="is_on_sale" value="1" {if $goods.is_on_sale}checked="checked"{/if} /> {$lang.on_sale_desc}</td>
+          </tr>
+          <!-- 市场参考价 -->
+          <tr>
+            <td class="label">{$lang.lab_market_price}</td>
+            <td><input type="text" name="market_price" value="{$goods.market_price}" size="20" /><span class="notice-span">{$lang.lab_market_price_unit}</span>
+            </td>
+          </tr>
+          <!-- 赠送积分 -->
+          <tr>
+            <td class="label">{$lang.lab_give_integral}</td>
+            <td>
+              <span class="notice-span">{$lang.notice_give_integral_desc_1}</span>
+              <input type="text" name="give_integral" value="{$goods.give_integral}" size="20" />
+              <span class="notice-span">{$lang.notice_give_integral_desc_2}</span>
+              <br/>
+              <span class="notice-span" id="giveIntegral">{$lang.notice_give_integral}</span>
+            </td>
+          </tr>
 
           <tr>
             <td class="label">{$lang.lab_other_cat}</td>
@@ -186,17 +229,17 @@
           </tr>
           <!--鍟嗗搧浼樻儬浠锋牸 end -->
 
-          <tr>
+          <!-- <tr>
             <td class="label">{$lang.lab_market_price}</td>
             <td><input type="text" name="market_price" value="{$goods.market_price}" size="20" />
               <input type="button" value="{$lang.integral_market_price}" onclick="integral_market_price()" />
             </td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td class="label"><a href="javascript:showNotice('giveIntegral');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_give_integral}</td>
             <td><input type="text" name="give_integral" value="{$goods.give_integral}" size="20" />
             <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="giveIntegral">{$lang.notice_give_integral}</span></td>
-          </tr>
+          </tr> -->
           <tr>
             <td class="label"><a href="javascript:showNotice('rankIntegral');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_rank_integral}</td>
             <td><input type="text" name="rank_integral" value="{$goods.rank_integral}" size="20" />
@@ -268,14 +311,14 @@
             <td><input type="text" name="warn_number" value="{$goods.warn_number}" size="20" /></td>
           </tr>
           {/if}
-          <tr>
+          <!-- <tr>
             <td class="label">{$lang.lab_intro}</td>
             <td><input type="checkbox" name="is_best" value="1" {if $goods.is_best}checked="checked"{/if} />{$lang.is_best} <input type="checkbox" name="is_new" value="1" {if $goods.is_new}checked="checked"{/if} />{$lang.is_new} <input type="checkbox" name="is_hot" value="1" {if $goods.is_hot}checked="checked"{/if} />{$lang.is_hot}</td>
-          </tr>
-          <tr id="alone_sale_1">
+          </tr> -->
+          <!-- <tr id="alone_sale_1">
             <td class="label" id="alone_sale_2">{$lang.lab_is_on_sale}</td>
             <td id="alone_sale_3"><input type="checkbox" name="is_on_sale" value="1" {if $goods.is_on_sale}checked="checked"{/if} /> {$lang.on_sale_desc}</td>
-          </tr>
+          </tr> -->
           <tr>
             <td class="label">{$lang.lab_is_alone_sale}</td>
             <td><input type="checkbox" name="is_alone_sale" value="1" {if $goods.is_alone_sale}checked="checked"{/if} /> {$lang.alone_sale}</td>
