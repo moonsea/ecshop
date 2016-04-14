@@ -143,19 +143,33 @@ $_LANG['lab_goods_type'] = '商品类型：';
 $_LANG['lab_picture_url'] = '商品图片外部URL';
 $_LANG['lab_thumb_url'] = '商品缩略图外部URL';
 
+<<<<<<< HEAD
 $_LANG['lab_click_count'] = '点击数：';
+=======
+$_LANG['lab_goods_click_count'] = '点击数：';
+>>>>>>> origin/master
 $_LANG['lab_goods_max_buy'] = '限购数量：';
 $_LANG['lab_goods_min_buy'] = '最低购买数量:';
 $_LANG['lab_goods_weight'] = '产品重量：';
 $_LANG['unit_g'] = '克';
 $_LANG['unit_kg'] = '千克';
+<<<<<<< HEAD
 $_LANG['lab_goods_number'] = '库存数量:';
 $_LANG['lab_warn_number'] = '库存报警下限:';
+=======
+$_LANG['lab_goods_number'] = '库存数量：';
+$_LANG['lab_warn_number'] = '库存报警下限：';
+>>>>>>> origin/master
 $_LANG['lab_integral'] = '积分购买金额：';
 $_LANG['lab_give_integral'] = '赠送积分：';
 $_LANG['lab_rank_integral'] = '赠送等级积分数：';
+<<<<<<< HEAD
 $_LANG['lab_intro'] = '加入推荐：';
 $_LANG['lab_is_on_sale'] = '销售操作：';
+=======
+$_LANG['lab_intro'] = '属性设置：';
+$_LANG['lab_is_on_sale'] = '上架：';
+>>>>>>> origin/master
 $_LANG['lab_is_alone_sale'] = '能作为普通商品销售：';
 $_LANG['lab_is_free_shipping'] = '是否为免运费商品';
 
