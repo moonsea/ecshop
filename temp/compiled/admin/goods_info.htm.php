@@ -108,6 +108,21 @@
               <span class="notice-span"><?php echo $this->_var['lang']['notice_goods_min_buy']; ?></span>
             </td>
           </tr>
+          <!-- 库存数量 -->
+          <tr>
+            <td class="label"><?php echo $this->_var['lang']['lab_goods_number']; ?></td>
+            <td><input type="text" name="goods_number" value="<?php echo $this->_var['goods']['goods_number']; ?>" size="20" /></td>
+          </tr>
+          <!-- 库存报警下限 -->
+          <tr>
+            <td class="label"><?php echo $this->_var['lang']['lab_warn_number']; ?></td>
+            <td><input type="text" name="warn_number" value="<?php echo $this->_var['goods']['warn_number']; ?>" size="20" /></td>
+          </tr>
+          <!-- 点击数 -->
+          <tr>
+            <td class="label"><?php echo $this->_var['lang']['lab_goods_click_count']; ?></td>
+            <td><input type="text" name="click_count" value="<?php echo $this->_var['goods']['click_count']; ?>" size="20" /></td>
+          </tr>
 
 
           <tr>
@@ -263,18 +278,18 @@ if ($this->_foreach['volume_price_tab']['total'] > 0):
 
         <!-- 鍏朵粬淇℃伅 -->
         <table width="90%" id="mix-table" style="display:none" align="center">
-          
+
           <?php if ($this->_var['cfg']['use_storage']): ?>
-          <tr>
+          <!-- <tr>
             <td class="label"><a href="javascript:showNotice('noticeStorage');" title="<?php echo $this->_var['lang']['form_notice']; ?>"><img src="images/notice.gif" width="16" height="16" border="0" alt="<?php echo $this->_var['lang']['form_notice']; ?>"></a> <?php echo $this->_var['lang']['lab_goods_number']; ?></td>
-<!--            <td><input type="text" name="goods_number" value="<?php echo $this->_var['goods']['goods_number']; ?>" size="20" <?php if ($this->_var['code'] != '' || $this->_var['goods']['_attribute'] != ''): ?>readonly="readonly"<?php endif; ?> /><br />-->
+            <td><input type="text" name="goods_number" value="<?php echo $this->_var['goods']['goods_number']; ?>" size="20" <?php if ($this->_var['code'] != '' || $this->_var['goods']['_attribute'] != ''): ?>readonly="readonly"<?php endif; ?> /><br />
             <td><input type="text" name="goods_number" value="<?php echo $this->_var['goods']['goods_number']; ?>" size="20" /><br />
             <span class="notice-span" <?php if ($this->_var['help_open']): ?>style="display:block" <?php else: ?> style="display:none" <?php endif; ?> id="noticeStorage"><?php echo $this->_var['lang']['notice_storage']; ?></span></td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td class="label"><?php echo $this->_var['lang']['lab_warn_number']; ?></td>
             <td><input type="text" name="warn_number" value="<?php echo $this->_var['goods']['warn_number']; ?>" size="20" /></td>
-          </tr>
+          </tr> -->
           <?php endif; ?>
           <tr>
             <td class="label"><?php echo $this->_var['lang']['lab_intro']; ?></td>
@@ -292,7 +307,7 @@ if ($this->_foreach['volume_price_tab']['total'] > 0):
             <td class="label"><?php echo $this->_var['lang']['lab_is_free_shipping']; ?></td>
             <td><input type="checkbox" name="is_shipping" value="1" <?php if ($this->_var['goods']['is_shipping']): ?>checked="checked"<?php endif; ?> /> <?php echo $this->_var['lang']['free_shipping']; ?></td>
           </tr>
-          
+
           <tr>
             <td class="label"><?php echo $this->_var['lang']['lab_goods_brief']; ?></td>
             <td><textarea name="goods_brief" cols="40" rows="3"><?php echo htmlspecialchars($this->_var['goods']['goods_brief']); ?></textarea></td>

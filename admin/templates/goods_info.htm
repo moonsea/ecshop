@@ -108,6 +108,26 @@
               <span class="notice-span">{$lang.notice_goods_min_buy}</span>
             </td>
           </tr>
+          <!-- 库存数量 -->
+          <tr>
+            <td class="label">{$lang.lab_goods_number}</td>
+            <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" /></td>
+          </tr>
+          <!-- 库存报警下限 -->
+          <tr>
+            <td class="label">{$lang.lab_warn_number}</td>
+            <td><input type="text" name="warn_number" value="{$goods.warn_number}" size="20" /></td>
+          </tr>
+          <!-- 点击数 -->
+          <tr>
+            <td class="label">{$lang.lab_goods_click_count}</td>
+            <td><input type="text" name="click_count" value="{$goods.click_count}" size="20" /></td>
+          </tr>
+          <!-- 属性设置 -->
+          <tr>
+            <td class="label">{$lang.lab_intro}</td>
+            <td><input type="checkbox" name="is_new" value="1" {if $goods.is_new}checked="checked"{/if} />{$lang.is_new} <input type="checkbox" name="is_hot" value="1" {if $goods.is_hot}checked="checked"{/if} />{$lang.is_hot}<input type="checkbox" name="is_best" value="1" {if $goods.is_best}checked="checked"{/if} />{$lang.is_best}<input type="checkbox" name="is_promote" value="1" {if $goods.is_best}checked="checked"{/if} />{$lang.is_best}</td>
+          </tr>
 
 
           <tr>
@@ -255,23 +275,23 @@
 
         <!-- 鍏朵粬淇℃伅 -->
         <table width="90%" id="mix-table" style="display:none" align="center">
-          
+
           {if $cfg.use_storage}
-          <tr>
+          <!-- <tr>
             <td class="label"><a href="javascript:showNotice('noticeStorage');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_goods_number}</td>
-<!--            <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" {if $code neq '' || $goods._attribute neq ''}readonly="readonly"{/if} /><br />-->
+            <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" {if $code neq '' || $goods._attribute neq ''}readonly="readonly"{/if} /><br />
             <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" /><br />
             <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeStorage">{$lang.notice_storage}</span></td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td class="label">{$lang.lab_warn_number}</td>
             <td><input type="text" name="warn_number" value="{$goods.warn_number}" size="20" /></td>
-          </tr>
+          </tr> -->
           {/if}
-          <tr>
+          <!-- <tr>
             <td class="label">{$lang.lab_intro}</td>
             <td><input type="checkbox" name="is_best" value="1" {if $goods.is_best}checked="checked"{/if} />{$lang.is_best} <input type="checkbox" name="is_new" value="1" {if $goods.is_new}checked="checked"{/if} />{$lang.is_new} <input type="checkbox" name="is_hot" value="1" {if $goods.is_hot}checked="checked"{/if} />{$lang.is_hot}</td>
-          </tr>
+          </tr> -->
           <tr id="alone_sale_1">
             <td class="label" id="alone_sale_2">{$lang.lab_is_on_sale}</td>
             <td id="alone_sale_3"><input type="checkbox" name="is_on_sale" value="1" {if $goods.is_on_sale}checked="checked"{/if} /> {$lang.on_sale_desc}</td>
@@ -284,7 +304,7 @@
             <td class="label">{$lang.lab_is_free_shipping}</td>
             <td><input type="checkbox" name="is_shipping" value="1" {if $goods.is_shipping}checked="checked"{/if} /> {$lang.free_shipping}</td>
           </tr>
-          
+
           <tr>
             <td class="label">{$lang.lab_goods_brief}</td>
             <td><textarea name="goods_brief" cols="40" rows="3">{$goods.goods_brief|escape}</textarea></td>
