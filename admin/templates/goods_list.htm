@@ -18,7 +18,7 @@
     </th>
     <th>{$lang.goods_thumb}{$sort_goods_thumb}</th>
     <th>{$lang.goods_name}{$sort_goods_name}</th>
-    <th>{$lang.goods_sn}{$sort_goods_sn}</th>
+    <th>{$lang.goods_unit}{$sort_goods_unit}</th>
     <th>{$lang.shop_price}{$sort_shop_price}</th>
     <th>{$lang.is_new}{$sort_is_new}</th>
     <th>{$lang.is_best}{$sort_is_best}</th>
@@ -36,7 +36,7 @@
     <td><input type="checkbox" name="checkboxes[]" value="{$goods.goods_id}" />{$goods.goods_id}</td>
     <td align="center"><img src= "/ecshop/{$goods.goods_thumb}" width="50" height="50" border="0" /></td>
     <td class="first-cell" style="{if $goods.is_promote}color:red;{/if}"><span onclick="listTable.edit(this, 'edit_goods_name', {$goods.goods_id})">{$goods.goods_name|escape:html}</span></td>
-    <td><span onclick="listTable.edit(this, 'edit_goods_sn', {$goods.goods_id})">{$goods.goods_sn}</span></td>
+    <td><span onclick="listTable.edit(this, 'edit_goods_sn', {$goods.goods_id})">{$goods.unit}</span></td>
     <td align="right"><span onclick="listTable.edit(this, 'edit_goods_price', {$goods.goods_id})">{$goods.shop_price}</span></td>
     <td align="center"><img src="images/{if $goods.is_new}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_new', {$goods.goods_id})" /></td>
     <td align="center"><img src="images/{if $goods.is_best}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_best', {$goods.goods_id})" /></td>
@@ -47,10 +47,10 @@
     <td align="right"><span onclick="listTable.edit(this, 'edit_goods_number', {$goods.goods_id})">{$goods.goods_number}</span></td>
     {/if} -->
     <td align="center">
-      <a href="../goods.php?id={$goods.goods_id}" target="_blank" title="{$lang.view}"><img src="images/icon_view.gif" width="21" height="21" border="0" /></a>
-      <a href="goods.php?act=edit&goods_id={$goods.goods_id}{if $code neq 'real_goods'}&extension_code={$code}{/if}" title="{$lang.edit}"><img src="images/icon_edit.gif" width="21" height="21" border="0" /></a>
-      <a href="goods.php?act=copy&goods_id={$goods.goods_id}{if $code neq 'real_goods'}&extension_code={$code}{/if}" title="{$lang.copy}"><img src="images/icon_copy.gif" width="21" height="21" border="0" /></a>
-      <a href="javascript:;" onclick="listTable.remove({$goods.goods_id}, '{$lang.trash_goods_confirm}')" title="{$lang.trash}"><img src="images/icon_trash.gif" width="21" height="21" border="0" /></a>
+      <!-- <a href="../goods.php?id={$goods.goods_id}" target="_blank" title="{$lang.view}"><img src="images/icon_view.gif" width="21" height="21" border="0" /></a> -->
+      <a href="goods.php?act=edit&goods_id={$goods.goods_id}{if $code neq 'real_goods'}&extension_code={$code}{/if}" title="{$lang.edit}">编辑</a>
+      <!-- <a href="goods.php?act=copy&goods_id={$goods.goods_id}{if $code neq 'real_goods'}&extension_code={$code}{/if}" title="{$lang.copy}"><img src="images/icon_copy.gif" width="21" height="21" border="0" /></a> -->
+      <a href="javascript:;" onclick="listTable.remove({$goods.goods_id}, '{$lang.trash_goods_confirm}')" title="{$lang.trash}">删除</a>
       {if $specifications[$goods.goods_type] neq ''}<a href="goods.php?act=product_list&goods_id={$goods.goods_id}" title="{$lang.item_list}"><img src="images/icon_docs.gif" width="21" height="21" border="0" /></a>{else}<img src="images/empty.gif" width="21" height="21" border="0" />{/if}
       {if $add_handler}
         |

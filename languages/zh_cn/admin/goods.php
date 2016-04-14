@@ -64,13 +64,14 @@ $_LANG['is_hot'] = '热销';
 $_LANG['is_promote'] = '特价';
 $_LANG['all_type'] = '全部推荐';
 $_LANG['sort_order'] = '推荐排序';
-
+$_LANG['goods_unit'] = '单位';
 $_LANG['goods_thumb'] = '商品图片';
 $_LANG['goods_name'] = '商品名称';
 $_LANG['goods_sn'] = '货号';
 $_LANG['shop_price'] = '价格';
 $_LANG['is_on_sale'] = '销售中';
 $_LANG['goods_number'] = '库存';
+$_LANG['goods_bar_code'] = '条形码:';
 
 $_LANG['copy'] = '复制';
 $_LANG['item_list'] = '货品列表';
@@ -120,9 +121,10 @@ $_LANG['tab_linkgoods'] = '关联商品';
 $_LANG['tab_groupgoods'] = '配件';
 $_LANG['tab_article'] = '关联文章';
 
+$_LANG['lab_goods_unit'] = '产品单位：';
 $_LANG['lab_goods_name'] = '商品名称：';
-$_LANG['lab_goods_sn'] = '商品货号：';
-$_LANG['lab_goods_cat'] = '商品分类：';
+$_LANG['lab_goods_sn'] = '商品编号：';
+$_LANG['lab_goods_cat'] = '所属类目：';
 $_LANG['lab_other_cat'] = '扩展分类：';
 $_LANG['lab_goods_brand'] = '商品品牌：';
 $_LANG['lab_shop_price'] = '本店售价：';
@@ -133,14 +135,16 @@ $_LANG['lab_promote_date'] = '促销日期：';
 $_LANG['lab_picture'] = '上传商品图片：';
 $_LANG['lab_thumb'] = '上传商品缩略图：';
 $_LANG['auto_thumb'] = '自动生成商品缩略图';
-$_LANG['lab_keywords'] = '商品关键词：';
+$_LANG['lab_keywords'] = '关键字：';
 $_LANG['lab_goods_brief'] = '商品简单描述：';
 $_LANG['lab_seller_note'] = '商家备注：';
 $_LANG['lab_goods_type'] = '商品类型：';
 $_LANG['lab_picture_url'] = '商品图片外部URL';
 $_LANG['lab_thumb_url'] = '商品缩略图外部URL';
 
-$_LANG['lab_goods_weight'] = '商品重量：';
+$_LANG['lab_goods_max_buy'] = '限购数量：';
+$_LANG['lab_goods_min_buy'] = '最低购买数量:';
+$_LANG['lab_goods_weight'] = '产品重量：';
 $_LANG['unit_g'] = '克';
 $_LANG['unit_kg'] = '千克';
 $_LANG['lab_goods_number'] = '商品库存数量：';
@@ -155,13 +159,15 @@ $_LANG['lab_is_free_shipping'] = '是否为免运费商品';
 
 $_LANG['compute_by_mp'] = '按市场价计算';
 
+$_LANG['notice_goods_max_buy'] = '0为不限制，大于0时，此商品将不允许批发';
+$_LANG['notice_goods_min_buy'] = '0为不限制，大于0时，此商品的最低购买数量为设定的数量';
 $_LANG['notice_goods_sn'] = '如果您不输入商品货号，系统将自动生成一个唯一的货号。';
 $_LANG['notice_integral'] = '(此处需填写金额)购买该商品时最多可以使用积分的金额';
 $_LANG['notice_give_integral'] = '购买该商品时赠送消费积分数,-1表示按商品价格赠送';
 $_LANG['notice_rank_integral'] = '购买该商品时赠送等级积分数,-1表示按商品价格赠送';
 $_LANG['notice_seller_note'] = '仅供商家自己看的信息';
 $_LANG['notice_storage'] = '库存在商品为虚货或商品存在货品时为不可编辑状态，库存数值取决于其虚货数量或货品数量';
-$_LANG['notice_keywords'] = '用空格分隔';
+$_LANG['notice_keywords'] = '栏目META关键词。针对搜索引擎设置的关键词多个关键词请用空格分隔';
 $_LANG['notice_user_price'] = '会员价格为-1时表示会员价格按会员等级折扣率计算。你也可以为每个等级指定一个固定价格';
 $_LANG['notice_goods_type'] = '请选择商品的所属类型，进而完善此商品的属性';
 

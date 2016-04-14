@@ -458,6 +458,8 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
         $volume_price_list = array('0'=>array('number'=>'','price'=>''));
     }
     $smarty->assign('volume_price_list', $volume_price_list);
+     /*pageheader父标题*/
+    $smarty->assign('pageheader_title',  $_LANG['02_cat_and_goods']);
     /* 显示商品信息页面 */
     assign_query_info();
     $smarty->display('goods_info.htm');

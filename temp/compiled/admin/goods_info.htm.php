@@ -34,24 +34,9 @@
         <!-- 閫氱敤淇℃伅 -->
         <table width="90%" id="general-table" align="center">
           <tr>
-            <td class="label"><?php echo $this->_var['lang']['lab_goods_name']; ?></td>
-            <td><input type="text" name="goods_name" value="<?php echo htmlspecialchars($this->_var['goods']['goods_name']); ?>" style="float:left;color:<?php echo $this->_var['goods_name_color']; ?>;" size="30" /><div style="background-color:<?php echo $this->_var['goods_name_color']; ?>;float:left;margin-left:2px;" id="font_color" onclick="ColorSelecter.Show(this);"><img src="images/color_selecter.gif" style="margin-top:-1px;" /></div><input type="hidden" id="goods_name_color" name="goods_name_color" value="<?php echo $this->_var['goods_name_color']; ?>" />&nbsp;
-            <select name="goods_name_style">
-              <option value=""><?php echo $this->_var['lang']['select_font']; ?></option>
-              <?php echo $this->html_options(array('options'=>$this->_var['lang']['font_styles'],'selected'=>$this->_var['goods_name_style'])); ?>
-            </select>
-            <?php echo $this->_var['lang']['require_field']; ?></td>
-          </tr>
-          <tr>
-            <td class="label">
-            <a href="javascript:showNotice('noticeGoodsSN');" title="<?php echo $this->_var['lang']['form_notice']; ?>"><img src="images/notice.gif" width="16" height="16" border="0" alt="<?php echo $this->_var['lang']['form_notice']; ?>"></a> <?php echo $this->_var['lang']['lab_goods_sn']; ?> </td>
-            <td><input type="text" name="goods_sn" value="<?php echo htmlspecialchars($this->_var['goods']['goods_sn']); ?>" size="20" onblur="checkGoodsSn(this.value,'<?php echo $this->_var['goods']['goods_id']; ?>')" /><span id="goods_sn_notice"></span><br />
-            <span class="notice-span" <?php if ($this->_var['help_open']): ?>style="display:block" <?php else: ?> style="display:none" <?php endif; ?> id="noticeGoodsSN"><?php echo $this->_var['lang']['notice_goods_sn']; ?></span></td>
-          </tr>
-          <tr>
             <td class="label"><?php echo $this->_var['lang']['lab_goods_cat']; ?></td>
             <td><select name="cat_id" onchange="hideCatDiv()" ><option value="0"><?php echo $this->_var['lang']['select_please']; ?></option><?php echo $this->_var['cat_list']; ?></select>
-              <?php if ($this->_var['is_add']): ?>
+              <!-- <?php if ($this->_var['is_add']): ?>
               <a href="javascript:void(0)" onclick="rapidCatAdd()" title="<?php echo $this->_var['lang']['rapid_add_cat']; ?>" class="special"><?php echo $this->_var['lang']['rapid_add_cat']; ?></a>
               <span id="category_add" style="display:none;">
               <input class="text" size="10" name="addedCategoryName" />
@@ -59,10 +44,72 @@
                <a href="javascript:void(0)" onclick="return goCatPage()" title="<?php echo $this->_var['lang']['category_manage']; ?>" class="special" ><?php echo $this->_var['lang']['category_manage']; ?></a>
                <a href="javascript:void(0)" onclick="hideCatDiv()" title="<?php echo $this->_var['lang']['hide']; ?>" class="special" ><<</a>
                </span>
-               <?php endif; ?>
-               <?php echo $this->_var['lang']['require_field']; ?>
+               <?php endif; ?> -->
+               <!-- <?php echo $this->_var['lang']['require_field']; ?> -->
             </td>
           </tr>
+          <!-- 商品编号 -->
+          <tr>
+            <td class="label">
+            <!-- <a href="javascript:showNotice('noticeGoodsSN');" title="<?php echo $this->_var['lang']['form_notice']; ?>"><img src="images/notice.gif" width="16" height="16" border="0" alt="<?php echo $this->_var['lang']['form_notice']; ?>"></a>  --><?php echo $this->_var['lang']['lab_goods_sn']; ?> </td>
+            <td><input type="text" name="goods_sn" value="<?php echo htmlspecialchars($this->_var['goods']['goods_sn']); ?>" size="20" onblur="checkGoodsSn(this.value,'<?php echo $this->_var['goods']['goods_id']; ?>')" readonly="readonly" /><span id="goods_sn_notice"></span><br />
+            <!-- <span class="notice-span" <?php if ($this->_var['help_open']): ?>style="display:block" <?php else: ?> style="display:none" <?php endif; ?> id="noticeGoodsSN"><?php echo $this->_var['lang']['notice_goods_sn']; ?></span> -->
+            </td>
+          </tr>
+          <!-- 条形码 -->
+          <tr>
+            <td class="label">
+            <?php echo $this->_var['lang']['goods_bar_code']; ?> </td>
+            <td><input type="text" name="goods_bar_code" value="<?php echo htmlspecialchars($this->_var['goods']['goods_bar_code']); ?>" size="20"/>
+            </td>
+          </tr>
+          <!-- 商品名称 -->
+          <tr>
+            <td class="label"><?php echo $this->_var['lang']['lab_goods_name']; ?></td>
+            <td><input type="text" name="goods_name" value="<?php echo htmlspecialchars($this->_var['goods']['goods_name']); ?>" style="float:left;color:<?php echo $this->_var['goods_name_color']; ?>;" size="30" />
+            </td>
+          </tr>
+          <!-- 关键字 -->
+          <tr>
+            <td class="label"><?php echo $this->_var['lang']['lab_keywords']; ?></td>
+            <td>
+              <span class="notice-span"><?php echo $this->_var['lang']['notice_keywords']; ?></span>
+              <br />
+              <input type="text" name="keywords" value="<?php echo htmlspecialchars($this->_var['goods']['keywords']); ?>" size="40" />
+            </td>
+          </tr>
+          <!-- 产品单位 -->
+          <tr>
+            <td class="label">
+            <?php echo $this->_var['lang']['lab_goods_unit']; ?> </td>
+            <td><input type="text" name="goods_unit" value="<?php echo htmlspecialchars($this->_var['goods']['unit']); ?>" size="20"/>
+            </td>
+          </tr>
+          <!-- 产品重量 -->
+          <?php if ($this->_var['code'] == ''): ?>
+          <tr>
+            <td class="label"><?php echo $this->_var['lang']['lab_goods_weight']; ?></td>
+            <td><input type="text" name="goods_weight" value="<?php echo $this->_var['goods']['goods_weight_by_unit']; ?>" size="20" /> <select name="weight_unit"><?php echo $this->html_options(array('options'=>$this->_var['unit_list'],'selected'=>$this->_var['weight_unit'])); ?></select></td>
+          </tr>
+          <?php endif; ?>
+          <!-- 限购数量 -->
+          <tr>
+            <td class="label"><?php echo $this->_var['lang']['lab_goods_max_buy']; ?></td>
+            <td>
+              <input type="text" name="goods_max_buy" value="<?php echo htmlspecialchars($this->_var['goods']['goods_max_buy']); ?>" size="40" />
+              <span class="notice-span"><?php echo $this->_var['lang']['notice_goods_max_buy']; ?></span>
+            </td>
+          </tr>
+          <!-- 最低购买数量 -->
+          <tr>
+            <td class="label"><?php echo $this->_var['lang']['lab_goods_min_buy']; ?></td>
+            <td>
+              <input type="text" name="goods_min_buy" value="<?php echo htmlspecialchars($this->_var['goods']['goods_min_buy']); ?>" size="40" />
+              <span class="notice-span"><?php echo $this->_var['lang']['notice_goods_min_buy']; ?></span>
+            </td>
+          </tr>
+
+
           <tr>
             <td class="label"><?php echo $this->_var['lang']['lab_other_cat']; ?></td>
             <td>
@@ -110,7 +157,7 @@
               <?php $_from = $this->_var['user_rank_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'user_rank');if (count($_from)):
     foreach ($_from AS $this->_var['user_rank']):
 ?>
-              <?php echo $this->_var['user_rank']['rank_name']; ?><span id="nrank_<?php echo $this->_var['user_rank']['rank_id']; ?>"></span><input type="text" id="rank_<?php echo $this->_var['user_rank']['rank_id']; ?>" name="user_price[]" value="<?php echo empty($this->_var['member_price_list'][$this->_var['user_rank']['rank_id']]) ? '-1' : $this->_var['member_price_list'][$this->_var['user_rank']['rank_id']]; ?>" onkeyup="if(parseInt(this.value)<-1){this.value='-1';};set_price_note(<?php echo $this->_var['user_rank']['rank_id']; ?>)" size="8" />
+              <?php echo $this->_var['user_rank']['rank_name']; ?><span id="nrank_<?php echo $this->_var['user_rank']['rank_id']; ?>"></span><input type="text" id="rank_<?php echo $this->_var['user_rank']['rank_id']; ?>" name="user_price[]" value="<?php echo empty($this->_var['member_price_list[$user_rank']['rank_id]']) ? '-1' : $this->_var['member_price_list[$user_rank']['rank_id]']; ?>" onkeyup="if(parseInt(this.value)<-1){this.value='-1';};set_price_note(<?php echo $this->_var['user_rank']['rank_id']; ?>)" size="8" />
               <input type="hidden" name="user_rank[]" value="<?php echo $this->_var['user_rank']['rank_id']; ?>" />
               <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
               <br />
@@ -216,12 +263,7 @@ if ($this->_foreach['volume_price_tab']['total'] > 0):
 
         <!-- 鍏朵粬淇℃伅 -->
         <table width="90%" id="mix-table" style="display:none" align="center">
-          <?php if ($this->_var['code'] == ''): ?>
-          <tr>
-            <td class="label"><?php echo $this->_var['lang']['lab_goods_weight']; ?></td>
-            <td><input type="text" name="goods_weight" value="<?php echo $this->_var['goods']['goods_weight_by_unit']; ?>" size="20" /> <select name="weight_unit"><?php echo $this->html_options(array('options'=>$this->_var['unit_list'],'selected'=>$this->_var['weight_unit'])); ?></select></td>
-          </tr>
-          <?php endif; ?>
+          
           <?php if ($this->_var['cfg']['use_storage']): ?>
           <tr>
             <td class="label"><a href="javascript:showNotice('noticeStorage');" title="<?php echo $this->_var['lang']['form_notice']; ?>"><img src="images/notice.gif" width="16" height="16" border="0" alt="<?php echo $this->_var['lang']['form_notice']; ?>"></a> <?php echo $this->_var['lang']['lab_goods_number']; ?></td>
@@ -250,10 +292,7 @@ if ($this->_foreach['volume_price_tab']['total'] > 0):
             <td class="label"><?php echo $this->_var['lang']['lab_is_free_shipping']; ?></td>
             <td><input type="checkbox" name="is_shipping" value="1" <?php if ($this->_var['goods']['is_shipping']): ?>checked="checked"<?php endif; ?> /> <?php echo $this->_var['lang']['free_shipping']; ?></td>
           </tr>
-          <tr>
-            <td class="label"><?php echo $this->_var['lang']['lab_keywords']; ?></td>
-            <td><input type="text" name="keywords" value="<?php echo htmlspecialchars($this->_var['goods']['keywords']); ?>" size="40" /> <?php echo $this->_var['lang']['notice_keywords']; ?></td>
-          </tr>
+          
           <tr>
             <td class="label"><?php echo $this->_var['lang']['lab_goods_brief']; ?></td>
             <td><textarea name="goods_brief" cols="40" rows="3"><?php echo htmlspecialchars($this->_var['goods']['goods_brief']); ?></textarea></td>

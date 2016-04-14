@@ -825,6 +825,7 @@ function goods_list($is_delete, $real_goods=1, $conditions = '')
         $filter['stock_warning']    = empty($_REQUEST['stock_warning']) ? 0 : intval($_REQUEST['stock_warning']);
         $filter['brand_id']         = empty($_REQUEST['brand_id']) ? 0 : intval($_REQUEST['brand_id']);
         $filter['keyword']          = empty($_REQUEST['keyword']) ? '' : trim($_REQUEST['keyword']);
+        $filter['unit']          = empty($_REQUEST['unit']) ? '' : trim($_REQUEST['unit']);
         $filter['suppliers_id'] = isset($_REQUEST['suppliers_id']) ? (empty($_REQUEST['suppliers_id']) ? '' : trim($_REQUEST['suppliers_id'])) : '';
         $filter['is_on_sale'] = isset($_REQUEST['is_on_sale']) ? ((empty($_REQUEST['is_on_sale']) && $_REQUEST['is_on_sale'] === 0) ? '' : trim($_REQUEST['is_on_sale'])) : '';
         if (isset($_REQUEST['is_ajax']) && $_REQUEST['is_ajax'] == 1)
@@ -908,7 +909,7 @@ function goods_list($is_delete, $real_goods=1, $conditions = '')
         /* 分页大小 */
         $filter = page_and_size($filter);
 
-        $sql = "SELECT goods_id, goods_thumb, goods_name, goods_type, goods_sn, shop_price, is_on_sale, is_best, is_new, is_hot, sort_order, goods_number, integral, " .
+        $sql = "SELECT goods_id, goods_thumb, goods_name, goods_type, goods_sn, shop_price, is_on_sale, is_best, is_new, is_hot, sort_order, goods_number, integral,unit, " .
                     " (promote_price > 0 AND promote_start_date <= '$today' AND promote_end_date >= '$today') AS is_promote ".
                     " FROM " . $GLOBALS['ecs']->table('goods') . " AS g WHERE is_delete='$is_delete' $where" .
                     " ORDER BY $filter[sort_by] $filter[sort_order] ".

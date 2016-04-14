@@ -18,7 +18,7 @@
     </th>
     <th><?php echo $this->_var['lang']['goods_thumb']; ?><?php echo $this->_var['sort_goods_thumb']; ?></th>
     <th><?php echo $this->_var['lang']['goods_name']; ?><?php echo $this->_var['sort_goods_name']; ?></th>
-    <th><?php echo $this->_var['lang']['goods_sn']; ?><?php echo $this->_var['sort_goods_sn']; ?></th>
+    <th><?php echo $this->_var['lang']['goods_unit']; ?><?php echo $this->_var['sort_goods_unit']; ?></th>
     <th><?php echo $this->_var['lang']['shop_price']; ?><?php echo $this->_var['sort_shop_price']; ?></th>
     <th><?php echo $this->_var['lang']['is_new']; ?><?php echo $this->_var['sort_is_new']; ?></th>
     <th><?php echo $this->_var['lang']['is_best']; ?><?php echo $this->_var['sort_is_best']; ?></th>
@@ -38,7 +38,7 @@
     <td><input type="checkbox" name="checkboxes[]" value="<?php echo $this->_var['goods']['goods_id']; ?>" /><?php echo $this->_var['goods']['goods_id']; ?></td>
     <td align="center"><img src= "/ecshop/<?php echo $this->_var['goods']['goods_thumb']; ?>" width="50" height="50" border="0" /></td>
     <td class="first-cell" style="<?php if ($this->_var['goods']['is_promote']): ?>color:red;<?php endif; ?>"><span onclick="listTable.edit(this, 'edit_goods_name', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo htmlspecialchars($this->_var['goods']['goods_name']); ?></span></td>
-    <td><span onclick="listTable.edit(this, 'edit_goods_sn', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['goods_sn']; ?></span></td>
+    <td><span onclick="listTable.edit(this, 'edit_goods_sn', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['unit']; ?></span></td>
     <td align="right"><span onclick="listTable.edit(this, 'edit_goods_price', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['shop_price']; ?></span></td>
     <td align="center"><img src="images/<?php if ($this->_var['goods']['is_new']): ?>yes<?php else: ?>no<?php endif; ?>.gif" onclick="listTable.toggle(this, 'toggle_new', <?php echo $this->_var['goods']['goods_id']; ?>)" /></td>
     <td align="center"><img src="images/<?php if ($this->_var['goods']['is_best']): ?>yes<?php else: ?>no<?php endif; ?>.gif" onclick="listTable.toggle(this, 'toggle_best', <?php echo $this->_var['goods']['goods_id']; ?>)" /></td>
@@ -49,10 +49,10 @@
     <td align="right"><span onclick="listTable.edit(this, 'edit_goods_number', <?php echo $this->_var['goods']['goods_id']; ?>)"><?php echo $this->_var['goods']['goods_number']; ?></span></td>
     <?php endif; ?> -->
     <td align="center">
-      <a href="../goods.php?id=<?php echo $this->_var['goods']['goods_id']; ?>" target="_blank" title="<?php echo $this->_var['lang']['view']; ?>"><img src="images/icon_view.gif" width="21" height="21" border="0" /></a>
-      <a href="goods.php?act=edit&goods_id=<?php echo $this->_var['goods']['goods_id']; ?><?php if ($this->_var['code'] != 'real_goods'): ?>&extension_code=<?php echo $this->_var['code']; ?><?php endif; ?>" title="<?php echo $this->_var['lang']['edit']; ?>"><img src="images/icon_edit.gif" width="21" height="21" border="0" /></a>
-      <a href="goods.php?act=copy&goods_id=<?php echo $this->_var['goods']['goods_id']; ?><?php if ($this->_var['code'] != 'real_goods'): ?>&extension_code=<?php echo $this->_var['code']; ?><?php endif; ?>" title="<?php echo $this->_var['lang']['copy']; ?>"><img src="images/icon_copy.gif" width="21" height="21" border="0" /></a>
-      <a href="javascript:;" onclick="listTable.remove(<?php echo $this->_var['goods']['goods_id']; ?>, '<?php echo $this->_var['lang']['trash_goods_confirm']; ?>')" title="<?php echo $this->_var['lang']['trash']; ?>"><img src="images/icon_trash.gif" width="21" height="21" border="0" /></a>
+      <!-- <a href="../goods.php?id=<?php echo $this->_var['goods']['goods_id']; ?>" target="_blank" title="<?php echo $this->_var['lang']['view']; ?>"><img src="images/icon_view.gif" width="21" height="21" border="0" /></a> -->
+      <a href="goods.php?act=edit&goods_id=<?php echo $this->_var['goods']['goods_id']; ?><?php if ($this->_var['code'] != 'real_goods'): ?>&extension_code=<?php echo $this->_var['code']; ?><?php endif; ?>" title="<?php echo $this->_var['lang']['edit']; ?>">编辑</a>
+      <!-- <a href="goods.php?act=copy&goods_id=<?php echo $this->_var['goods']['goods_id']; ?><?php if ($this->_var['code'] != 'real_goods'): ?>&extension_code=<?php echo $this->_var['code']; ?><?php endif; ?>" title="<?php echo $this->_var['lang']['copy']; ?>"><img src="images/icon_copy.gif" width="21" height="21" border="0" /></a> -->
+      <a href="javascript:;" onclick="listTable.remove(<?php echo $this->_var['goods']['goods_id']; ?>, '<?php echo $this->_var['lang']['trash_goods_confirm']; ?>')" title="<?php echo $this->_var['lang']['trash']; ?>">删除</a>
       <?php if ($this->_var['specifications'] [ $this->_var['goods']['goods_type'] ] != ''): ?><a href="goods.php?act=product_list&goods_id=<?php echo $this->_var['goods']['goods_id']; ?>" title="<?php echo $this->_var['lang']['item_list']; ?>"><img src="images/icon_docs.gif" width="21" height="21" border="0" /></a><?php else: ?><img src="images/empty.gif" width="21" height="21" border="0" /><?php endif; ?>
       <?php if ($this->_var['add_handler']): ?>
         |
