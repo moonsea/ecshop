@@ -4,39 +4,16 @@
 <form name="theForm" method="post" enctype="multipart/form-data" onsubmit="return validate();">
 <table width="100%">
   <tr>
-    <td class="label">用户名：</td>
-    <td><?php echo htmlspecialchars($this->_var['user']['user_name']); ?></td>
-    <!-- <td>
-      <input type="text" name="user_name" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['user_name']); ?>" size="34" readonly="readonly" /></td> -->
-  </tr>
-  <tr>
-    <td class="label">邀请码：</td>
-    <td><?php echo $this->_var['user']['invitation_code']; ?></td>
-    <!-- <td>
-      <input type="text" name="invitation_code" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['invitation_code']); ?>" size="34" readonly="readonly" /></td> -->
-  </tr>
-  <tr>
-    <td class="label">手机号码：</td>
+    <td class="label"><?php echo $this->_var['lang']['user_name']; ?></td>
     <td>
-      <input type="text" name="phone" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['phone']); ?>" size="34"/></td>
+      <input type="text" name="user_name" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['user_name']); ?>" size="34"/><?php echo $this->_var['lang']['require_field']; ?></td>
   </tr>
   <tr>
-    <td class="label">所属部门：</td>
-    <td><?php echo $this->_var['user']['company']; ?></td>
-    <!-- <td>
-      <input type="text" name="agency_name" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['agency_name']); ?>" size="34" readonly="readonly"/></td> -->
-  </tr>
-  <tr>
-    <td class="label">银行卡号：</td>
-    <td>
-      <input type="text" name="agency_name" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['agency_name']); ?>" size="34"/></td>
-  </tr>
-  <!-- <tr>
     <td class="label"><?php echo $this->_var['lang']['email']; ?></td>
     <td>
       <input type="text" name="email" value="<?php echo htmlspecialchars($this->_var['user']['email']); ?>" size="34" /><?php echo $this->_var['lang']['require_field']; ?></td>
-  </tr> -->
- <!-- <?php if ($this->_var['action'] == "add"): ?>
+  </tr>
+ <?php if ($this->_var['action'] == "add"): ?>
   <tr>
     <td class="label"><?php echo $this->_var['lang']['password']; ?></td>
     <td>
@@ -56,8 +33,8 @@
     <td>
       <input type="password" name="old_password" size="34" /><?php echo $this->_var['lang']['require_field']; ?>
       <br /><span class="notice-span" <?php if ($this->_var['help_open']): ?>style="display:block" <?php else: ?> style="display:none" <?php endif; ?> id="passwordNotic"><?php echo $this->_var['lang']['password_notic']; ?></span></td>
-  </tr> -->
-  <!-- <tr>
+  </tr>
+  <tr>
     <td class="label"><?php echo $this->_var['lang']['new_password']; ?></td>
     <td>
       <input type="password" name="new_password" maxlength="32" size="34" /><?php echo $this->_var['lang']['require_field']; ?></td>
@@ -123,11 +100,11 @@
         </tr>
       </table></td>
   </tr>
-  <?php endif; ?> -->
+  <?php endif; ?>
   <tr>
     <td colspan="2" align="center">
       <input type="submit" value="<?php echo $this->_var['lang']['button_submit']; ?>" class="button" />&nbsp;&nbsp;&nbsp;
-      <!-- <input type="reset" value="<?php echo $this->_var['lang']['button_reset']; ?>" class="button" /> -->
+      <input type="reset" value="<?php echo $this->_var['lang']['button_reset']; ?>" class="button" />
       <input type="hidden" name="act" value="<?php echo $this->_var['form_act']; ?>" />
       <input type="hidden" name="token" value="<?php echo $this->_var['token']; ?>" />
       <input type="hidden" name="id" value="<?php echo $this->_var['user']['user_id']; ?>" /></td>

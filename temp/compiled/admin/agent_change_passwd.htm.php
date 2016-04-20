@@ -6,32 +6,8 @@
   <tr>
     <td class="label">用户名：</td>
     <td><?php echo htmlspecialchars($this->_var['user']['user_name']); ?></td>
-    <!-- <td>
-      <input type="text" name="user_name" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['user_name']); ?>" size="34" readonly="readonly" /></td> -->
   </tr>
-  <tr>
-    <td class="label">邀请码：</td>
-    <td><?php echo $this->_var['user']['invitation_code']; ?></td>
-    <!-- <td>
-      <input type="text" name="invitation_code" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['invitation_code']); ?>" size="34" readonly="readonly" /></td> -->
-  </tr>
-  <tr>
-    <td class="label">手机号码：</td>
-    <td>
-      <input type="text" name="phone" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['phone']); ?>" size="34"/></td>
-  </tr>
-  <tr>
-    <td class="label">所属部门：</td>
-    <td><?php echo $this->_var['user']['company']; ?></td>
-    <!-- <td>
-      <input type="text" name="agency_name" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['agency_name']); ?>" size="34" readonly="readonly"/></td> -->
-  </tr>
-  <tr>
-    <td class="label">银行卡号：</td>
-    <td>
-      <input type="text" name="agency_name" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['agency_name']); ?>" size="34"/></td>
-  </tr>
-  <!-- <tr>
+ <!--  <tr>
     <td class="label"><?php echo $this->_var['lang']['email']; ?></td>
     <td>
       <input type="text" name="email" value="<?php echo htmlspecialchars($this->_var['user']['email']); ?>" size="34" /><?php echo $this->_var['lang']['require_field']; ?></td>
@@ -47,34 +23,32 @@
     <td>
       <input type="password" name="pwd_confirm" maxlength="32" size="34" /><?php echo $this->_var['lang']['require_field']; ?></td>
   </tr>
-  <?php endif; ?>
-  <?php if ($this->_var['action'] != "add"): ?>
+  <?php endif; ?> -->
+  <!-- <?php if ($this->_var['action'] != "add"): ?> -->
   <tr>
-    <td class="label">
-      <a href="javascript:showNotice('passwordNotic');" title="<?php echo $this->_var['lang']['form_notice']; ?>">
-        <img src="images/notice.gif" width="16" height="16" border="0" alt="<?php echo $this->_var['lang']['form_notice']; ?>"></a><?php echo $this->_var['lang']['old_password']; ?></td>
+    <td class="label">原密码：</td>
     <td>
       <input type="password" name="old_password" size="34" /><?php echo $this->_var['lang']['require_field']; ?>
-      <br /><span class="notice-span" <?php if ($this->_var['help_open']): ?>style="display:block" <?php else: ?> style="display:none" <?php endif; ?> id="passwordNotic"><?php echo $this->_var['lang']['password_notic']; ?></span></td>
-  </tr> -->
-  <!-- <tr>
-    <td class="label"><?php echo $this->_var['lang']['new_password']; ?></td>
+      <br /><span class="notice-span" <?php if ($this->_var['help_open']): ?>style="display:block" <?php else: ?> style="display:none" <?php endif; ?> id="passwordNotic">如果要修改密码,请先填写旧密码,如留空,密码保持不变</span></td>
+  </tr>
+  <tr>
+    <td class="label">新密码：</td>
     <td>
       <input type="password" name="new_password" maxlength="32" size="34" /><?php echo $this->_var['lang']['require_field']; ?></td>
   </tr>
   <tr>
-    <td class="label"><?php echo $this->_var['lang']['pwd_confirm']; ?></td>
+    <td class="label">确认密码：</td>
     <td>
       <input type="password" name="pwd_confirm" value="" size="34" /><?php echo $this->_var['lang']['require_field']; ?></td>
   </tr>
-  <?php if ($this->_var['user']['agency_name']): ?>
+  <!-- <?php if ($this->_var['user']['agency_name']): ?>
   <tr>
     <td class="label"><?php echo $this->_var['lang']['agency']; ?></td>
     <td><?php echo $this->_var['user']['agency_name']; ?></td>
   </tr>
-  <?php endif; ?>
-  <?php endif; ?>
-   <?php if ($this->_var['select_role']): ?>
+  <?php endif; ?> -->
+  <!-- <?php endif; ?> -->
+   <!-- <?php if ($this->_var['select_role']): ?>
     <tr>
    <td class="label"><?php echo $this->_var['lang']['select_role']; ?></td>
     <td>
@@ -88,7 +62,7 @@
       </select>
     </td>
   </tr>
-  <?php endif; ?>
+  <?php endif; ?> -->
   <?php if ($this->_var['action'] == "modif"): ?>
   <tr>
   <td align="left" class="label"><?php echo $this->_var['lang']['edit_navi']; ?></td>
@@ -123,7 +97,7 @@
         </tr>
       </table></td>
   </tr>
-  <?php endif; ?> -->
+  <?php endif; ?>
   <tr>
     <td colspan="2" align="center">
       <input type="submit" value="<?php echo $this->_var['lang']['button_submit']; ?>" class="button" />&nbsp;&nbsp;&nbsp;
@@ -140,118 +114,127 @@
 var action = "<?php echo $this->_var['action']; ?>";
 <!--
 
-document.forms['theForm'].elements['user_name'].focus();
-onload = function()
-{
-    // 开始检查订单
-    startCheckOrder();
-}
+// document.forms['theForm'].elements['user_name'].focus();
+// onload = function()
+// {
+//     // 开始检查订单
+//     startCheckOrder();
+// }
 
-/**
- * 切换增加按钮的状态
- */
-function toggleAddButton()
-{
-    var sel = document.getElementById("all_menu_list");
-    document.getElementById("btnAdd").disabled = (sel.selectedIndex > -1) ? false : true;
-}
+// /**
+//  * 切换增加按钮的状态
+//  */
+// function toggleAddButton()
+// {
+//     var sel = document.getElementById("all_menu_list");
+//     document.getElementById("btnAdd").disabled = (sel.selectedIndex > -1) ? false : true;
+// }
 
-/**
- * 切换移出，上移，下移按钮状态
- */
-function toggleButtonSatus()
-{
-    var sel = document.getElementById("menus_navlist");
-    document.getElementById("btnRemove").disabled = (sel.selectedIndex > -1) ? false : true;
-    document.getElementById("btnMoveUp").disabled = (sel.selectedIndex > -1) ? false : true;
-    document.getElementById("btnMoveDown").disabled = (sel.selectedIndex > -1) ? false : true;
-}
+// /**
+//  * 切换移出，上移，下移按钮状态
+//  */
+// function toggleButtonSatus()
+// {
+//     var sel = document.getElementById("menus_navlist");
+//     document.getElementById("btnRemove").disabled = (sel.selectedIndex > -1) ? false : true;
+//     document.getElementById("btnMoveUp").disabled = (sel.selectedIndex > -1) ? false : true;
+//     document.getElementById("btnMoveDown").disabled = (sel.selectedIndex > -1) ? false : true;
+// }
 
-/**
- * 移动选定的列表项
- */
-function moveOptions(direction)
-{
-    var sel = document.getElementById('menus_navlist');
-    if (sel.selectedIndex == -1)
-    {
-        return;
-    }
+// /**
+//  * 移动选定的列表项
+//  */
+// function moveOptions(direction)
+// {
+//     var sel = document.getElementById('menus_navlist');
+//     if (sel.selectedIndex == -1)
+//     {
+//         return;
+//     }
 
-    len = sel.length
-    for (i = 0; i < len; i++)
-    {
-        if (sel.options[i].selected)
-        {
-            if (i == 0 && direction == 'up')
-            {
-                return;
-            }
+//     len = sel.length
+//     for (i = 0; i < len; i++)
+//     {
+//         if (sel.options[i].selected)
+//         {
+//             if (i == 0 && direction == 'up')
+//             {
+//                 return;
+//             }
 
-            newOpt = sel.options[i].cloneNode(true);
+//             newOpt = sel.options[i].cloneNode(true);
 
-            sel.removeChild(sel.options[i]);
-            tarOpt = (direction == "up") ? sel.options[i-1] : sel.options[i+1]
-            sel.insertBefore(newOpt, tarOpt);
-            newOpt.selected = true;
-            break;
-        }
-    }
-}
+//             sel.removeChild(sel.options[i]);
+//             tarOpt = (direction == "up") ? sel.options[i-1] : sel.options[i+1]
+//             sel.insertBefore(newOpt, tarOpt);
+//             newOpt.selected = true;
+//             break;
+//         }
+//     }
+// }
 
 /**
 * 检查表单输入的数据
 */
 function validate()
 {
-  get_navlist();
+  // get_navlist();
 
   validator = new Validator("theForm");
+  var password_invaild = '密码必须同时包含字母及数字且长度不能小于6';
+  var password_error = '两次输入的密码不一致';
   validator.password = function (controlId, msg)
   {
-    var obj = document.forms[this.formName].elements[controlId];
+    var obj = document.forms['theForm'].elements[controlId];
     obj.value = Utils.trim(obj.value);
     if (!(obj.value.length >= 6 && /\d+/.test(obj.value) && /[a-zA-Z]+/.test(obj.value)))
     {
       this.addErrorMsg(msg);
+      // alert(msg);
     }
 
   }
-
-  validator.required("user_name", user_name_empty);
-  validator.required("email", email_empty, 1);
-  validator.isEmail("email", email_error);
-
-  if (action == "add")
-  {
-    if (document.forms['theForm'].elements['password'])
-    {
-      validator.password("password", password_invaild);
-      validator.eqaul("password", "pwd_confirm", password_error);
-    }
-  }
-  if (action == "edit" || action == "modif")
-  {
-    if (document.forms['theForm'].elements['old_password'].value.length > 0)
+// return false;
+  // validator.required("user_name", user_name_empty);
+  // validator.required("email", email_empty, 1);
+  // validator.isEmail("email", email_error);
+  // alert(120);
+  // if (action == "add")
+  // {
+  //   if (document.forms['theForm'].elements['password'])
+  //   {
+  //     validator.password("password", password_invaild);
+  //     validator.eqaul("password", "pwd_confirm", password_error);
+  //   }
+  // }
+  // if (action == "edit" || action == "modif")
+  // {
+    
+  // }
+  if (document.forms['theForm'].elements['old_password'].value.length > 0)
     {
       validator.password("new_password", password_invaild);
       validator.eqaul("new_password", "pwd_confirm", password_error);
+      alert(180);
     }
-  }
+    else{
+      validator.addErrorMsg('输入管理员的原密码');
+    }
+  // alert(300);
 
   return validator.passed();
 }
 
-function get_navlist()
-{
-  if (!document.getElementById('nav_list[]'))
-  {
-    return;
-  }
+// function get_navlist()
+// {
+//   if (!document.getElementById('nav_list[]'))
+//   {
+//     return;
+//   }
 
-  document.getElementById('nav_list[]').value = joinItem(document.getElementById('menus_navlist'));
-  //alert(document.getElementById('nav_list[]').value);
-}
+//   document.getElementById('nav_list[]').value = joinItem(document.getElementById('menus_navlist'));
+//   //alert(document.getElementById('nav_list[]').value);
+// }
 //-->
 
 </script>

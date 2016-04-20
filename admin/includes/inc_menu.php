@@ -150,6 +150,6 @@ $modules['11_system']['021_reg_fields']             = 'reg_fields.php?act=list';
 // 代理
 $modules['12_agent']['01_statistics']            	= 'agent.php?act=list';
 $modules['12_agent']['02_personal_info']         	= 'agent.php?act=info';
-$modules['12_agent']['03_change_passwd']         	= 'privilege.php?act=edit';
+$modules['12_agent']['03_change_passwd']         	= 'agent.php?act=change_pwd';
 
 ?>
