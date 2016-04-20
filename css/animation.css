@@ -1,0 +1,138 @@
+.banner-animation
+{
+	animation:banner-animation 3s ease-out;
+	-moz-animation:banner-animation 3s ease-out; /* Firefox */
+	-webkit-animation:banner-animation 3s ease-out; /* Safari and Chrome */
+	-o-animation:banner-animation 3s ease-out; /* Opera */
+	animation-delay:.5s;
+	-webkit-animation-delay:.5s;
+	-o-animation-delay:.5s;
+	-moz-aniamtion-delay:.5s;
+}
+@keyframes banenr-animation
+{
+	0% {text-shadow:0px 0px 0px #fff; opacity:1;}
+	50% {text-shadow:0px 0px 10px #fff; opacity:0.7;}
+	100% {text-shadow:0px 0px 0px #fff; opacity:0;}
+}
+
+@-webkit-keyframes banner-animation /* Safari and Chrome */
+{
+	0% {text-shadow:0px 0px 0px #fff; opacity:1;}
+	50% {text-shadow:0px 0px 10px #fff; opacity:0.7;}
+	100% {text-shadow:0px 0px 0px #fff; opacity:0;}
+}
+@-o-keyframes banner-animation /* Opera */
+{
+	0% {text-shadow:0px 0px 0px #fff; opacity:1;}
+	50% {text-shadow:0px 0px 10px #fffacity:0.7;}
+	100% {text-shadow:0px 0px 0px #fff; opacity:0;}
+}
+@-moz-keyframes banner-animation /* firefox */
+{
+	0% {text-shadow:0px 0px 0px #fff; opacity:1;}
+	50% {text-shadow:0px 0px 10px #fff; opacity:0.7;}
+	100% {text-shadow:0px 0px 0px #fff; opacity:0;}
+}
+.banner-animation2
+{
+	animation:banner-animation2 1s ease-out;
+	-moz-animation:banner-animation2 1s ease-out; /* Firefox */
+	-webkit-animation:banner-animation2 1s ease-out; /* Safari and Chrome */
+	-o-animation:banner-animation2 1s ease-out; /* Opera */
+}
+@keyframes banenr-animation2
+{
+	0%{opacity:0;-webkit-transform:translate3d(0,-40%,0);transform:translate3d(0,-40%,0)}
+	100%{opacity:1;-webkit-transform:none;transform:none}
+}
+@-webkit-keyframes banner-animation2 /* Safari and Chrome */
+{
+	0%{opacity:0;-webkit-transform:translate3d(0,-40%,0);transform:translate3d(0,-40%,0)}
+	100%{opacity:1;-webkit-transform:none;transform:none}
+}
+@-o-keyframes banner-animation2 /* opera */
+{
+	0%{opacity:0;-webkit-transform:translate3d(0,-40%,0);transform:translate3d(0,-40%,0)}
+	100%{opacity:1;-webkit-transform:none;transform:none}
+}
+@-moz-keyframes banner-animation2 /* firefox */
+{
+	0%{opacity:0;-webkit-transform:translate3d(0,-40%,0);transform:translate3d(0,-40%,0)}
+	100%{opacity:1;-webkit-transform:none;transform:none}
+}
+.banner-animation3
+{
+	animation:banner-animation3 1s;
+	-moz-animation:banner-animation3 1s; /* Firefox */
+	-webkit-animation:banner-animation3 1s; /* Safari and Chrome */
+	-o-animation:banner-animation3 1s; /* Opera */
+}
+@keyframes banenr-animation3
+{
+	0%{opacity:0;-webkit-transform:translate3d(0,20%,0);transform:translate3d(0,20%,0)}
+	100%{opacity:1;-webkit-transform:none;transform:none}
+}
+@-webkit-keyframes banner-animation3 /* Safari and Chrome */
+{
+	0%{opacity:0;-webkit-transform:translate3d(0,20%,0);transform:translate3d(0,20%,0)}
+	100%{opacity:1;-webkit-transform:none;transform:none}
+}
+@-o-keyframes banner-animation3 /* opera */
+{
+	0%{opacity:0;-webkit-transform:translate3d(0,20%,0);transform:translate3d(0,20%,0)}
+	100%{opacity:1;-webkit-transform:none;transform:none}
+}
+@-moz-keyframes banner-animation3 /* firefox */
+{
+	0%{opacity:0;-webkit-transform:translate3d(0,20%,0);transform:translate3d(0,20%,0)}
+	100%{opacity:1;-webkit-transform:none;transform:none}
+}
+.banner-animation4
+{
+	animation:banner-animation4 1s;
+	-moz-animation:banner-animation4 1s; /* Firefox */
+	-webkit-animation:banner-animation4 1s; /* Safari and Chrome */
+	-o-animation:banner-animation4 1s; /* Opera */
+}
+@keyframes banenr-animation4
+{
+	0%{opacity:0;}
+	100%{opacity:1;}
+}
+@-webkit-keyframes banner-animation4 /* Safari and Chrome */
+{
+	0%{opacity:0;}
+	100%{opacity:1;}
+}
+@-o-keyframes banner-animation4 /* opera */
+{
+	0%{opacity:0;}
+	100%{opacity:1;}
+}
+@-moz-keyframes banner-animation4 /* firefox */
+{
+	0%{opacity:0;}
+	100%{opacity:1;}
+}
+
+@-webkit-keyframes slideInDown
+{
+	0%{-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0);visibility:visible}
+	to{-webkit-transform:translateZ(0);transform:translateZ(0)}
+}
+@keyframes slideInDown
+{
+	0%{-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0);visibility:visible}
+	to{-webkit-transform:translateZ(0);transform:translateZ(0)}
+}
+@-webkit-keyframes slideInRight
+{
+	0%{-webkit-transform:translate3d(30%,0,0);transform:translate3d(30%,0,0);visibility:visible}
+	to{-webkit-transform:translateZ(0);transform:translateZ(0)}
+}
+@keyframes slideInRight
+{
+	0%{-webkit-transform:translate3d(30%,0,0);transform:translate3d(30%,0,0);visibility:visible}
+	to{-webkit-transform:translateZ(0);transform:translateZ(0)}
+}

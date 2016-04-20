@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/fonts.css" rel="stylesheet">
+<link href="css/animation.css" rel="stylesheet">
+<link href="css/photo-list.css" rel="stylesheet">
+{insert_scripts files='jquery.min.js,bootstrap.min.js'}
+
+
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<!-- photo info s -->
+<div class="cover-img" style="background-image:url({$goods.goods_img}); margin-top:20px; margin-bottom:20px;"></div>
+<center>
+	<h1>《{$goods.goods_name}》</h1>
+    <p class="f16">作者：空格</p>
+    <p style="max-width:400px;" class="line-height-24 f14">
+    	{$goods.goods_brief}
+    </p>
+    <p class="mt-40 mb-40">
+        <span><a href="#" class="mylabel-666 f14">上传照片</a></span>
+        <span><a href="#" class="mylabel-900 f14">制作纪念册</a></span>
+    </p>
+</center>
+<div class="liner"></div>
+<!-- photo info e -->
+
+<!-- list s-->
+	<div class="container mb-40">
+    	<ul class="list-group">
+        	<li class="list-unstyled mt-20 mb-20 text-center height-auto">
+            	<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                	<img src="img/user.jpg" class="img-responsive myborder img-circle"/>
+                    <span class="f36 font2">18</span><br>
+                    <span class="f30 font2">3月</span>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 height-auto" style="border-bottom:2px solid #ccc; padding-bottom:30px;">
+                <!-- {foreach from=$pictures item=picture name=no}-->
+                	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-5 img" style="background:url({$picture.img_url}) center center no-repeat; background-size:cover; border:5px solid #fff;">
+                    </div>
+                <!--{/foreach}-->
+                <!--
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 f16 f-gray" style="text-align:left">
+                        姚总监：哎哟哟，屯子里边发生了好多好多的事情哟
+                    </div>
+                -->
+                </div>
+            </li>
+        </ul>
+    </div>
+<!-- list e -->
+
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->     
+     
+     
+</body>
+
+<script type="text/javascript">
+	var goods_id = {$goods_id};
+	var goodsattr_style = {$cfg.goodsattr_style|default:1};
+	var gmt_end_time = {$promote_end_time|default:0};
+	{foreach from=$lang.goods_js item=item key=key}
+	var {$key} = "{$item}";
+	{/foreach}
+	var goodsId = {$goods_id};
+	var now_time = {$now_time};
+	$().ready(function(e) {
+        $(".img").each(function(index, element) {
+            $(this).height($(this).width());
+        });
+    });
+</script>
+
+</html>

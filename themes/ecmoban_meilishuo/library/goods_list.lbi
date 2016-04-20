@@ -1,0 +1,25 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <ul class="list-group" id="list-group">
+    <!--{foreach from=$photo_list item=list}-->
+        <li class="list-unstyled f14">
+            <div class="row">
+            	<div class="col-lg-1 col-md-1 hidden-xs"></div>
+                <div class="col-lg-5 col-md-5 col-xs-12">
+                    <h3 class="ml--8">
+                        <a href="album.php?id={$list.id}&prev={$prev}&token={$token}&img={$userimg}&name={$username}">
+                        《{$list.album_name}》
+                        </a>
+                    </h3>
+                    <p class="f16 mt-5">作者:{$username}</p>
+                    <p class="f14 line-height-24 mt-5 font2">{$list.album_desc}</p>
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-12">
+                	<a href="album.php?id={$list.id}&prev={$prev}&token={$token}&img={$userimg}&name={$username}"><div class="list-img" style="background-image:url({$prev}/{$list.img})"></div></a>
+                </div>
+            	<div class="col-lg-1 col-md-1 hidden-xs"></div>
+            </div>
+        </li>
+    <!--{/foreach}-->
+    </ul>
+    

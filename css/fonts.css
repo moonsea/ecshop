@@ -1,0 +1,28 @@
+@font-face {font-family: 'font1';
+  src: url('font/font1.TTF.eot'); /* IE9*/
+  src: url('font/font1.TTF.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('font/font1.woff') format('woff'), /* chrome、firefox */
+  url('font/font1.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('font/font1.svg#FZY1JW--GB1-0') format('svg'); /* iOS 4.1- */
+  font-style:normal;
+  font-weight:normal;
+}
+@font-face {font-family: 'font2';
+  src: url('font/font2.TTF.eot'); /* IE9*/
+  src: url('font/font2.TTF.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('font/font2.woff') format('woff'), /* chrome、firefox */
+  url('font/font2.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('font/font2.svg#FZY1JW--GB1-0') format('svg'); /* iOS 4.1- */
+  font-style:normal;
+  font-weight:normal;
+}
+@font-face {font-family: 'font3';
+  src: url('font/font3.TTF.eot'); /* IE9*/
+  src: url('font/font3.TTF.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('font/font3.woff') format('woff'), /* chrome、firefox */
+  url('font/font3.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('font/font3.svg#FZY1JW--GB1-0') format('svg'); /* iOS 4.1- */
+  font-style:normal;
+  font-weight:normal;
+}/* CSS Document */
+
