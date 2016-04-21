@@ -29,7 +29,7 @@
   <tr>
     <td class="label">银行卡号：</td>
     <td>
-      <input type="text" name="agency_name" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['agency_name']); ?>" size="34"/></td>
+      <input type="text" name="bank_card" maxlength="20" value="<?php echo htmlspecialchars($this->_var['user']['bank_card']); ?>" size="34"/></td>
   </tr>
   <!-- <tr>
     <td class="label"><?php echo $this->_var['lang']['email']; ?></td>

@@ -2662,7 +2662,7 @@ elseif ($_REQUEST['act'] == 'change_pwd')
 /*------------------------------------------------------ */
 //-- 更新管理员信息
 /*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'change_passwd' $_REQUEST['act'] == 'change_info')
+elseif ($_REQUEST['act'] == 'change_passwd' || $_REQUEST['act'] == 'change_info')
 {
 
     /* 变量初始化 */
