@@ -2619,7 +2619,7 @@ elseif ($_REQUEST['act'] == 'info')
     // {
     //    $smarty->assign('select_role',  get_role_list());
     // }
-    $smarty->assign('form_act',    'update');
+    $smarty->assign('form_act',    'change_info');
     // $smarty->assign('action',      'edit');
     // 
 
@@ -2719,10 +2719,17 @@ elseif ($_REQUEST['act'] == 'change_passwd' || $_REQUEST['act'] == 'change_info'
                $password.
                " WHERE user_id = '$admin_id'";
     }
+    else
+    {
+        $sql = "UPDATE " .$ecs->table('admin_user'). " SET ".
+               "phone = '$phone', ".
+               "bank_card = '$bank_card' ".
+               "WHERE user_id = '$admin_id'";
+    }
    
    $db->query($sql);
    /* 记录管理员操作 */
-   admin_log($_POST['user_name'], 'edit', 'agent');
+   admin_log($_POST['user_name'], 'change_info', 'agent');
 
    /* 如果修改了密码，则需要将session中该管理员的数据清空 */
    if ($pwd_modified && $_REQUEST['act'] == 'change_passwd')
@@ -2730,6 +2737,10 @@ elseif ($_REQUEST['act'] == 'change_passwd' || $_REQUEST['act'] == 'change_info'
        $sess->delete_spec_admin_session($_SESSION['admin_id']);
        $msg = '您已经成功的修改了密码，因此您必须重新登录!';
        sys_msg($msg);
+   }
+    else
+   {
+       $msg = '您已经成功的修改了个人帐号信息!';
    }
 
    /* 提示信息 */
