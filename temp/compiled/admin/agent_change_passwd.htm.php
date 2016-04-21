@@ -215,7 +215,6 @@ function validate()
     {
       validator.password("new_password", password_invaild);
       validator.eqaul("new_password", "pwd_confirm", password_error);
-      alert(180);
     }
     else{
       validator.addErrorMsg('输入管理员的原密码');

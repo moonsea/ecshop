@@ -2679,7 +2679,7 @@ elseif ($_REQUEST['act'] == 'change_pwd')
     // {
     //    $smarty->assign('select_role',  get_role_list());
     // }
-    $smarty->assign('form_act',    'update');
+    $smarty->assign('form_act',    'change_passwd');
     // $smarty->assign('action',      'edit');
     // 
 
@@ -2693,7 +2693,7 @@ elseif ($_REQUEST['act'] == 'change_pwd')
 /*------------------------------------------------------ */
 //-- 更新管理员信息
 /*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'update' || $_REQUEST['act'] == 'update_self')
+elseif ($_REQUEST['act'] == 'change_passwd')
 {
 
     /* 变量初始化 */
@@ -2702,46 +2702,46 @@ elseif ($_REQUEST['act'] == 'update' || $_REQUEST['act'] == 'update_self')
     $admin_email = !empty($_REQUEST['email'])     ? trim($_REQUEST['email'])     : '';
     $ec_salt=rand(1,9999);
     $password = !empty($_POST['new_password']) ? ", password = '".md5(md5($_POST['new_password']).$ec_salt)."'"    : '';
-    if($_POST['token']!=$_CFG['token'])
-    {
-         sys_msg('update_error', 1);
-    }
-    if ($_REQUEST['act'] == 'update')
-    {
-        /* 查看是否有权限编辑其他管理员的信息 */
-        if ($_SESSION['admin_id'] != $_REQUEST['id'])
-        {
-            admin_priv('admin_manage');
-        }
-        $g_link = 'privilege.php?act=list';
-        $nav_list = '';
-    }
-    else
-    {
-        $nav_list = !empty($_POST['nav_list'])     ? ", nav_list = '".@join(",", $_POST['nav_list'])."'" : '';
-        $admin_id = $_SESSION['admin_id'];
-        $g_link = 'privilege.php?act=modif';
-    }
+    // if($_POST['token']!=$_CFG['token'])
+    // {
+    //      sys_msg('update_error', 1);
+    // }
+    // if ($_REQUEST['act'] == 'update')
+    // {
+    //     /* 查看是否有权限编辑其他管理员的信息 */
+    //     if ($_SESSION['admin_id'] != $_REQUEST['id'])
+    //     {
+    //         admin_priv('admin_manage');
+    //     }
+    //     $g_link = 'agent.php?act=list';
+    //     $nav_list = '';
+    // }
+    // else
+    // {
+    //     $nav_list = !empty($_POST['nav_list'])     ? ", nav_list = '".@join(",", $_POST['nav_list'])."'" : '';
+    //     $admin_id = $_SESSION['admin_id'];
+    //     $g_link = 'privilege.php?act=modif';
+    // }
     /* 判断管理员是否已经存在 */
-    if (!empty($admin_name))
-    {
-        $is_only = $exc->num('user_name', $admin_name, $admin_id);
-        if ($is_only == 1)
-        {
-            sys_msg(sprintf($_LANG['user_name_exist'], stripslashes($admin_name)), 1);
-        }
-    }
+    // if (!empty($admin_name))
+    // {
+    //     $is_only = $exc->num('user_name', $admin_name, $admin_id);
+    //     if ($is_only == 1)
+    //     {
+    //         sys_msg(sprintf($_LANG['user_name_exist'], stripslashes($admin_name)), 1);
+    //     }
+    // }
 
-    /* Email地址是否有重复 */
-    if (!empty($admin_email))
-    {
-        $is_only = $exc->num('email', $admin_email, $admin_id);
+    // /* Email地址是否有重复 */
+    // if (!empty($admin_email))
+    // {
+    //     $is_only = $exc->num('email', $admin_email, $admin_id);
 
-        if ($is_only == 1)
-        {
-            sys_msg(sprintf($_LANG['email_exist'], stripslashes($admin_email)), 1);
-        }
-    }
+    //     if ($is_only == 1)
+    //     {
+    //         sys_msg(sprintf($_LANG['email_exist'], stripslashes($admin_email)), 1);
+    //     }
+    // }
 
     //如果要修改密码
     $pwd_modified = false;
@@ -2750,6 +2750,7 @@ elseif ($_REQUEST['act'] == 'update' || $_REQUEST['act'] == 'update_self')
     {
         /* 查询旧密码并与输入的旧密码比较是否相同 */
         $sql = "SELECT password FROM ".$ecs->table('admin_user')." WHERE user_id = '$admin_id'";
+
         $old_password = $db->getOne($sql);
         $sql ="SELECT ec_salt FROM ".$ecs->table('admin_user')." WHERE user_id = '$admin_id'";
         $old_ec_salt= $db->getOne($sql);
