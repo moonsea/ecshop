@@ -1,183 +1,132 @@
-<!-- $Id: agent_list.htm 17126 2010-04-23 10:30:26 moonsea $ -->
+<!-- $Id: agent_list.htm 16420 2016-04-21 moonsea $ -->
 
-{if $full_page}
 {include file="pageheader.htm"}
-{insert_scripts files="../js/utils.js,listtable.js"}
-
-<!-- 商品搜索 -->
-{include file="goods_search.htm"}
-<!-- 商品列表 -->
-<form method="post" action="" name="listForm" onsubmit="return confirmSubmit(this)">
-  <!-- start goods list -->
-  <div class="list-div" id="listDiv">
-{/if}
-<table cellpadding="3" cellspacing="1">
-  <tr>
-    <th>
-      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />{$lang.record_id}{$sort_goods_id}
-    </th>
-    <th>{$lang.goods_thumb}{$sort_goods_thumb}</th>
-    <th>{$lang.goods_name}{$sort_goods_name}</th>
-    <th>{$lang.goods_unit}{$sort_goods_unit}</th>
-    <th>{$lang.shop_price}{$sort_shop_price}</th>
-    <th>{$lang.is_new}{$sort_is_new}</th>
-    <th>{$lang.is_best}{$sort_is_best}</th>
-    <th>{$lang.is_hot}{$sort_is_hot}</th>
-    <th>{$lang.is_on_sale}{$sort_is_on_sale}</th>
-<!--     
-    <th>{$lang.sort_order}{$sort_sort_order}</th>
-    {if $use_storage}
-    <th>{$lang.goods_number}{$sort_goods_number}</th>
-    {/if} -->
-    <th>{$lang.handler}</th>
-  <tr>
-  {foreach from=$goods_list item=goods}
-  <tr>
-    <td><input type="checkbox" name="checkboxes[]" value="{$goods.goods_id}" />{$goods.goods_id}</td>
-    <td align="center"><img src= "/ecshop/{$goods.goods_thumb}" width="50" height="50" border="0" /></td>
-    <td class="first-cell" style="{if $goods.is_promote}color:red;{/if}"><span onclick="listTable.edit(this, 'edit_goods_name', {$goods.goods_id})">{$goods.goods_name|escape:html}</span></td>
-    <td><span onclick="listTable.edit(this, 'edit_goods_sn', {$goods.goods_id})">{$goods.unit}</span></td>
-    <td align="right"><span onclick="listTable.edit(this, 'edit_goods_price', {$goods.goods_id})">{$goods.shop_price}</span></td>
-    <td align="center"><img src="images/{if $goods.is_new}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_new', {$goods.goods_id})" /></td>
-    <td align="center"><img src="images/{if $goods.is_best}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_best', {$goods.goods_id})" /></td>
-    <td align="center"><img src="images/{if $goods.is_hot}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_hot', {$goods.goods_id})" /></td>
-    <td align="center"><img src="images/{if $goods.is_on_sale}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_on_sale', {$goods.goods_id})" /></td>
-    <!-- <td align="center"><span onclick="listTable.edit(this, 'edit_sort_order', {$goods.goods_id})">{$goods.sort_order}</span></td>
-    {if $use_storage}
-    <td align="right"><span onclick="listTable.edit(this, 'edit_goods_number', {$goods.goods_id})">{$goods.goods_number}</span></td>
-    {/if} -->
-    <td align="center">
-      <!-- <a href="../goods.php?id={$goods.goods_id}" target="_blank" title="{$lang.view}"><img src="images/icon_view.gif" width="21" height="21" border="0" /></a> -->
-      <a href="goods.php?act=edit&goods_id={$goods.goods_id}{if $code neq 'real_goods'}&extension_code={$code}{/if}" title="{$lang.edit}">编辑</a>
-      <!-- <a href="goods.php?act=copy&goods_id={$goods.goods_id}{if $code neq 'real_goods'}&extension_code={$code}{/if}" title="{$lang.copy}"><img src="images/icon_copy.gif" width="21" height="21" border="0" /></a> -->
-      <a href="javascript:;" onclick="listTable.remove({$goods.goods_id}, '{$lang.trash_goods_confirm}')" title="{$lang.trash}">删除</a>
-      {if $specifications[$goods.goods_type] neq ''}<a href="goods.php?act=product_list&goods_id={$goods.goods_id}" title="{$lang.item_list}"><img src="images/icon_docs.gif" width="21" height="21" border="0" /></a>{else}<img src="images/empty.gif" width="21" height="21" border="0" />{/if}
-      {if $add_handler}
-        |
-        {foreach from=$add_handler item=handler}
-        <a href="{$handler.url}&goods_id={$goods.goods_id}" title="{$handler.title}"><img src="images/{$handler.img}" width="21" height="21" border="0" /></a>
-        {/foreach}
-      {/if}
-    </td>
-  </tr>
-  {foreachelse}
-  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
-  {/foreach}
-</table>
-<!-- end goods list -->
-
-<!-- 分页 -->
-<table id="page-table" cellspacing="0">
-  <tr>
-    <td align="right" nowrap="true">
-    {include file="page.htm"}
-    </td>
-  </tr>
-</table>
-
-{if $full_page}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+<div class="main-div">
+  <p style="margin: 10px">
+    <strong>{$lang.overall_sum}</strong>:&nbsp;&nbsp;{$total_turnover}&nbsp;&nbsp;&nbsp;
+    <strong>{$lang.overall_choose}</strong>:&nbsp;&nbsp;{$click_count}&nbsp;&nbsp;&nbsp;
+    <strong>{$lang.kilo_buy_amount}</strong>:&nbsp;&nbsp;{$click_ordernum}&nbsp;&nbsp;&nbsp;
+    <strong>{$lang.kilo_buy_sum}</strong>:&nbsp;&nbsp;{$click_turnover}
+  </p>
 </div>
 
-<div>
-  <input type="hidden" name="act" value="batch" />
-  <select name="type" id="selAction" onchange="changeAction()">
-    <option value="">{$lang.select_please}</option>
-    <option value="trash">{$lang.trash}</option>
-    <option value="on_sale">{$lang.on_sale}</option>
-    <option value="not_on_sale">{$lang.not_on_sale}</option>
-    <option value="best">{$lang.best}</option>
-    <option value="not_best">{$lang.not_best}</option>
-    <option value="new">{$lang.new}</option>
-    <option value="not_new">{$lang.not_new}</option>
-    <option value="hot">{$lang.hot}</option>
-    <option value="not_hot">{$lang.not_hot}</option>
-    <option value="move_to">{$lang.move_to}</option>
-	{if $suppliers_list > 0}
-    <option value="suppliers_move_to">{$lang.suppliers_move_to}</option>
-	{/if}    
-  </select>
-  <select name="target_cat" style="display:none">
-    <option value="0">{$lang.select_please}</option>{$cat_list}
-  </select>
-	{if $suppliers_list > 0}
-  <!--二级主菜单：转移供货商-->
-  <select name="suppliers_id" style="display:none">
-    <option value="-1">{$lang.select_please}</option>
-    <option value="0">{$lang.lab_to_shopex}</option>
-    {foreach name=sln from=$suppliers_list item=sl}
-      <option value="{$sl.suppliers_id}">{$sl.suppliers_name}</option>
-    {/foreach}
-  </select>
-  <!--end!-->
-	{/if}  
-  {if $code neq 'real_goods'}
-  <input type="hidden" name="extension_code" value="{$code}" />
-  {/if}
-  <input type="submit" value="{$lang.button_submit}" id="btnSubmit" name="btnSubmit" class="button" disabled="true" />
+<div class="form-div">
+  <form action="" method="post" id="selectForm" name="selectForm">
+    {$lang.start_date}&nbsp;&nbsp;
+    <input name="start_date" value="{$start_date}" style="width:80px;" onclick="return showCalendar(this, '%Y-%m-%d', false, false, this);" />
+    {$lang.end_date}&nbsp;&nbsp;
+    <input name="end_date" value="{$end_date}" style="width:80px;" onclick="return showCalendar(this, '%Y-%m-%d', false, false, this);" />
+    <input type="submit" name="submit" value="{$lang.query}" class="button" />
+  </form>
+    <form action="" method="post" id="selectForm" name="selectForm">
+    {$lang.select_year_month}&nbsp;&nbsp;
+    <!--{foreach from=$start_date_arr item=start_date key=k}-->
+    {if $k > 0}
+    &nbsp;+&nbsp;
+    {/if}
+    <input name="year_month[]" value="{$start_date}" style="width:60px;" onclick="return showCalendar(this, '%Y-%m', false, false, this);" /> 
+    <!--{/foreach}--><input type="hidden" name="is_multi" value="1" />
+    <input type="submit" name="submit" value="{$lang.query}" class="button" />
+  </form>
 </div>
-</form>
-
-<script type="text/javascript">
-  listTable.recordCount = {$record_count};
-  listTable.pageCount = {$page_count};
-
-  {foreach from=$filter item=item key=key}
-  listTable.filter.{$key} = '{$item}';
-  {/foreach}
-
-  {literal}
-  onload = function()
-  {
-    startCheckOrder(); // 开始检查订单
-    document.forms['listForm'].reset();
-  }
-
-  /**
-   * @param: bool ext 其他条件：用于转移分类
-   */
-  function confirmSubmit(frm, ext)
-  {
-      if (frm.elements['type'].value == 'trash')
-      {
-          return confirm(batch_trash_confirm);
-      }
-      else if (frm.elements['type'].value == 'not_on_sale')
-      {
-          return confirm(batch_no_on_sale);
-      }
-      else if (frm.elements['type'].value == 'move_to')
-      {
-          ext = (ext == undefined) ? true : ext;
-          return ext && frm.elements['target_cat'].value != 0;
-      }
-      else if (frm.elements['type'].value == '')
-      {
-          return false;
-      }
-      else
-      {
-          return true;
-      }
-  }
-
-  function changeAction()
-  {
-      var frm = document.forms['listForm'];
-
-      // 切换分类列表的显示
-      frm.elements['target_cat'].style.display = frm.elements['type'].value == 'move_to' ? '' : 'none';
-			
-			{if $suppliers_list > 0}
-      frm.elements['suppliers_id'].style.display = frm.elements['type'].value == 'suppliers_move_to' ? '' : 'none';
-			{/if}
-
-      if (!document.getElementById('btnSubmit').disabled &&
-          confirmSubmit(frm, false))
-      {
-          frm.submit();
-      }
-  }
-{/literal}
+<div class="tab-div">
+ <div id="tabbar-div">
+    <p>
+      <span class="tab-front" id="order_circs-tab">{$lang.order_circs}</span><span
+      class="tab-back" id="shipping-tab">{$lang.shipping_method}</span><span
+      class="tab-back" id="pay-tab">{$lang.pay_method}</span>
+    </p>
+ </div>
+ <div id="tabbody-div">
+    <table width="90%" cellspacing="0" cellpadding="3" id="order_circs-table">
+      <tr>
+        <td align="center">
+        {if $is_multi eq '0'}
+        <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"  codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="650" HEIGHT="400" id="OrderGeneral" ALIGN="middle">
+          <PARAM NAME="FlashVars" value="&dataXML={$order_general_xml}">
+          <PARAM NAME="movie" VALUE="images/charts/pie3d.swf?chartWidth=650&chartHeight=400">
+          <PARAM NAME="quality" VALUE="high">
+          <PARAM NAME=bgcolor VALUE="#FFFFFF">
+          <param name="wmode" value="opaque" />
+          <EMBED src="images/charts/pie3d.swf?chartWidth=650&chartHeight=400" FlashVars="&dataXML={$order_general_xml}" quality="high" bgcolor="#FFFFFF" WIDTH="650" HEIGHT="400" wmode="opaque" NAME="OrderGeneral" ALIGN="middle" TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+          </OBJECT>
+        {else}
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+              codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
+              width="565" height="420" id="FCColumn2" align="middle">
+              <PARAM NAME="FlashVars" value="&dataXML={$order_general_xml}">
+              <PARAM NAME=movie VALUE="images/charts/MSColumn3D.swf?chartWidth=650&chartHeight=400">
+              <param NAME="quality" VALUE="high">
+              <param NAME="bgcolor" VALUE="#FFFFFF">
+              <param name="wmode" value="opaque" />
+              <embed src="images/charts/MSColumn3D.swf?chartWidth=650&chartHeight=400" FlashVars="&dataXML={$order_general_xml}" quality="high" bgcolor="#FFFFFF"  width="650" height="400" name="FCColumn2" wmode="opaque" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+            </object>
+    {/if}
+        </td>
+      </tr>
+    </table>
+    <table width="90%" cellspacing="0" cellpadding="3" id="shipping-table" style="display:none">
+      <tr>
+        <td align="center">
+        {if $is_multi eq '0'}
+          <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"  codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="650" HEIGHT="400" id="ShipType" ALIGN="middle">
+          <PARAM NAME="FlashVars" value="&dataXML={$ship_xml}">
+          <PARAM NAME="movie" VALUE="images/charts/pie3d.swf?chartWidth=650&chartHeight=400">
+          <PARAM NAME="quality" VALUE="high">
+          <param name="wmode" value="opaque" />
+          <PARAM NAME="bgcolor" VALUE="#FFFFFF">
+          <EMBED src="images/charts/pie3d.swf?chartWidth=650&chartHeight=400" FlashVars="&dataXML={$ship_xml}" quality="high" bgcolor="#FFFFFF" WIDTH="650" HEIGHT="400" NAME="ShipType" ALIGN="middle" TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer" wmode="opaque"></EMBED>
+          </OBJECT>
+        {else}
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+              codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
+              width="565" height="420" id="FCColumn2" align="middle">
+              <PARAM NAME="FlashVars" value="&dataXML={$ship_xml}">
+              <PARAM NAME=movie VALUE="images/charts/MSColumn3D.swf?chartWidth=650&chartHeight=400">
+              <param NAME="quality" VALUE="high">
+              <param NAME="bgcolor" VALUE="#FFFFFF">
+              <param name="wmode" value="opaque" />
+              <embed src="images/charts/MSColumn3D.swf?chartWidth=650&chartHeight=400" FlashVars="&dataXML={$ship_xml}" quality="high" bgcolor="#FFFFFF"  width="650" height="400" name="FCColumn2" wmode="opaque" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+            </object>
+        {/if}
+        </td>
+      </tr>
+    </table>
+    <table width="90%" cellspacing="0" cellpadding="3" id="pay-table" style="display:none">
+      <tr>
+        <td align="center">
+        {if $is_multi eq '0'}
+          <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"  codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="650" HEIGHT="400" id="PayMethod" ALIGN="middle">
+          <PARAM NAME="FlashVars" value="&dataXML={$pay_xml}">
+          <PARAM NAME="movie" VALUE="images/charts/pie3d.swf?chartWidth=650&chartHeight=400">
+          <PARAM NAME="quality" VALUE="high">
+          <PARAM NAME="bgcolor" VALUE="#FFFFFF">
+          <param name="wmode" value="opaque" />
+          <EMBED src="images/charts/pie3d.swf?chartWidth=650&chartHeight=400" FlashVars="&dataXML={$pay_xml}" quality="high" bgcolor="#FFFFFF" WIDTH="650" HEIGHT="400" NAME="PayMethod" wmode="opaque" ALIGN="middle" TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+        </OBJECT>
+    {else}
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
+              width="565" height="420" id="FCColumn2" align="middle">
+              <PARAM NAME="FlashVars" value="&dataXML={$pay_xml}">
+              <PARAM NAME=movie VALUE="images/charts/MSColumn3D.swf?chartWidth=650&chartHeight=400">
+              <param NAME="quality" VALUE="high">
+              <param NAME="bgcolor" VALUE="#FFFFFF">
+              <param name="wmode" value="opaque" />
+              <embed src="images/charts/MSColumn3D.swf?chartWidth=650&chartHeight=400" FlashVars="&dataXML={$pay_xml}" quality="high" bgcolor="#FFFFFF"  width="650" height="400" name="FCColumn2" wmode="opaque" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></object>
+    {/if}
+        </td>
+      </tr>
+    </table>
+ </div>
+</div>
+{insert_scripts files="tab.js"}
+<script language="JavaScript">
+onload = function()
+{
+    // 开始检查订单
+  startCheckOrder();
+}
 </script>
 {include file="pagefooter.htm"}
-{/if}
