@@ -2619,7 +2619,7 @@ elseif ($_REQUEST['act'] == 'info')
     // {
     //    $smarty->assign('select_role',  get_role_list());
     // }
-    // $smarty->assign('form_act',    'update');
+    $smarty->assign('form_act',    'update');
     // $smarty->assign('action',      'edit');
     // 
 
@@ -2635,50 +2635,19 @@ elseif ($_REQUEST['act'] == 'info')
 /*------------------------------------------------------ */
 elseif ($_REQUEST['act'] == 'change_pwd')
 {
-    // /* 不能编辑demo这个管理员 */
-    // if ($_SESSION['admin_name'] == 'demo')
-    // {
-    //    $link[] = array('text' => $_LANG['back_list'], 'href'=>'privilege.php?act=list');
-    //    sys_msg($_LANG['edit_admininfo_cannot'], 0, $link);
-    // }
 
     $user_id = $_SESSION['admin_id'];
-    // echo $username;
-
-    // $_REQUEST['id'] = !empty($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-
-    // /* 查看是否有权限编辑其他管理员的信息 */
-    // if ($_SESSION['admin_id'] != $_REQUEST['id'])
-    // {
-    //     admin_priv('admin_manage');
-    // }
 
     /* 获取管理员信息 */
     $sql = "SELECT * FROM " .$ecs->table('admin_user').
            " WHERE user_id = '".$user_id."'";
     $user_info = $db->getRow($sql);
 
-
-    // /* 取得该管理员负责的办事处名称 */
-    // if ($user_info['agency_id'] > 0)
-    // {
-    //     $sql = "SELECT agency_name FROM " . $ecs->table('agency') . " WHERE agency_id = '$user_info[agency_id]'";
-    //     $user_info['agency_name'] = $db->getOne($sql);
-    // }
-
     /* 模板赋值 */
     $smarty->assign('ur_here', '修改密码');
     // $smarty->assign('action_link', array('text' => $_LANG['admin_list'], 'href'=>'privilege.php?act=list'));
     $smarty->assign('user', $user_info);    
 
-    /* 获得该管理员的权限 */
-    // $priv_str = $db->getOne("SELECT action_list FROM " .$ecs->table('admin_user'). " WHERE user_id = '$_GET[id]'");
-
-    /* 如果被编辑的管理员拥有了all这个权限，将不能编辑 */
-    // if ($priv_str != 'all')
-    // {
-    //    $smarty->assign('select_role',  get_role_list());
-    // }
     $smarty->assign('form_act',    'change_passwd');
     // $smarty->assign('action',      'edit');
     // 
@@ -2693,57 +2662,17 @@ elseif ($_REQUEST['act'] == 'change_pwd')
 /*------------------------------------------------------ */
 //-- 更新管理员信息
 /*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'change_passwd')
+elseif ($_REQUEST['act'] == 'change_passwd' $_REQUEST['act'] == 'change_info')
 {
 
     /* 变量初始化 */
     $admin_id    = !empty($_REQUEST['id'])        ? intval($_REQUEST['id'])      : 0;
-    $admin_name  = !empty($_REQUEST['user_name']) ? trim($_REQUEST['user_name']) : '';
-    $admin_email = !empty($_REQUEST['email'])     ? trim($_REQUEST['email'])     : '';
+    $phone    = !empty($_REQUEST['phone'])        ? intval($_REQUEST['phone'])      : 0;
+    $bank_card    = !empty($_REQUEST['bank_card'])        ? intval($_REQUEST['bank_card'])      : 0;
     $ec_salt=rand(1,9999);
     $password = !empty($_POST['new_password']) ? ", password = '".md5(md5($_POST['new_password']).$ec_salt)."'"    : '';
-    // if($_POST['token']!=$_CFG['token'])
-    // {
-    //      sys_msg('update_error', 1);
-    // }
-    // if ($_REQUEST['act'] == 'update')
-    // {
-    //     /* 查看是否有权限编辑其他管理员的信息 */
-    //     if ($_SESSION['admin_id'] != $_REQUEST['id'])
-    //     {
-    //         admin_priv('admin_manage');
-    //     }
-    //     $g_link = 'agent.php?act=list';
-    //     $nav_list = '';
-    // }
-    // else
-    // {
-    //     $nav_list = !empty($_POST['nav_list'])     ? ", nav_list = '".@join(",", $_POST['nav_list'])."'" : '';
-    //     $admin_id = $_SESSION['admin_id'];
-    //     $g_link = 'privilege.php?act=modif';
-    // }
-    /* 判断管理员是否已经存在 */
-    // if (!empty($admin_name))
-    // {
-    //     $is_only = $exc->num('user_name', $admin_name, $admin_id);
-    //     if ($is_only == 1)
-    //     {
-    //         sys_msg(sprintf($_LANG['user_name_exist'], stripslashes($admin_name)), 1);
-    //     }
-    // }
-
-    // /* Email地址是否有重复 */
-    // if (!empty($admin_email))
-    // {
-    //     $is_only = $exc->num('email', $admin_email, $admin_id);
-
-    //     if ($is_only == 1)
-    //     {
-    //         sys_msg(sprintf($_LANG['email_exist'], stripslashes($admin_email)), 1);
-    //     }
-    // }
-
-    //如果要修改密码
+    
+    //修改密码
     $pwd_modified = false;
 
     if (!empty($_POST['new_password']))
@@ -2779,53 +2708,28 @@ elseif ($_REQUEST['act'] == 'change_passwd')
             $pwd_modified = true;
         }
     }
+    // sys_msg($admin_id, 0, $link);
+    // exit();
 
-    $role_id = '';
-    $action_list = '';
-    if (!empty($_POST['select_role']))
-    {
-        $sql = "SELECT action_list FROM " . $ecs->table('role') . " WHERE role_id = '".$_POST['select_role']."'";
-        $row = $db->getRow($sql);
-        $action_list = ', action_list = \''.$row['action_list'].'\'';
-        $role_id = ', role_id = '.$_POST['select_role'].' ';
-    }
-    //更新管理员信息
+    //更新管理员密码
     if($pwd_modified)
     {
         $sql = "UPDATE " .$ecs->table('admin_user'). " SET ".
-               "user_name = '$admin_name', ".
-               "email = '$admin_email', ".
                "ec_salt = '$ec_salt' ".
-               $action_list.
-               $role_id.
                $password.
-               $nav_list.
-               "WHERE user_id = '$admin_id'";
+               " WHERE user_id = '$admin_id'";
     }
-    else
-    {
-        $sql = "UPDATE " .$ecs->table('admin_user'). " SET ".
-               "user_name = '$admin_name', ".
-               "email = '$admin_email' ".
-               $action_list.
-               $role_id.
-               $nav_list.
-               "WHERE user_id = '$admin_id'";
-    }
-
+   
    $db->query($sql);
    /* 记录管理员操作 */
-   admin_log($_POST['user_name'], 'edit', 'privilege');
+   admin_log($_POST['user_name'], 'edit', 'agent');
 
    /* 如果修改了密码，则需要将session中该管理员的数据清空 */
-   if ($pwd_modified && $_REQUEST['act'] == 'update_self')
+   if ($pwd_modified && $_REQUEST['act'] == 'change_passwd')
    {
        $sess->delete_spec_admin_session($_SESSION['admin_id']);
        $msg = '您已经成功的修改了密码，因此您必须重新登录!';
-   }
-   else
-   {
-       $msg = $_LANG['edit_profile_succeed'];
+       sys_msg($msg);
    }
 
    /* 提示信息 */
