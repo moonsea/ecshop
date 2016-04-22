@@ -28,19 +28,18 @@
  <div id="tabbody-div">
    <table width="90%" cellspacing="0" cellpadding="3" id="order_circs-table">
      <tr>
-      <th>{$lang.goods_name}</th>
-      <th>{$lang.order_sn}</th>
-      <th>{$lang.amount}</th>
-      <th>{$lang.sell_price}</th>
-      <th>{$lang.sell_date}</th>
+      <th>日期</th>
+      <th>订单数</th>
+      <th>总成交量</th>
     </tr>
   {foreach from=$goods_sales_list item=list}
     <tr align="center">
-      <td align="left"><a href="../goods.php?id={$list.goods_id}" target="_blank">{$list.goods_name}</a></td>
-      <td><a href="order.php?act=info&order_id={$list.order_id}">{$list.order_sn}</a></td>
-      <td align="right">{$list.goods_num}</td>
-      <td align="right">{$list.sales_price}{$end_date}</td>
-      <td>{$list.sales_time}</td>
+      <!-- 订单支付时间 -->
+      <td>{$list.pay_time}</a></td>
+      <!-- 每日订单数 -->
+      <td>{$list.order_sum_day}</td>
+      <!-- 每日总成交量 -->
+      <td>{$list.product_sum_day}</td>
     </tr>
   {foreachelse}
     <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
