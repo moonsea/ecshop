@@ -1,2 +1,6 @@
 # ignore folder
 temp/
+temp/caches/f/
+temp/caches/
+temp/compiled/
+temp/static_caches/
