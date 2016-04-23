@@ -296,27 +296,56 @@ elseif ($_REQUEST['act'] == 'change_passwd' || $_REQUEST['act'] == 'change_info'
  */
 function get_sale_list($is_pagination = true){
 
-    /* 时间参数 */
-    $filter['start_date'] = empty($_REQUEST['start_date']) ? local_strtotime('-7 days') : local_strtotime($_REQUEST['start_date']);
-    $filter['end_date'] = empty($_REQUEST['end_date']) ? local_strtotime('today') : local_strtotime($_REQUEST['end_date']);
+    // /* 时间参数 */
+    // $filter['start_date'] = empty($_REQUEST['start_date']) ? local_strtotime('-7 days') : local_strtotime($_REQUEST['start_date']);
+    // $filter['end_date'] = empty($_REQUEST['end_date']) ? local_strtotime('today') : local_strtotime($_REQUEST['end_date']);
   
     /* 查询数据的条件 */
-    $where = " WHERE og.order_id = oi.order_id". order_query_sql('finished', 'oi.') .
-             " AND oi.add_time >= '".$filter['start_date']."' AND oi.add_time < '" . ($filter['end_date'] + 86400) . "'";
+    // $where = " WHERE ";
     
-    $sql = "SELECT COUNT(og.goods_id) FROM " .
-           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
-           $GLOBALS['ecs']->table('order_goods') . ' AS og '.
-           $where;
-    $filter['record_count'] = $GLOBALS['db']->getOne($sql);
+    /*获取当前登录用户的id*/
+    $user_id = $_SESSION['admin_id'];
+    
+    /* 添加邀请码查询条件 */
+    $where = " WHERE au.user_id = '" . $user_id . "' AND au.invitation_code = oi.invitation_code";
+    
+    /* 添加已经付款的查询条件 */
+    $where = $where . " AND oi.pay_status = 2";
+    
+    /* 添加按照付款时间每日分组 */
+    $group = " GROUP BY FROM_UNIXTIME(oi.pay_time,'%y-%m-%d')";
 
+    /* 按照付款时间每日分组查询记录数 */
+    $sql = "SELECT COUNT(oi.order_id) FROM " . 
+           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('admin_user') . ' AS au '.
+           $where .
+           $group;
+    $filter['record_count'] = $GLOBALS['db']->getOne($sql);
+    
     /* 分页大小 */
     $filter = page_and_size($filter);
-
-    $sql = 'SELECT og.goods_id, og.goods_sn, og.goods_name, og.goods_number AS goods_num, og.goods_price '.
-           'AS sales_price, oi.add_time AS sales_time, oi.order_id, oi.order_sn '.
-           "FROM " . $GLOBALS['ecs']->table('order_goods')." AS og, ".$GLOBALS['ecs']->table('order_info')." AS oi ".
-           $where. " ORDER BY sales_time DESC, goods_num DESC";
+    
+    /* 查询距添加代理用户第几天 */
+    $sql = "SELECT FROM_UNIXTIME(oi.pay_time,'%Y年%m月%d日') AS day_num, ";
+    
+    /* 查询每日订单数 */
+    $sql = $sql . " COUNT(oi.order_id) AS order_sum_day, ";
+    
+    /* 查询每日产品数 */
+    $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
+    
+    /* 查询条件 */
+    $where = $where . " AND og.order_id = oi.order_id ";
+    
+    /* 查询 */
+    $sql = $sql . " FROM " . 
+           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('order_goods') . ' AS og, '.
+           $GLOBALS['ecs']->table('admin_user') . ' AS au'.
+           $where .
+           $group . " ORDER BY day_num";
+    
     if ($is_pagination)
     {
         $sql .= " LIMIT " . $filter['start'] . ', ' . $filter['page_size'];
@@ -324,11 +353,6 @@ function get_sale_list($is_pagination = true){
 
     $sale_list_data = $GLOBALS['db']->getAll($sql);
 
-    foreach ($sale_list_data as $key => $item)
-    {
-        $sale_list_data[$key]['sales_price'] = price_format($sale_list_data[$key]['sales_price']);
-        $sale_list_data[$key]['sales_time']  = local_date($GLOBALS['_CFG']['time_format'], $sale_list_data[$key]['sales_time']);
-    }
     $arr = array('sale_list_data' => $sale_list_data, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
     return $arr;
 }

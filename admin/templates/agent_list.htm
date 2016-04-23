@@ -35,11 +35,11 @@
   {foreach from=$goods_sales_list item=list}
     <tr align="center">
       <!-- 订单支付时间 -->
-      <td>{$list.pay_time}</a></td>
+      <td>{$list.day_num}</a></td>
       <!-- 每日订单数 -->
-      <td>{$list.order_sum_day}</td>
+      <td>{$list.order_sum_day}/单</td>
       <!-- 每日总成交量 -->
-      <td>{$list.product_sum_day}</td>
+      <td>{$list.product_sum_day}/册</td>
     </tr>
   {foreachelse}
     <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
@@ -47,7 +47,7 @@
   </table>
   <table width="90%" cellspacing="0" cellpadding="3" id="shipping-tab" style="display:none">
      <tr>
-      <th>{$lang.goods_name}</th>
+      <th>第{$lang.goods_name}天</th>
       <th>{$lang.order_sn}</th>
       <th>{$lang.amount}</th>
       <th>{$lang.sell_price}</th>
