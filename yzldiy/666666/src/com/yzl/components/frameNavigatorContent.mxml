@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					xmlns:s="library://ns.adobe.com/flex/spark" 
+					xmlns:mx="library://ns.adobe.com/flex/mx" width="0" 
+					height="0" creationComplete="decorate_creationCompleteHandler(event)" >
+	<fx:Metadata>
+		[Event(name="showFrameBigImg",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="hideFrameBigImg",type="com.yzl.events.MyCustomEvent")]
+		
+		[Event(name="addFrame",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="removeFrame",type="com.yzl.events.MyCustomEvent")]
+		
+	</fx:Metadata>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.yzl.AlertWindow.addFramePic;
+			import com.yzl.events.MyCustomEvent;
+			import com.yzl.services.DecorateServices;
+			import com.yzl.valueObject.FrameVO;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.IViewCursor;
+			import mx.controls.Image;
+			import mx.core.FlexGlobals;
+			import mx.core.IFlexDisplayObject;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			import spark.components.BorderContainer;
+			import spark.primitives.RectangularDropShadow;
+			
+			public  var decorateServices:DecorateServices = new DecorateServices("getFrame");
+			
+			private var loader:Loader = new Loader();
+			
+			[Bindable]
+			public var decorateArrayList:ArrayCollection = new ArrayCollection();
+			
+					
+			protected function decorate_creationCompleteHandler(event:FlexEvent):void
+			{
+				decorateServices.send();
+				decorateArrayList = decorateServices.decorateList;
+				
+				this.addEventListener("showFrameBigImg",showDecorateBigImg_Handle);
+				this.addEventListener("hideFrameBigImg",delDecorateBigImg_Handle);
+				this.addEventListener("addFrame",addDecorateHandle);
+				this.addEventListener("removeFrame",handleRemoveDecorate);
+			}
+			
+			
+			private function handleRemoveDecorate(event:MyCustomEvent):void
+			{
+				var img:FrameVO = event.data as FrameVO;
+				var cursor:IViewCursor = decorateArrayList.createCursor();
+				
+				if(cursor.findFirst(img))
+				{
+					cursor.remove();
+					FlexGlobals.topLevelApplication.showBigImge.visible =false;
+				}
+				
+			}
+			
+			private function addDecorate_handleClick(event:MouseEvent):void
+			{
+				var addDecoWindow:addFramePic = new addFramePic();
+				PopUpManager.addPopUp((addDecoWindow as IFlexDisplayObject),FlexGlobals.topLevelApplication.app1,true);
+				PopUpManager.centerPopUp(addDecoWindow);
+			}
+			
+			private function addDecorateHandle(event:MyCustomEvent):void
+			{
+				var img:FrameVO = event.data as FrameVO;
+				if(!getDecorateItem(img))
+				{
+					this.decorateArrayList.addItem(img);
+				}
+			}
+			
+			public function getDecorateItem(img:FrameVO):FrameVO
+			{
+				var existingItem:FrameVO;
+				var cursor:IViewCursor = decorateArrayList.createCursor();
+				var found:Boolean = cursor.findFirst(img);
+				if(found)
+				{
+					existingItem = cursor.current as FrameVO;
+				}
+				return existingItem;
+			}
+			
+			protected function showDecorateBigImg_Handle(event:MyCustomEvent):void
+			{
+				
+				var img:Image = new Image();
+				var showImage:BorderContainer = FlexGlobals.topLevelApplication.showBigImge;
+				var windowHeight:Number = FlexGlobals.topLevelApplication.height;
+				var loader:Loader = new Loader();
+				
+				var imgX:Number = event.data.imgX;
+				var imgY:Number = event.data.imgY;
+				var imgWidth:Number =event.data.imgWidth;
+				var imgHeight:Number =event.data.imgHeight+44;
+				
+				showImage.x = event.data.imgX+imgWidth+20;
+				showImage.y = event.data.imgY-36;
+				var urlRequest:URLRequest = new URLRequest(event.data.imgStr);
+				loader.load(urlRequest);
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE,function(e:Event):void{
+					
+					var maxHeight:Number=400;
+					img.source = loader.content;
+					img.height=loader.content.height;
+					img.width = loader.content.width;
+					img.maxHeight = maxHeight;
+					if(img.height>maxHeight)
+					{
+						img.height = maxHeight;
+						img.width = img.width*(maxHeight/loader.content.height);
+						
+					}
+					
+					showImage.height = img.height+10;
+					showImage.width = img.width+10;
+					
+					img.verticalCenter = 0;
+					img.horizontalCenter = 0;
+					
+					
+					if(windowHeight<maxHeight)
+					{
+						maxHeight = windowHeight-54;
+					}
+					
+					if(windowHeight - (maxHeight+showImage.y)<0)
+					{
+						showImage.y += windowHeight - (maxHeight+showImage.y)-44;						
+					}
+					
+					//检测当前鼠标位置
+					if((FlexGlobals.topLevelApplication.mouseX >= imgX) && (FlexGlobals.topLevelApplication.mouseX<=imgX+imgWidth)
+						&& (FlexGlobals.topLevelApplication.mouseY>=imgY)
+						&& (FlexGlobals.topLevelApplication.mouseY<=imgY+imgHeight))
+					{
+					
+						showImage.addElement(img);
+						
+						showImage.visible= true;
+
+					}
+
+					
+				});
+			}
+			
+			protected function delDecorateBigImg_Handle(event:MyCustomEvent):void
+			{
+				//loader.close();
+					FlexGlobals.topLevelApplication.showBigImge.removeAllElements();
+					FlexGlobals.topLevelApplication.showBigImge.visible = false;
+				
+			}
+		]]>
+	</fx:Script>
+	<s:List id="backgroundList" top="0"
+			dataProvider="{decorateArrayList}" width="100%" bottom="55"
+			borderVisible="false" horizontalCenter="10"
+			itemRenderer="com.yzl.renderer.frameItemRenderer">
+		<s:layout>
+			<s:VerticalLayout verticalAlign="top" horizontalAlign="center" gap="20"/>
+		</s:layout>
+		
+	</s:List> 
+	<s:Group bottom="0" width="100%" height="55">
+		<s:Button id="moreDecorate" width="80" height="26" label="更多画框" color="#FFFFFF"
+				  cornerRadius="3" horizontalCenter="0" skinClass="com.yzl.skins.moreButton"
+				  verticalCenter="0" useHandCursor="true" buttonMode="true" click="addDecorate_handleClick(event)"/>
+	</s:Group>
+	
+</s:NavigatorContent>

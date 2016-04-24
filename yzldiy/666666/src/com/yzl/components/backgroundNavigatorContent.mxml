@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="840" height="130"
+				   backgroundColor="#CCCCCC" borderVisible="false" cornerRadius="12"
+				   creationComplete="decorate_creationCompleteHandler(event)">
+	<fx:Metadata>
+		[Event(name="showBackgroundBigImg",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="hideBackgroundBigImg",type="com.yzl.events.MyCustomEvent")]
+		
+		[Event(name="addBackground",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="removeBackground",type="com.yzl.events.MyCustomEvent")]
+		
+	</fx:Metadata>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.yzl.events.MyCustomEvent;
+			import com.yzl.renderer.backgroundItemRenderer;
+			import com.yzl.services.DecorateServices;
+			import com.yzl.valueObject.BackgroundVO;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.IViewCursor;
+			import mx.controls.Image;
+			import mx.core.FlexGlobals;
+			import mx.core.IFlexDisplayObject;
+			import mx.events.ColorPickerEvent;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			import spark.components.BorderContainer;
+			import spark.primitives.RectangularDropShadow;
+			
+			public  var decorateServices:DecorateServices = new DecorateServices("getBackground");
+			
+			private var loader:Loader = new Loader();
+			
+			[Bindable]
+			public var decorateArrayList:ArrayCollection = new ArrayCollection();
+			
+					
+			protected function decorate_creationCompleteHandler(event:FlexEvent):void
+			{
+				decorateServices.send();
+				decorateArrayList = decorateServices.decorateList;
+				
+				this.addEventListener("showBackgroundBigImg",showDecorateBigImg_Handle);
+				this.addEventListener("hideBackgroundBigImg",delDecorateBigImg_Handle);
+				this.addEventListener("addBackground",addDecorateHandle);
+				
+				backgroundList.scroller.setStyle('verticalScrollPolicy', 'off');
+			}
+			
+			
+			private function addDecorateHandle(event:MyCustomEvent):void
+			{
+				var img:BackgroundVO = event.data as BackgroundVO;
+				if(!getDecorateItem(img))
+				{
+					this.decorateArrayList.addItem(img);
+				}
+			}
+			
+			public function getDecorateItem(img:BackgroundVO):BackgroundVO
+			{
+				var existingItem:BackgroundVO;
+				var cursor:IViewCursor = decorateArrayList.createCursor();
+				var found:Boolean = cursor.findFirst(img);
+				if(found)
+				{
+					existingItem = cursor.current as BackgroundVO;
+				}
+				return existingItem;
+			}
+			
+			protected function showDecorateBigImg_Handle(event:MyCustomEvent):void
+			{
+				
+				var img:Image = new Image();
+				var showImage:BorderContainer = FlexGlobals.topLevelApplication.showBigImge;
+				var windowHeight:Number = FlexGlobals.topLevelApplication.height;
+				var loader:Loader = new Loader();
+				
+				var imgX:Number = event.data.imgX;
+				var imgY:Number = event.data.imgY;
+				var imgWidth:Number =event.data.imgWidth;
+				var imgHeight:Number =event.data.imgHeight+44;
+				
+				showImage.x = event.data.imgX+imgWidth+20;
+				showImage.y = event.data.imgY-36;
+				var urlRequest:URLRequest = new URLRequest(event.data.imgStr);
+				loader.load(urlRequest);
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE,function(e:Event):void{
+					
+					var maxHeight:Number=400;
+					img.source = loader.content;
+					img.height=loader.content.height;
+					img.width = loader.content.width;
+					img.maxHeight = maxHeight;
+					if(img.height>maxHeight)
+					{
+						img.height = maxHeight;
+						img.width = img.width*(maxHeight/loader.content.height);
+						
+					}
+					
+					showImage.height = img.height+10;
+					showImage.width = img.width+10;
+					
+					img.verticalCenter = 0;
+					img.horizontalCenter = 0;
+					
+					
+					if(windowHeight<maxHeight)
+					{
+						maxHeight = windowHeight-54;
+					}
+					
+					if(windowHeight - (maxHeight+showImage.y)<0)
+					{
+						showImage.y += windowHeight - (maxHeight+showImage.y)-44;						
+					}
+					
+					//检测当前鼠标位置
+					if((FlexGlobals.topLevelApplication.mouseX >= imgX) && (FlexGlobals.topLevelApplication.mouseX<=imgX+imgWidth)
+						&& (FlexGlobals.topLevelApplication.mouseY>=imgY)
+						&& (FlexGlobals.topLevelApplication.mouseY<=imgY+imgHeight))
+					{
+					
+						showImage.addElement(img);
+						
+						showImage.visible= true;
+
+					}
+
+					
+				});
+			}
+			
+			protected function delDecorateBigImg_Handle(event:MyCustomEvent):void
+			{
+				//loader.close();
+					FlexGlobals.topLevelApplication.showBigImge.removeAllElements();
+					FlexGlobals.topLevelApplication.showBigImge.visible = false;
+				
+			}
+			
+			protected function colorpicker1_changeHandler(event:ColorPickerEvent):void
+			{
+				FlexGlobals.topLevelApplication.mainEdit.workPageGroup.dispatchEvent(new MyCustomEvent("backGroundColorChanged",event.color));
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:List id="backgroundList" left="75" right="75" bottom="10" height="90" borderVisible="false"
+			contentBackgroundColor="#CCCCCC" dataProvider="{decorateArrayList}"
+			itemRenderer="com.yzl.renderer.backgroundItemRenderer">
+		<s:layout>
+			<s:TileLayout requestedColumnCount="{decorateArrayList.length}" 
+						  verticalGap="20" verticalAlign="top" horizontalGap="10" horizontalAlign="center" />
+		</s:layout>
+	</s:List>
+	
+</s:BorderContainer>

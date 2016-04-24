@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:components="com.yzl.components.*"
+			   xmlns:button="skin.button.*"
+			   minWidth="850" minHeight="250" backgroundColor="#FFFFFF"
+			   creationComplete="application1_creationCompleteHandler(event)"
+			   resize="application1_resizeHandler(event)" xmlns:services="com.yzl.services.*">
+	<fx:Style source="assets/styles/common.css" />
+	<fx:Metadata>
+		[Event(name="loadTemplateComplete",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="autoFillPhoto",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="selectedObject",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="saveUserProduct",type="flash.events.Event")]
+		[Event(name="loadTemplate",type="flash.events.Event")]
+		[Event(name="previewProduct",type="flash.events.Event")]
+		[Event(name="clearSelectedObject",type="flash.events.Event")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			
+			import com.king.loadAphaImage.InteractivePNG;
+			import com.rubenswieringa.book.Book;
+			import com.yzl.AlertWindow.UploadUserPic;
+			import com.yzl.AlertWindow.previewProduct;
+			import com.yzl.AlertWindow.saveUserProduct;
+			import com.yzl.components.PopWindow;
+			import com.yzl.components.backgroundNavigatorContent;
+			import com.yzl.components.decorateNavigatorContent;
+			import com.yzl.components.fontNavigatorContent;
+			import com.yzl.components.workPageGroup;
+			import com.yzl.constant.DOMAINS;
+			import com.yzl.constant.PageLabelUitl;
+			import com.yzl.constant.URLS;
+			import com.yzl.events.MyCustomEvent;
+			import com.yzl.manage.PopUpEffect;
+			import com.yzl.manage.PopupModellocator;
+			import com.yzl.model.DataModel;
+			import com.yzl.valueObject.BackgroundVO;
+			import com.yzl.valueObject.DecoratorVO;
+			import com.yzl.valueObject.DisplayObjectVO;
+			import com.yzl.valueObject.MyGroup;
+			import com.yzl.valueObject.MyImage;
+			import com.yzl.valueObject.PageContainerVO;
+			import com.yzl.valueObject.PageVO;
+			import com.yzl.valueObject.PhotoVO;
+			import com.yzl.valueObject.ProductVO;
+			import com.yzl.valueObject.TextVO;
+			import com.yzl.valueObject.VOName;
+			import com.yzl.view.pageGroup;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.XMLListCollection;
+			import mx.controls.Alert;
+			import mx.controls.Image;
+			import mx.core.FlexGlobals;
+			import mx.core.IFlexDisplayObject;
+			import mx.events.FlexEvent;
+			import mx.events.PropertyChangeEvent;
+			import mx.events.ResizeEvent;
+			import mx.graphics.ImageSnapshot;
+			import mx.graphics.codec.JPEGEncoder;
+			import mx.graphics.codec.PNGEncoder;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.HTTPService;
+			import mx.rpc.xml.SimpleXMLDecoder;
+			import mx.utils.Base64Encoder;
+			
+			import spark.components.Label;
+			import spark.components.RichEditableText;
+			import spark.layouts.VerticalAlign;
+			import spark.layouts.supportClasses.LayoutBase;
+			import spark.skins.spark.ImageSkin;
+			
+			public var app1:Application;		
+			private var tid:String;
+			[Bindable]
+			private var productName:String ="毕业纪念册";
+			
+			[Bindable]
+			private var dataModel:DataModel = DataModel.getInstance();
+			
+			private var getTemplateService:HTTPService;
+			
+			[Bindable]
+			public var pageContainer:PageContainerVO;
+			
+			[Bindable]
+			private var bottomPageList:Array=[];
+			
+			private var proid:String ="";
+			
+			private var isLocal:Boolean = false;
+			
+			//初始化基本信息
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+
+				//读取安全文件
+				flash.system.Security.allowDomain("*"); 
+				flash.system.Security.loadPolicyFile("http://127.0.0.1/crossdomain.xml"); 
+				this.addEventListener("loadTemplate",loadTemplate_Handler);
+				this.addEventListener("previewProduct",previewProduct_Handler);
+				this.addEventListener("selectedObject",selectedObject_Handler);
+				
+				if(isLocal){
+					var queryParamsStr:String = ExternalInterface.call("window.location.search.substring",1);
+					
+					var getParams:Object = getUrlParam(queryParamsStr);
+					if(getParams.username)
+					{
+						//获取用户信息
+						getUserInfo(getParams.username);
+						dataModel.userName = getParams.username;
+					}
+					if(getParams.pid)
+					{
+						//产品ID
+						dataModel.productId = getParams.pid;
+					}
+					if(getParams.tid)
+					{
+						//模板ID
+						tid = getParams.tid;
+					}
+					if(getParams.proid)
+					{
+						//用户保存的作品ID
+						this.proid = getParams.proid; 
+					}
+				}else{
+					dataModel.userName = "alex";
+					dataModel.productId = "2";
+					tid = "00002";
+					//this.proid = "1";
+				}
+				
+				this.app1 = this;
+				
+				this.addEventListener("saveUserProduct",saveUserProduct_Handler);
+				getProduct(dataModel.productId,tid);
+			}
+			
+			//获取产品信息
+			private function getProduct(pid:String,tid:String):void
+			{
+				var productService:HTTPService = new HTTPService();
+				if(this.proid=="")
+				{
+					productService.url = DOMAINS.STATIC_RESOURCE+"/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid="+pid;
+					trace('模版地址:' + productService.url)
+				}
+				else
+				{
+					productService.url = DOMAINS.STATIC_RESOURCE
+						+"/yzldiy.php?m=yzldiy&c=saveUserProduct&a=getProductInfo&pid="+this.proid+"&uid="+dataModel.userId;
+				}
+				productService.addEventListener(ResultEvent.RESULT,function(event:ResultEvent):void{
+					if(event.result.toString() =="0")
+					{
+						Alert.show("该产品不存在或已下架！");
+					}
+					else
+					{
+						var product:Object = JSON.parse(event.result.toString());
+						dataModel.productVO = new ProductVO();
+						dataModel.productName_ = product.name;
+						dataModel.retailprice = product.retailprice;
+						dataModel.realProductType = product.type;
+						if(proid != "") 
+						{
+							dataModel.productVO.name = product.name;
+							dataModel.productVO.id = proid;
+							dataModel.productVO.templateId = product.tid;
+						}
+						
+						dispatchEvent(new Event("loadTemplate"));
+						
+					}
+				});
+				productService.addEventListener(FaultEvent.FAULT,function(event:FaultEvent):void{
+					trace(event.fault.toString());
+					Alert.show("该产品不存在或已下架！");
+				});
+				productService.send();
+				
+			}
+			
+			//开始读取模板
+			private function loadTemplate_Handler(event:Event):void
+			{				
+				getTemplateService = new HTTPService();
+				getTemplateService.resultFormat = "e4x";
+				getTemplateService.addEventListener(ResultEvent.RESULT,getTemplateResult_Handler);
+				
+				//普通产品模板读取
+				if(dataModel.productVO.id=="")
+				{					
+					getTemplateService.url = URLS.FLASH_TEMPLATE_ROOT+tid+".xml";
+					trace('模版地址:' + getTemplateService.url)
+				}
+				else
+				{
+					//用户保存作品读取
+					getTemplateService.url = DOMAINS.STATIC_RESOURCE
+						+"/yzldiy.php?m=yzldiy&c=saveUserProduct&a=loadUserProduct&pid="
+						+this.proid+"&uid="+dataModel.userId;
+					
+				}
+				
+				getTemplateService.addEventListener(FaultEvent.FAULT,function(event:FaultEvent):void{
+					//trace(event.fault.toString());
+					Alert.show("模板读取失败!请联系客服人员","错误");
+				});
+				getTemplateService.send();
+			}
+			
+			//获取外部传来的参数
+			public  function getUrlParam(urlStr:String):Object{  
+				var pattern:RegExp= /.*\?/;  
+				urlStr=urlStr.replace(pattern, "");  
+				if(urlStr.indexOf("=")==-1)  
+				{   return null;  
+				}  
+				// 通过&拆分成数组name=value，保存为String类型数据  
+				var params:Array=urlStr.split("&");  
+				if(params==null||params.length==0){  
+					return null;  
+				}  
+				var paramObj:Object={};  
+				for(var i:int=0;i<params.length;i++){  
+					var keyValue:Array=params[i].split("=");  
+					paramObj[keyValue[0]]=keyValue[1];  
+				}  
+				return paramObj;  
+			}  
+			
+			//获取用户信息
+			private function getUserInfo(username:String):void
+			{
+				//测试用临时账号
+				
+				dataModel.userId="255";
+				dataModel.userName = username;
+				
+				//读取服务器账号信息
+				
+				//				
+				//				var userService:HTTPService = new HTTPService();
+				//				var varVisible:URLVariables = new URLVariables();
+				//				varVisible.username = username;
+				//				
+				//				userService.method = "post";
+				//				userService.url = DOMAINS.STATIC_RESOURCE+"/yzldiy.php?m=yzldiy&c=user&a=getUserInfo";
+				//				userService.resultFormat = "e4x";
+				//				userService.request = varVisible;
+				//				userService.addEventListener(ResultEvent.RESULT,function(event:ResultEvent):void
+				//				{
+				//					if(event.result)
+				//					{
+				//						dataModel.userId=event.result.userId;
+				//						dataModel.userName = event.result.username;
+				//					}
+				//					else
+				//					{
+				//						//账号验证失败处理
+				//					}
+				//				});
+				//				userService.send();
+				//				
+			}
+			
+			
+			//模板读取
+			protected function getTemplateResult_Handler(event:ResultEvent):void
+			{
+				var data:XMLList =  event.result.page;
+				pageContainer = new PageContainerVO();
+				pageContainer.fromXML(event.result as XML);
+				
+				var numItem:int = 0;
+				var item:*;
+				for each(var d:XML in data )
+				{
+					for(var len:int=0;len < d.children().length();len++)
+					{
+						var el:XML = d.children()[len];
+						
+						switch(el.name().localName)
+						{
+							case VOName.BACKGROUND:
+								item = new BackgroundVO();
+								item.fromXML(el);
+								break;
+							case VOName.PHOTO:
+								item = new PhotoVO();
+								item.fromXML(el);
+								break;
+							case VOName.DECORATOR:
+								item = new DecoratorVO();
+								item.fromXML(el);
+								break;
+							case VOName.TEXT:
+								item = new TextVO();
+								item.fromXML(el);
+								break;
+						}
+						
+						pageContainer.getChildAt(numItem).previewIndex = numItem;
+					}
+					var page:pageGroup = new pageGroup();
+					
+					page.model =  pageContainer.getChildAt(numItem);
+					
+					bottomPageList.push(page);
+					numItem++;
+					
+				}
+				
+				//trace('输出:' + event.result);
+				
+				this.initBottomPageList();
+				dataModel.currentMicroPageIndex = 0;
+				dataModel.productVO.info = this.pageContainer;
+				dataModel.pageNum = numItem;
+				this.setEditMainPage(0);
+				
+				this.addEventListener("autoFillPhoto",autoFillPhoto_Handler);
+				
+			}
+			
+			//初始化底部页面列表
+			public function initBottomPageList():void
+			{
+				
+				for each(var page:pageGroup in bottomPageList)
+				{
+					var bottomItem:BorderContainer = new BorderContainer();
+					
+					
+					page.scaleY = 90/page.model.height;
+					page.scaleX = page.scaleY;
+					bottomItem.buttonMode = true;
+					bottomItem.useHandCursor = true;
+					
+					bottomItem.width = page.scaleX*page.model.width;
+					bottomItem.setStyle("borderColor","0x434343");
+					bottomItem.setStyle("borderWeight",2);
+					page.width = page.model.templateW;
+					page.height = page.model.templateH;
+					page.scaleY = 90/page.model.height;
+					page.scaleX = page.scaleY;
+					
+					
+					bottomItem.addEventListener(MouseEvent.MOUSE_OVER,bottomItemMouseOver_Handler);
+					bottomItem.addEventListener(MouseEvent.MOUSE_OUT,bottomItemMouseOut_Handler);
+					bottomItem.addEventListener(MouseEvent.CLICK,bottomItemMouseClick_Handler);
+					
+					bottomItem.addElement(page);
+					bottomList.addElement(bottomItem);
+					page.clipAndEnableScrolling = true;
+					bottomItem.contentGroup.clipAndEnableScrolling = true;
+				}
+				
+				
+				//bottomMask.mask = bottomList;
+				bottomList.mask = bottomMask;
+			}
+			
+			/**
+			 * 设置编辑区页面 
+			 **/
+			public function setEditMainPage(pageIndex:int):void
+			{
+				if(mainEdit.workPageGroup.model)
+				{
+					mainEdit.workPageGroup.normalGroup.removeAllElements();
+				}
+				
+				mainEdit.workPageGroup.model = pageContainer.getChildAt(pageIndex);
+				dataModel.stageHeight = pageContainer.getChildAt(pageIndex).height;
+				dataModel.stageWidth = pageContainer.getChildAt(pageIndex).width;
+				mainEdit.workPageGroup.height =dataModel.stageHeight;
+				mainEdit.workPageGroup.width =dataModel.stageWidth;
+				
+				//窗口不会自动缩放
+				mainEdit.height = mainEdit.height*dataModel.mainEditScale;
+				mainEdit.width = mainEdit.width*dataModel.mainEditScale;
+				
+				
+				dataModel.currentScale = mainEdit.height/dataModel.stageHeight;
+				dataModel.minScale = mainEdit.height/dataModel.stageHeight;
+				
+				(bottomList.getChildAt(dataModel.currentMicroPageIndex) as BorderContainer).setStyle("borderAlpha",1);
+				(bottomList.getChildAt(dataModel.currentMicroPageIndex) as BorderContainer).setStyle("backgroundAlpha",1);
+				(bottomList.getChildAt(dataModel.currentMicroPageIndex) as BorderContainer).removeEventListener(
+					MouseEvent.MOUSE_OUT,bottomItemMouseOut_Handler);
+				
+				
+				mainEdit.workPageGroup.dispatchEvent(new Event("pageIndexChanged"));
+				
+				
+				
+				
+			}
+			
+			
+			
+			//鼠标移入底部列表
+			private function bottomItemMouseOut_Handler(event:MouseEvent):void
+			{
+				
+				(event.currentTarget as BorderContainer).setStyle("borderColor","0x434343");
+			}
+			
+			//鼠标移出底部页面列表
+			private function bottomItemMouseOver_Handler(event:MouseEvent):void
+			{
+				(event.currentTarget as BorderContainer).setStyle("borderColor","0xFD5350");
+			}
+			
+			//处理底部page列表单击事件
+			private function bottomItemMouseClick_Handler(event:MouseEvent):void
+			{
+				var tPage:pageGroup = (event.currentTarget as BorderContainer).getElementAt(0) as pageGroup;
+				
+				if(dataModel.currentMicroPageIndex == tPage.model.previewIndex) return;
+				
+				(bottomList.getChildAt(dataModel.currentMicroPageIndex) as BorderContainer).setStyle("borderColor","0x434343");
+				(bottomList.getChildAt(dataModel.currentMicroPageIndex) as BorderContainer).addEventListener(
+					MouseEvent.MOUSE_OUT,bottomItemMouseOut_Handler);
+				
+				(event.currentTarget as BorderContainer).setStyle("borderColor","0xFD5350");
+				(event.currentTarget as BorderContainer).removeEventListener(MouseEvent.MOUSE_OUT,bottomItemMouseOut_Handler);
+				
+				dataModel.currentMicroPageIndex = tPage.model.previewIndex;
+				this.setEditMainPage(dataModel.currentMicroPageIndex);
+				
+			}
+			
+			//浏览器窗口大小变化
+			protected function application1_resizeHandler(event:ResizeEvent):void
+			{
+				this.addEventListener(FlexEvent.UPDATE_COMPLETE,application_updateCompleteHandler);
+			}
+			
+			//修改变化后的窗口大小
+			protected function application_updateCompleteHandler(event:FlexEvent):void
+			{
+				if(mainEdit.workPageGroup.model)
+				{
+					editAreaGroup.height = this.app1.height-220;
+					mainEdit.height = editAreaGroup.height;
+					editAreaGroup.width = this.app1.width - 215;
+					mainEdit.width = editAreaGroup.width;
+					//窗口缩放时改变编辑区大小
+					dataModel.currentScale = (mainEdit.height*dataModel.mainEditScale)/dataModel.stageHeight;
+					dataModel.minScale = (mainEdit.height*dataModel.mainEditScale)/dataModel.stageHeight;
+					dataModel.mainEditScale = 0.98;
+					this.removeEventListener(FlexEvent.UPDATE_COMPLETE,application_updateCompleteHandler);
+					
+				}
+				
+				this.ButtonGroup.x = bottomList.x + ((this.app1.width - 400 - ButtonGroup.width)/2);
+			}
+			
+			//底部列表单击事件
+			protected function bottomList_clickHandler(event:MouseEvent):void
+			{
+				mainEdit.workPageGroup.dispatchEvent(new Event("fouseOut"));
+			}
+			
+			//编辑区单击事件
+			protected function mainEdit_clickHandler(event:MouseEvent):void
+			{
+				if(event.target is ImageSkin) return;
+				if(event.target is InteractivePNG) return;
+				if(event.target is RichEditableText) return;
+				mainEdit.workPageGroup.dispatchEvent(new Event("fouseOut"));
+			}
+			
+			/**
+			 * 自动填充照片处理
+			 * **/
+			protected function autoFillPhoto_Handler(event:MyCustomEvent):void
+			{
+				var myPhotoArrayList:ArrayCollection = event.data as ArrayCollection;
+				var tempPhotos:Array = new Array();
+				for(var tps:int=0;tps<myPhotoArrayList.length;tps++)
+				{
+					if((myPhotoArrayList[tps] as PhotoVO).usedNum<=0)
+						tempPhotos.push(myPhotoArrayList[tps]);
+				}
+				var i:int=0;
+				var emptyNum:int = pageContainer.numDropherePictures;
+				for(var p:int=0;p<pageContainer.numPages;p++) //pageContainer.numPages
+				{
+					
+					var page:PageVO = pageContainer.children[p];
+					
+					if(page.emptyPhotoNum<=0) continue;
+					
+					var photos:Array = page.getPhotoVOs();
+					for(var pi:int=0;pi<photos.length;pi++)
+					{
+						if(i>=tempPhotos.length) {
+							break;
+						}
+						if(i>=emptyNum) {
+							break;
+						}
+						
+						if(!(photos[pi] as PhotoVO).empty) continue;
+						
+						var photo:PhotoVO = PhotoVO((tempPhotos[i] as PhotoVO).cloneVO());
+						var oldPhoto:PhotoVO = photos[pi];
+						var pn:int = page.indexOf(photos[pi]);
+						var rect:Rectangle = oldPhoto.cropRectangle.clone();
+						
+						
+						//根据原来的照片大小修正新的照片大小
+						
+						//如果外框是横长竖短
+						if(rect.width>=rect.height)
+						{
+							//如果照片宽比高小
+							if(photo.photoItem.img.width<=photo.photoItem.img.height)
+							{
+								if(rect.height <= photo.photoItem.img.height*(rect.width/photo.photoItem.img.width))
+								{
+									photo.height = photo.photoItem.img.height*(rect.width/photo.photoItem.img.width);
+									photo.width = rect.width;
+									rect.y = (photo.height-rect.height)/2;
+									rect.x = 0;
+								}
+								else
+								{
+									photo.width = photo.photoItem.img.width*(rect.height/photo.photoItem.img.height);
+									photo.height = rect.height;
+									rect.x =  (photo.width-rect.width)/2;
+									rect.y =0;
+								}
+								
+							}
+							else
+							{
+								if(rect.width <= photo.photoItem.img.width*(rect.height/photo.photoItem.img.height))
+								{
+									photo.width = photo.photoItem.img.width*(rect.height/photo.photoItem.img.height);
+									photo.height = rect.height;
+									rect.x =  (photo.width-rect.width)/2;
+									rect.y =0;
+								}
+								else
+								{
+									photo.height = photo.photoItem.img.height*(rect.width/photo.photoItem.img.width);
+									photo.width = rect.width;
+									rect.y = (photo.height-rect.height)/2;
+									rect.x = 0;									
+								}
+								
+							}
+							
+						}
+						else
+						{
+							//如果是竖短横长
+							if(photo.photoItem.img.width>=photo.photoItem.img.height)
+							{
+								
+								if(rect.height <= photo.photoItem.img.height*(rect.width/photo.photoItem.img.width))
+								{
+									photo.height = photo.photoItem.img.height*(rect.width/photo.photoItem.img.width);
+									photo.width = rect.width;
+									rect.y = (photo.height-rect.height)/2;
+									rect.x = 0;
+								}
+								else
+								{
+									photo.width = photo.photoItem.img.width*(rect.height/photo.photoItem.img.height);
+									photo.height = rect.height;
+									rect.x =  (photo.width-rect.width)/2;
+									rect.y =0;
+								}
+							}
+							else
+							{
+								if(rect.height <= photo.photoItem.img.height*(rect.width/photo.photoItem.img.width))
+								{
+									photo.width = photo.photoItem.img.width*(rect.height/photo.photoItem.img.height);
+									photo.height = rect.height;
+									rect.x =  (photo.width-rect.width)/2;
+									rect.y =0;
+								}
+								else
+								{
+									
+									photo.height = photo.photoItem.img.height*(rect.width/photo.photoItem.img.width);
+									photo.width = rect.width;
+									rect.y = (photo.height-rect.height)/2;
+									rect.x = 0;	
+								}
+							}
+						}
+						
+						photo.cropRectangle = rect;
+						photo.x=oldPhoto.x-rect.x+oldPhoto.cropRectangle.x;
+						photo.y = oldPhoto.y-rect.y+oldPhoto.cropRectangle.y;
+						photo.rotation = oldPhoto.rotation;
+						page.removeChildAt(pn);
+						page.addChildAt(photo,pn);
+						(tempPhotos[i] as PhotoVO).usedNum++;
+						i++;
+						(bottomPageList[p] as pageGroup).dispatchEvent(new MyCustomEvent("autoFillPhoto_pageGroup",{newPhoto:photo,oldPhoto:oldPhoto}));
+						if(dataModel.currentMicroPageIndex == p)
+						{
+							mainEdit.workPageGroup.dispatchEvent(new MyCustomEvent("autoFillPhoto_pageGroup",{newPhoto:photo,oldPhoto:oldPhoto}));
+						}
+					}
+					
+					
+				}
+				
+				
+			}
+			
+			/**
+			 * 保存用户作品
+			 * **/
+			protected function saveUserProduct_Handler(event:Event):void
+			{
+				if(dataModel.productVO.name == "")
+				{
+					var popSaveUserProduct:saveUserProduct = new saveUserProduct();
+					PopUpManager.addPopUp(popSaveUserProduct,this,true);
+					PopUpManager.centerPopUp(popSaveUserProduct);
+				}
+				else
+				{
+					var customTemplate:XML = pageContainer.toXML();
+					var saveService:HTTPService = new HTTPService();
+					var saveParam:Object = new Object();
+					var matrix:Matrix = new Matrix();
+					var preview:Group = (bottomList.getElementAt(0) as BorderContainer)	.getElementAt(0) as Group;
+					matrix.scale(200/preview.width,200/preview.width);
+					var bmd:BitmapData = ImageSnapshot.captureBitmapData((bottomList.getElementAt(0) as BorderContainer).getElementAt(0) as Group,matrix);
+					var jpgEncoder:JPEGEncoder = new JPEGEncoder(80);
+					var base64:Base64Encoder = new Base64Encoder();
+					var byteArray:ByteArray = jpgEncoder.encode(bmd);
+					base64.encodeBytes(byteArray,0,byteArray.length);
+					saveParam["userId"] = dataModel.userId;
+					saveParam["productId"] = dataModel.productVO.id;
+					saveParam["pid"] = dataModel.productId;
+					saveParam["tid"] = tid;
+					saveParam["type"] = dataModel.realProductType;
+					saveParam["preview"] = base64.toString();
+					saveParam["info"] = pageContainer.toXML().toString();
+					saveParam["name"] = dataModel.productVO.name;
+					saveParam["retailprice"] = dataModel.retailprice;
+					
+					saveService.request = saveParam;
+					saveService.url = DOMAINS.FS_DOMAIN+"/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveStart";
+					saveService.method = "post";
+					saveService.send();
+					
+					saveService.addEventListener(ResultEvent.RESULT,function(event:ResultEvent):void{
+						dataModel.productVO.id = event.result.toString();
+					});
+					saveService.addEventListener(FaultEvent.FAULT,function(event:FaultEvent):void{
+						trace(event.fault.content.toString());
+					});
+				}
+				
+				
+			}
+			
+			//作品预览
+			protected function previewProduct_Handler(event:Event):void
+			{
+				var previewBook:previewProduct = new previewProduct();
+				previewBook.pageContainer = this.pageContainer;
+				PopUpManager.addPopUp(previewBook,this,true);
+				PopUpManager.centerPopUp(previewBook);
+			}
+			
+			//选中编辑器中的对象时处理函数
+			protected function selectedObject_Handler(event:MyCustomEvent):void
+			{
+				if(event.data == null) return;
+				var point:Point= new Point();			
+				
+				
+				var rect:Rectangle = (event.data as DisplayObject).getBounds(mainEdit.workPageGroup.normalGroup);
+				
+				point = new Point(rect.x,rect.y);
+				
+			}
+			
+			
+			protected function templatebutton1_clickHandler(event:MouseEvent):void
+			{
+//				var pop:decorateNavigatorContent = new decorateNavigatorContent();
+//				PopUpEffect.show(this,pop);
+//				
+//				pop.x = bottomList.x + ((this.app1.width - 386 - pop.width)/2);
+//				pop.y = ButtonGroup.y - pop.height;
+
+			}
+			
+			
+			
+			protected function texturebutton1_clickHandler(event:MouseEvent):void
+			{
+				var pop:decorateNavigatorContent = new decorateNavigatorContent();
+				PopUpEffect.show(this,pop);
+				
+				pop.x = bottomList.x + ((this.app1.width - 386 - pop.width)/2);
+				pop.y = ButtonGroup.y - pop.height;
+			}
+			
+			
+			
+			protected function makeupbutton1_clickHandler(event:MouseEvent):void
+			{
+//				var pop:decorateNavigatorContent = new decorateNavigatorContent();
+//				PopUpEffect.show(this,pop);
+//				
+//				pop.x = bottomList.x + ((this.app1.width - 386 - pop.width)/2);
+//				pop.y = ButtonGroup.y - pop.height;
+			}
+			
+			protected function bgbutton1_clickHandler(event:MouseEvent):void
+			{
+				var pop:backgroundNavigatorContent = new backgroundNavigatorContent;
+				PopUpEffect.show(this,pop);
+				
+				pop.x = bottomList.x + ((this.app1.width - 386 - pop.width)/2);
+				pop.y = ButtonGroup.y - pop.height;
+			}
+			
+			protected function textbutton1_clickHandler(event:MouseEvent):void
+			{
+				var pop:fontNavigatorContent = new fontNavigatorContent();
+				PopUpEffect.show(this,pop);
+				
+				pop.x = bottomList.x + ((this.app1.width - 386 - pop.width)/2);
+				pop.y = ButtonGroup.y - pop.height;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		
+	</fx:Declarations>
+	
+	<s:Group  id="liftAreaGroup" height="100%" width="215" click="bottomList_clickHandler(event)">
+		<components:photoNavigatorContent id="photoHeader" left="0" top="0" bottom="0" width="215"/>
+	</s:Group>
+	<components:topMenuList id="topmenu" left="215" right="0" top="5" height="35"
+							borderVisible="false" click="bottomList_clickHandler(event)"/>
+	<s:Group id="editAreaGroup" left="215" top="45" right="0" bottom="140">
+		<s:Scroller id="editScroller" y="0" left="0" width="100%" height="100%">
+			<components:editMain id="mainEdit"
+								 scaleX="{dataModel.mainEditScale}" scaleY="{dataModel.mainEditScale}" click="mainEdit_clickHandler(event)"/>	
+		</s:Scroller>
+		
+		
+	</s:Group>
+	
+	<s:Group id="ButtonGroup" bottom="135">
+		<button:TemplateButton click="templatebutton1_clickHandler(event)" />
+		<button:TextureButton left="100" click="texturebutton1_clickHandler(event)"/>
+		<button:MakeupButton left="200" click="makeupbutton1_clickHandler(event)"/>
+		<button:BgButton left="300" click="bgbutton1_clickHandler(event)"/>
+		<button:TextButton left="400" click="textbutton1_clickHandler(event)"/>
+	</s:Group>
+	
+	<s:Group id="bottomList" right="85" bottom="20" left="300" height="130" click="bottomList_clickHandler(event)">
+		<s:layout>
+			<s:HorizontalLayout gap="20" verticalAlign="middle" />
+		</s:layout>
+		
+	</s:Group>
+	<s:Group id="bottomMask" right="85" bottom="20" left="300" height="130" alpha="0">
+		<s:Rect width="100%" height="100%">
+			<s:fill>
+				<s:SolidColor color="#ff0000"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	
+	<button:NextButton right="10" bottom="10"/>
+	
+	<s:BorderContainer id="showBigImge" visible="false" borderColor="0xeeeeee" mouseOver="{showBigImge.visible=false}">
+		
+	</s:BorderContainer>
+	
+</s:Application>

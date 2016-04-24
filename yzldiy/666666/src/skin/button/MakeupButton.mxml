@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Image xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 buttonMode="true" creationComplete="creationCompleteHandler(event)" currentState="up"
+		 mouseDown="mouseDownHandler(event)" mouseOut="mouseOutHandler(event)"
+		 mouseOver="mouseOverHandler(event)" useHandCursor="true"
+		 source.up="@Embed('assets/makeup_btn.png')"
+		 source.down="@Embed('assets/makeup_btn.png')"
+		 source.over="@Embed('assets/makeup_btn.png')">
+	<!-- 状态 -->
+	<s:states>
+		<s:State name="up" />
+		<s:State name="highlight_up" />
+		<s:State name="down" />
+		<s:State name="highlight_down" />
+		<s:State name="over" />
+		<s:State name="highlight_over" />
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			
+			import mx.events.FlexEvent;
+			
+			/**
+			 * 按钮控件
+			 * @author Alex
+			 * @QQ: 306561
+			 * @Date:2015-01-22
+			 */
+			
+			private var _highlight:Boolean = false;
+			
+			protected function creationCompleteHandler(e:FlexEvent):void{
+				setCurrentState(_highlight ? "highlight_up" : "up");
+			}
+			
+			protected function mouseOverHandler(e:MouseEvent):void{
+				setCurrentState(_highlight ? "highlight_over" : "over");
+			}
+			
+			protected function mouseOutHandler(e:MouseEvent):void{
+				setCurrentState(_highlight ? "highlight_up" : "up");
+			}
+			
+			protected function mouseDownHandler(e:MouseEvent):void{
+				setCurrentState(_highlight ? "highlight_down" : "down");
+			}
+			
+			public function set highlight(value:Boolean):void{
+				_highlight = value;
+				
+				switch(currentState){
+					case "up":
+					case "highlight_up":
+						setCurrentState(_highlight ? "highlight_up" : "up");
+						break;
+					case "down":
+					case "highlight_down":
+						setCurrentState(_highlight ? "highlight_down" : "down");
+						break;
+					case "over":
+					case "highlight_over":
+						setCurrentState(_highlight ? "highlight_over" : "over");
+						break;
+				}
+			}
+			
+			public function get highlight():Boolean{
+				return _highlight;
+			}
+			
+			
+		]]>
+	</fx:Script>
+</s:Image>

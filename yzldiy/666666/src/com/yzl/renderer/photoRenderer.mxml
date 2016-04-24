@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" autoDrawBackground="false" creationComplete="itemrenderer1_creationCompleteHandler(event)">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Metadata>
+		[Event(name="showMyPhoto",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="hideMyPhoto",type="com.yzl.events.MyCustomEvent")]
+	</fx:Metadata>
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" />
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.yzl.util.ObjectIdUtil;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.components.List;
+			
+			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Group >
+		
+		<s:List id="photoList" width="100%"  borderVisible="false" y="10"
+			dataProvider="{data.pList}" itemRenderer="com.yzl.renderer.itemRenderer"  verticalScrollPolicy="off" horizontalScrollPolicy="off"
+		     autoLayout="true" height="100%">
+			<s:layout>
+				<s:TileLayout requestedColumnCount="2" paddingLeft="30" />
+			</s:layout>
+		</s:List>
+		
+		
+		<s:Label id="date_text" x="6" y="11" width="24" height="34" color="#575757" fontSize="14"
+				 fontWeight="bold" text="{ObjectIdUtil.getDateToString(data.pList[0].photoItem.time)}" />
+		
+		<s:Label id="info_txt" x="30" width="170" color="#575757" y="{ObjectIdUtil.getHeight(data.pList.length) + 8}"
+				 text="{data.pList[0].info}"/>
+		<mx:HRule x="0" y="{info_txt.y+info_txt.height + 8}" width="215" chromeColor="#000000"/>
+	</s:Group>
+</s:ItemRenderer>

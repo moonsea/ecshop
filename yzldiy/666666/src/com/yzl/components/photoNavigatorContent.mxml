@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   xmlns:button="skin.button.*"
+				   width="215" creationComplete="myPhotoNavigator_creationCompleteHandler(event)"
+				   backgroundColor.normal="#D9D9D9" borderVisible.normal="false"
+				   chromeColor.normal="#000000" contentBackgroundAlpha.normal="1.0"
+				   contentBackgroundColor.normal="#000000">
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="uploadfile"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		
+	</fx:Declarations>
+	<fx:Metadata>
+		[Event(name="acceptAddPic",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="showMyPhoto",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="hideMyPhoto",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="removeUserPhoto",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="addUserPhoto",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="addAllPagePhotos",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="removeAllPagePhotos",type="com.yzl.events.MyCustomEvent")]
+		[Event(name="dataPrepareProgress",type="com.yzl.tempMove.net.events.MultipartURLLoaderEvent")]
+		[Event(name="dataPrepareComplete",type="com.yzl.tempMove.net.events.MultipartURLLoaderEvent")]
+		[Event(name="removeUsedPhoto",type="com.yzl.events.MyCustomEvent")]
+		
+		
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import com.yzl.AlertWindow.UploadUserPic;
+			import com.yzl.constant.TEXT;
+			import com.yzl.constant.URLS;
+			import com.yzl.events.MyCustomEvent;
+			import com.yzl.model.DataModel;
+			import com.yzl.renderer.itemRenderer;
+			import com.yzl.valueObject.PhotoItem;
+			import com.yzl.valueObject.PhotoList;
+			import com.yzl.valueObject.PhotoVO;
+			
+			import flash.sampler.NewObjectSample;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.IViewCursor;
+			import mx.collections.Sort;
+			import mx.collections.SortField;
+			import mx.controls.Alert;
+			import mx.controls.DateField;
+			import mx.core.FlexGlobals;
+			import mx.core.IFlexDisplayObject;
+			import mx.events.FlexEvent;
+			import mx.graphics.codec.JPEGEncoder;
+			import mx.managers.PopUpManager;
+			
+			import spark.components.BorderContainer;
+
+			//照片上传配置
+			private var uploadDestination:URLRequest= new URLRequest(URLS.UPLOAD_SERVICE+"?m=yzldiy&c=Updata&a=upUserPhoto");
+			
+			private var tmpUpFileList:ArrayCollection;
+			
+			[Bindable]
+			private var dataModel:DataModel;
+			
+			private var _uploadFNum:int = 0;
+			private var _uploadSize:Number = 0;
+			private var _uploadSizeTotal:Number = 0; 
+			private var _info: Array;
+			private var timer:Timer;
+			
+			[Bindable]
+			private var allTip:String;
+			
+			[Bindable]
+			private var myPhotoArrayList:ArrayCollection;
+			
+//			[Bindable]
+//			private var imageList:ArrayCollection;
+			
+			[Bindable]
+			private var photoArrayList:ArrayCollection;
+			
+			[Bindable]
+			private var photoList:PhotoList;
+			
+			/**		
+			*添加照片按键事件函数
+			**/
+			protected function addPic_clickHandler(event:MouseEvent):void
+			{
+				
+				var importPic:UploadUserPic = new UploadUserPic;
+				
+				PopUpManager.addPopUp((importPic as IFlexDisplayObject),FlexGlobals.topLevelApplication.app1,true);
+				PopUpManager.centerPopUp(importPic);
+			}
+			
+			/**
+			*自动填充照片函数
+			**/
+			protected function autoFillPic_clickHandler(event:MouseEvent):void
+			{
+				var e:MyCustomEvent = new MyCustomEvent("autoFillPhoto",photoArrayList);
+				FlexGlobals.topLevelApplication.dispatchEvent(e);
+			}
+			
+			/**
+			*初始化
+			**/
+			protected function myPhotoNavigator_creationCompleteHandler(event:FlexEvent):void
+			{
+				myPhotoArrayList = new ArrayCollection();
+				tmpUpFileList = new ArrayCollection();
+				
+				photoArrayList = new ArrayCollection();
+				
+				var sort:Sort = new Sort();
+				var sortField:SortField = new SortField("photoId");
+				sort.fields = [sortField];
+				myPhotoArrayList.sort = sort;
+				myPhotoArrayList.refresh();
+				
+				tmpUpFileList.sort = sort;
+				tmpUpFileList.refresh();
+				
+				photoArrayList.sort = sort;
+				photoArrayList.refresh();
+				
+				dataModel = DataModel.getInstance();
+				this.addEventListener("acceptAddPic",updataMyPhotoArrayList);
+				this.addEventListener("showMyPhoto",showDecorateBigImg_Handle);
+				this.addEventListener("hideMyPhoto",delDecorateBigImg_Handle);
+				this.addEventListener("removeUserPhoto",removeUserPhotoHandler);
+				this.addEventListener("addUserPhoto",addUserPhotoHandler);
+				this.addEventListener("addAllPagePhotos",addAllPagePhotosHandler);
+				this.addEventListener("removeAllPagePhotos",removeAllPagePhotosHandler);
+				this.addEventListener("removeUsedPhoto",onRemoveUsedPhoto);
+				
+			}
+			
+			protected function addUserPhotoHandler(event:MyCustomEvent):void
+			{
+				var img:PhotoVO = event.data as PhotoVO;
+				if(!getmyPhotoArrayListItem(img))
+				{
+					trace('添加用户自己的照片')
+					this.myPhotoArrayList.addItem(img);
+				}
+			}
+			
+			/**
+			 * 显示照片预览
+			 * **/
+			protected function showDecorateBigImg_Handle(event:MyCustomEvent):void
+			{
+				var img:Image = new Image();
+				img.source = event.data.imgbmp as BitmapData;
+				
+				var showImage:BorderContainer = FlexGlobals.topLevelApplication.showBigImge;
+				var windowHeight:Number = FlexGlobals.topLevelApplication.height;
+				
+				var imgX:Number = event.data.imgX;
+				var imgY:Number = event.data.imgY;
+				
+				showImage.x = event.data.imgX+72;
+				showImage.y = event.data.imgY-36;
+				
+				showImage.addElement(img);
+				img.width = img.sourceWidth;
+				img.height = img.sourceHeight;
+				var maxHeight:Number=400;
+				if(windowHeight<maxHeight) maxHeight = windowHeight-54;
+				
+				img.maxHeight = maxHeight;
+				
+				
+				if(img.height>img.width && img.height>maxHeight)
+				{
+					img.width = img.width*(maxHeight/img.height);
+					img.height = maxHeight;
+					
+				}
+				
+				if(img.width>img.height && img.width>maxHeight)
+				{
+					img.height = img.height*(maxHeight/img.width);
+					img.width = maxHeight;
+					
+				}
+				
+				showImage.height = img.height+10;
+				showImage.width = img.width+10;
+				
+				img.verticalCenter = 0;
+				img.horizontalCenter = 0;
+				
+				
+				if(windowHeight - (maxHeight+showImage.y)<0) showImage.y += windowHeight - (maxHeight+showImage.y)-44;
+				
+				
+				var point:Point = new Point();
+				point = (event.target as itemRenderer).localToGlobal(point);
+				
+				//检测当前鼠标位置
+				if((FlexGlobals.topLevelApplication.mouseX >= imgX) && (FlexGlobals.topLevelApplication.mouseX<=imgX+72)
+					&& (FlexGlobals.topLevelApplication.mouseY>=imgY)
+					&& (FlexGlobals.topLevelApplication.mouseY<=imgY+72))
+				{
+					showImage.visible= true;
+				}
+				
+			}
+			
+			/**
+			 * 隐藏照片预览
+			 * **/
+			protected function delDecorateBigImg_Handle(event:MyCustomEvent):void
+			{
+				FlexGlobals.topLevelApplication.showBigImge.removeAllElements();
+				FlexGlobals.topLevelApplication.showBigImge.visible = false;
+				
+			}
+			
+			/**
+			 * 从照片列表中删除某张照片
+			 * 
+			 * **/
+			protected function removeUserPhotoHandler(event:MyCustomEvent):void
+			{
+				
+				var normalPhoto:PhotoVO = event.data as PhotoVO;
+				var cursor:IViewCursor = photoList.pList.createCursor();
+				if(cursor.findFirst(normalPhoto)){
+					cursor.remove();
+				}
+				
+				var cursor2:IViewCursor = tmpUpFileList.createCursor();
+				if(cursor2.findFirst(normalPhoto)){
+					cursor2.remove();
+				}
+				
+//				var normalPhoto:PhotoVO = event.data as PhotoVO;
+//				var cursor:IViewCursor = myPhotoArrayList.createCursor();
+//				if(cursor.findFirst(normalPhoto))
+//				{
+//					cursor.remove();	
+//				}
+//				
+//				var cursor2:IViewCursor = tmpUpFileList.createCursor();
+//				if(cursor2.findFirst(normalPhoto))
+//				{
+//					cursor2.remove();	
+//				}
+			}
+			
+			//获取已添加的图片
+			public function getmyPhotoArrayListItem(img:PhotoVO):PhotoVO
+			{
+				var existingItem:PhotoVO;
+				var cursor:IViewCursor = myPhotoArrayList.createCursor();
+				var found:Boolean = cursor.findFirst(img);
+				if(found)
+				{
+					existingItem = cursor.current as PhotoVO;
+				}
+				return existingItem;
+			}
+			
+			/**
+			 * 上传选择的照片列表
+			 * **/
+			protected function updataMyPhotoArrayList(event:MyCustomEvent):void
+			{
+				photoList = new PhotoList();
+				myPhotoUpProssbar.maximum = 100;
+				var postVariables:URLVariables = new URLVariables();
+				postVariables.username = dataModel.userName;
+				
+				//创建临时数组上传照片
+				var tmpList:ArrayCollection = event.data.imgList as ArrayCollection;
+				
+				if(tmpList.length>0) {
+					for(var n:int=0;n<tmpList.length;n++) {
+						//添加到显示列表
+						var photoVO:PhotoVO = new PhotoVO();
+						var photoItem:PhotoItem = new PhotoItem();
+						
+						photoItem = tmpList[n] as PhotoItem;
+						
+						photoVO.bh = photoItem.img.height;
+						photoVO.bw = photoItem.img.width;
+						photoVO.photoId = photoItem.id;
+						photoVO.pageCount = tmpList.length;
+						
+						//缩略图地址
+						photoVO.thumbnailURL = URLS.UPLOAD_PATH+"/"+DataModel.getInstance().userName+"/"
+							+DateField.dateToString(new Date(),"YYYY-MM-DD")+"/s/"+photoItem.id+".jpg";
+						
+						//原图地址
+						photoVO.url = URLS.UPLOAD_PATH+"/"+DataModel.getInstance().userName+"/"
+							+DateField.dateToString(new Date(),"YYYY-MM-DD")+"/"+photoItem.id+".jpg";
+						
+						
+						photoVO.resourceURL = photoVO.url;
+						photoVO.photoItem = photoItem;
+						photoVO.info = event.data.info;
+						
+						photoList.addList(photoVO);
+						
+						photoArrayList.addItem(photoVO);
+						
+						//添加到待上传列表
+						var file:FileReference = photoVO.photoItem.file;
+						_uploadSizeTotal+=file.size;
+						
+						file.addEventListener(Event.COMPLETE,uploadComplete_Handler);
+						file.addEventListener(ProgressEvent.PROGRESS,uploadProgress_handler);
+						file.addEventListener(DataEvent.UPLOAD_COMPLETE_DATA,uploadCompleteData_Handler);
+						tmpUpFileList.addItem(photoVO);
+						_uploadFNum++;
+						
+					}
+				}
+				
+				prossbarGroup.visible = true;
+				
+				myPhotoArrayList.addItem(photoList);
+
+				
+				MyPhotoList.height -=prossbarGroup.height;
+				MyPhotoList.y += prossbarGroup.height;
+				
+				//执行上传
+				doSend();
+				
+				allTip="共"+_uploadFNum.toString()+"个文件，"+countFileSize(_uploadSizeTotal).toString();
+					
+			}
+			
+			/**
+			 * 开始上传
+			 * **/
+			private function doSend():void
+			{
+				var urlVariables:URLVariables = new URLVariables();
+				
+				var photoVO:PhotoVO = tmpUpFileList.removeItemAt(tmpUpFileList.length-1);
+				urlVariables.username = dataModel.userName;
+				urlVariables.userId = dataModel.userId;
+				urlVariables.photoId = photoVO.photoId;
+				//urlVariables.info = photoVO.info;
+				
+				//trace("开i:" + photoVO.info);
+				
+				uploadDestination.data = urlVariables;
+				uploadDestination.method = "post";
+				photoVO.photoItem.file.upload(uploadDestination);
+				
+			}
+			
+			/**
+			 * 计算上传文件大小
+			 * **/
+			internal function countFileSize(size:Number):String{
+				var _s:Number=Number((size/1024).toFixed(2));
+				var str:String="";
+				if(_s<1) str=size.toString()+"B";
+				else if(_s>1&&_s<1024) str=(_s.toFixed(2)).toString()+"KB";
+				else str=((_s/1024).toFixed(2)).toString()+"MB";
+				return str;
+			}
+			
+
+			/**
+			 * 上传事件获取进度
+			 * **/
+			protected function uploadComplete_Handler(event:Event):void
+			{
+				var e:Event = event;
+				_uploadSize += e.target.size;
+				var currentNum:Number = Math.round((_uploadSize/_uploadSizeTotal)*100);
+				myPhotoUpProssbar.label = "loading "+currentNum+"%";
+				myPhotoUpProssbar.setProgress(currentNum,myPhotoUpProssbar.maximum);
+				
+				
+				if(tmpUpFileList.length>0)
+				{
+					timer = new Timer(20,1);
+					timer.addEventListener(TimerEvent.TIMER,onTick);
+					timer.start();
+				}
+				else
+				{
+					prossbarGroup.visible = false;
+					MyPhotoList.height += prossbarGroup.height;
+					MyPhotoList.y -= prossbarGroup.height;
+					
+					_uploadSize=0;
+					_uploadSizeTotal = 0;
+					_uploadFNum = 0;
+					myPhotoUpProssbar.label = "0%";
+					myPhotoUpProssbar.setProgress(0,myPhotoUpProssbar.maximum);
+				}
+			}
+			
+			
+			/**
+			 * 进度条
+			 * **/
+			protected function uploadProgress_handler(event:ProgressEvent):void
+			{
+				var e:ProgressEvent = event;
+			}
+			
+			/**
+			 * 上传完成后处理函数
+			 * **/
+			protected function uploadCompleteData_Handler(event:DataEvent):void
+			{
+				var e:DataEvent = event;
+			}
+			
+			/**
+			 * 上传图片计时器
+			 * **/
+			protected function onTick(event:TimerEvent):void
+			{
+				doSend();
+			}
+			
+			protected function addAllPagePhotosHandler(event:MyCustomEvent):void
+			{
+				var photos:ArrayCollection = event.data as ArrayCollection;
+				
+				for(var i:int=0;i<photos.length;i++)
+				{
+					loaderPhotos(photos[i] as PhotoVO);					
+				}
+			}
+			
+			private function loaderPhotos(photo:PhotoVO):void
+			{
+				var loader:Loader = new Loader;
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE,function(event:Event):void{
+					photo.photoItem.img = (loader.content as Bitmap).bitmapData;
+					
+					var e:MyCustomEvent = new MyCustomEvent("addUserPhoto",photo);
+					dispatchEvent(e);
+				});
+				loader.load(new URLRequest(photo.url));
+			}
+			
+			protected function removeAllPagePhotosHandler(event:MyCustomEvent):void
+			{
+				var photos:ArrayCollection = event.data as ArrayCollection;
+				for(var i:int=0;i<photos.length;i++)
+				{
+					var e:MyCustomEvent = new MyCustomEvent("removeUserPhoto",photos[i] as PhotoVO);
+					dispatchEvent(e);
+				}
+			}
+			
+			//在编辑区删除图片时减少其使用计数
+			protected function onRemoveUsedPhoto(event:MyCustomEvent):void
+			{
+				var normalPhoto:PhotoVO = event.data as PhotoVO;
+				
+				for(var i:int = 0; i < photoList.pList.length;i++){
+					if(normalPhoto.photoId == (photoList.pList[i] as PhotoVO).photoId){
+						(photoList.pList[i] as PhotoVO).usedNum--;
+					}
+				}
+				
+//				for(var i:int=0;i<myPhotoArrayList.length;i++)
+//				{
+//					if(normalPhoto.photoId == (myPhotoArrayList[i] as PhotoVO).photoId)
+//					{
+//						(myPhotoArrayList[i] as PhotoVO).usedNum--;
+//					}
+//				}
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<s:layout.uploadfile>
+		<s:BasicLayout />
+	</s:layout.uploadfile>
+
+	<s:Group height="50" y="80" width="100%" id="prossbarGroup" visible="false">
+		<s:layout>
+			<s:VerticalLayout gap="5"  />
+		</s:layout>
+		<s:Label text="正在上传照片{allTip}" />
+		<mx:ProgressBar id="myPhotoUpProssbar" width="98%"  label="loading 0%" maximum="100" mode="manual" minimum="0"/>
+	</s:Group>
+	
+	<s:List id="MyPhotoList" y="80" width="100%" height="100%" borderVisible="false"
+			dataProvider="{myPhotoArrayList}" horizontalCenter="0"
+			itemRenderer="com.yzl.renderer.photoRenderer" contentBackgroundColor.normal="#D9D9D9" horizontalScrollPolicy="off">
+		<s:layout>
+			<s:TileLayout requestedColumnCount="1" paddingTop="0" />
+		</s:layout>
+
+	</s:List>
+	
+	<s:Image top="0" horizontalCenter="0" source="@Embed('assets/PhotoListTop.jpg')" smooth.normal="true"/>
+	<button:AddPhotoButton x="20" top="7" click="addPic_clickHandler(event)"/>
+	<button:InsertButton right="20" top="7" click="autoFillPic_clickHandler(event)"/>
+	<s:Label y="55" fontFamily="经典圆简体" fontSize="14" text="《{dataModel.productName_}》"
+			 color.normal="#494949" horizontalCenter.normal="0"
+			 x.uploadfile="93"/>
+	
+</s:BorderContainer>

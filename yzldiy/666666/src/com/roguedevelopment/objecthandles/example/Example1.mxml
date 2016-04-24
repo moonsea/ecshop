@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+This is an example and not a part of the core ObjectHandles library.
+-->
+
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+				width="100%" height="100%" 
+				xmlns:example="com.roguedevelopment.objecthandles.example.*"
+				horizontalScrollPolicy="on"
+				verticalScrollPolicy="on"
+				backgroundColor="#FFFFFF" borderStyle="solid" borderColor="#000000" backgroundAlpha="1"
+				creationComplete="init()"
+				click="backgroundClick(event)" xmlns:s="library://ns.adobe.com/flex/spark"
+				
+				>
+		<mx:Script>
+		<![CDATA[
+			import com.roguedevelopment.objecthandles.ObjectChangedEvent;
+			import com.roguedevelopment.objecthandles.ObjectHandles;
+			import com.roguedevelopment.objecthandles.constraints.SizeConstraint;
+			
+//			import mx.skins.spark.ContainerBorderSkin;
+			
+			protected var objectHandles:ObjectHandles;
+			
+			[Bindable] protected var flexModel1:SimpleDataModel;
+			[Bindable] protected var flexModel2:SimpleDataModel;
+			
+			protected function init() : void
+			{
+				objectHandles = new ObjectHandles( this );
+
+				objectHandles.registerComponent( t1, t1 );
+
+				
+				var constraint:SizeConstraint = new SizeConstraint();
+				constraint.minWidth = 20;
+				constraint.maxWidth = 500;
+				constraint.minHeight = 20;
+				constraint.maxHeight = 200;
+				
+				objectHandles.addEventListener(ObjectChangedEvent.OBJECT_MOVED, onObjectMoved );
+				objectHandles.addDefaultConstraint( constraint );							
+			}
+			
+			protected function backgroundClick(event:MouseEvent) : void
+			{		
+//				if( event.target is ContainerBorderSkin )
+//				{				
+//					objectHandles.selectionManager.clearSelection();
+//				}
+			}
+			
+			protected function onObjectMoved(event:ObjectChangedEvent):void
+			{
+				trace("Something was moved!");
+			}
+		]]>
+	</mx:Script>				
+	<s:BorderContainer id="t1" width="400" height="400">
+		<s:Image source="cat4.png" width="{t1.width}" height="{t1.height}" />
+	</s:BorderContainer>
+		
+	
+</mx:Canvas>

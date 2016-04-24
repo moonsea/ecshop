@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true" focusEnabled="false">
+	<fx:Metadata>
+		[Event(name="getMorePhoto",type="com.yzl.events.MyCustomEvent")]	
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.yzl.events.MyCustomEvent;
+			import com.yzl.model.DataModel;
+			
+			private var dataModel:DataModel = DataModel.getInstance();
+			protected function label1_clickHandler(event:MouseEvent):void
+			{
+				var o:Object = {uid:dataModel.userId,page:1,category:data.id.toString()};
+				var e:MyCustomEvent = new MyCustomEvent("getMorePhoto",o);
+				this.dispatchEvent(e);
+			}
+		]]>
+	</fx:Script>
+	
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+		<s:State name="selected" />
+		<s:State name="normalAndShowsCaret" />
+		<s:State name="hoveredAndShowsCaret" />
+		<s:State name="selectedAndShowsCaret" />
+	</s:states>
+	<s:Label buttonMode="true" useHandCursor="true" click="label1_clickHandler(event)" paddingLeft="10" textAlign="left" width="150" height="20" id="label1" text="{data.name.toString()}" color.selectedAndShowsCaret="0xFD5350" fontWeight.selectedAndShowsCaret="bold" />
+	<s:Rect bottom="0" height="1" width="100%">
+		<s:fill>
+			<s:SolidColor color="0xeeeeee" />
+		</s:fill>
+	</s:Rect>
+</s:ItemRenderer>

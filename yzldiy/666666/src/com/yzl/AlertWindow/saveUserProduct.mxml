@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="372" height="162" cornerRadius="10" creationComplete="saveUserProduct_creationCompleteHandler(event)">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.yzl.model.DataModel;
+			
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			private var dataModel:DataModel;
+			
+			protected function saveUserProduct_creationCompleteHandler(event:FlexEvent):void
+			{
+				dataModel = DataModel.getInstance();
+			}
+			
+			protected function ok_clickHandler(event:MouseEvent):void
+			{
+				dataModel.productVO.name = product_name.text;
+				FlexGlobals.topLevelApplication.dispatchEvent(new Event("saveUserProduct"));
+				PopUpManager.removePopUp(this);
+			}
+			
+			protected function cancel_clickHandler(event:MouseEvent):void
+			{
+				PopUpManager.removePopUp(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Image x="10" y="10" source="assets/saveTitle.png"/>
+	<s:Image x="330" y="10" source="assets/x1.gif" click="cancel_clickHandler(event)"/>
+	<s:Label x="24" y="68" fontFamily="中易黑体" fontSize="17" text="作品名称:"/>
+	<s:TextInput id="product_name" x="117" y="67" width="221" text="我的作品"/>
+	<s:Button x="97" y="113" width="71" label="确定" skinClass="com.yzl.skins.red_btn" click="ok_clickHandler(event)"/>
+	<s:Image x="198" y="113" source="assets/btn_cancel.png" click="cancel_clickHandler(event)"/>
+</s:BorderContainer>

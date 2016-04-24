@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true">
+<s:layout>
+	<s:VerticalLayout horizontalAlign="center" />
+</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.yzl.valueObject.TextVO;
+			import com.yzl.valueObject.VOName;
+			
+			import mx.core.DragSource;
+			import mx.core.IUIComponent;
+			import mx.managers.DragManager;
+			
+			import spark.components.Group;
+			import spark.primitives.BitmapImage;
+			protected function bordercontainer1_mouseOverHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var fontBorder:BorderContainer = event.currentTarget as BorderContainer;
+				fontBorder.setStyle("borderAlpha","1");
+			}
+			
+			protected function bordercontainer1_mouseOutHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var fontBorder:BorderContainer = (event.currentTarget as BorderContainer);
+				fontBorder.setStyle("borderAlpha","0");
+			}
+			
+			private function dropImage(event:MouseEvent,format:String):void
+			{
+				var ds:DragSource = new DragSource();
+				var proxy:BitmapImage = new BitmapImage();
+				var imageHandle:Group = new Group();
+				var fontDs:TextVO = new TextVO();
+				fontDs.fontFamily = data.name.toString();
+				fontDs.fontSize = 80;
+				proxy.source = img1.content;
+				
+				if(img1.content.height>img1.content.width)
+				{
+					proxy.width = img1.content.width*(127/img1.content.height);
+					proxy.height = 127;
+				}
+				else
+				{
+					proxy.height = img1.content.height*(127/img1.content.width);
+					proxy.width = 127;
+				}
+				
+				imageHandle.addElement(proxy);
+				
+				ds.addData(fontDs,format);
+				DragManager.doDrag(event.currentTarget as IUIComponent,ds,event,imageHandle);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:BorderContainer borderAlpha="0" borderWeight="2" borderColor="0xFD5350"
+					   mouseOver="bordercontainer1_mouseOverHandler(event)" 
+					   mouseOut="bordercontainer1_mouseOutHandler(event)">
+		<mx:Image id="img1" height="61" width="127" source="{data.fontImg.toString()}"   mouseDown="dropImage(event,VOName.DisplayObject)"  />
+	</s:BorderContainer>
+	
+</s:ItemRenderer>

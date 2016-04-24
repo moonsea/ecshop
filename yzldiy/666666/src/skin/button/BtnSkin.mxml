@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+			 xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minWidth="21" minHeight="21" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<!-- host component -->
+	<fx:Metadata>
+		<![CDATA[ 
+		[HostComponent("spark.components.Button")]
+		]]>
+	</fx:Metadata>
+	<!-- states -->
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" />
+		<s:State name="down" />
+		<s:State name="disabled" />
+	</s:states>
+	<s:Label text="保存" fontSize="16"
+			 fontFamily.up="JDYJT" 
+			 fontFamily.over="JDYJT" 
+			 fontFamily.down="JDYJT"/>
+	<s:Image source="@Embed('assets/save.png')"
+			 x.up="30" y.up="0" 
+			 x.over="30" y.over="0" 
+			 x.down="30" y.down="0"/>
+	
+</s:SparkSkin>
