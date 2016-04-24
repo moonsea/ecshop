@@ -4,6 +4,7 @@
 <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
 <link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
 {insert_scripts files="../js/utils.js,listtable.js"}
+{insert_scripts files="../js/jquery.min.js"}
 
 <!--<div class="form-div">
   <form name="TimeInterval"  action="javascript:getList()" style="margin:0px">
@@ -18,12 +19,11 @@
 <div class="tab-div">
  <div id="tabbar-div">
     <p>
-      <span class="tab-front" id="order_circs-tab">按日统计</span><span
-      class="tab-back" id="shipping-tab">按周统计</span><span
-      class="tab-back" id="pay-tab">按月统计</span>
+      <span class="tab-front" id="order_circs-tab" onclick="updateData('day')">按日统计</span>
+      <span class="tab-back" id="shipping-tab" onclick="updateData('week')">按周统计</span>
+      <span class="tab-back" id="pay-tab" onclick="updateData('month')">按月统计</span>
     </p>
  </div>
-
 <form method="POST" action="" name="listForm">
  <div id="tabbody-div">
    <table width="90%" cellspacing="0" cellpadding="3" id="order_circs-table">
@@ -32,6 +32,7 @@
       <th>订单数</th>
       <th>总成交量</th>
     </tr>
+<!--{if $goods_sales_list}-->
   {foreach from=$goods_sales_list item=list}
     <tr align="center">
       <!-- 订单支付时间 -->
@@ -41,9 +42,10 @@
       <!-- 每日总成交量 -->
       <td>{$list.product_sum_day}/册</td>
     </tr>
-  {foreachelse}
+    {/foreach}
+<!--{else}-->
     <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
-  {/foreach}
+<!--{/if}-->  
   </table>
   <table width="90%" cellspacing="0" cellpadding="3" id="shipping-tab" style="display:none">
      <tr>
@@ -53,6 +55,7 @@
       <th>{$lang.sell_price}</th>
       <th>{$lang.sell_date}</th>
     </tr>
+<!--{if $goods_sales_list}-->
   {foreach from=$goods_sales_list item=list}
     <tr align="center">
       <td align="left"><a href="../goods.php?id={$list.goods_id}" target="_blank">{$list.goods_name}</a></td>
@@ -61,9 +64,10 @@
       <td align="right">{$list.sales_price}{$end_date}</td>
       <td>{$list.sales_time}</td>
     </tr>
-  {foreachelse}
-    <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
   {/foreach}
+<!--{elese}-->
+    <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+<!--{/if}-->
   </table>
   <table width="90%" cellspacing="0" cellpadding="3" id="pay-tab" style="display:none">
      <tr>
@@ -97,8 +101,8 @@
 </form>
 </div>
 
-{insert_scripts files="tab.js"}
 
+{insert_scripts files="tab.js"}
 <script type="Text/Javascript" language="JavaScript">
 listTable.recordCount = {$record_count};
 listTable.pageCount = {$page_count};
@@ -112,6 +116,30 @@ onload = function()
   // 开始检查订单
   startCheckOrder();
   getDownUrl();
+}
+function updateData2(order)
+{
+    if(order!='day' && order!='week' && order!='month')
+    {
+      return false;
+    }
+    else
+    {
+      $.ajax({
+		url:"test.php",
+		type:"GET",
+    dataType:"jsonp",
+		success: function(data){
+				alert(data);
+			},
+		error:function(e1,e2,e3){
+				alert(e1.status);
+				alert(e1.readyState);
+				alert(e2);
+			}
+		});
+	
+    }
 }
 
 function getList()
@@ -146,3 +174,4 @@ function getDownUrl()
 {/literal}
 {include file="pagefooter.htm"}
 {/if}
+

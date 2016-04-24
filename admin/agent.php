@@ -20,6 +20,28 @@ require_once(ROOT_PATH . 'includes/lib_order.php');
 require_once(ROOT_PATH . 'languages/' .$_CFG['lang']. '/admin/statistic.php');
 $smarty->assign('lang', $_LANG);
 
+if(isset($_REQUEST['order_list'])&&isset($_REQUEST['way']))
+{
+    if($_REQUEST['order_list'] == 'agent')
+    {
+        if($_REQUEST['way'] == 'day')
+        {
+            //request the data
+            $data =  array('data' => '1','data2'=>'2' );;
+            echo json_encode($data);
+            exit();
+        }
+        if($_REQUEST['way'] == 'week')
+        {
+            //request the data
+        }
+        if($_REQUEST['way'] == 'month')
+        {
+            //request the data
+        }
+    }
+}
+
 if (isset($_REQUEST['act']) && ($_REQUEST['act'] == 'query' ||  $_REQUEST['act'] == 'download'))
 {
     /* 检查权限 */
