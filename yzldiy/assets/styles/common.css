@@ -1,0 +1,37 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+s|Application{
+	fontFamily:"宋体";
+	fontFamily: "方正准圆简体";
+	fontFamily: "方正细圆简体";
+	fontFamily: "经典圆简体";
+}
+mx|ToolTip{
+	font-family:            verdana;
+	font-size:              12px;
+}
+global
+{
+	content-background-color: #FFFFFF;
+}
+.myTabNavigator
+{
+	tabWidth:120px;
+	tabHeight:30px;
+	tabStyleName: "myTabs";
+	firstTabStyleName: "myTabs";
+	lastTabStyleName: "myTabs";
+	selectedTabTextStyleName: "mySelectedTabs";
+}
+
+.myTabs {
+	cornerRadius: 14;
+	fontSize:14;
+	fontFamily:"微软雅黑";
+}
+
+.mySelectedTabs {
+	letterSpacing: 0;
+}
