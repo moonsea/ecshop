@@ -107,19 +107,31 @@ elseif($_REQUEST['act'] == 'list')
         $end_date = local_strtotime('today');
     }
     
+    /* 按日查询 */
     $sale_list_data = get_sale_list();
+    
+    /* 按周查询 */
+    $sale_list_data_week = get_sale_list_week();
+    
+    
+    /* 按月查询 */
+    $sale_list_data_month = get_sale_list_month();
+    
     /* 赋值到模板 */
     $smarty->assign('filter',       $sale_list_data['filter']);
     $smarty->assign('record_count', $sale_list_data['record_count']);
     $smarty->assign('page_count',   $sale_list_data['page_count']);
+    $smarty->assign('page_count_week',   $sale_list_data['page_count_week']);
+    $smarty->assign('page_count_month',   $sale_list_data['page_count_month']);
     $smarty->assign('goods_sales_list', $sale_list_data['sale_list_data']);
+    $smarty->assign('goods_sales_list_week', $sale_list_data_week['sale_list_data_week']);
+    $smarty->assign('goods_sales_list_month', $sale_list_data_month['sale_list_data_month']);
     $smarty->assign('ur_here',          $_LANG['01_statistics']);
     $smarty->assign('full_page',        1);
     $smarty->assign('start_date',       local_date('Y-m-d', $start_date));
     $smarty->assign('end_date',         local_date('Y-m-d', $end_date));
     $smarty->assign('cfg_lang',     $_CFG['lang']);
-    $smarty->assign('action_link',  array('text' => $_LANG['down_sales'],'href'=>'#download'));
-    
+    // $smarty->assign('action_link',  array('text' => $_LANG['down_sales'],'href'=>'#download'));
     
     /*pageheader父标题*/
     $smarty->assign('pageheader_title',  $_LANG['12_agent']);
@@ -309,7 +321,7 @@ elseif ($_REQUEST['act'] == 'change_passwd' || $_REQUEST['act'] == 'change_info'
 
 
 /*------------------------------------------------------ */
-//--获取销售明细需要的函数
+//--按日查询
 /*------------------------------------------------------ */
 /**
  * 取得销售明细数据信息
@@ -324,6 +336,8 @@ function get_sale_list($is_pagination = true){
   
     /* 查询数据的条件 */
     // $where = " WHERE ";
+  
+    /* 按日查询 */
     
     /*获取当前登录用户的id*/
     $user_id = $_SESSION['admin_id'];
@@ -376,6 +390,142 @@ function get_sale_list($is_pagination = true){
     $sale_list_data = $GLOBALS['db']->getAll($sql);
 
     $arr = array('sale_list_data' => $sale_list_data, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
+  
+    return $arr;
+}
+
+
+/*------------------------------------------------------ */
+//-- 按周查询
+/*------------------------------------------------------ */
+/**
+ * 取得销售明细数据信息
+ * @param   bool  $is_pagination  是否分页
+ * @return  array   销售明细数据
+ */
+function get_sale_list_week($is_pagination = true){
+  
+    /* 按周查询 */
+ 
+    /*获取当前登录用户的id*/
+    $user_id = $_SESSION['admin_id'];
+
+    /* 添加邀请码查询条件 */
+    $where = " WHERE au.user_id = '" . $user_id . "' AND au.invitation_code = oi.invitation_code";
+    
+    /* 添加已经付款的查询条件 */
+    $where = $where . " AND oi.pay_status = 2";
+    
+    /* 添加按照付款时间每日分组 */
+    $group = " GROUP BY CEIL((oi.pay_time - au.add_time)/(3600*24*7))";
+
+    /* 按照付款时间按周数分组查询记录数 */
+    $sql = "SELECT COUNT(oi.order_id) FROM " . 
+           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('admin_user') . ' AS au '.
+           $where .
+           $group;
+    $filter['record_count_week'] = $GLOBALS['db']->getOne($sql);
+      
+    /* 分页大小 */
+    $filter = page_and_size($filter);
+    
+    /* 查询距添加代理用户第几周 */
+    $sql = "SELECT CEIL((oi.pay_time - au.add_time)/(3600*24*7)) AS week_num, ";
+    
+    /* 查询每日订单数 */
+    $sql = $sql . " COUNT(oi.order_id) AS order_sum_week, ";
+    
+    /* 查询每日产品数 */
+    $sql = $sql . " COUNT(og.goods_id) AS product_sum_week ";
+    
+    /* 查询条件 */
+    $where = $where . " AND og.order_id = oi.order_id ";
+    
+    /* 查询 */
+    $sql = $sql . " FROM " . 
+           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('order_goods') . ' AS og, '.
+           $GLOBALS['ecs']->table('admin_user') . ' AS au'.
+           $where .
+           $group . " ORDER BY week_num";
+    
+    if ($is_pagination)
+    {
+        $sql .= " LIMIT " . $filter['start'] . ', ' . $filter['page_size'];
+    }
+
+    $sale_list_data_week = $GLOBALS['db']->getAll($sql);
+
+    $arr = array('sale_list_data_week' => $sale_list_data_week, 'filter' => $filter, 'page_count_week' => $filter['page_count_week'], 'record_count_week' => $filter['record_count_week']);
+  
+    return $arr;
+}
+
+/*------------------------------------------------------ */
+//-- 按月查询
+/*------------------------------------------------------ */
+/**
+ * 取得销售明细数据信息
+ * @param   bool  $is_pagination  是否分页
+ * @return  array   销售明细数据
+ */
+function get_sale_list_month($is_pagination = true){
+  
+    /* 按周查询 */
+ 
+    /*获取当前登录用户的id*/
+    $user_id = $_SESSION['admin_id'];
+
+    /* 添加邀请码查询条件 */
+    $where = " WHERE au.user_id = '" . $user_id . "' AND au.invitation_code = oi.invitation_code";
+    
+    /* 添加已经付款的查询条件 */
+    $where = $where . " AND oi.pay_status = 2";
+    
+    /* 添加按照付款时间每日分组 */
+    $group = " GROUP BY CEIL((oi.pay_time - au.add_time)/(3600*24*30))";
+
+    /* 按照付款时间按周数分组查询记录数 */
+    $sql = "SELECT COUNT(oi.order_id) FROM " . 
+           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('admin_user') . ' AS au '.
+           $where .
+           $group;
+    $filter['record_count_month'] = $GLOBALS['db']->getOne($sql);
+      
+    /* 分页大小 */
+    $filter = page_and_size($filter);
+    
+    /* 查询距添加代理用户第几周 */
+    $sql = "SELECT CEIL((oi.pay_time - au.add_time)/(3600*24*30)) AS month_num, ";
+    
+    /* 查询每日订单数 */
+    $sql = $sql . " COUNT(oi.order_id) AS order_sum_month, ";
+    
+    /* 查询每日产品数 */
+    $sql = $sql . " COUNT(og.goods_id) AS product_sum_month ";
+    
+    /* 查询条件 */
+    $where = $where . " AND og.order_id = oi.order_id ";
+    
+    /* 查询 */
+    $sql = $sql . " FROM " . 
+           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('order_goods') . ' AS og, '.
+           $GLOBALS['ecs']->table('admin_user') . ' AS au'.
+           $where .
+           $group . " ORDER BY month_num";
+    
+    if ($is_pagination)
+    {
+        $sql .= " LIMIT " . $filter['start'] . ', ' . $filter['page_size'];
+    }
+
+    $sale_list_data_month = $GLOBALS['db']->getAll($sql);
+
+    $arr = array('sale_list_data_month' => $sale_list_data_month, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count_month' => $filter['record_count_month']);
+  
     return $arr;
 }
 ?>
