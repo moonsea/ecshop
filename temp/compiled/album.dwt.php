@@ -123,7 +123,7 @@ if ($this->_foreach['list']['total'] > 0):
         <div class="upload_liner"></div>
         <div class="upload_main"><img src="img/upload_main.png" onclick="choose_img()" id="upload_button" /></div>
         <div class="upload_liner"></div>
-        <div class="upload_text"><textarea placeholder="说点儿什么吧"></textarea></div>
+        <div class="upload_text"><textarea placeholder="说点儿什么吧" id="desc"></textarea></div>
         <div class="upload_liner"></div>
         <div class="upload_go">
         	<span><a href="javascript:;" class="mylabel-900 f14" onclick="upload_go()" style="padding-left:1em; padding-right:1em; background-color:#F33; color:#fff; border:0; display:block; width:140px; margin:0 auto; margin-top:20px;">发布</a></span>
@@ -146,6 +146,20 @@ if ($this->_foreach['list']['total'] > 0):
 	var upload_ok = Array();
 	var key = Array();
 	$().ready(function(e) {
+		
+		$.ajax({
+			url:"http://app.itimepost.com/homealbum",
+			dataType:"jsonp",
+			type:"POST",
+			data:{
+					album_id:<?php echo $this->_var['album_id']; ?>,type:0,token:"<?php echo $this->_var['token']; ?>"
+				},
+			success:function(data){console.log(data);},
+			error: function(e1,e2,e3){console.log(e1)}
+			});
+		
+		
+		
 		num=0;
 		total=0;
         $(".img").each(function(index, element) {
@@ -412,7 +426,7 @@ if ($this->_foreach['list']['total'] > 0):
 			data:{
 				album_id:<?php echo $this->_var['album_id']; ?>,
 				publish_id:publish_id,
-				desc:$("textarea").html(),
+				desc:$("#desc").val(),
 				area:"PC PC PC",
 				longitude:"0",
 				latitude:"0",

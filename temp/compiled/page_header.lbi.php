@@ -69,7 +69,7 @@ function sw_nav(obj,tag)
            </div>
            <div class="collapse navbar-collapse" id="nav">
               <ul class="nav navbar-nav">
-                 <li class="active f14"><a href="user.php">我的相册</a></li>
+                 <li class="active f14"><a href="list.php">我的相册</a></li>
                  <li class="f14"><a href="#">DIY</a></li>
               </ul>
               <ul class="navbar-right mt-5">
