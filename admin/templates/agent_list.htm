@@ -36,7 +36,7 @@
   {foreach from=$goods_sales_list item=list}
     <tr align="center">
       <!-- 订单支付时间 -->
-      <td><a href="agent.php?act=detail&day_num={$list.day_num}">{$list.day_num}</a></td>
+      <td><a href="agent.php?act=detail_day&day_num={$list.day_num}">{$list.day_num}</a></td>
       <!-- 每日订单数 -->
       <td>{$list.order_sum_day}/单</td>
       <!-- 每日总成交量 -->
@@ -58,7 +58,7 @@
   {foreach from=$goods_sales_list_week item=list}
     <tr align="center">
       <!-- 订单支付时间 -->
-      <td><a href="agent.php?act=list&day_num={$list.day_num}">第{$list.week_num}周</a></td>
+      <td><a href="agent.php?act=detail_week&week_num={$list.week_num}">第{$list.week_num}周</a></td>
       <!-- 每周订单数 -->
       <td>{$list.order_sum_week}/单</td>
       <!-- 每周总成交量 -->

@@ -119,9 +119,9 @@ elseif($_REQUEST['act'] == 'list')
     $smarty->display('agent_list.htm');
 }
 /*------------------------------------------------------ */
-//--商品明细列表
+//--每日商品明细列表
 /*------------------------------------------------------ */
-elseif($_REQUEST['act'] == 'detail')
+elseif($_REQUEST['act'] == 'detail_day')
 {
     /* 权限判断 */
     admin_priv('sale_order_stats');
@@ -131,11 +131,6 @@ elseif($_REQUEST['act'] == 'detail')
     {
         $day_num = $_REQUEST['day_num'];
         $order_list_data = order_detail_day($day_num);
-    }
-    elseif (isset($_REQUEST['order_sn']))
-    {
-        $order_sn = trim($_REQUEST['order_sn']);
-        $order = order_info(0, $order_sn);
     }
     else
     {
@@ -161,6 +156,51 @@ elseif($_REQUEST['act'] == 'detail')
     /* 显示页面 */
     assign_query_info();
     $smarty->display('agent_detail.htm');
+}
+/*
+* 按周查询
+*/
+elseif($_REQUEST['act'] == 'detail_week')
+{
+    /* 权限判断 */
+    admin_priv('sale_order_stats');
+    
+    /* 按日或周或月查询订单信息 */
+    if (isset($_REQUEST['week_num']))
+    {
+        if(isset($_REQUEST['day_num']))
+        {
+            $day_num = $_REQUEST['day_num'];
+        }
+        
+        $week_num = $_REQUEST['week_num'];
+        $order_list_data = get_sale_list_week_day($week_num);
+    }
+    else
+    {
+        /* 如果参数不存在，退出 */
+        die('invalid parameter');
+    }
+    
+    /* 赋值到模板 */
+    $smarty->assign('filter',       $order_list_data['filter']);
+    $smarty->assign('record_count', $order_list_data['record_count']);
+    $smarty->assign('page_count',   $order_list_data['page_count']);
+    $smarty->assign('order_list_data', $order_list_data['order_list_data']);
+    $smarty->assign('week_num', $week_num);
+    $smarty->assign('ur_here',          $_LANG['01_statistics']);
+    $smarty->assign('full_page',        1);
+    $smarty->assign('start_date',       local_date('Y-m-d', $start_date));
+    $smarty->assign('end_date',         local_date('Y-m-d', $end_date));
+    $smarty->assign('cfg_lang',     $_CFG['lang']);
+    // $smarty->assign('action_link',  array('text' => $_LANG['down_sales'],'href'=>'#download'));
+    
+    /*pageheader父标题*/
+    $smarty->assign('pageheader_title',  $_LANG['12_agent']);
+
+    /* 显示页面 */
+    assign_query_info();
+    $smarty->display('agent_list_detail.htm');
 }
 
 /*------------------------------------------------------ */
@@ -552,4 +592,80 @@ function order_detail_day($day_num){
   
     return $arr;
 }
+
+
+
+/*------------------------------------------------------ */
+//-- 按周查询获取每日订单列表
+/*------------------------------------------------------ */
+/**
+ * 取得销售明细数据信息
+ * @param   bool  $is_pagination  是否分页
+ * @return  array   销售明细数据
+ */
+function get_sale_list_week_day($week_num){
+  
+    /* 按周查询 */
+ 
+    /*获取当前登录用户的id*/
+    $user_id = $_SESSION['admin_id'];
+
+    /* 添加邀请码查询条件 */
+    $where = " WHERE au.user_id = '" . $user_id . "' AND au.invitation_code = oi.invitation_code";
+    
+    /* 添加已经付款的查询条件 */
+    $where = $where . " AND oi.pay_status = 2";
+    
+    /* 添加制定周的查询条件 */
+    $where = $where . " AND CEIL((oi.pay_time - au.add_time)/(3600*24*7)) = ". $week_num;
+    
+    /* 添加按照付款时间每日分组 */
+    $group = " GROUP BY FROM_UNIXTIME(oi.pay_time - au.add_time,'%Y%m%d')";
+
+    /* 按照付款时间按周数分组查询记录数 */
+    $sql = "SELECT COUNT(oi.order_id) FROM " . 
+           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('admin_user') . ' AS au '.
+           $where .
+           $group;
+    $filter['record_count'] = $GLOBALS['db']->getOne($sql);
+      
+    /* 分页大小 */
+    $filter = page_and_size($filter);
+    
+    $new_week = $week_num - 1;
+    
+    /* 查询距添加代理用户第几周 */
+    $sql = "SELECT CEIL(((oi.pay_time - au.add_time)-(604800 * " . $new_week ."))/(86400)) AS day_num, ";
+    
+    /* 查询每日订单数 */
+    $sql = $sql . " COUNT(oi.order_id) AS order_sum, ";
+    
+    /* 查询每日产品数 */
+    $sql = $sql . " COUNT(og.goods_id) AS product_sum ";
+    
+    /* 查询条件 */
+    $where = $where . " AND og.order_id = oi.order_id ";
+    
+    /* 查询 */
+    $sql = $sql . " FROM " . 
+           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('order_goods') . ' AS og, '.
+           $GLOBALS['ecs']->table('admin_user') . ' AS au'.
+           $where .
+           $group . " ORDER BY day_num";
+    
+    $is_pagination = true;
+    if ($is_pagination)
+    {
+        $sql .= " LIMIT " . $filter['start'] . ', ' . $filter['page_size'];
+    }
+
+    $order_list_data = $GLOBALS['db']->getAll($sql);
+
+    $arr = array('order_list_data' => $order_list_data, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
+  
+    return $arr;
+}
+
 ?>
