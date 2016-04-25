@@ -1,6 +1,6 @@
 // 将设置放入此文件中以覆盖默认值和用户设置。
 {
     // 指向可执行的 php。
-	"php.validate.executablePath": "D:/Codes/Project/Server/PHPnow/php-5.2.14-Win32/php.exe"
+	"php.validate.executablePath": "e:/PHPnow/php-5.2.14-Win32/php.exe"
 
 }
