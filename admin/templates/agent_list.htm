@@ -58,7 +58,7 @@
   {foreach from=$goods_sales_list_week item=list}
     <tr align="center">
       <!-- 订单支付时间 -->
-      <td>第{$list.week_num}周</td>
+      <td><a href="agent.php?act=list&day_num={$list.day_num}">第{$list.week_num}周</a></td>
       <!-- 每周订单数 -->
       <td>{$list.order_sum_week}/单</td>
       <!-- 每周总成交量 -->
