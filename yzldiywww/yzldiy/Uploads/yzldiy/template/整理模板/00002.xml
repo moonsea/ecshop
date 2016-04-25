@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<pages printDpi="300" version="1.0" client="Windows 7;zh-CN;WIN 18,0,0,209;Google Pepper;PlugIn"> 
+  <page width="5476" height="3555" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/0.jpg"> 
+    <background timeId="1269489065282" x="0.00" y="0.00" width="5476.00" height="3555.00" layer="2" id="" ext="" color="0xef8f88"/>  
+    <decorator timeId="14374467741392147903" x="1228.25" y="9.25" width="4248.62" height="3547.60" fix="XY" editable="0" id="de1078036" ext=".png"/>  
+    <decorator timeId="14374467842892147907" x="-3026.60" y="-0.90" width="4248.62" height="3547.60" fix="XY" editable="0" id="de1078036" ext=".png"/>  
+    <image timeId="14374469930132147208" x="2991.39" y="410.24" width="2054.10" height="2741.24" rotation="359.78" fix="XY" editable="0" crc32="0"> 
+      <photoid>9297462607</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>62.658639834656434;0;1928.781649896869;2741.235226289389</crop>  
+      <frame id="fr321859" ext=".png" rotation="1" offsetX="-0.007452574525745257" offsetY="-0.012464046021093002" scaleX="1.0176151761517616" scaleY="1.0268456375838926"/> 
+    </image>  
+    <image timeId="14374470032742147215" x="985.91" y="1135.77" width="968.70" height="1291.60" rotation="359.78" fix="XY" editable="0" crc32="0"> 
+      <photoid>9297482317</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>35.47804677798722;0;908.7954994018022;1291.6040737875542</crop>  
+      <frame id="fr321859" ext=".png" rotation="1" offsetX="-0.007452574525745257" offsetY="-0.012464046021093002" scaleX="1.0176151761517616" scaleY="1.0268456375838926"/> 
+    </image> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/1.jpg"> 
+    <background timeId="1269489065284" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xf7f1df"/>  
+    <decorator timeId="14374467955302147909" x="983.10" y="3.00" width="4074.95" height="3402.59" fix="XY" editable="0" id="de1077751" ext=".png" uploadType="fr321859"/>  
+    <decorator timeId="14374468083562147913" x="-3044.65" y="2.80" width="4074.95" height="3402.59" fix="XY" editable="0" id="de1077751" ext=".png" uploadType="fr321859"/>  
+    <image timeId="14374470330402147225" x="562.10" y="142.60" width="1231.00" height="1642.80" crc32="0"> 
+      <photoid>9297433213</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0;1231.0048;1515.1</crop> 
+    </image>  
+    <image timeId="14374470406442147229" x="1051.15" y="1676.35" width="1231.00" height="1642.80" crc32="0"> 
+      <photoid>9297472386</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;63.84999999999994;1231.0048;1515.1000000000001</crop> 
+    </image>  
+    <image timeId="14374470551962147237" x="2709.57" y="-120.98" width="2106.80" height="2809.07" crc32="0"> 
+      <photoid>9297452663</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>   
+      <crop>0;318.0791412138033;2106.799323553434;1402.607482310306</crop> 
+    </image>  
+    <image timeId="14374470687492147243" x="2709.62" y="1450.72" width="2106.80" height="2809.07" crc32="0"> 
+      <photoid>9297482360</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>0;352.17914121380346;2106.799323553434;1402.607482310306</crop> 
+    </image> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/2.jpg"> 
+    <background timeId="1269489065286" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xe4f3fb"/>  
+    <decorator timeId="14374468473542147919" x="-2.96" y="3.77" width="5054.09" height="4220.16" fix="XY" editable="0" id="de1077752" ext=".png"/>  
+    <image timeId="14374470932152147253" x="229.98" y="108.42" width="2079.75" height="2775.47" crc32="0"> 
+      <photoid>9297472452</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0;2079.7512173911928;1558.4557513362308</crop> 
+    </image>  
+    <image timeId="14374471052952147257" x="229.98" y="1551.71" width="2079.75" height="2775.47" crc32="0"> 
+      <photoid>9297452691</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;191.75647757333883;2079.7512173911928;1558.455751336231</crop> 
+    </image>  
+    <image timeId="14374471205122147263" x="2768.80" y="431.20" width="1893.63" height="2524.84" crc32="0"> 
+      <photoid>9297462612</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>0;0;1893.6275643582203;2524.8367524776268</crop> 
+    </image> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/3.jpg"> 
+    <background timeId="1269489065288" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xfadfeb"/>  
+    <decorator timeId="14374468805172147925" x="2.50" y="-1.65" width="5051.49" height="4217.99" fix="XY" editable="0" id="de1077753" ext=".png"/>  
+    <image timeId="14374471315782147265" x="303.80" y="449.87" width="1891.61" height="2522.14" crc32="0"> 
+      <photoid>9297452673</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>0;0;1891.6069385699143;2522.1425847598866</crop> 
+    </image>  
+    <image timeId="14374471395602147269" x="2830.67" y="137.48" width="1890.19" height="2520.26" crc32="0"> 
+      <photoid>9297482337</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>0;197.38903987113096;1890.194545493155;1307.9813142486114</crop> 
+    </image>  
+    <image timeId="14374471561372147279" x="2830.67" y="1345.46" width="1890.19" height="2522.50" crc32="0"> 
+      <photoid>9297462594</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;412.4101517011979;1890.1945454931547;1307.9813142486116</crop> 
+    </image> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/4.jpg"> 
+    <background timeId="1269489065290" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xd8eace"/>  
+    <decorator timeId="14374469022932147931" x="-5.76" y="-1.65" width="5056.97" height="4222.57" fix="XY" editable="0" id="de1077754" ext=".png"/>  
+    <image timeId="14374471871462147287" x="183.15" y="898.95" width="1231.00" height="1642.80" crc32="0"> 
+      <photoid>9297482379</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0;1231.0048;1642.8</crop> 
+    </image>  
+    <image timeId="14374471929942147289" x="1414.30" y="898.95" width="1232.10" height="1642.80" crc32="0"> 
+      <photoid>9297482349</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>0;0;1232.1;1642.8</crop> 
+    </image>  
+    <image timeId="14374472031312147293" x="2646.50" y="372.91" width="1996.80" height="2662.41" crc32="0"> 
+      <photoid>9297423150</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>0;9.458767410530323e-13;1996.804752442901;2662.4063365905326</crop> 
+    </image> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/5.jpg"> 
+    <background timeId="1269489065292" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xc9a8ce"/>  
+    <decorator timeId="14374469148542147937" x="3.75" y="-1.65" width="5043.83" height="4211.60" fix="XY" editable="0" id="de1077755" ext=".png"/>  
+    <image timeId="14374472305482147303" x="344.93" y="935.24" width="1651.13" height="2201.50" crc32="0"> 
+      <photoid>9297472408</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>0;84.66163677769549;1651.1264480258562;2032.1786571457505</crop> 
+    </image>  
+    <image timeId="14374472707662147321" x="2700.28" y="935.29" width="1651.13" height="2201.50" crc32="0"> 
+      <photoid>9297462609</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>0;84.66163677769569;1651.1264480258562;2032.17865714575</crop> 
+    </image> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/6.jpg"> 
+    <background timeId="1269489065294" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xbfe1d2"/>  
+    <decorator timeId="14374469296052147943" x="-5.67" y="3.00" width="5060.06" height="4225.15" fix="XY" editable="0" id="de1077756" ext=".png"/>  
+    <image timeId="14374473514252147337" x="356.22" y="248.77" width="1925.39" height="2569.47" crc32="0"> 
+      <photoid>9297482384</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0;1925.3915761027763;1390.2582709403723</crop> 
+    </image>  
+    <image timeId="14374473536662147341" x="356.27" y="397.76" width="1925.39" height="2569.47" crc32="0"> 
+      <photoid>9297482384</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;1400.211729059627;1925.3915761027763;1169.2582709403728</crop> 
+    </image>  
+    <image timeId="14374473760262147343" x="2671.67" y="249.06" width="2170.27" height="2896.27" crc32="0"> 
+      <photoid>9297433204</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0;2170.2701537266844;2713.6179987455735</crop> 
+    </image> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/7.jpg"> 
+    <background timeId="1269489065296" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xe4f3fb"/>  
+    <decorator timeId="14374468768542147923" x="-2.96" y="3.77" width="5054.09" height="4220.16" fix="XY" editable="0" id="de1077752" ext=".png"/>  
+    <image timeId="14374473871662147345" x="187.88" y="206.66" width="2195.03" height="2929.31" crc32="0"> 
+      <photoid>9297472446</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0;2195.0266961224725;1394.9263466352425</crop> 
+    </image>  
+    <image timeId="14374473950912147349" x="187.93" y="233.83" width="2195.03" height="2929.31" crc32="0"> 
+      <photoid>9297472446</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0.003303877527831104;1367.8336533647569;2195.0266961224725;1561.476346635243</crop> 
+    </image>  
+    <image timeId="14374474124252147351" x="2718.34" y="206.70" width="1140.78" height="1522.40" crc32="0"> 
+      <photoid>9297472420</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0;1140.7848239979414;1522.3996761538367</crop> 
+    </image>  
+    <image timeId="14374474159242147355" x="3683.53" y="1670.49" width="1222.62" height="1631.61" crc32="0"> 
+      <photoid>9297433211</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;1.2366204021722446e-13;1222.622917391008;1631.6142136000994</crop> 
+    </image> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/8.jpg"> 
+    <background timeId="1269489065298" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xfadfeb"/>  
+    <decorator timeId="14374468971452147929" x="2.50" y="-1.65" width="5051.49" height="4217.99" fix="XY" editable="0" id="de1077753" ext=".png"/>  
+    <image timeId="14374474336942147361" x="187.85" y="889.60" width="1231.00" height="1642.80" crc32="0"> 
+      <photoid>9297462610</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0;1231.0048;1642.8</crop> 
+    </image>  
+    <image timeId="14374474370842147365" x="1419.00" y="889.65" width="1231.00" height="1642.80" crc32="0"> 
+      <photoid>9297433224</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0;1231.0048;1642.8</crop> 
+    </image>  
+    <image timeId="14374474399092147367" x="2649.50" y="889.65" width="1232.10" height="1642.80" crc32="0"> 
+      <photoid>9297452620</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>0.5476000000000126;0;1231.0048;1642.8</crop> 
+    </image>  
+    <text timeId="14374474586122147378" x="4038.75" y="1655.55" width="144.00" height="22.00" align="left" color="0x0"> 
+      <font>mnjzy</font>  
+      <size>102</size>  
+      <content><![CDATA[此处可编辑文字]]></content> 
+    </text> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/9.jpg"> 
+    <background timeId="1269489065300" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xd8eace"/>  
+    <decorator timeId="14374469131792147935" x="-5.76" y="-1.65" width="5056.97" height="4222.57" fix="XY" editable="0" id="de1077754" ext=".png"/>  
+    <image timeId="14374475654662147380" x="528.25" y="627.43" width="1609.12" height="2145.49" crc32="0"> 
+      <photoid>9297443214</photoid>  
+      <bh>640</bh>  
+      <bw>480</bw>  
+      <crop>0;0;1609.1185815743033;2145.491442099072</crop> 
+    </image>  
+    <image timeId="14374475723152147384" x="2888.30" y="626.48" width="1609.12" height="2147.40" crc32="0"> 
+      <photoid>9297423126</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0.9544001076946109;1609.118581574303;2145.491442099072</crop> 
+    </image> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/10.jpg"> 
+    <background timeId="1269489065302" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xc9a8ce"/>  
+    <decorator timeId="14374469264452147941" x="3.75" y="-1.65" width="5043.83" height="4211.60" fix="XY" editable="0" id="de1077755" ext=".png"/>  
+    <image timeId="14374475906602147392" x="2617.28" y="-319.43" width="2257.15" height="2990.92" crc32="0"> 
+      <photoid>9297482324</photoid>  
+      <bh>750</bh>  
+      <bw>566</bw>  
+      <crop>75.42397597136548;454.5282355013414;2114.8168515396046;1502.7021739066827</crop> 
+    </image>  
+    <image timeId="14374475917562147394" x="2709.62" y="1342.07" width="2106.80" height="2811.56" crc32="0"> 
+      <photoid>9297482321</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>   
+      <crop>0;452.62872562872184;2106.799323553434;1402.607482310306</crop> 
+    </image>  
+    <image timeId="14374476492252147412" x="337.53" y="348.53" width="2026.72" height="2704.69" crc32="0"> 
+      <photoid>9297443220</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>   
+      <crop>0;0;2026.7180888943583;2704.694958488912</crop> 
+    </image> 
+  </page>  
+  <page width="5055" height="3404" preview="http://st1.yxp.126.net/img2012/flash2/images/preview/te1087768/11.jpg"> 
+    <background timeId="1269489065304" x="0.00" y="0.00" width="5055.00" height="3404.00" layer="2" id="" ext="" color="0xbfe1d2"/>  
+    <decorator timeId="14374469431752147947" x="-5.67" y="3.00" width="5060.06" height="4225.15" fix="XY" editable="0" id="de1077756" ext=".png"/>  
+    <image timeId="14374476673832147414" x="403.04" y="505.98" width="1783.00" height="2379.44" crc32="0"> 
+      <photoid>9297423147</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;0;1782.995576946765;2379.442495925396</crop> 
+    </image>  
+    <image timeId="14374476740792147418" x="2894.04" y="505.98" width="1783.00" height="2379.44" crc32="0"> 
+      <photoid>9297482345</photoid>  
+      <bh>750</bh>  
+      <bw>562</bw>  
+      <crop>0;1.082045171608751e-12;1782.995576946765;2379.4424959253956</crop> 
+    </image> 
+  </page> 
+</pages>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templateList>
+	<templates>
+		<productID>1</productID>
+		<templatesID>00001</templatesID>
+		<thumbnail>assets/templateimg/00001.jpg</thumbnail>
+	</templates>
+	<templates>
+		<productID>2</productID>
+		<templatesID>00002</templatesID>
+		<thumbnail>assets/templateimg/00002.jpg</thumbnail>
+	</templates>
+</templateList>

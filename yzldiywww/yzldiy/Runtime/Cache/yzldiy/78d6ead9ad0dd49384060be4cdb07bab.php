@@ -1,0 +1,2 @@
+<?php if (!defined('THINK_PATH')) exit(); echo '<?'; ?>
+xml version='1.0' encoding='utf-8'?><decorateCategory><category><id>0</id><name>全部</name></category><category><id>2015-06-11</id><name>2015-06-11(38)</name></category><category><id>2015-06-16</id><name>2015-06-16(12)</name></category><category><id>2015-06-18</id><name>2015-06-18(2)</name></category><category><id>2015-06-19</id><name>2015-06-19(135)</name></category><category><id>2015-07-06</id><name>2015-07-06(6)</name></category></decorateCategory>
