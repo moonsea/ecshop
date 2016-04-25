@@ -50,6 +50,11 @@ $smarty->assign('userimg',$img_prev.'/'.$user_img);
 $smarty->assign('username',$user_name);
 $smarty->assign('token',$token);
 
+setcookie("prev",$img_prev,time()+3600);
+setcookie('token',$token,time()+3600);
+setcookie("userimg",$img_prev.'/'.$user_img,time()+3600);
+setcookie("username",$user_name,time()+3600);
+
 /*
  *Add By KingDragon
  *2016-04-19
@@ -86,7 +91,7 @@ $smarty->assign('feed_url',         ($_CFG['rewrite'] == 1) ? "feed-c$cat_id.xml
 $count = $output["data"]["pageinfo"]["total"];
 $max_page = $output["data"]["pageinfo"]["maxpage"];
 $pages = array();
-$counter = 0;
+$counter = 1;
 while($counter <= $max_page)
 {
 	array_push($pages,$counter);

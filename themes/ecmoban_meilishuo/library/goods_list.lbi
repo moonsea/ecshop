@@ -15,7 +15,7 @@
                     <p class="f14 line-height-24 mt-5 font2">{$list.album_desc}</p>
                 </div>
                 <div class="col-lg-5 col-md-5 col-xs-12">
-                	<a href="album.php?id={$list.id}&prev={$prev}&token={$token}&img={$userimg}&name={$username}"><div class="list-img" style="background-image:url({$prev}/{$list.img})"></div></a>
+                	<a href="album.php?id={$list.id}"><div class="list-img" style="background-image:url({$prev}/{$list.img})"></div></a>
                 </div>
             	<div class="col-lg-1 col-md-1 hidden-xs"></div>
             </div>

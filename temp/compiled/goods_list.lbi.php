@@ -16,7 +16,7 @@
                     <p class="f14 line-height-24 mt-5 font2"><?php echo $this->_var['list']['album_desc']; ?></p>
                 </div>
                 <div class="col-lg-5 col-md-5 col-xs-12">
-                	<a href="album.php?id=<?php echo $this->_var['list']['id']; ?>&prev=<?php echo $this->_var['prev']; ?>&token=<?php echo $this->_var['token']; ?>&img=<?php echo $this->_var['userimg']; ?>&name=<?php echo $this->_var['username']; ?>"><div class="list-img" style="background-image:url(<?php echo $this->_var['prev']; ?>/<?php echo $this->_var['list']['img']; ?>)"></div></a>
+                	<a href="album.php?id=<?php echo $this->_var['list']['id']; ?>"><div class="list-img" style="background-image:url(<?php echo $this->_var['prev']; ?>/<?php echo $this->_var['list']['img']; ?>)"></div></a>
                 </div>
             	<div class="col-lg-1 col-md-1 hidden-xs"></div>
             </div>

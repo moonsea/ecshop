@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:1:{i:0;s:58:"E:/PHPnow/htdocs/ecshop/themes/ecmoban_meilishuo/index.dwt";}s:7:"expires";i:1461553385;s:8:"maketime";i:1461549785;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php exit;?>a:3:{s:8:"template";a:1:{i:0;s:66:"D:/wamp/PHPnow/htdocs/ec/ecshop/themes/ecmoban_meilishuo/index.dwt";}s:7:"expires";i:1461602778;s:8:"maketime";i:1461599178;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="Generator" content="ECSHOP v2.7.3" />
@@ -10,7 +10,7 @@
 <link href="css/fonts.css" rel="stylesheet"/>
 <link href="css/login.css" rel="stylesheet"/>
 <link rel="icon" href="animated_favicon.gif" type="image/gif" />
-<script type="text/javascript" src="js/jquery.min.js"></script></head>
+<script type="text/javascript" src="js/jquery.min.js"></script><script type="text/javascript" src="js/jquery.qrcode.js"></script></head>
 <body>
 	<div class="banner">
     	<div class="pro">
@@ -25,7 +25,7 @@
             	请用拾忆APP扫一扫登录
             </span>
             <span style="display:none;">
-            	<img src="img/qrcode.png" width="267" height="266"/>
+            	<div style="width:267px; height:266px; background:#fff; margin:0 auto; padding:10px;" id="qrcode"></div>
             </span>
         </div>
     </div>
@@ -65,6 +65,10 @@
     </div>
 </body>
 <script>
+//取二维码链接
+var url = "";
+var key = "";
+var interval;
 $().ready(function(e) {
     //banner图填充全屏
 	$(".banner").height(window.screen.availHeight);
@@ -79,7 +83,39 @@ $().ready(function(e) {
 			$(".pro2 span:nth-child(2)").css("display","block").addClass("banner-animation4");
 			$(".pro2 span:nth-child(3)").css("display","block").addClass("banner-animation3");
 		});
-	
+	$.ajax({
+		url:"http://app.itimepost.com/oauth/newqcode",
+		type:'GET',
+		dataType:"jsonp",
+		success: function(data){
+				url = (data.data.url);
+				console.log(url);
+				var temp = data.data.url.split("=");
+				key = temp[1];
+				//生成二维码
+				$("#qrcode").qrcode({
+						text: url,
+						height: $("#qrcode").height(),
+						width: $("#qrcode").width(),
+						src: 'img/logo-nav.png'
+					});
+				 interval = setInterval("checkLogin()",2000);
+			},
+		error:function(data){alert("初始化失败")}
+	});
 });
+function checkLogin()
+{
+	$.ajax({
+		url:"http://app.itimepost.com/oauth/clickqcode",
+		type:'POST',
+		dataType:"jsonp",
+		data:{"key":key},
+		success: function(data){0
+				console.log("key:"+key+";state:"+data.state);
+			},
+		error:function(data){alert("登陆失败"); clearInterval(interval);}	
+	});
+}
 </script>
 </html>
