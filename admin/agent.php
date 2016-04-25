@@ -168,21 +168,24 @@ elseif($_REQUEST['act'] == 'detail_week')
     /* 按日或周或月查询订单信息 */
     if (isset($_REQUEST['week_num']))
     {
+        $week_num = $_REQUEST['week_num'];
+
         if(isset($_REQUEST['day_num']))
         {
             $day_num = $_REQUEST['day_num'];
+            $order_list_data = order_detail_day($day_num,$week_num);
+        }else {
+            $order_list_data = get_sale_list_week_day($week_num);
         }
         
-        $week_num = $_REQUEST['week_num'];
-        $order_list_data = get_sale_list_week_day($week_num);
     }
     else
     {
         /* 如果参数不存在，退出 */
         die('invalid parameter');
     }
-    
-    /* 赋值到模板 */
+   
+        /* 赋值到模板 */
     $smarty->assign('filter',       $order_list_data['filter']);
     $smarty->assign('record_count', $order_list_data['record_count']);
     $smarty->assign('page_count',   $order_list_data['page_count']);
@@ -194,13 +197,20 @@ elseif($_REQUEST['act'] == 'detail_week')
     $smarty->assign('end_date',         local_date('Y-m-d', $end_date));
     $smarty->assign('cfg_lang',     $_CFG['lang']);
     // $smarty->assign('action_link',  array('text' => $_LANG['down_sales'],'href'=>'#download'));
-    
+
     /*pageheader父标题*/
     $smarty->assign('pageheader_title',  $_LANG['12_agent']);
-
+    
     /* 显示页面 */
     assign_query_info();
-    $smarty->display('agent_list_detail.htm');
+    
+    if(isset($_REQUEST['day_num']))
+    {
+        $smarty->display('agent_detail.htm');
+    }else {
+        $smarty->display('agent_list_detail.htm');
+    }
+     
 }
 
 /*------------------------------------------------------ */
@@ -540,7 +550,7 @@ function get_sale_list_month($is_pagination = true){
  * @param   bool  $is_pagination  是否分页
  * @return  array   销售明细数据
  */
-function order_detail_day($day_num){
+function order_detail_day($day_num,$week_num=0){
   
     /*获取当前登录用户的id*/
     $user_id = $_SESSION['admin_id'];
@@ -552,7 +562,14 @@ function order_detail_day($day_num){
     $where = $where . " AND oi.pay_status = 2";
     
     /* 添加查询日期条件 */
-    $where = $where . " AND FROM_UNIXTIME(oi.pay_time,'%Y年%m月%d日') = '" . $day_num . "'";
+    if($week_num == 0){
+        // 按日查询
+        $where = $where . " AND FROM_UNIXTIME(oi.pay_time,'%Y年%m月%d日') = '" . $day_num . "'";    
+    }else{
+        $new_week = $week_num - 1;
+        $where = $where . " AND CEIL(((oi.pay_time - au.add_time) - (604800 * " . $new_week . "))/(86400)) = '". $day_num ."' ";
+    }
+    
     
     /* 添加按照付款时间每日分组 */
     // $group = " GROUP BY CEIL((oi.pay_time - au.add_time)/(3600*24*30))";
@@ -563,7 +580,7 @@ function order_detail_day($day_num){
            $GLOBALS['ecs']->table('admin_user') . ' AS au '.
            $where;
     $filter['record_count'] = $GLOBALS['db']->getOne($sql);
-      
+    
     /* 分页大小 */
     $filter = page_and_size($filter);
     
@@ -592,8 +609,6 @@ function order_detail_day($day_num){
   
     return $arr;
 }
-
-
 
 /*------------------------------------------------------ */
 //-- 按周查询获取每日订单列表
