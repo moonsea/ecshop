@@ -165,19 +165,56 @@ elseif($_REQUEST['act'] == 'detail_week')
     /* 权限判断 */
     admin_priv('sale_order_stats');
     
+    $week_num = isset($_REQUEST['week_num'])? $_REQUEST['week_num']:"0" ;
+    $month_num = isset($_REQUEST['month_num'])? $_REQUEST['month_num']:"0" ;
+    $day_num = isset($_REQUEST['day_num'])? $_REQUEST['day_num']:"0" ;
+    
     /* 按日或周或月查询订单信息 */
-    if (isset($_REQUEST['week_num']))
+    if ($week_num != 0 && $month_num == 0)
     {
         $week_num = $_REQUEST['week_num'];
-
-        if(isset($_REQUEST['day_num']))
+        
+        /* 赋值单位到模板 */
+        $smarty->assign('unit', '周');
+        $smarty->assign('week_num', $week_num);
+        $smarty->assign('month_num', 0);
+    
+        if($day_num != 0 )
         {
-            $day_num = $_REQUEST['day_num'];
+            // $month_num = $_REQUEST['month_num'];
+            // $day_num = $_REQUEST['day_num'];
             $order_list_data = order_detail_day($day_num,$week_num);
+             
+            // if ($month_num == 0) {
+            //     $order_list_data = order_detail_day($day_num,$week_num);
+            // }
+            
         }else {
             $order_list_data = get_sale_list_week_day($week_num);
         }
         
+    }
+    elseif ($month_num != 0 && $week_num == 0) {
+        
+        // $month_num = $_REQUEST['month_num'];
+
+        /* 赋值单位到模板 week      /* 赋值单位到模板 */
+        $smarty->assign('unit', '月');
+        $smarty->assign('week_num', 0);
+        $smarty->assign('month_num', $month_num);
+
+        if($day_num != 0)
+        {
+            // $day_num = $_REQUEST['day_num'];
+            // $week_num = $_REQUEST['week_num'];
+           
+           $order_list_data = order_detail_day($day_num,0,$month_num);
+            // if ($week_num == 0) {
+            //     $order_list_data = order_detail_day($day_num,0,$month_num);
+            // }
+        }else {
+            $order_list_data = get_sale_list_month_day($month_num);
+        }
     }
     else
     {
@@ -190,7 +227,7 @@ elseif($_REQUEST['act'] == 'detail_week')
     $smarty->assign('record_count', $order_list_data['record_count']);
     $smarty->assign('page_count',   $order_list_data['page_count']);
     $smarty->assign('order_list_data', $order_list_data['order_list_data']);
-    $smarty->assign('week_num', $week_num);
+    
     $smarty->assign('ur_here',          $_LANG['01_statistics']);
     $smarty->assign('full_page',        1);
     $smarty->assign('start_date',       local_date('Y-m-d', $start_date));
@@ -207,7 +244,7 @@ elseif($_REQUEST['act'] == 'detail_week')
     if(isset($_REQUEST['day_num']))
     {
         $smarty->display('agent_detail.htm');
-    }else {
+    }elseif (isset($_REQUEST['week_num']) || isset($_REQUEST['month_num']) && !isset($_REQUEST['day_num'])) {
         $smarty->display('agent_list_detail.htm');
     }
      
@@ -550,7 +587,7 @@ function get_sale_list_month($is_pagination = true){
  * @param   bool  $is_pagination  是否分页
  * @return  array   销售明细数据
  */
-function order_detail_day($day_num,$week_num=0){
+function order_detail_day($day_num,$week_num=0,$month_num=0){
   
     /*获取当前登录用户的id*/
     $user_id = $_SESSION['admin_id'];
@@ -562,12 +599,18 @@ function order_detail_day($day_num,$week_num=0){
     $where = $where . " AND oi.pay_status = 2";
     
     /* 添加查询日期条件 */
-    if($week_num == 0){
+    if($week_num == 0 && $month_num == 0){
         // 按日查询
         $where = $where . " AND FROM_UNIXTIME(oi.pay_time,'%Y年%m月%d日') = '" . $day_num . "'";    
     }else{
-        $new_week = $week_num - 1;
-        $where = $where . " AND CEIL(((oi.pay_time - au.add_time) - (604800 * " . $new_week . "))/(86400)) = '". $day_num ."' ";
+        if ($week_num != 0) {
+            $new_week = $week_num - 1;
+            $where = $where . " AND CEIL(((oi.pay_time - au.add_time) - (604800 * " . $new_week . "))/(86400)) = '". $day_num ."' ";
+        }else{
+            $new_month = $month_num - 1;
+            $where = $where . " AND CEIL(((oi.pay_time - au.add_time) - (2592000 * " . $new_month . "))/(86400)) = '". $day_num ."' ";
+        }
+        
     }
     
     
@@ -652,6 +695,79 @@ function get_sale_list_week_day($week_num){
     
     /* 查询距添加代理用户第几周 */
     $sql = "SELECT CEIL(((oi.pay_time - au.add_time)-(604800 * " . $new_week ."))/(86400)) AS day_num, ";
+    
+    /* 查询每日订单数 */
+    $sql = $sql . " COUNT(oi.order_id) AS order_sum, ";
+    
+    /* 查询每日产品数 */
+    $sql = $sql . " COUNT(og.goods_id) AS product_sum ";
+    
+    /* 查询条件 */
+    $where = $where . " AND og.order_id = oi.order_id ";
+    
+    /* 查询 */
+    $sql = $sql . " FROM " . 
+           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('order_goods') . ' AS og, '.
+           $GLOBALS['ecs']->table('admin_user') . ' AS au'.
+           $where .
+           $group . " ORDER BY day_num";
+    
+    $is_pagination = true;
+    if ($is_pagination)
+    {
+        $sql .= " LIMIT " . $filter['start'] . ', ' . $filter['page_size'];
+    }
+
+    $order_list_data = $GLOBALS['db']->getAll($sql);
+
+    $arr = array('order_list_data' => $order_list_data, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
+  
+    return $arr;
+}
+
+/*------------------------------------------------------ */
+//-- 按月查询获取每日订单列表
+/*------------------------------------------------------ */
+/**
+ * 取得销售明细数据信息
+ * @param   bool  $is_pagination  是否分页
+ * @return  array   销售明细数据
+ */
+function get_sale_list_month_day($month_num){
+  
+    /* 按周查询 */
+ 
+    /*获取当前登录用户的id*/
+    $user_id = $_SESSION['admin_id'];
+
+    /* 添加邀请码查询条件 */
+    $where = " WHERE au.user_id = '" . $user_id . "' AND au.invitation_code = oi.invitation_code";
+    
+    /* 添加已经付款的查询条件 */
+    $where = $where . " AND oi.pay_status = 2";
+    
+    /* 添加制定周的查询条件 */
+    $where = $where . " AND CEIL((oi.pay_time - au.add_time)/(2592000)) = ". $month_num;
+    
+    /* 添加按照付款时间每日分组 */
+    $group = " GROUP BY FROM_UNIXTIME(oi.pay_time - au.add_time,'%Y%m%d')";
+
+    /* 按照付款时间按周数分组查询记录数 */
+    $sql = "SELECT COUNT(oi.order_id) FROM " . 
+           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
+           $GLOBALS['ecs']->table('admin_user') . ' AS au '.
+           $where .
+           $group;
+    $filter['record_count'] = $GLOBALS['db']->getOne($sql);
+      
+    /* 分页大小 */
+    $filter = page_and_size($filter);
+    
+    $new_month = $month_num - 1;
+    
+    /* 查询距添加代理用户第几周 */
+    $sql = "SELECT CEIL(((oi.pay_time - au.add_time)-(604800 * " . $new_month ."))/(86400)) AS day_num, ";
     
     /* 查询每日订单数 */
     $sql = $sql . " COUNT(oi.order_id) AS order_sum, ";

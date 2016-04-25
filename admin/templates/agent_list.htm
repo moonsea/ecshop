@@ -80,7 +80,7 @@
   {foreach from=$goods_sales_list_month item=list}
     <tr align="center">
       <!-- 订单支付时间 -->
-      <td>第{$list.month_num}月</td>
+      <td><a href="agent.php?act=detail_week&month_num={$list.month_num}">第{$list.month_num}月</a></td>
       <!-- 每周订单数 -->
       <td>{$list.order_sum_month}/单</td>
       <!-- 每周总成交量 -->

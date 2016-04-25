@@ -16,7 +16,7 @@
     </tr>
   {foreach from=$order_list_data item=list}
     <tr align="center">
-      <td><a href="agent.php?act=detail_week&week_num={$week_num}&day_num={$list.day_num}">第{$week_num}周-第{$list.day_num}天</a></td>
+      <td><a href="agent.php?act=detail_week&week_num={$week_num}&day_num={$list.day_num}&month_num={$month_num}">第{if $week_num}{$week_num}{/if}{if $month_num}{$month_num}{/if}{$unit}-第{$list.day_num}天</a></td>
       <td>{$list.order_sum}/单</td>
       <td>{$list.product_sum}/册</td>
     </tr>
