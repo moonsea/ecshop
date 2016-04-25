@@ -5,3 +5,4 @@ temp/caches/
 temp/compiled/
 temp/static_caches/
 temp/query_caches/
+.vscode/
