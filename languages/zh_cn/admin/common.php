@@ -140,7 +140,7 @@ $_LANG['09_others'] = '杂项管理';
 $_LANG['10_priv_admin'] = '权限管理';
 $_LANG['11_system'] = '系统设置';
 $_LANG['12_agent'] = '代理';
-$_LANG['13_backup'] = '数据库管理';
+$_LANG['13_print'] = '印刷厂';
 $_LANG['14_sms'] = '短信管理';
 $_LANG['15_rec'] = '推荐管理';
 $_LANG['16_email_manage'] = '邮件群发管理';
@@ -297,6 +297,10 @@ $_LANG['06_sms_charge_history'] = '充值记录';
 $_LANG['01_statistics'] = '表单统计';
 $_LANG['02_personal_info'] = '个人资料';
 $_LANG['03_change_passwd'] = '修改密码';
+
+/* 印刷厂 */
+$_LANG['01_unfinished'] = '未处理';
+$_LANG['02_finished'] = '已处理';
 
 $_LANG['affiliate'] = '推荐设置';
 $_LANG['affiliate_ck'] = '分成管理';

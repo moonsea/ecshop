@@ -27,7 +27,8 @@ var {$key} = "{$item}";
 {/if}
 {if $pageheader_title}
 	<span class="action-span1"><a href="#">{$pageheader_title}</a> </span>
+{else}
+	<span class="action-span1"><a href="index.php?act=main">{$lang.cp_home}</a> </span>
 {/if}
 	<span id="search_id" class="action-span1">/<a href="#">{if $ur_here} {$ur_here} {/if} </a></span>
-<div style="clear:both"></div>
 </h1>

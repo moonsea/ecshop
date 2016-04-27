@@ -21,6 +21,17 @@ include_once(ROOT_PATH . '/includes/cls_image.php');
 $image = new cls_image($_CFG['bgcolor']);
 $exc = new exchange($ecs->table('goods'), $db, 'goods_id', 'goods_name');
 
+$temp_sql = "select * from ".$ecs->table('goods_bind_type')."order by type_id desc";
+$temp_arr = $db->query($temp_sql);
+
+$bind_type_list = array();
+while ($temp_row = $db->fetchRow($temp_arr))
+{
+	$bind_type_list[] = $temp_row;
+}
+$smarty->assign('bind_type_list',     $bind_type_list);
+	
+
 /*------------------------------------------------------ */
 //-- 商品列表，商品回收站
 /*------------------------------------------------------ */
@@ -68,7 +79,7 @@ if ($_REQUEST['act'] == 'list' || $_REQUEST['act'] == 'trash')
     $smarty->assign('action_link',  $action_link);
     $smarty->assign('code',     $code);
     $smarty->assign('cat_list',     cat_list(0, $cat_id));
-    $smarty->assign('bind_type_list',     cat_list(0, $goods_bind_type));
+	
     $smarty->assign('brand_list',   get_brand_list());
     $smarty->assign('intro_list',   get_intro_list());
     $smarty->assign('lang',         $_LANG);

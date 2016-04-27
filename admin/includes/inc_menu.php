@@ -152,4 +152,9 @@ $modules['12_agent']['01_statistics']            	= 'agent.php?act=list';
 $modules['12_agent']['02_personal_info']         	= 'agent.php?act=info';
 $modules['12_agent']['03_change_passwd']         	= 'agent.php?act=change_pwd';
 
+// 印刷厂
+$modules['13_print']['01_unfinished']            	= 'print.php?act=unfinished_list';
+$modules['13_print']['02_finished']         		= 'print.php?act=finished_list';
+$modules['13_print']['03_change_passwd']         	= 'print.php?act=change_pwd';
+
 ?>

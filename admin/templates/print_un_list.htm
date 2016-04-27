@@ -1,4 +1,4 @@
-<!-- $Id: agent_deatil.htm 15848 2009-04-24 07:07:13Z moonsea $ -->
+<!-- $Id: print_un_list.htm 15848 2009-04-24 07:07:13Z moonsea $ -->
 {if $full_page}
 {include file="pageheader.htm"}
 <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
@@ -11,26 +11,20 @@
   <table width="100%" cellspacing="1" cellpadding="3">
      <tr>
       <th>订单编号</th>
+      <th>用户名</th>
+      <th>收货人</th>
       <th>下单时间</th>
-      <th>订单金额</th>
-      <th>买家id</th>
-      <th>买家电话</th>
-      <th>代理人</th>
     </tr>
-{if $order_list_data}
   {foreach from=$order_list_data item=list}
     <tr align="center">
-      <td>{$list.order_sn}</td>
+      <td><a href="print.php?act=order_datail&order_sn={$list.order_sn}">{$list.order_sn}</a></td>
+      <td>{$list.user_id}</td>
+      <td>{$list.consignee}</td>
       <td>{$list.add_time}</a></td>
-      <td>{$list.goods_amount}</td>
-      <td>{$list.user_name}</td>
-      <td>{$list.mobile_phone}</td>
-      <td>{$list.agent_name}</td>
     </tr>
-  {/foreach}
-{else}
+  {foreachelse}
     <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
-{/if}
+  {/foreach}
   </table>
   <table id="page-table" cellspacing="0">
   <tr>

@@ -1,48 +1,60 @@
-<!-- $Id: agent_deatil.htm 15848 2009-04-24 07:07:13Z moonsea $ -->
+<!-- $Id: print_order.htm 15848 2009-04-24 07:07:13Z moonsea $ -->
 {if $full_page}
 {include file="pageheader.htm"}
 <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
 <link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
 {insert_scripts files="../js/utils.js,listtable.js"}
 
-<form method="POST" action="" name="listForm">
-<div class="list-div" id="listDiv">
-{/if}
-  <table width="100%" cellspacing="1" cellpadding="3">
-     <tr>
-      <th>订单编号</th>
-      <th>下单时间</th>
-      <th>订单金额</th>
-      <th>买家id</th>
-      <th>买家电话</th>
-      <th>代理人</th>
-    </tr>
 {if $order_list_data}
-  {foreach from=$order_list_data item=list}
+{foreach from=$order_list_data item=list}
+<h3 align="center">订单编号:{$list.order_sn}</h3>
+<table width="100%" cellspacing="0" cellpadding="3" border="1px">
+    <!--<tr align="center">
+      <th colspan="2">订单编号:{$list.order_sn}</th>
+    </tr>-->
     <tr align="center">
-      <td>{$list.order_sn}</td>
-      <td>{$list.add_time}</a></td>
-      <td>{$list.goods_amount}</td>
-      <td>{$list.user_name}</td>
-      <td>{$list.mobile_phone}</td>
-      <td>{$list.agent_name}</td>
+      <td>用户名:{$list.user_name}</td>
+      <td>下单时间:{$list.add_time}</td>
+    </tr>
+    </tr>
+    <tr align="center">
+      <td>收货人姓名:{$list.consignee}</td>
+      <td>收货地址:{$list.address}</td>
+    </tr>
+    </tr>
+    <tr align="center">
+      <td>收货人电话:{$list.mobile_phone}</td>
+      <td>邮政编码:{$list.zipcode}</td>
+    </tr>
+    </tr>
+    <tr align="center">
+      <td colspan="2">订单备注:{$list.postscript}</td>
     </tr>
   {/foreach}
+  
 {else}
     <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
 {/if}
-  </table>
-  <table id="page-table" cellspacing="0">
-  <tr>
-    <td>&nbsp;</td>
-    <td align="right" nowrap="true">
-    {include file="page.htm"}
-    </td>
-  </tr>
-  </table>
-{if $full_page}
-</div>
-</form>
+</table>
+{if $goods_list_data}
+  <h3 align="center">商品信息</h3>
+  {foreach from=$goods_list_data item=goods}
+    <table width="100%" cellspacing="0" cellpadding="3" border="1">
+      <tr align="center">
+        <th>商品名称</th>
+        <th>商品规格</th>
+        <th>商品数量</th>
+        <th>电子稿文件</th>
+      </tr>
+      <tr  align="center">
+        <td>{$goods.goods_name}</td>
+        <td>装订方式:{$goods.bind_type}&nbsp;材质:{$goods.material_type}&nbsp;尺寸:{$goods.goods_height}*{$goods.goods_width}&nbsp;页数:{$goods.goods_page_count}</td>
+        <td>{$goods.goods_number}/本</td>
+        <td><a href="{goods.goods_url}">下载文件</a></td>
+      </tr>
+    </table>
+  {/foreach}
+{/if}
 
 <script type="Text/Javascript" language="JavaScript">
 listTable.recordCount = {$record_count};

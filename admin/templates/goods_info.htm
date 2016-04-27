@@ -131,7 +131,14 @@
           <!-- 装订类型 -->
           <tr>
             <td class="label">{$lang.lab_bind_type}</td>
-            <td><select name="goods_bind_type" onchange="hideCatDiv()">{$bind_type_list}<option value="0">{$lang.lab_select_custom}</option></select></td>
+            <td>
+            	<select name="goods_bind_type" onchange="hideCatDiv()">
+            	<!--{foreach from=$bind_type_list name=bind_type_list item=item}-->
+            	<option value="{$item.type_id}">{$item.type_name}</option>
+                <!--{/foreach}-->
+                <option value="-1">{$lang.lab_select_custom}</option>
+               	</select>
+            </td>
           </tr>
           <!-- 销售操作 -->
           <tr id="alone_sale_1">
