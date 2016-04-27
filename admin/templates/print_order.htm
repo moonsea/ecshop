@@ -59,11 +59,11 @@
     {foreach from=$order_list_data item=list}
     <input type="hidden" name="order_sn" value="{$list.order_sn}" />
     <input type="button" value="打印订单" class="button" onclick="print_order()" />
-    <input type="button" value="确认订单" class="button" onclick="confirm()"/>
+    <input type="button" value="确认订单" class="button" onclick="confirm()" {if $order_status}style="display:none"{/if}/>
     {/foreach}
   {/if}
   </div>
-  <input type="hidden" name="act" value="{$form_act}" />
+  <input type="hidden" name="status" value="{$order_status}" />
   {/foreach}  
 </form>
   <p align="center">只有完成下载电子稿和打印订单才可以确认订单</p>

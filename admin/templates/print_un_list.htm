@@ -17,7 +17,7 @@
     </tr>
   {foreach from=$order_list_data item=list}
     <tr align="center">
-      <td><a href="print.php?act=order_datail&order_sn={$list.order_sn}">{$list.order_sn}</a></td>
+      <td><a href="print.php?act=order_datail&order_sn={$list.order_sn}&order_status={$list.order_status}">{$list.order_sn}</a></td>
       <td>{$list.user_id}</td>
       <td>{$list.consignee}</td>
       <td>{$list.add_time}</a></td>

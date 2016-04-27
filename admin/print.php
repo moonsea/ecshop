@@ -20,58 +20,10 @@ require_once(ROOT_PATH . 'includes/lib_order.php');
 require_once(ROOT_PATH . 'languages/' .$_CFG['lang']. '/admin/statistic.php');
 $smarty->assign('lang', $_LANG);
 
-if (isset($_REQUEST['act']) && ($_REQUEST['act'] == 'query' ||  $_REQUEST['act'] == 'download'))
-{
-    /* 检查权限 */
-    check_authz_json('sale_order_stats');
-    if (strstr($_REQUEST['start_date'], '-') === false)
-    {
-        $_REQUEST['start_date'] = local_date('Y-m-d', $_REQUEST['start_date']);
-        $_REQUEST['end_date'] = local_date('Y-m-d', $_REQUEST['end_date']);
-    }
-    /*------------------------------------------------------ */
-    //--Excel文件下载
-    /*------------------------------------------------------ */
-    if ($_REQUEST['act'] == 'download')
-    {
-        $file_name = $_REQUEST['start_date'].'_'.$_REQUEST['end_date'] . '_sale';
-        $goods_sales_list = get_sale_list(false);
-        header("Content-type: application/vnd.ms-excel; charset=utf-8");
-        header("Content-Disposition: attachment; filename=$file_name.xls");
-
-        /* 文件标题 */
-        echo ecs_iconv(EC_CHARSET, 'GB2312', $_REQUEST['start_date']. $_LANG['to'] .$_REQUEST['end_date']. $_LANG['sales_list']) . "\t\n";
-
-        /* 商品名称,订单号,商品数量,销售价格,销售日期 */
-        echo ecs_iconv(EC_CHARSET, 'GB2312', $_LANG['goods_name']) . "\t";
-        echo ecs_iconv(EC_CHARSET, 'GB2312', $_LANG['order_sn']) . "\t";
-        echo ecs_iconv(EC_CHARSET, 'GB2312', $_LANG['amount']) . "\t";
-        echo ecs_iconv(EC_CHARSET, 'GB2312', $_LANG['sell_price']) . "\t";
-        echo ecs_iconv(EC_CHARSET, 'GB2312', $_LANG['sell_date']) . "\t\n";
-
-        foreach ($goods_sales_list['sale_list_data'] AS $key => $value)
-        {
-            echo ecs_iconv(EC_CHARSET, 'GB2312', $value['goods_name']) . "\t";
-            echo ecs_iconv(EC_CHARSET, 'GB2312', '[ ' . $value['order_sn'] . ' ]') . "\t";
-            echo ecs_iconv(EC_CHARSET, 'GB2312', $value['goods_num']) . "\t";
-            echo ecs_iconv(EC_CHARSET, 'GB2312', $value['sales_price']) . "\t";
-            echo ecs_iconv(EC_CHARSET, 'GB2312', $value['sales_time']) . "\t";
-            echo "\n";
-        }
-        exit;
-    }
-    $sale_list_data = get_sale_list();
-    $smarty->assign('goods_sales_list', $sale_list_data['sale_list_data']);
-    $smarty->assign('filter',       $sale_list_data['filter']);
-    $smarty->assign('record_count', $sale_list_data['record_count']);
-    $smarty->assign('page_count',   $sale_list_data['page_count']);
-
-    make_json_result($smarty->fetch('sale_list.htm'), '', array('filter' => $sale_list_data['filter'], 'page_count' => $sale_list_data['page_count']));
-}
 /*------------------------------------------------------ */
 //--未完成订单列表
 /*------------------------------------------------------ */
-elseif($_REQUEST['act'] == 'unfinished_list')
+if($_REQUEST['act'] == 'unfinished_list')
 {
     /* 权限判断 */
     admin_priv('sale_order_stats');
@@ -86,7 +38,7 @@ elseif($_REQUEST['act'] == 'unfinished_list')
     }
     
     /* 查询 */
-    $sale_list_data = get_sale_list();
+    $sale_list_data = get_sale_list('0');
     
     /* 赋值到模板 */
     $smarty->assign('filter',       $sale_list_data['filter']);
@@ -107,6 +59,42 @@ elseif($_REQUEST['act'] == 'unfinished_list')
     assign_query_info();
     $smarty->display('print_un_list.htm');
 }
+elseif($_REQUEST['act'] == 'finished_list')
+{
+    /* 权限判断 */
+    admin_priv('sale_order_stats');
+    /* 时间参数 */
+    // if (!isset($_REQUEST['start_date']))
+    // {
+    //     $start_date = local_strtotime('-7 days');
+    // }
+    // if (!isset($_REQUEST['end_date']))
+    // {
+    //     $end_date = local_strtotime('today');
+    // }
+    
+    /* 查询 */
+    $sale_list_data = get_sale_list('1');
+    
+    /* 赋值到模板 */
+    $smarty->assign('filter',       $sale_list_data['filter']);
+    $smarty->assign('record_count', $sale_list_data['record_count']);
+    $smarty->assign('page_count',   $sale_list_data['page_count']);
+    $smarty->assign('order_list_data', $sale_list_data['sale_list_data']);
+    $smarty->assign('ur_here',          $_LANG['02_finished']);
+    $smarty->assign('full_page',        1);
+    // $smarty->assign('start_date',       local_date('Y-m-d', $start_date));
+    // $smarty->assign('end_date',         local_date('Y-m-d', $end_date));
+    $smarty->assign('cfg_lang',     $_CFG['lang']);
+    // $smarty->assign('action_link',  array('text' => $_LANG['down_sales'],'href'=>'#download'));
+    
+    /*pageheader父标题*/
+    $smarty->assign('pageheader_title',  $_LANG['13_print']);
+
+    /* 显示页面 */
+    assign_query_info();
+    $smarty->display('print_un_list.htm');
+}
 /*------------------------------------------------------ */
 //--每日商品明细列表
 /*------------------------------------------------------ */
@@ -115,11 +103,12 @@ elseif($_REQUEST['act'] == 'order_datail')
     /* 权限判断 */
     admin_priv('sale_order_stats');
     
-    /* 按日或周或月查询订单信息 */
+    $stauts = $_REQUEST['order_status'];
+    /* 获取订单编号 */
     if (isset($_REQUEST['order_sn']))
     {
         $order_sn = $_REQUEST['order_sn'];
-        $order_list_data = order_detail($order_sn);
+        $order_list_data = order_detail($order_sn,$stauts);
     }
     else
     {
@@ -133,12 +122,17 @@ elseif($_REQUEST['act'] == 'order_datail')
     // $smarty->assign('page_count',   $order_list_data['page_count']);
     $smarty->assign('order_list_data', $order_list_data['order_list_data']);
     $smarty->assign('goods_list_data', $order_list_data['goods_list_data']);
-    $smarty->assign('ur_here',          $_LANG['01_unfinished']);
+    if($status == '1')
+    {
+        $smarty->assign('ur_here',          $_LANG['02_finished']);
+    }else {
+        $smarty->assign('ur_here',          $_LANG['01_unfinished']);
+    }
     $smarty->assign('full_page',        1);
     // $smarty->assign('start_date',       local_date('Y-m-d', $start_date));
     // $smarty->assign('end_date',         local_date('Y-m-d', $end_date));
     $smarty->assign('cfg_lang',     $_CFG['lang']);
-    $smarty->assign('form_act',     'confirm');
+    $smarty->assign('order_status',     $stauts);
     // $smarty->assign('action_link',  array('text' => $_LANG['down_sales'],'href'=>'#download'));
     
     /*pageheader父标题*/
@@ -369,7 +363,7 @@ elseif ($_REQUEST['act'] == 'change_passwd' || $_REQUEST['act'] == 'change_info'
  * @param   bool  $is_pagination  是否分页
  * @return  array   销售明细数据
  */
-function get_sale_list($is_pagination = true){
+function get_sale_list($order_status){
 
     // /* 时间参数 */
     // $filter['start_date'] = empty($_REQUEST['start_date']) ? local_strtotime('-7 days') : local_strtotime($_REQUEST['start_date']);
@@ -387,7 +381,7 @@ function get_sale_list($is_pagination = true){
     // $where = " WHERE au.user_id = '" . $user_id . "' AND au.invitation_code = oi.invitation_code";
     
     /* 添加印刷厂未处理的查询条件 */
-    $where = " WHERE ( oi.order_status = 0 OR oi.order_status = 5 OR oi.order_status = 6 )";
+    $where = " WHERE ( oi.order_status = '". $order_status ."')";
     
     /* 添加按照付款时间每日分组 */
     // $group = " GROUP BY FROM_UNIXTIME(oi.pay_time,'%y-%m-%d')";
@@ -413,7 +407,10 @@ function get_sale_list($is_pagination = true){
     $sql = $sql . " oi.consignee, ";
     
     /* 查询下单时间 */
-    $sql = $sql . " oi.add_time ";
+    $sql = $sql . " oi.add_time, ";
+    
+    /* 查询订单状态 */
+    $sql = $sql . " oi.order_status ";
     
     /* 查询条件 */
     // $where = $where . " AND og.order_id = oi.order_id ";
@@ -425,6 +422,7 @@ function get_sale_list($is_pagination = true){
         //    $GLOBALS['ecs']->table('admin_user') . ' AS au'.
            $where . " ORDER BY order_sn";
     
+    $is_pagination = true;
     if ($is_pagination)
     {
         $sql .= " LIMIT " . $filter['start'] . ', ' . $filter['page_size'];
@@ -580,15 +578,15 @@ function get_sale_list_month($is_pagination = true){
  * @param   bool  $is_pagination  是否分页
  * @return  array   销售明细数据
  */
-function order_detail($order_sn){
+function order_detail($order_sn,$stauts){
     
     /* 查询订单信息 */
     $sql = "SELECT oi.order_sn,u.user_name,oi.add_time,oi.consignee,oi.address,oi.mobile,oi.zipcode,oi.postscript ";
     
     $where = " WHERE oi.order_sn = '" . $order_sn . "' AND oi.user_id = u.user_id ";
     
-    /* 印刷厂未确认条件 */
-    $where = $where . " AND oi.order_status = '0' ";
+    /* 印刷厂条件 */
+    $where = $where . " AND oi.order_status = '".$stauts."' ";
     
     /* 查询 */
     $sql = $sql . " FROM " . 
