@@ -3,9 +3,10 @@
 {include file="pageheader.htm"}
 <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
 <link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
-{insert_scripts files="../js/utils.js,listtable.js"}
+{insert_scripts files="../js/utils.js,listtable.js,../js/json2.js"}
 
 {if $order_list_data}
+<form enctype="multipart/form-data" action="" method="post" name="theForm" >
 {foreach from=$order_list_data item=list}
 <h3 align="center">订单编号:{$list.order_sn}</h3>
 <table width="100%" cellspacing="0" cellpadding="3" border="1px">
@@ -31,7 +32,6 @@
       <td colspan="2">订单备注:{$list.postscript}</td>
     </tr>
   {/foreach}
-  
 {else}
     <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
 {/if}
@@ -46,16 +46,111 @@
         <th>商品数量</th>
         <th>电子稿文件</th>
       </tr>
-      <tr  align="center">
+      <tr align="center">
         <td>{$goods.goods_name}</td>
         <td>装订方式:{$goods.bind_type}&nbsp;材质:{$goods.material_type}&nbsp;尺寸:{$goods.goods_height}*{$goods.goods_width}&nbsp;页数:{$goods.goods_page_count}</td>
         <td>{$goods.goods_number}/本</td>
-        <td><a href="{goods.goods_url}">下载文件</a></td>
+        <input value="{$goods.goods_url}" type="hidden" name="goods_url"/>
+        <td><input type="button" name="act" class="button" value="下载文件" onclick="download_order()"/></td>
       </tr>
     </table>
-  {/foreach}
+  <div class="button-div">
+  {if $order_list_data}
+    {foreach from=$order_list_data item=list}
+    <input type="hidden" name="order_sn" value="{$list.order_sn}" />
+    <input type="button" value="打印订单" class="button" onclick="print_order()" />
+    <input type="button" value="确认订单" class="button" onclick="confirm()"/>
+    {/foreach}
+  {/if}
+  </div>
+  <input type="hidden" name="act" value="{$form_act}" />
+  {/foreach}  
+</form>
+  <p align="center">只有完成下载电子稿和打印订单才可以确认订单</p>
 {/if}
+<script>
+  
+function confirm()
+{
+  var order_sn  = document.forms['theForm'].elements['order_sn'].value;
+  // alert(order_sn);
+  var callback = function(res)
+  {
+    if (res.error > 0)
+    {
+      alert("{$lang.goods_sn_exists}");
+    }
+    else
+    {
+        // alert(res.result);
+        if(res.result == 'success')
+        {
+          alert('确认成功');
+          location.reload('print.php?act=unfinished_list');
+        }
+        else{
+          alert(res.result);
+        }
+    }
+  }
 
+  Ajax.call('print.php?is_ajax=1&act=confirm', "order_sn=" + order_sn, callback, "GET", "JSON");
+
+}
+  
+function print_order()
+{
+  var order_sn  = document.forms['theForm'].elements['order_sn'].value;
+  var callback = function(res)
+  {
+    if (res.error > 0)
+    {
+      alert("{$lang.goods_sn_exists}");
+    }
+    else
+    {
+        // alert("打印成功");
+        if(res.result == 'success')
+        {
+          alert('打印成功');
+        }
+    }
+  }
+
+  Ajax.call('print.php?is_ajax=1&act=print_order', "order_sn=" + order_sn, callback, "GET", "JSON");
+
+}
+
+function download_order()
+{
+  var goods_url  = document.forms['theForm'].elements['goods_url'].value;
+  var order_sn  = document.forms['theForm'].elements['order_sn'].value;
+  alert(order_sn);
+  var callback = function(res)
+  {
+    if (res.error > 0)
+    {
+      alert("{$lang.goods_sn_exists}");
+    }
+    else
+    {
+        // alert(res.result);
+        if(res.result == 'success')
+        {
+          alert('下载成功');
+          window.open(goods_url);
+        }
+        else
+        {
+          alert(res.result);
+        }
+    }
+  }
+
+  Ajax.call('print.php?is_ajax=1&act=download_order', "order_sn=" + order_sn, callback, "GET", "JSON");
+}
+
+</script>
 <script type="Text/Javascript" language="JavaScript">
 listTable.recordCount = {$record_count};
 listTable.pageCount = {$page_count};
@@ -63,7 +158,7 @@ listTable.pageCount = {$page_count};
 listTable.filter.{$key} = '{$item}';
 {/foreach}
 {literal}
-<!--
+
 onload = function()
 {
   // 开始检查订单

@@ -6,7 +6,6 @@
  * @license         Licensed under the Academic Free License 2.1 http://www.opensource.org/licenses/afl-2.1.php
  * @version         1.0.20070308
 **/
-
 var Transport =
 {
   /* *
@@ -405,7 +404,9 @@ var Transport =
         result = this.preFilter(xhr.responseText);
         try
         {
-          result = result.parseJSON();
+          //result = result.parseJSON();
+          console.log(result);
+          result = JSON.parse(result);
         }
         catch (ex)
         {
