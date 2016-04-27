@@ -1,0 +1,154 @@
+<!-- $Id: post_order.htm 15848 2009-04-24 07:07:13Z moonsea $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+{insert_scripts files="../js/utils.js,listtable.js,../js/json2.js"}
+
+{if $order_list_data}
+<form enctype="multipart/form-data" action="" method="post" name="theForm" >
+{foreach from=$order_list_data item=list}
+<h3 align="center">订单编号:{$list.order_sn}</h3>
+<table width="100%" cellspacing="0" cellpadding="3" border="1px">
+    <!--<tr align="center">
+      <th colspan="2">订单编号:{$list.order_sn}</th>
+    </tr>-->
+    <tr align="center">
+      <td>用户名:{$list.user_name}</td>
+      <td>下单时间:{$list.add_time}</td>
+    </tr>
+    </tr>
+    <tr align="center">
+      <td>收货人姓名:{$list.consignee}</td>
+      <td>收货地址:{$list.address}</td>
+    </tr>
+    </tr>
+    <tr align="center">
+      <td>收货人电话:{$list.mobile_phone}</td>
+      <td>邮政编码:{$list.zipcode}</td>
+    </tr>
+    </tr>
+    <tr align="center">
+      <td colspan="2">订单备注:{$list.postscript}</td>
+    </tr>
+  {/foreach}
+{else}
+    <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+{/if}
+</table>
+{if $goods_list_data}
+  <h3 align="center">商品信息</h3>
+  {foreach from=$goods_list_data item=goods}
+    <table width="100%" cellspacing="0" cellpadding="3" border="1">
+      <tr align="center">
+        <th>商品名称</th>
+        <th>商品规格</th>
+        <th>商品数量</th>
+      </tr>
+      <tr align="center">
+        <td>{$goods.goods_name}</td>
+        <td>装订方式:{$goods.bind_type}&nbsp;材质:{$goods.material_type}&nbsp;尺寸:{$goods.goods_height}*{$goods.goods_width}&nbsp;页数:{$goods.goods_page_count}</td>
+        <td>{$goods.goods_number}/本</td>
+      </tr>
+    </table>
+  <div class="button-div">
+  {if $order_list_data}
+    {foreach from=$order_list_data item=list}
+    <input type="hidden" name="order_sn" value="{$list.order_sn}" />
+    <br/><br/>
+    <input name="invoice_no" placeholder="输入快递单号" {if $order_status}disabled="disabled"{/if} {if $list.invoice_no} value="{$list.invoice_no}"{/if}/><br/><br/><br/>
+    {/foreach}
+    <input type="button" value="确认订单" class="button" onclick="confirm()" {if $order_status}style="display:none"{/if}/>
+  {/if}
+  </div>
+  {/foreach}  
+</form>
+  <p align="center">只有完成填写快递单号才可以确认订单</p>
+{/if}
+<script>
+  
+function confirm()
+{
+  var order_sn  = document.forms['theForm'].elements['order_sn'].value;
+  var invoice_no  = document.forms['theForm'].elements['invoice_no'].value;
+  
+  // alert(invoice_no);
+  if(invoice_no == null || invoice_no == "" || invoice_no == "输入快递单号")
+  {
+    alert("只有完成填写快递单号才可以确认订单!");
+    exit;
+  }
+  
+  // alert(order_sn);
+  var callback = function(res)
+  {
+    if (res.error > 0)
+    {
+      alert("{$lang.goods_sn_exists}");
+    }
+    else
+    {
+        // alert(res.result);
+        if(res.result == 'success')
+        {
+          alert('订单处理成功');
+          location.reload('post.php?act=unfinished_list');
+        }
+        else{
+          alert(res.result);
+        }
+    }
+  }
+
+  Ajax.call('post.php?is_ajax=1&act=confirm', "order_sn=" + order_sn +"&invoice_no="+ invoice_no, callback, "GET", "JSON");
+
+}
+
+</script>
+<script type="Text/Javascript" language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+  getDownUrl();
+}
+
+function getList()
+{
+    var frm =  document.forms['TimeInterval'];
+    listTable.filter['start_date'] = frm.elements['start_date'].value;
+    listTable.filter['end_date'] = frm.elements['end_date'].value;
+    listTable.filter['page'] = 1;
+    listTable.loadList();
+    getDownUrl();
+}
+
+function getDownUrl()
+{
+  var aTags = document.getElementsByTagName('A');
+  for (var i = 0; i < aTags.length; i++)
+  { 
+    if (aTags[i].href.indexOf('download') >= 0)
+    {
+      if (listTable.filter['start_date'] == "")
+      {
+        var frm =  document.forms['TimeInterval'];
+        listTable.filter['start_date'] = frm.elements['start_date'].value;
+        listTable.filter['end_date'] = frm.elements['end_date'].value;
+      }
+      aTags[i].href = "sale_list.php?act=download&start_date=" + listTable.filter['start_date'] + "&end_date=" + listTable.filter['end_date'];
+    }
+  }
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}

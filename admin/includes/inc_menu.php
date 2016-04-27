@@ -157,4 +157,9 @@ $modules['13_print']['01_unfinished']            	= 'print.php?act=unfinished_li
 $modules['13_print']['02_finished']         		= 'print.php?act=finished_list';
 $modules['13_print']['03_change_passwd']         	= 'print.php?act=change_pwd';
 
+// 邮政
+$modules['14_post']['01_unfinished']            	= 'post.php?act=unfinished_list';
+$modules['14_post']['02_finished']         		= 'post.php?act=finished_list';
+$modules['14_post']['03_change_passwd']         	= 'post.php?act=change_pwd';
+
 ?>

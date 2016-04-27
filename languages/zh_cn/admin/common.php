@@ -141,7 +141,7 @@ $_LANG['10_priv_admin'] = '权限管理';
 $_LANG['11_system'] = '系统设置';
 $_LANG['12_agent'] = '代理';
 $_LANG['13_print'] = '印刷厂';
-$_LANG['14_sms'] = '短信管理';
+$_LANG['14_post'] = '邮政';
 $_LANG['15_rec'] = '推荐管理';
 $_LANG['16_email_manage'] = '邮件群发管理';
 

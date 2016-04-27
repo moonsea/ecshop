@@ -1,0 +1,87 @@
+<!-- $Id: post_list.htm 15848 2009-04-24 07:07:13Z moonsea $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<form method="POST" action="" name="listForm">
+<div class="list-div" id="listDiv">
+{/if}
+  <table width="100%" cellspacing="1" cellpadding="3">
+     <tr>
+      <th>订单编号</th>
+      <th>用户名</th>
+      <th>收货人</th>
+      <th>下单时间</th>
+    </tr>
+  {foreach from=$order_list_data item=list}
+    <tr align="center">
+      <td><a href="post.php?act=order_datail&order_sn={$list.order_sn}&shipping_status={$list.shipping_status}">{$list.order_sn}</a></td>
+      <td>{$list.user_id}</td>
+      <td>{$list.consignee}</td>
+      <td>{$list.add_time}</a></td>
+    </tr>
+  {foreachelse}
+    <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+  </table>
+  <table id="page-table" cellspacing="0">
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+  </table>
+{if $full_page}
+</div>
+</form>
+
+<script type="Text/Javascript" language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+<!--
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+  getDownUrl();
+}
+
+function getList()
+{
+    var frm =  document.forms['TimeInterval'];
+    listTable.filter['start_date'] = frm.elements['start_date'].value;
+    listTable.filter['end_date'] = frm.elements['end_date'].value;
+    listTable.filter['page'] = 1;
+    listTable.loadList();
+    getDownUrl();
+}
+
+function getDownUrl()
+{
+  var aTags = document.getElementsByTagName('A');
+  for (var i = 0; i < aTags.length; i++)
+  { 
+    if (aTags[i].href.indexOf('download') >= 0)
+    {
+      if (listTable.filter['start_date'] == "")
+      {
+        var frm =  document.forms['TimeInterval'];
+        listTable.filter['start_date'] = frm.elements['start_date'].value;
+        listTable.filter['end_date'] = frm.elements['end_date'].value;
+      }
+      aTags[i].href = "sale_list.php?act=download&start_date=" + listTable.filter['start_date'] + "&end_date=" + listTable.filter['end_date'];
+    }
+  }
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}
