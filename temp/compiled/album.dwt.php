@@ -54,7 +54,7 @@
     </p>
     <p class="mt-40 mb-40">
         <span><a href="javascript:;" class="mylabel-666 f14" onclick="uploadImg()">上传照片</a></span>
-        <span><a href="goods.php" class="mylabel-900 f14">制作纪念册</a></span>
+        <span><a href="do.php?step=1&album=<?php echo $this->_var['album_id']; ?>" class="mylabel-900 f14">制作纪念册</a></span>
     </p>
 </center>
 <div class="liner"></div>
@@ -63,36 +63,50 @@
 
 	<div class="container mb-40">
     	<ul class="list-group">
+            <?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'item');$this->_foreach['list'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['list']['total'] > 0):
+    foreach ($_from AS $this->_var['item']):
+        $this->_foreach['list']['iteration']++;
+?>
         	<li class="list-unstyled mt-20 mb-20 text-center height-auto">
             	<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                 	<img src="<?php echo $this->_var['userimg']; ?>" class="img-responsive myborder img-circle"/>
-                    <!--
-                    <span class="f36 font2">18</span><br>
-                    <span class="f30 font2">3月</span>
-                    -->
+                    <span class="f36 font2 day">18</span><br>
+                    <span class="f30 font2 month">3月</span>
+                    <input type="hidden" name="time" value="<?php echo $this->_var['item']['time']; ?>"/>
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 height-auto" style="border-bottom:2px solid #ccc; padding-bottom:30px;" id="list">
-                <?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'picture');$this->_foreach['list'] = array('total' => count($_from), 'iteration' => 0);
-if ($this->_foreach['list']['total'] > 0):
-    foreach ($_from AS $this->_var['picture']):
-        $this->_foreach['list']['iteration']++;
+                <?php $_from = $this->_var['item']['image']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'pic');$this->_foreach['pic'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['pic']['total'] > 0):
+    foreach ($_from AS $this->_var['pic']):
+        $this->_foreach['pic']['iteration']++;
 ?>
-                	<?php if ($this->_foreach['list']['iteration'] < 5): ?>
-                	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-5 img" style="background:url(<?php echo $this->_var['prev']; ?>/<?php echo $this->_var['picture']['original']; ?>) center center no-repeat; background-size:cover; border:5px solid #fff;">
+                	<?php if ($this->_foreach['pic']['iteration'] < 5): ?>
+                	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-5 img" style="background:url(<?php echo $this->_var['prev']; ?>/<?php echo $this->_var['pic']['original']; ?>) center center no-repeat; background-size:cover; border:5px solid #fff;">
+                    	<div class="hover"></div>
                     </div>
                     <?php else: ?>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-5 img hide" style="background:url(<?php echo $this->_var['prev']; ?>/<?php echo $this->_var['picture']['original']; ?>) center center no-repeat; background-size:cover; border:5px solid #fff;">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-5 img hide" style="background:url(<?php echo $this->_var['prev']; ?>/<?php echo $this->_var['pic']['original']; ?>) center center no-repeat; background-size:cover; border:5px solid #fff;">
+                    	<div class="hover"></div>
                     </div>
                     <?php endif; ?>
                 <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 f16 f-gray" style="text-align:left">
-                    <?php echo $this->_var['username']; ?>：<?php echo $this->_var['mem_desc']; ?>
+                    <?php echo $this->_var['username']; ?>：<font class="desc"><?php echo $this->_var['item']['desc']; ?></font>
                 </div>
                 </div>
             </li>
+            <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
         </ul>
     </div>
 
+<script>
+	$().ready(function(e) {
+        $(".desc").each(function(index, element) {
+           $(this).html(decodeURI($(this).html())); 
+        });
+    });
+</script>
 
 <div class="gallery_back">
 	<div class="gallery_close" onclick="close_gallery()"><img src="img/close.png" width="24" height="24"/></div>
@@ -100,15 +114,21 @@ if ($this->_foreach['list']['total'] > 0):
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" onclick="gallery_pre()">
     			<img src="img/left.png" style="cursor:pointer;"/>
             </div>
-    	<?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'picture');$this->_foreach['list'] = array('total' => count($_from), 'iteration' => 0);
+            <?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'item');$this->_foreach['list'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['list']['total'] > 0):
-    foreach ($_from AS $this->_var['picture']):
+    foreach ($_from AS $this->_var['item']):
         $this->_foreach['list']['iteration']++;
 ?>
-        	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 img-list">
-        		<img src="<?php echo $this->_var['prev']; ?>/<?php echo $this->_var['picture']['original']; ?>" class="img-responsive"/>
-            </div>
-        <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+            	<?php $_from = $this->_var['item']['image']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'pic');$this->_foreach['pic'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['pic']['total'] > 0):
+    foreach ($_from AS $this->_var['pic']):
+        $this->_foreach['pic']['iteration']++;
+?>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 img-list">
+                        <img src="<?php echo $this->_var['prev']; ?>/<?php echo $this->_var['pic']['original']; ?>" class="img-responsive"/>
+                    </div>
+                <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+            <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
         	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" onclick="gallery_next()">
         		<img src="img/right.png" style="cursor:pointer;"/>
             </div>
@@ -145,20 +165,8 @@ if ($this->_foreach['list']['total'] > 0):
 	var publish_id = "";
 	var upload_ok = Array();
 	var key = Array();
+	var current = 1;
 	$().ready(function(e) {
-		
-		$.ajax({
-			url:"http://app.itimepost.com/homealbum",
-			dataType:"jsonp",
-			type:"POST",
-			data:{
-					album_id:<?php echo $this->_var['album_id']; ?>,type:0,token:"<?php echo $this->_var['token']; ?>"
-				},
-			success:function(data){console.log(data);},
-			error: function(e1,e2,e3){console.log(e1)}
-			});
-		
-		
 		
 		num=0;
 		total=0;
@@ -167,27 +175,49 @@ if ($this->_foreach['list']['total'] > 0):
 			num++;
 			total++;
         });
-		var temp = "<div class='hover' onclick='gallery()'><img src='img/right.png' width='21' height='38'/>&nbsp;&nbsp;";
-		if(num>4)
-		{
-			temp += num-4;
-		}
-		temp += "</div>";
-		if(num>4)
-		{
-			num = 4; 
-		}
-		$("#list div.img:nth-child("+num+")").html(temp);
+		
+		$(".list-group li").each(function(index, element) {
+         	num_temp = 0;
+			$(this).find(".img").each(function(index, element) {
+                num_temp++;
+            });
+			var temp = "<div class='hover'><img src='img/right.png' width='21' height='38'/>&nbsp;&nbsp;";
+			if(num_temp>4)
+			{
+				temp += num_temp-4;
+			}
+			temp += "</div>";
+			if(num_temp>4)
+			{
+				num_temp = 4;
+				$(this).find(".img:nth-child("+num_temp+")").html(temp); 
+			}	   
+        });
+		
+		//.img click event
+		$("#list .img").each(function(index, element) {
+            $(this).click(function(e) {
+                gallery(index);
+            });
+        });
 		//init gallery
-		$(".gallery div.img-list").each(function(index, element) {
-            if(index!=(num-1))
+		$(".img-list").each(function(index, element) {
+            if(index != current)
 			{
 				$(this).hide();
 			}
         });
-		current = num-1;
 		//init img height
 		$(".gallery img").css("max-height",$(window).height()-20);
+		//init time
+		$("input[name='time']").each(function(index, element) {
+            var t = $(this).val()*1000;
+			var d = new Date(t);
+			var day = d.getDate();
+			var month = d.getMonth()+1;
+			$(this).parent().find(".day").html(day);
+			$(this).parent().find(".month").html(month+"月");
+        });
 		//get qiniu uptoken
 		get_uptoken();
     });
@@ -206,12 +236,24 @@ if ($this->_foreach['list']['total'] > 0):
 			error:function(e1,e2,e3){alert(e1.status);}	
 		});
 	}
-	function gallery()
+	
+	function gallery(i)
 	{
 		$("body").css("overflow","hidden");
 		$(".gallery_back").css("top",$(document).scrollTop());
 		$(".gallery_back").css("height",$(window).height());
 		$(".gallery_back").show();
+		current = i;
+		$(".gallery .img-list").each(function(index, element) {
+            if(index != current)
+			{
+				$(this).hide();
+			}
+			else
+			{
+				$(this).fadeIn(600);
+			}
+        });		
 		set_center();
 		//current = 3;
 	}
@@ -221,10 +263,14 @@ if ($this->_foreach['list']['total'] > 0):
 		{
 			current--;
 			$(".gallery div.img-list").each(function(index, element) {
-                $(this).hide();
+                
 				if(index == current)
 				{
 					$(this).fadeIn(600);
+				}
+				else
+				{
+					$(this).hide();
 				}
             });
 		}
@@ -241,13 +287,19 @@ if ($this->_foreach['list']['total'] > 0):
 		{
 			current++;
 			$(".gallery div.img-list").each(function(index, element) {
-                $(this).hide();
+                if(index != current)
+				{
+					$(this).hide();
+				}
+				else
+				{
+					$(this).fadeIn(600);
+				}
             });
-			$(".gallery div.img-list:nth-child("+current+")").fadeIn(600);
 		}
 		else
 		{
-			current = 1;
+			current = -1;
 			gallery_next();
 		}
 		set_center();
@@ -426,8 +478,7 @@ if ($this->_foreach['list']['total'] > 0):
 			data:{
 				album_id:<?php echo $this->_var['album_id']; ?>,
 				publish_id:publish_id,
-				desc:$("#desc").val(),
-				area:"PC PC PC",
+				desc:encodeURI($("#desc").val()),
 				longitude:"0",
 				latitude:"0",
 				device:2,

@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/fonts.css" rel="stylesheet">
+<link href="css/animation.css" rel="stylesheet">
+<link href="css/photo-list.css" rel="stylesheet">
+{insert_scripts files='jquery.min.js,bootstrap.min.js,plupload.full.min.js,qiniu.js'}
+<style>
+.lit{cursor:pointer;}
+.list{padding-left:0;}
+.list:hover{cursor:pointer; background:#fdfdfd; padding-left:0;};
+#sub-nav ul{display:block; margin:0 auto; list-style:none; height:40px; line-height:40px;}
+#sub-nav ul li{display:block; margin:0; padding:8px 2em; text-align:center; float:left; border-radius:2em;}
+#sub-nav ul li.active,#sub-nav ul li:hover{background:#F30;}
+#sub-nav ul li.active a,#sub-nav ul li:hover a{color:#fff; background:none;}
+a,a:hover,a:active,a:focus,a:visited{text-decoration:none;}
+.img{cursor:pointer;}
+/*gallery*/
+.gallery_back{position:absolute; left:0; right:0; top:0; bottom:0; background:rgba(0,0,0,0.7); z-index:100; display:none;}
+.gallery{overflow:auto; margin:0 auto;}
+.gallery img{max-height:100%; margin:0 auto; display:block;}
+.gallery_close{position:absolute; top:10px; right:10px; cursor:pointer;}
+.go{width:200px; height:40px; line-height:40px; text-align:center; background:#f30; color:#fff; display:block; margin:0 auto; margin-top:30px; border-radius:2em;}
+.go:hover{color:#fff;}
+</style>
+
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="container">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-40" style="text-align:center;">
+    	第二步<font class="f24">&nbsp;选择模板</font>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-40" id="sub-nav">
+    	<ul>
+        {foreach from=$categories name=nav item=nav}
+			<li {if $category eq $nav.id}class="active"{/if}>
+            	<a href="do.php?step=2&album={$album_id}&category={$nav.id}">{$nav.name}</a>
+            </li>            
+        {/foreach}
+    	</ul>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-40">
+    	{foreach from=$list name=list item=data}
+        	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-40" style="text-align:center;">
+            	<img src="{$data.preview}" data="tid={$data.tid}&pid={$data.pid}" class="img-responsive img" width="100%" onclick="gallery(this)"/>
+                <br />
+                <p>{$data.name}</p>
+            </div>
+        {/foreach}
+    </div>
+    
+</div>
+
+<ul class="pager">
+	<!--{foreach from=$pages item=item}-->
+      <!-- {if $current_page eq $item} -->
+      <li class="active"><a href="javascript:;">{$item}</a></li>
+      <!-- {else} -->
+      <li><a href="do.php?step=2&album={$album_id}&page={$item}&category={$category}">{$item}</a></li>
+      <!-- {/if} -->
+    <!--{/foreach}-->
+</ul>
+
+
+<!-- gallery s -->
+<div class="gallery_back">
+	<div class="gallery_close" onclick="close_gallery()"><img src="img/close.png" width="24" height="24"/></div>
+	<div class="gallery">
+    		<img src="" class="img-responsive" id="g-img" style="max-width:800px;"/>
+            <a class="go" href="yzldiywww/yzldiy/builder.swf?album_id={$album_id}&username={$username}&token={$token}&">
+            使用模板
+            </a>
+    </div>
+</div>
+<!-- gallery e -->
+
+
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->     
+     
+     
+</body>
+
+<script type="text/javascript">
+	
+	
+	
+	function gallery(e)
+	{
+		$("body").css("overflow","hidden");
+		$(".gallery_back").css("top",$(document).scrollTop());
+		$(".gallery_back").css("height",$(window).height());
+		$(".gallery_back").show();
+		var src = $(e).attr("src");
+		$("#g-img").attr("src",src);
+		var href = $(".go").attr("href");
+		href += $(e).attr("data");
+		$(".go").attr("href",href);
+		set_center();
+	}
+	function set_center()
+	{
+		var back_height = $(".gallery_back").height();
+		var height = $(".gallery").height();
+		$(".gallery").css("margin-top",(back_height-height)/2);
+		$(".gallery div:first-child").css("margin-top",(height-$(".gallery div:first-child").height())/2);
+		$(".gallery div:last-child").css("margin-top",(height-$(".gallery div:first-child").height())/2);
+	}
+	function close_gallery()
+	{
+		$("body").css("overflow","");
+		$(".gallery_back").hide();
+	}
+</script>
+
+</html>

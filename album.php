@@ -21,7 +21,7 @@ $smarty->assign('token',$token);
 $smarty->assign('userimg',$userimg);
 
 $url = "http://app.itimepost.com/homealbum";
-$post_data = array("album_id"=>$album_id,"type"=>1,"token"=>$token);
+$post_data = array("album_id"=>$album_id,"type"=>0,"token"=>$token);
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -33,7 +33,7 @@ $output = json_decode($output,true);
 $cover = $output["data"]["album_info"]["img"];
 $name = $output["data"]["album_info"]["album_name"];
 $desc = $output["data"]["album_info"]["album_desc"];
-$list = $output["data"]["image_list"];
+$list = $output["data"]["publish_list"];
 $mem_desc = $output["data"]["album_info"]["member_desc"];
 $token = $_COOKIE['token'];
 

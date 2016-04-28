@@ -226,6 +226,10 @@ a:hover
 	height:auto;
 	overflow:auto;
 }
+li.active a
+{
+	background:#eee;
+}
 
 
 

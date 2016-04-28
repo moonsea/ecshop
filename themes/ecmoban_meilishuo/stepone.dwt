@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/fonts.css" rel="stylesheet">
+<link href="css/animation.css" rel="stylesheet">
+<link href="css/photo-list.css" rel="stylesheet">
+{insert_scripts files='jquery.min.js,bootstrap.min.js,json2.js,plupload.full.min.js,qiniu.js,transport.js'}
+<style>
+.lit{cursor:pointer;}
+.list{padding-left:0;}
+.list:hover{cursor:pointer; background:#fdfdfd; padding-left:0;};
+</style>
+
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="container">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-40" style="text-align:center;">
+    	第一步<font class="f24">&nbsp;选择规格</font>
+    </div>
+    {foreach from=$list name=list item=item}
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-40 list">
+    	<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6" style="padding-left:0;">
+        	<img src="{$item.goods_img}" class="img-responsive big" width="100%"/>
+            {foreach from=$item.pictures name=pic item=pic}
+                {if $smarty.foreach.pic.iteration<5}
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding:0; border:1px solid #ccc;">
+                        <img src="{$pic.img_url}" class="img-responsive lit" width="100%"/>
+                    </div>
+                {/if}
+            {/foreach}
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-6 col-xs-6" style="padding-left:50px;">
+        	<h3>{$item.goods_name}</h3><br />
+            <p class="f14">{$item.goods_brief}</p><br /><br />
+            <p>尺寸:暂缺字段</p><br />
+            <p>内页:暂缺字段</p><br />
+            <p>装订:暂缺字段</p><br />
+            <p>页数:暂缺字段</p><br />
+            <h3 class="pull-left">￥{$item.shop_price}</h3>
+            <span style="float:left; margin-left:160px; margin-top:30px;">
+            	<a href="javascript:;" data="do.php?step=2&album={$album_id}&id={$item.goods_id}" class="mylabel-900 f14" onclick="addToCart({$item.goods_id},this)">开始制作</a>
+            </span>
+        </div>
+    </div>
+    {/foreach}
+</div>
+
+<ul class="pager">
+	<!--{foreach from=$pages item=item}-->
+      <!-- {if $current_page eq $item} -->
+      <li class="active"><a href="javascript:;">{$item}</a></li>
+      <!-- {else} -->
+      <li><a href="do.php?step=1&album={$album_id}&page={$item}">{$item}</a></li>
+      <!-- {/if} -->
+    <!--{/foreach}-->
+</ul>
+
+
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->     
+     
+     
+</body>
+
+<script type="text/javascript">
+	$().ready(function(e) {
+        $(".lit").each(function(index, element) {
+            $(this).height($(this).width());
+			$(this).click(function(e) {
+                $(this).parent().parent().find(".big").attr("src",$(this).attr("src"));
+            });
+        });
+    });
+	
+	function addToCart(goodsId,e)
+	{
+		href = $(e).attr("data");
+		var goods        = new Object();
+		var spec_arr     = new Array();
+		var fittings_arr = new Array();
+		var number       = 1;
+		var formBuy      = document.forms['ECS_FORMBUY'];
+		var quick		   = 0;
+		
+		// 检查是否有商品规格 
+		if (formBuy)
+		{
+		spec_arr = getSelectedAttributes(formBuy);
+		
+		if (formBuy.elements['number'])
+		{
+		  number = formBuy.elements['number'].value;
+		}
+		
+		quick = 1;
+		}
+		
+		goods.quick    = quick;
+		goods.spec     = spec_arr;
+		goods.goods_id = goodsId;
+		goods.number   = number;
+		goods.parent   = (typeof(parentId) == "undefined") ? 0 : parseInt(parentId);
+		
+		Ajax.call('flow.php?step=add_to_cart', 'goods=' + JSON.stringify(goods), addToCartResponse, 'POST', 'JSON');
+	}
+	function addToCartResponse(result)
+	{
+	  if (result.error > 0)
+	  {
+		// 如果需要缺货登记，跳转
+		if (result.error == 2)
+		{
+		  if (confirm(result.message))
+		  {
+			location.href = 'user.php?act=add_booking&id=' + result.goods_id + '&spec=' + result.product_spec;
+		  }
+		}
+		// 没选规格，弹出属性选择框
+		else if (result.error == 6)
+		{
+		  openSpeDiv(result.message, result.goods_id, result.parent);
+		}
+		else
+		{
+		  alert(result.message);
+		}
+	  }
+	  else
+	  {
+		location.href = href;
+	  }
+	}
+	
+</script>
+
+</html>
