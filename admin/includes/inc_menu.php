@@ -48,14 +48,14 @@ $modules['02_cat_and_goods']['11_goods_trash']      = 'goods.php?act=trash';    
 // $modules['03_promotion']['13_wholesale']            = 'wholesale.php?act=list';
 // $modules['03_promotion']['14_package_list']         = 'package.php?act=list';
 // $modules['03_promotion']['ebao_commend']            = 'ebao_commend.php?act=list';
-$modules['03_promotion']['15_exchange_goods']       = 'exchange_goods.php?act=list';
+// $modules['03_promotion']['15_exchange_goods']       = 'exchange_goods.php?act=list';
 
 
 $modules['04_order']['02_order_list']               = 'order.php?act=list';
 $modules['04_order']['03_order_query']              = 'order.php?act=order_query';
-$modules['04_order']['04_merge_order']              = 'order.php?act=merge';
+// $modules['04_order']['04_merge_order']              = 'order.php?act=merge';
 $modules['04_order']['05_edit_order_print']         = 'order.php?act=templates';
-$modules['04_order']['06_undispose_booking']        = 'goods_booking.php?act=list_all';
+// $modules['04_order']['06_undispose_booking']        = 'goods_booking.php?act=list_all';
 //$modules['04_order']['07_repay_application']        = 'repay.php?act=list_all';
 $modules['04_order']['08_add_order']                = 'order.php?act=add';
 $modules['04_order']['09_delivery_order']           = 'order.php?act=delivery_list';
@@ -65,56 +65,56 @@ $modules['04_order']['10_back_order']               = 'order.php?act=back_list';
 // $modules['05_banner']['ad_list']                    = 'ads.php?act=list';
 
 $modules['06_stats']['flow_stats']                  = 'flow_stats.php?act=view';
-$modules['06_stats']['searchengine_stats']          = 'searchengine_stats.php?act=view';
-$modules['06_stats']['z_clicks_stats']              = 'adsense.php?act=list';
+// $modules['06_stats']['searchengine_stats']          = 'searchengine_stats.php?act=view';
+// $modules['06_stats']['z_clicks_stats']              = 'adsense.php?act=list';
 $modules['06_stats']['report_guest']                = 'guest_stats.php?act=list';
 $modules['06_stats']['report_order']                = 'order_stats.php?act=list';
-$modules['06_stats']['report_sell']                 = 'sale_general.php?act=list';
-$modules['06_stats']['sale_list']                   = 'sale_list.php?act=list';
-$modules['06_stats']['sell_stats']                  = 'sale_order.php?act=goods_num';
-$modules['06_stats']['report_users']                = 'users_order.php?act=order_num';
-$modules['06_stats']['visit_buy_per']               = 'visit_sold.php?act=list';
+// $modules['06_stats']['report_sell']                 = 'sale_general.php?act=list';
+// $modules['06_stats']['sale_list']                   = 'sale_list.php?act=list';
+// $modules['06_stats']['sell_stats']                  = 'sale_order.php?act=goods_num';
+// $modules['06_stats']['report_users']                = 'users_order.php?act=order_num';
+// $modules['06_stats']['visit_buy_per']               = 'visit_sold.php?act=list';
 
-$modules['07_content']['03_article_list']           = 'article.php?act=list';
-$modules['07_content']['02_articlecat_list']        = 'articlecat.php?act=list';
-$modules['07_content']['vote_list']                 = 'vote.php?act=list';
-$modules['07_content']['article_auto']              = 'article_auto.php?act=list';
+// $modules['07_content']['03_article_list']           = 'article.php?act=list';
+// $modules['07_content']['02_articlecat_list']        = 'articlecat.php?act=list';
+// $modules['07_content']['vote_list']                 = 'vote.php?act=list';
+// $modules['07_content']['article_auto']              = 'article_auto.php?act=list';
 //$modules['07_content']['shop_help']                 = 'shophelp.php?act=list_cat';
 //$modules['07_content']['shop_info']                 = 'shopinfo.php?act=list';
 
 
-$modules['08_members']['03_users_list']             = 'users.php?act=list';
-$modules['08_members']['04_users_add']              = 'users.php?act=add';
-$modules['08_members']['05_user_rank_list']         = 'user_rank.php?act=list';
+// $modules['08_members']['03_users_list']             = 'users.php?act=list';
+// $modules['08_members']['04_users_add']              = 'users.php?act=add';
+// $modules['08_members']['05_user_rank_list']         = 'user_rank.php?act=list';
 // $modules['08_members']['06_list_integrate']         = 'integrate.php?act=list';
-$modules['08_members']['08_unreply_msg']            = 'user_msg.php?act=list_all';
-$modules['08_members']['09_user_account']           = 'user_account.php?act=list';
-$modules['08_members']['10_user_account_manage']    = 'user_account_manage.php?act=list';
+// $modules['08_members']['08_unreply_msg']            = 'user_msg.php?act=list_all';
+// $modules['08_members']['09_user_account']           = 'user_account.php?act=list';
+// $modules['08_members']['10_user_account_manage']    = 'user_account_manage.php?act=list';
 
 $modules['10_priv_admin']['admin_logs']             = 'admin_logs.php?act=list';
 $modules['10_priv_admin']['admin_list']             = 'privilege.php?act=list';
-$modules['10_priv_admin']['admin_role']             = 'role.php?act=list';
-$modules['10_priv_admin']['agency_list']            = 'agency.php?act=list';
-$modules['10_priv_admin']['suppliers_list']         = 'suppliers.php?act=list'; // 供货商
+// $modules['10_priv_admin']['admin_role']             = 'role.php?act=list';
+// $modules['10_priv_admin']['agency_list']            = 'agency.php?act=list';
+// $modules['10_priv_admin']['suppliers_list']         = 'suppliers.php?act=list'; // 供货商
 
-$modules['11_system']['01_shop_config']             = 'shop_config.php?act=list_edit';
-$modules['11_system']['shop_authorized']             = 'license.php?act=list_edit';
-$modules['11_system']['02_payment_list']            = 'payment.php?act=list';
-$modules['11_system']['03_shipping_list']           = 'shipping.php?act=list';
-$modules['11_system']['04_mail_settings']           = 'shop_config.php?act=mail_settings';
-$modules['11_system']['05_area_list']               = 'area_manage.php?act=list';
+// $modules['11_system']['01_shop_config']             = 'shop_config.php?act=list_edit';
+// $modules['11_system']['shop_authorized']             = 'license.php?act=list_edit';
+// $modules['11_system']['02_payment_list']            = 'payment.php?act=list';
+// $modules['11_system']['03_shipping_list']           = 'shipping.php?act=list';
+// $modules['11_system']['04_mail_settings']           = 'shop_config.php?act=mail_settings';
+// $modules['11_system']['05_area_list']               = 'area_manage.php?act=list';
 //$modules['11_system']['06_plugins']                 = 'plugins.php?act=list';
-$modules['11_system']['07_cron_schcron']            = 'cron.php?act=list';
-$modules['11_system']['08_friendlink_list']         = 'friend_link.php?act=list';
-$modules['11_system']['sitemap']                    = 'sitemap.php';
-$modules['11_system']['check_file_priv']            = 'check_file_priv.php?act=check';
-$modules['11_system']['captcha_manage']             = 'captcha_manage.php?act=main';
-$modules['11_system']['ucenter_setup']              = 'integrate.php?act=setup&code=ucenter';
-$modules['11_system']['flashplay']                  = 'flashplay.php?act=list';
-$modules['11_system']['navigator']                  = 'navigator.php?act=list';
-$modules['11_system']['file_check']                 = 'filecheck.php';
+// $modules['11_system']['07_cron_schcron']            = 'cron.php?act=list';
+// $modules['11_system']['08_friendlink_list']         = 'friend_link.php?act=list';
+// $modules['11_system']['sitemap']                    = 'sitemap.php';
+// $modules['11_system']['check_file_priv']            = 'check_file_priv.php?act=check';
+// $modules['11_system']['captcha_manage']             = 'captcha_manage.php?act=main';
+// $modules['11_system']['ucenter_setup']              = 'integrate.php?act=setup&code=ucenter';
+// $modules['11_system']['flashplay']                  = 'flashplay.php?act=list';
+// $modules['11_system']['navigator']                  = 'navigator.php?act=list';
+// $modules['11_system']['file_check']                 = 'filecheck.php';
 //$modules['11_system']['fckfile_manage']             = 'fckfile_manage.php?act=list';
-$modules['11_system']['021_reg_fields']             = 'reg_fields.php?act=list';
+// $modules['11_system']['021_reg_fields']             = 'reg_fields.php?act=list';
 
 
 // $modules['12_template']['02_template_select']       = 'template.php?act=list';

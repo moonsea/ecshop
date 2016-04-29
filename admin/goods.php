@@ -42,7 +42,6 @@ if ($_REQUEST['act'] == 'list' || $_REQUEST['act'] == 'trash')
 
     $cat_id = empty($_REQUEST['cat_id']) ? 0 : intval($_REQUEST['cat_id']);
     $goods_bind_type = empty($_REQUEST['goods_bind_type']) ? 0 : intval($_REQUEST['goods_bind_type']);
-    echo $goods_bind_type;
     $code   = empty($_REQUEST['extension_code']) ? '' : trim($_REQUEST['extension_code']);
     $suppliers_id = isset($_REQUEST['suppliers_id']) ? (empty($_REQUEST['suppliers_id']) ? '' : trim($_REQUEST['suppliers_id'])) : '';
     $is_on_sale = isset($_REQUEST['is_on_sale']) ? ((empty($_REQUEST['is_on_sale']) && $_REQUEST['is_on_sale'] === 0) ? '' : trim($_REQUEST['is_on_sale'])) : '';
@@ -433,6 +432,7 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
 
     /* 模板赋值 */
     $smarty->assign('code',    $code);
+    $smarty->assign('info_act',  $is_add);
     $smarty->assign('ur_here', $is_add ? (empty($code) ? $_LANG['02_goods_add'] : $_LANG['51_virtual_card_add']) : ($_REQUEST['act'] == 'edit' ? $_LANG['edit_goods'] : $_LANG['copy_goods']));
     $smarty->assign('action_link', list_link($is_add, $code));
     $smarty->assign('goods', $goods);

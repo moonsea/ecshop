@@ -75,7 +75,6 @@ elseif($_REQUEST['act'] == 'finished_list')
     
     /* 查询 */
     $sale_list_data = get_sale_list('1');
-    
     /* 赋值到模板 */
     $smarty->assign('filter',       $sale_list_data['filter']);
     $smarty->assign('record_count', $sale_list_data['record_count']);

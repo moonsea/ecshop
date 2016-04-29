@@ -405,12 +405,12 @@ var Transport =
         result = this.preFilter(xhr.responseText);
         try
         {
-          //result = result.parseJSON();
-		  result = JSON.parse(result);
+          // result = result.parseJSON();
+		    result = JSON.parse(result);
         }
         catch (ex)
         {
-          throw this.filename + "/parseResult() error: can't parse to JSON.\n\n" + xhr.responseText;
+          // throw this.filename + "/parseResult() error: can't parse to JSON.\n\n" + xhr.responseText;
         }
         break;
       case "XML" :

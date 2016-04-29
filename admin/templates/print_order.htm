@@ -112,6 +112,7 @@ function print_order()
         // alert("打印成功");
         if(res.result == 'success')
         {
+          print();
           alert('打印成功');
         }
     }
@@ -125,7 +126,7 @@ function download_order()
 {
   var goods_url  = document.forms['theForm'].elements['goods_url'].value;
   var order_sn  = document.forms['theForm'].elements['order_sn'].value;
-  alert(order_sn);
+  // alert(order_sn);
   var callback = function(res)
   {
     if (res.error > 0)

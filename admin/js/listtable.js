@@ -156,6 +156,7 @@ listTable.gotoPage = function(page)
  */
 listTable.loadList = function()
 {
+  // alert("loadlist");
   var args = "act="+this.query+"" + this.compileFilter();
   // alert(args);
 
