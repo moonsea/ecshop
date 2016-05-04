@@ -26,7 +26,7 @@ $smarty->assign('lang', $_LANG);
 if($_REQUEST['act'] == 'unfinished_list')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    admin_priv('print_unfinished');
     /* 时间参数 */
     if (!isset($_REQUEST['start_date']))
     {
@@ -62,7 +62,7 @@ if($_REQUEST['act'] == 'unfinished_list')
 elseif($_REQUEST['act'] == 'finished_list')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    admin_priv('print_finished');
     /* 时间参数 */
     // if (!isset($_REQUEST['start_date']))
     // {
@@ -101,7 +101,7 @@ elseif($_REQUEST['act'] == 'finished_list')
 elseif($_REQUEST['act'] == 'order_datail')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    // admin_priv('sale_order_stats');
     
     $stauts = $_REQUEST['order_status'];
     /* 获取订单编号 */
@@ -148,7 +148,7 @@ elseif($_REQUEST['act'] == 'order_datail')
 elseif($_REQUEST['act'] == 'confirm')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    admin_priv('print_unfinished');
     
     $order_sn = isset($_GET['order_sn'])? $_GET['order_sn']:"0" ;
     
@@ -196,7 +196,7 @@ elseif($_REQUEST['act'] == 'confirm')
 elseif($_REQUEST['act'] == 'print_order')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    // admin_priv('sale_order_stats');
     
     $order_sn = isset($_GET['order_sn'])? $_GET['order_sn']:"" ;
     
@@ -215,7 +215,7 @@ elseif($_REQUEST['act'] == 'print_order')
 elseif($_REQUEST['act'] == 'download_order')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    // admin_priv('sale_order_stats');
     
     $order_sn = isset($_GET['order_sn'])? $_GET['order_sn']:"" ;
 
@@ -241,6 +241,9 @@ elseif($_REQUEST['act'] == 'download_order')
 /*------------------------------------------------------ */
 elseif ($_REQUEST['act'] == 'change_pwd')
 {
+    
+    /* 权限判断 */
+    admin_priv('print_change_passwd');
 
     $user_id = $_SESSION['admin_id'];
 

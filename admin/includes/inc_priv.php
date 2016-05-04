@@ -9,8 +9,8 @@
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
  * ============================================================================
- * $Author: sunxiaodong $
- * $Id: inc_priv.php 15503 2008-12-24 09:22:45Z sunxiaodong $
+ * $Author: moonsea $
+ * $Id: inc_priv.php 15503 2008-12-24 09:22:45Z moonsea $
 */
 
 if (!defined('IN_ECS'))
@@ -19,43 +19,45 @@ if (!defined('IN_ECS'))
 }
 
 //商品管理权限
-    $purview['01_goods_list']        = array('goods_manage', 'remove_back');
-    $purview['02_goods_add']         = 'goods_manage';
-    $purview['03_category_list']     = array('cat_manage', 'cat_drop');   //分类添加、分类转移和删除
-    $purview['05_comment_manage']    = 'comment_priv';
-    $purview['06_goods_brand_list']  = 'brand_manage';
-    $purview['08_goods_type']        = 'attr_manage';   //商品属性
+    $purview['01_goods_list']        = array('goods_manage', 'remove_back');//商品列表
+    $purview['02_goods_add']         = 'goods_manage';//添加商品
+    // $purview['03_category_list']     = array('cat_manage', 'cat_drop');   //分类添加、分类转移和删除
+    $purview['03_goods_bind_type']     = 'bind_type_manage';   // 管理装订类型
+    $purview['04_goods_inner_type']     = 'inner_type_manage';   //管理材质类型
+    // $purview['05_comment_manage']    = 'comment_priv';
+    // $purview['06_goods_brand_list']  = 'brand_manage';
+    // $purview['08_goods_type']        = 'attr_manage';   //商品属性
     $purview['11_goods_trash']       = array('goods_manage', 'remove_back');
-    $purview['12_batch_pic']         = 'picture_batch';
-    $purview['13_batch_add']         = 'goods_batch';
-    $purview['14_goods_export']      = 'goods_export';
-    $purview['15_batch_edit']        = 'goods_batch';
-    $purview['16_goods_script']      = 'gen_goods_script';
-    $purview['17_tag_manage']        = 'tag_manage';
-    $purview['50_virtual_card_list'] = 'virualcard';
-    $purview['51_virtual_card_add']  = 'virualcard';
-    $purview['52_virtual_card_change'] = 'virualcard';
-    $purview['goods_auto']           = 'goods_auto';
+    // $purview['12_batch_pic']         = 'picture_batch';
+    // $purview['13_batch_add']         = 'goods_batch';
+    // $purview['14_goods_export']      = 'goods_export';
+    // $purview['15_batch_edit']        = 'goods_batch';
+    // $purview['16_goods_script']      = 'gen_goods_script';
+    // $purview['17_tag_manage']        = 'tag_manage';
+    // $purview['50_virtual_card_list'] = 'virualcard';
+    // $purview['51_virtual_card_add']  = 'virualcard';
+    // $purview['52_virtual_card_change'] = 'virualcard';
+    // $purview['goods_auto']           = 'goods_auto';
 
-//促销管理权限
-    $purview['02_snatch_list']       = 'snatch_manage';
-    $purview['04_bonustype_list']    = 'bonus_manage';
-    $purview['06_pack_list']         = 'pack';
-    $purview['07_card_list']         = 'card_manage';
-    $purview['08_group_buy']         = 'group_by';
-    $purview['09_topic']             = 'topic_manage';
-    $purview['10_auction']           = 'auction';
-    $purview['12_favourable']        = 'favourable';
-    $purview['13_wholesale']         = 'whole_sale';
-    $purview['14_package_list']      = 'package_manage';
+// //促销管理权限
+//     $purview['02_snatch_list']       = 'snatch_manage';
+//     $purview['04_bonustype_list']    = 'bonus_manage';
+//     $purview['06_pack_list']         = 'pack';
+//     $purview['07_card_list']         = 'card_manage';
+//     $purview['08_group_buy']         = 'group_by';
+//     $purview['09_topic']             = 'topic_manage';
+//     $purview['10_auction']           = 'auction';
+//     $purview['12_favourable']        = 'favourable';
+//     $purview['13_wholesale']         = 'whole_sale';
+//     $purview['14_package_list']      = 'package_manage';
 //  $purview['02_snatch_list']       = 'gift_manage';  //赠品管理
-    $purview['15_exchange_goods']    = 'exchange_goods';  //赠品管理
+    // $purview['15_exchange_goods']    = 'exchange_goods';  //赠品管理
 
 //文章管理权限
-    $purview['02_articlecat_list']   = 'article_cat';
-    $purview['03_article_list']      = 'article_manage';
-    $purview['article_auto']         = 'article_auto';
-    $purview['vote_list']            = 'vote_priv';
+    // $purview['02_articlecat_list']   = 'article_cat';
+    // $purview['03_article_list']      = 'article_manage';
+    // $purview['article_auto']         = 'article_auto';
+    // $purview['vote_list']            = 'vote_priv';
 
 //会员管理权限
     $purview['03_users_list']        = 'users_manage';
@@ -154,5 +156,19 @@ if (!defined('IN_ECS'))
     $purview['01_statistics']       = 'agent_statistics';
     $purview['02_personal_info']    = 'agent_personal_info';
     $purview['03_change_passwd']    = 'agent_change_passwd';
+
+// 印刷厂
+    $purview['01_print_unfinished']       = 'print_unfinished';
+    $purview['02_print_finished']         = 'print_finished';
+    $purview['03_print_change_passwd']    = 'print_change_passwd';
+
+// 邮政
+    $purview['01_post_unfinished']       = 'post_unfinished';
+    $purview['02_post_finished']         = 'post_finished';
+    $purview['03_post_change_passwd']    = 'post_change_passwd';
+
+// 模板管理
+    $purview['01_template_manage']      = 'template_manage';
+    $purview['02_template_category']    = 'template_category';
 
 ?>

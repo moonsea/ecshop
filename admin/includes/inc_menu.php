@@ -20,8 +20,8 @@ if (!defined('IN_ECS'))
 
 $modules['02_cat_and_goods']['01_goods_list']       = 'goods.php?act=list';         // 商品列表
 $modules['02_cat_and_goods']['02_goods_add']        = 'goods.php?act=add';          // 添加商品
-$modules['02_cat_and_goods']['03_goods_bind_type']     = 'bind.php?act=list';          // 添加商品
-$modules['02_cat_and_goods']['04_goods_inner_type']    = 'inner.php?act=list';          // 添加商品
+$modules['02_cat_and_goods']['03_goods_bind_type']     = 'bind.php?act=list';          // 管理装订类型
+$modules['02_cat_and_goods']['04_goods_inner_type']    = 'inner.php?act=list';          // 管理材质类型
 // $modules['02_cat_and_goods']['03_category_list']    = 'category.php?act=list';
 // $modules['02_cat_and_goods']['05_comment_manage']   = 'comment_manage.php?act=list';
 // $modules['02_cat_and_goods']['06_goods_brand_list'] = 'brand.php?act=list';
@@ -52,6 +52,9 @@ $modules['02_cat_and_goods']['11_goods_trash']         = 'goods.php?act=trash'; 
 // $modules['03_promotion']['ebao_commend']            = 'ebao_commend.php?act=list';
 // $modules['03_promotion']['15_exchange_goods']       = 'exchange_goods.php?act=list';
 
+
+$modules['03_template']['01_template_manage']          = 'template.php?act=list';
+$modules['03_template']['02_template_category']        = 'template_category.php?act=list';
 
 $modules['04_order']['02_order_list']               = 'order.php?act=list';
 $modules['04_order']['03_order_query']              = 'order.php?act=order_query';
@@ -155,13 +158,13 @@ $modules['12_agent']['02_personal_info']         	= 'agent.php?act=info';
 $modules['12_agent']['03_change_passwd']         	= 'agent.php?act=change_pwd';
 
 // 印刷厂
-$modules['13_print']['01_unfinished']            	= 'print.php?act=unfinished_list';
-$modules['13_print']['02_finished']         		= 'print.php?act=finished_list';
-$modules['13_print']['03_change_passwd']         	= 'print.php?act=change_pwd';
+$modules['13_print']['01_print_unfinished']            	= 'print.php?act=unfinished_list';
+$modules['13_print']['02_print_finished']         		= 'print.php?act=finished_list';
+$modules['13_print']['03_print_change_passwd']         	= 'print.php?act=change_pwd';
 
 // 邮政
-$modules['14_post']['01_unfinished']            	= 'post.php?act=unfinished_list';
-$modules['14_post']['02_finished']         		= 'post.php?act=finished_list';
-$modules['14_post']['03_change_passwd']         	= 'post.php?act=change_pwd';
+$modules['14_post']['01_post_unfinished']            	= 'post.php?act=unfinished_list';
+$modules['14_post']['02_post_finished']         		= 'post.php?act=finished_list';
+$modules['14_post']['03_post_change_passwd']         	= 'post.php?act=change_pwd';
 
 ?>

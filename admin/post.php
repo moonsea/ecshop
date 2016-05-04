@@ -26,7 +26,7 @@ $smarty->assign('lang', $_LANG);
 if($_REQUEST['act'] == 'unfinished_list')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    admin_priv('post_unfinished');
     /* 时间参数 */
     if (!isset($_REQUEST['start_date']))
     {
@@ -62,7 +62,7 @@ if($_REQUEST['act'] == 'unfinished_list')
 elseif($_REQUEST['act'] == 'finished_list')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    admin_priv('post_finished');
     /* 时间参数 */
     // if (!isset($_REQUEST['start_date']))
     // {
@@ -100,7 +100,7 @@ elseif($_REQUEST['act'] == 'finished_list')
 elseif($_REQUEST['act'] == 'order_datail')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    // admin_priv('sale_order_stats');
     
     $stauts = $_REQUEST['shipping_status'];
     /* 获取订单编号 */
@@ -147,7 +147,7 @@ elseif($_REQUEST['act'] == 'order_datail')
 elseif($_REQUEST['act'] == 'confirm')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    admin_priv('post_unfinished');
     
     $a = array();
     
@@ -182,7 +182,7 @@ elseif($_REQUEST['act'] == 'confirm')
 elseif ($_REQUEST['act'] == 'change_pwd')
 {
 
-    $user_id = $_SESSION['admin_id'];
+    $user_id = $_SESSION['post_change_passwd'];
 
     /* 获取管理员信息 */
     $sql = "SELECT * FROM " .$ecs->table('admin_user').
@@ -274,7 +274,7 @@ elseif ($_REQUEST['act'] == 'change_passwd' || $_REQUEST['act'] == 'change_info'
    
    $db->query($sql);
    /* 记录管理员操作 */
-   admin_log($_POST['user_name'], 'change_info', 'agent');
+   admin_log($_POST['user_name'], 'change_info', 'post');
 
    /* 如果修改了密码，则需要将session中该管理员的数据清空 */
    if ($pwd_modified && $_REQUEST['act'] == 'change_passwd')

@@ -74,7 +74,7 @@ if (isset($_REQUEST['act']) && ($_REQUEST['act'] == 'query' ||  $_REQUEST['act']
 elseif($_REQUEST['act'] == 'list')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    admin_priv('agent_statistics');
     /* 时间参数 */
     if (!isset($_REQUEST['start_date']))
     {
@@ -124,7 +124,7 @@ elseif($_REQUEST['act'] == 'list')
 elseif($_REQUEST['act'] == 'detail_day')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    admin_priv('agent_statistics');
     
     /* 按日或周或月查询订单信息 */
     if (isset($_REQUEST['day_num']))
@@ -163,7 +163,7 @@ elseif($_REQUEST['act'] == 'detail_day')
 elseif($_REQUEST['act'] == 'detail_week')
 {
     /* 权限判断 */
-    admin_priv('sale_order_stats');
+    admin_priv('agent_statistics');
     
     $week_num = isset($_REQUEST['week_num'])? $_REQUEST['week_num']:"0" ;
     $month_num = isset($_REQUEST['month_num'])? $_REQUEST['month_num']:"0" ;
@@ -255,6 +255,9 @@ elseif($_REQUEST['act'] == 'detail_week')
 /*------------------------------------------------------ */
 elseif ($_REQUEST['act'] == 'change_pwd')
 {
+    
+    /* 权限判断 */
+    admin_priv('agent_change_passwd');
 
     $user_id = $_SESSION['admin_id'];
 
@@ -285,6 +288,10 @@ elseif ($_REQUEST['act'] == 'change_pwd')
 elseif ($_REQUEST['act'] == 'change_passwd' || $_REQUEST['act'] == 'change_info')
 {
 
+
+    /* 权限判断 */
+    admin_priv('agent_personal_info');
+    
     /* 变量初始化 */
     $admin_id    = !empty($_REQUEST['id'])        ? intval($_REQUEST['id'])      : 0;
     $phone    = !empty($_REQUEST['phone'])        ? intval($_REQUEST['phone'])      : 0;

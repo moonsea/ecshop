@@ -131,6 +131,7 @@ $_LANG['kilogram'] = '千克';
 /* 菜单分类部分 */
 $_LANG['02_cat_and_goods'] = '商品管理';
 $_LANG['03_promotion'] = '促销管理';
+$_LANG['03_template'] = '模板管理';
 $_LANG['04_order'] = '订单管理';
 $_LANG['05_banner'] = '广告管理';
 $_LANG['06_stats'] = '报表统计';
@@ -302,8 +303,18 @@ $_LANG['02_personal_info'] = '个人资料';
 $_LANG['03_change_passwd'] = '修改密码';
 
 /* 印刷厂 */
-$_LANG['01_unfinished'] = '未处理';
-$_LANG['02_finished'] = '已处理';
+$_LANG['01_print_unfinished'] = '未处理';
+$_LANG['02_print_finished'] = '已处理';
+$_LANG['03_print_change_passwd'] = '修改密码';
+
+/* 邮政 */
+$_LANG['01_post_unfinished'] = '未处理';
+$_LANG['02_post_finished'] = '已处理';
+$_LANG['03_post_change_passwd'] = '修改密码';
+
+/* 模板管理 */
+$_LANG['01_template_manage'] = '模板管理';
+$_LANG['02_template_category'] = '模板分类';
 
 $_LANG['affiliate'] = '推荐设置';
 $_LANG['affiliate_ck'] = '分成管理';

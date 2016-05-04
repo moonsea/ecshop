@@ -14,20 +14,18 @@
 */
 /* 权限管理的一级分组 */
 $_LANG['goods'] = '商品管理';
-$_LANG['cms_manage'] = '文章管理';
-$_LANG['users_manage'] = '会员管理';
 $_LANG['priv_manage'] = '权限管理';
-$_LANG['sys_manage'] = '系统设置';
 $_LANG['order_manage'] = '订单管理';
-$_LANG['promotion'] = '促销管理';
-$_LANG['email'] = '邮件管理';
-$_LANG['templates_manage'] = '模板管理';
-$_LANG['db_manage'] = '数据库管理';
-$_LANG['sms_manage'] = '短信管理';
+$_LANG['template'] = '模板管理';
+$_LANG['agent'] = '代理';
+$_LANG['print'] = '印刷厂';
+$_LANG['post'] = '邮政';
 
 //商品管理部分的权限
 $_LANG['goods_manage'] = '商品添加/编辑';
 $_LANG['remove_back'] = '商品删除/恢复';
+$_LANG['bind_type_manage'] = '装订类型管理';
+$_LANG['inner_type_manage'] = '材质类型管理';
 $_LANG['cat_manage'] = '分类添加/编辑';
 $_LANG['cat_drop'] = '分类转移/删除';
 $_LANG['attr_manage'] = '商品属性管理';
@@ -43,6 +41,10 @@ $_LANG['goods_export'] = '商品批量导出';
 $_LANG['goods_batch'] = '商品批量上传/修改';
 $_LANG['gen_goods_script'] = '生成商品代码';
 $_LANG['suppliers_goods'] = '供货商商品管理';
+
+// 模板管理部分的权限
+$_LANG['template_manage'] = '模板管理';
+$_LANG['template_category'] = '模板分类管理';
 
 //文章管理部分的权限
 $_LANG['article_cat'] = '文章分类管理';
@@ -150,5 +152,20 @@ $_LANG['sms_send']        = '发送短信';
 $_LANG['sms_charge']      = '短信充值';
 $_LANG['send_history']    = '发送记录';
 $_LANG['charge_history']  = '充值记录 ';
+
+//代理管理
+$_LANG['agent_statistics']         = '表单统计';
+$_LANG['agent_personal_info']      = '个人资料';
+$_LANG['agent_change_passwd']      = '修改密码';
+
+//印刷厂管理
+$_LANG['print_unfinished']         = '未处理';
+$_LANG['print_finished']           = '已处理';
+$_LANG['print_change_passwd']      = '修改密码';
+
+//邮政管理
+$_LANG['post_unfinished']         = '未处理';
+$_LANG['post_finished']           = '已处理';
+$_LANG['post_change_passwd']      = '修改密码';
 
 ?>
