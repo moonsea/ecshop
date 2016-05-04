@@ -151,8 +151,8 @@
           <tr>
             <td class="label">内页</td>
             <td>
-            	<select name="goods_bind_type" onchange="hideCatDiv()">
-            	<!--{foreach from=$bind_type_list name=bind_type_list item=item}-->
+            	<select name="goods_inner_type" onchange="hideCatDiv()">
+            	<!--{foreach from=$inner_type_list name=inner_type_list item=item}-->
             	<option value="{$item.type_id}">{$item.type_name}</option>
                 <!--{/foreach}-->
                	</select>
@@ -409,7 +409,7 @@
           <!-- 合成图片格式 -->
           <tr>
               <td class="label">{$lang.lab_goods_composite_pic}</td>
-              <td><input type="radio" name="pic_is_zero" value="0" {if !$goods.goods_composite_pic}checked="checked"{/if} />{$lang.pic_is_zero} <input type="radio" name="is_zero" value="1" />{$lang.pic_is_not_zero}</td>
+              <td><input type="radio" name="pic_is_zero" value="0" {if !$goods.goods_composite_pic}checked="checked"{/if} />{$lang.pic_is_zero} <input type="radio" name="pic_is_zero" value="1" />{$lang.pic_is_not_zero}</td>
               </td>
           </tr>
           <!-- 灰度特效 -->
