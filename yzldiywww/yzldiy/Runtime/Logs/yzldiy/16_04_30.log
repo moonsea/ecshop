@@ -1,0 +1,99 @@
+[ 2016-04-30T12:09:09+08:00 ] 127.0.0.1 /yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.015625s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\phpStudy\WWW\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0938s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=2 ) LIMIT 1   [ RunTime:0.0156s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-04-30T12:09:10+08:00 ] 127.0.0.1 /yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\phpStudy\WWW\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-04-30T12:13:08+08:00 ] 127.0.0.1 /yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\phpStudy\WWW\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0000s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=2 ) LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-04-30T12:13:10+08:00 ] 127.0.0.1 /yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\phpStudy\WWW\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-04-30T12:14:21+08:00 ] 127.0.0.1 /yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\phpStudy\WWW\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0000s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=2 ) LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-04-30T12:14:59+08:00 ] 127.0.0.1 /yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.015625s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\phpStudy\WWW\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0000s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=2 ) LIMIT 1   [ RunTime:0.0156s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-04-30T12:15:00+08:00 ] 127.0.0.1 /yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\phpStudy\WWW\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+

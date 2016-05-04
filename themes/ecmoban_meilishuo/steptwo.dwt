@@ -52,7 +52,7 @@ a,a:hover,a:active,a:focus,a:visited{text-decoration:none;}
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-40">
     	{foreach from=$list name=list item=data}
         	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mb-40" style="text-align:center;">
-            	<img src="{$data.preview}" data="tid={$data.tid}&pid={$data.pid}" class="img-responsive img" width="100%" onclick="gallery(this)"/>
+            	<img src="{$data.preview}" data="tid={$data.tid}&pid={$data.pid}&goods_id={$goods_id}" class="img-responsive img" width="100%" onclick="gallery(this)"/>
                 <br />
                 <p>{$data.name}</p>
             </div>

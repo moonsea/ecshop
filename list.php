@@ -54,6 +54,7 @@ setcookie("prev",$img_prev,time()+3600);
 setcookie('token',$token,time()+3600);
 setcookie("userimg",$img_prev.'/'.$user_img,time()+3600);
 setcookie("username",$user_name,time()+3600);
+setcookie("userid",$mem_id,time()+3600);
 
 /*
  *Add By KingDragon

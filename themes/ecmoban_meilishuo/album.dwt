@@ -12,7 +12,7 @@
 <link href="css/fonts.css" rel="stylesheet">
 <link href="css/animation.css" rel="stylesheet">
 <link href="css/photo-list.css" rel="stylesheet">
-{insert_scripts files='jquery.min.js,bootstrap.min.js,plupload.full.min.js,qiniu.js'}
+{insert_scripts files='jquery.min.js,bootstrap.min.js,plupload.full.min.js,qiniu.js,json2.js'}
 <style>
 .img{position:relative;}
 .img .hover{display:none; position:absolute; left:0; top:0; bottom:0; right:0; background:rgba(0,0,0,0.3); text-align:center; color:#fff; padding-top:50%; font-size:16px;}

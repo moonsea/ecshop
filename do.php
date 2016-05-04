@@ -58,6 +58,17 @@ if($step == 1)//选择规格
 
 if($step == 2)
 {
+	//获取goods_id
+	if(isset($_GET['goods_id']))
+	{
+		$goods_id = intval(trim($_GET['goods_id']));
+		$smarty->assign("goods_id",$goods_id);
+	}
+	else
+	{
+		ecs_header("Location: ./\n");
+   		exit;
+	}
 	//查询所有的模板类别
 	$sql = "select * from ecs_product_category_yzldiy";
 	$res = $db->query($sql);

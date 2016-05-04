@@ -70,6 +70,12 @@
         </div>
     </div>
 <!-- footer e -->
+<form name="f" target="_self" action="list.php" method="post">
+	<input type="hidden" name="id" value=""/>
+    <input type="hidden" name="name" value=""/>
+    <input type="hidden" name="token" value=""/>
+    <input type="hidden" name="img" value=""/>
+</form>
 </body>
 <script>
 //取二维码链接
@@ -119,11 +125,24 @@ function checkLogin()
 		type:'POST',
 		dataType:"jsonp",
 		data:{"key":key},
-		success: function(data){0
-				console.log("key:"+key+";state:"+data.state);
+		success: function(data){
+				if(data.data.state==1 && typeof(data.data.user.id)!= 'undefined' )
+				{
+					//登录成功，记录信息
+					var id = data.data.user.id;
+					var token = data.data.user.token;
+					var img = data.data.user.img;
+					var name = data.data.user.username;
+					$("input[name='id']").val(id);
+					$("input[name='token']").val(token);
+					$("input[name='img']").val(img);
+					$("input[name='name']").val(name);
+					$("form[name='f']").submit();
+				}
 			},
 		error:function(data){alert("登陆失败"); clearInterval(interval);}	
 	});
 }
 </script>
+
 </html>

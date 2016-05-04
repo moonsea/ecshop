@@ -54,13 +54,51 @@ class SaveUserProductController extends Controller {
 		
 	}
 	
+	public function saveListStart()
+	{
+		$username = I('post.username');
+		$title = I('post.title');
+		$name = I('post.name');
+		$preview = I('post.preview');
+		
+		$upload_path = "./Uploads/userProductPreview/";
+		
+		$file_name = $upload_path.$name.".jpg";
+		file_put_contents($file_name,base64_decode($preview));
+		echo $file_name;
+	}
+	
+	
+	public function sizeImage()
+	{
+		//图片的等比缩放
+		$imageimage = I('post.img');
+		$imgstream = file_get_contents($image);
+		$im = imagecreatefromstring($imgstream);
+		$x = imagesx($im);
+		$y = imagesy($im);
+		
+		//放大200%,缩小雷同
+		$thumbw = $x*2; // 期望的目标图宽
+		$thumbh = $y*2; // 期望的目标图高
+		
+		if(function_exists("imagecreatetruecolor"))
+		  $dim = imagecreatetruecolor($thumbw, $thumbh); // 创建目标图gd2
+		else
+		  $dim = imagecreate($thumbw, $thumbh); // 创建目标图gd1
+		imagecopyresized ($dim,$im,0,0,0,0,$thumbw,$thumbh,$x,$y);
+		
+		header ("Content-type: image/jpeg");
+		imagejpeg ($dim);
+
+		echo "ok";
+	}
 	public function loadUserProduct($uid,$pid)
 	{
 		$model = M("userproduct_yzldiy");
 		$pid = I('pid');
 		$uid = I('uid');
 		$checkProduct = $model->field('info')->where(" status=1 and userId='".$uid."' and id=".$pid)->find();
-
 		if($checkProduct)
 		{
 			$this->show($checkProduct["info"],"utf-8","text/xml");

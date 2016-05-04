@@ -36,6 +36,8 @@ $desc = $output["data"]["album_info"]["album_desc"];
 $list = $output["data"]["publish_list"];
 $mem_desc = $output["data"]["album_info"]["member_desc"];
 $token = $_COOKIE['token'];
+//var_dump($output);
+//exit();
 
 $smarty->assign('cover',$cover);//相册封面
 $smarty->assign('name',$name);//相册名字

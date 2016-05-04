@@ -18,11 +18,11 @@ class FontController extends Controller {
 		
 		$color = I("color");
 		$size = I("size") * 0.8;
-		$font = "D:\\phpStudy\\WWW\\yzldiywww\\yzldiy\\assets\\font\\fs.ttf";
+		$font = "D:\\wamp\\PHPnow\\htdocs\\ecshop\\yzldiywww\\yzldiy\\assets\\font\\fs.ttf";
 		
-		if(file_exists("D:\\phpStudy\\WWW\\yzldiywww\\yzldiy\\assets\\font\\".I("font").'.ttf'))
+		if(file_exists("D:\\wamp\\PHPnow\\htdocs\\ecshop\\yzldiywww\\yzldiy\\assets\\font\\".I("font").'.ttf'))
 		{
-			$font = "D:\\phpStudy\\WWW\\yzldiywww\\yzldiy\\assets\\font\\".I("font").'.ttf';
+			$font = "D:\\wamp\\PHPnow\\htdocs\\ecshop\\yzldiywww\\yzldiy\\assets\\font\\".I("font").'.ttf';
 		}
 		$bold = I("bold");
 

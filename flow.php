@@ -31,6 +31,18 @@ if (!isset($_REQUEST['step']))
     $_REQUEST['step'] = "cart";
 }
 
+$prev = $_COOKIE['prev'];
+$token = $_COOKIE['token'];
+$userimg = $_COOKIE['userimg'];
+$username = $_COOKIE['username'];
+$userid = $_COOKIE['userid'];
+
+$smarty->assign('username',$username);
+$smarty->assign('prev',$prev);
+$smarty->assign('token',$token);
+$smarty->assign('userimg',$userimg);
+
+
 /*------------------------------------------------------ */
 //-- PROCESSOR
 /*------------------------------------------------------ */
@@ -52,6 +64,7 @@ $smarty->assign('data_dir',    DATA_DIR);       // 数据目录
 /*------------------------------------------------------ */
 if ($_REQUEST['step'] == 'add_to_cart')
 {
+	clear_cart();
     include_once('includes/cls_json.php');
     $_POST['goods']=strip_tags(urldecode($_POST['goods']));
     $_POST['goods'] = json_str_iconv($_POST['goods']);
@@ -1394,7 +1407,7 @@ elseif ($_REQUEST['step'] == 'done')
         'postscript'      => trim($_POST['postscript']),
         'how_oos'         => isset($_LANG['oos'][$_POST['how_oos']]) ? addslashes($_LANG['oos'][$_POST['how_oos']]) : '',
         'need_insure'     => isset($_POST['need_insure']) ? intval($_POST['need_insure']) : 0,
-        'user_id'         => $_SESSION['user_id'],
+        'user_id'         => $userid,
         'add_time'        => gmtime(),
         'order_status'    => OS_UNCONFIRMED,
         'shipping_status' => SS_UNSHIPPED,
