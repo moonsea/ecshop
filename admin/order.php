@@ -9,8 +9,8 @@
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
  * ============================================================================
- * $Author: yehuaixiao $
- * $Id: order.php 17219 2011-01-27 10:49:19Z yehuaixiao $
+ * $Author: moonsea $
+ * $Id: order.php 17219 2011-01-27 10:49:19Z moonsea $
  */
 
 define('IN_ECS', true);
@@ -132,25 +132,25 @@ elseif ($_REQUEST['act'] == 'info')
     }
 
     /* 根据订单是否完成检查权限 */
-    if (order_finished($order))
-    {
-        admin_priv('order_view_finished');
-    }
-    else
-    {
-        admin_priv('order_view');
-    }
+    // if (order_finished($order))
+    // {
+    //     admin_priv('order_view_finished');
+    // }
+    // else
+    // {
+    //     admin_priv('order_view');
+    // }
 
     /* 如果管理员属于某个办事处，检查该订单是否也属于这个办事处 */
-    $sql = "SELECT agency_id FROM " . $ecs->table('admin_user') . " WHERE user_id = '$_SESSION[admin_id]'";
-    $agency_id = $db->getOne($sql);
-    if ($agency_id > 0)
-    {
-        if ($order['agency_id'] != $agency_id)
-        {
-            sys_msg($_LANG['priv_error']);
-        }
-    }
+    // $sql = "SELECT agency_id FROM " . $ecs->table('admin_user') . " WHERE user_id = '$_SESSION[admin_id]'";
+    // $agency_id = $db->getOne($sql);
+    // if ($agency_id > 0)
+    // {
+    //     if ($order['agency_id'] != $agency_id)
+    //     {
+    //         sys_msg($_LANG['priv_error']);
+    //     }
+    // }
 
     /* 取得上一个、下一个订单号 */
     if (!empty($_COOKIE['ECSCP']['lastfilter']))
@@ -183,10 +183,10 @@ elseif ($_REQUEST['act'] == 'info')
         }
     }
     $sql = "SELECT MAX(order_id) FROM " . $ecs->table('order_info') . " as o WHERE order_id < '$order[order_id]'";
-    if ($agency_id > 0)
-    {
-        $sql .= " AND agency_id = '$agency_id'";
-    }
+    // if ($agency_id > 0)
+    // {
+    //     $sql .= " AND agency_id = '$agency_id'";
+    // }
     if (!empty($where))
     {
         $sql .= $where;
@@ -214,8 +214,8 @@ elseif ($_REQUEST['act'] == 'info')
     }
 
     /* 取得所有办事处 */
-    $sql = "SELECT agency_id, agency_name FROM " . $ecs->table('agency');
-    $smarty->assign('agency_list', $db->getAll($sql));
+    // $sql = "SELECT agency_id, agency_name FROM " . $ecs->table('agency');
+    // $smarty->assign('agency_list', $db->getAll($sql));
 
     /* 取得区域名 */
     $sql = "SELECT concat(IFNULL(c.region_name, ''), '  ', IFNULL(p.region_name, ''), " .
@@ -245,29 +245,29 @@ elseif ($_REQUEST['act'] == 'info')
     $order['invoice_no']    = $order['shipping_status'] == SS_UNSHIPPED || $order['shipping_status'] == SS_PREPARING ? $_LANG['ss'][SS_UNSHIPPED] : $order['invoice_no'];
 
     /* 取得订单的来源 */
-    if ($order['from_ad'] == 0)
-    {
-        $order['referer'] = empty($order['referer']) ? $_LANG['from_self_site'] : $order['referer'];
-    }
-    elseif ($order['from_ad'] == -1)
-    {
-        $order['referer'] = $_LANG['from_goods_js'] . ' ('.$_LANG['from'] . $order['referer'].')';
-    }
-    else
-    {
-        /* 查询广告的名称 */
-         $ad_name = $db->getOne("SELECT ad_name FROM " .$ecs->table('ad'). " WHERE ad_id='$order[from_ad]'");
-         $order['referer'] = $_LANG['from_ad_js'] . $ad_name . ' ('.$_LANG['from'] . $order['referer'].')';
-    }
+    // if ($order['from_ad'] == 0)
+    // {
+    //     $order['referer'] = empty($order['referer']) ? $_LANG['from_self_site'] : $order['referer'];
+    // }
+    // elseif ($order['from_ad'] == -1)
+    // {
+    //     $order['referer'] = $_LANG['from_goods_js'] . ' ('.$_LANG['from'] . $order['referer'].')';
+    // }
+    // else
+    // {
+    //     /* 查询广告的名称 */
+    //      $ad_name = $db->getOne("SELECT ad_name FROM " .$ecs->table('ad'). " WHERE ad_id='$order[from_ad]'");
+    //      $order['referer'] = $_LANG['from_ad_js'] . $ad_name . ' ('.$_LANG['from'] . $order['referer'].')';
+    // }
 
     /* 此订单的发货备注(此订单的最后一条操作记录) */
-    $sql = "SELECT action_note FROM " . $ecs->table('order_action').
-           " WHERE order_id = '$order[order_id]' AND shipping_status = 1 ORDER BY log_time DESC";
-    $order['invoice_note'] = $db->getOne($sql);
+    // $sql = "SELECT action_note FROM " . $ecs->table('order_action').
+    //        " WHERE order_id = '$order[order_id]' AND shipping_status = 1 ORDER BY log_time DESC";
+    // $order['invoice_note'] = $db->getOne($sql);
 
     /* 取得订单商品总重量 */
-    $weight_price = order_weight_price($order['order_id']);
-    $order['total_weight'] = $weight_price['formated_weight'];
+    // $weight_price = order_weight_price($order['order_id']);
+    // $order['total_weight'] = $weight_price['formated_weight'];
 
     /* 参数赋值：订单 */
     $smarty->assign('order', $order);
@@ -276,33 +276,33 @@ elseif ($_REQUEST['act'] == 'info')
     if ($order['user_id'] > 0)
     {
         /* 用户等级 */
-        if ($user['user_rank'] > 0)
-        {
-            $where = " WHERE rank_id = '$user[user_rank]' ";
-        }
-        else
-        {
-            $where = " WHERE min_points <= " . intval($user['rank_points']) . " ORDER BY min_points DESC ";
-        }
-        $sql = "SELECT rank_name FROM " . $ecs->table('user_rank') . $where;
-        $user['rank_name'] = $db->getOne($sql);
+        // if ($user['user_rank'] > 0)
+        // {
+        //     $where = " WHERE rank_id = '$user[user_rank]' ";
+        // }
+        // else
+        // {
+        //     $where = " WHERE min_points <= " . intval($user['rank_points']) . " ORDER BY min_points DESC ";
+        // }
+        // $sql = "SELECT rank_name FROM " . $ecs->table('user_rank') . $where;
+        // $user['rank_name'] = $db->getOne($sql);
 
         // 用户红包数量
-        $day    = getdate();
-        $today  = local_mktime(23, 59, 59, $day['mon'], $day['mday'], $day['year']);
-        $sql = "SELECT COUNT(*) " .
-                "FROM " . $ecs->table('bonus_type') . " AS bt, " . $ecs->table('user_bonus') . " AS ub " .
-                "WHERE bt.type_id = ub.bonus_type_id " .
-                "AND ub.user_id = '$order[user_id]' " .
-                "AND ub.order_id = 0 " .
-                "AND bt.use_start_date <= '$today' " .
-                "AND bt.use_end_date >= '$today'";
-        $user['bonus_count'] = $db->getOne($sql);
-        $smarty->assign('user', $user);
+        // $day    = getdate();
+        // $today  = local_mktime(23, 59, 59, $day['mon'], $day['mday'], $day['year']);
+        // $sql = "SELECT COUNT(*) " .
+        //         "FROM " . $ecs->table('bonus_type') . " AS bt, " . $ecs->table('user_bonus') . " AS ub " .
+        //         "WHERE bt.type_id = ub.bonus_type_id " .
+        //         "AND ub.user_id = '$order[user_id]' " .
+        //         "AND ub.order_id = 0 " .
+        //         "AND bt.use_start_date <= '$today' " .
+        //         "AND bt.use_end_date >= '$today'";
+        // $user['bonus_count'] = $db->getOne($sql);
+        // $smarty->assign('user', $user);
 
         // 地址信息
-        $sql = "SELECT * FROM " . $ecs->table('user_address') . " WHERE user_id = '$order[user_id]'";
-        $smarty->assign('address_list', $db->getAll($sql));
+        // $sql = "SELECT * FROM " . $ecs->table('user_address') . " WHERE user_id = '$order[user_id]'";
+        // $smarty->assign('address_list', $db->getAll($sql));
     }
 
     /* 取得订单商品及货品 */
@@ -321,19 +321,19 @@ elseif ($_REQUEST['act'] == 'info')
     while ($row = $db->fetchRow($res))
     {
         /* 虚拟商品支持 */
-        if ($row['is_real'] == 0)
-        {
-            /* 取得语言项 */
-            $filename = ROOT_PATH . 'plugins/' . $row['extension_code'] . '/languages/common_' . $_CFG['lang'] . '.php';
-            if (file_exists($filename))
-            {
-                include_once($filename);
-                if (!empty($_LANG[$row['extension_code'].'_link']))
-                {
-                    $row['goods_name'] = $row['goods_name'] . sprintf($_LANG[$row['extension_code'].'_link'], $row['goods_id'], $order['order_sn']);
-                }
-            }
-        }
+        // if ($row['is_real'] == 0)
+        // {
+        //     /* 取得语言项 */
+        //     $filename = ROOT_PATH . 'plugins/' . $row['extension_code'] . '/languages/common_' . $_CFG['lang'] . '.php';
+        //     if (file_exists($filename))
+        //     {
+        //         include_once($filename);
+        //         if (!empty($_LANG[$row['extension_code'].'_link']))
+        //         {
+        //             $row['goods_name'] = $row['goods_name'] . sprintf($_LANG[$row['extension_code'].'_link'], $row['goods_id'], $order['order_sn']);
+        //         }
+        //     }
+        // }
 
         $row['formated_subtotal']       = price_format($row['goods_price'] * $row['goods_number']);
         $row['formated_goods_price']    = price_format($row['goods_price']);
@@ -365,25 +365,25 @@ elseif ($_REQUEST['act'] == 'info')
     $smarty->assign('goods_list', $goods_list);
 
     /* 取得能执行的操作列表 */
-    $operable_list = operable_list($order);
-    $smarty->assign('operable_list', $operable_list);
+    // $operable_list = operable_list($order);
+    // $smarty->assign('operable_list', $operable_list);
 
     /* 取得订单操作记录 */
-    $act_list = array();
-    $sql = "SELECT * FROM " . $ecs->table('order_action') . " WHERE order_id = '$order[order_id]' ORDER BY log_time DESC,action_id DESC";
-    $res = $db->query($sql);
-    while ($row = $db->fetchRow($res))
-    {
-        $row['order_status']    = $_LANG['os'][$row['order_status']];
-        $row['pay_status']      = $_LANG['ps'][$row['pay_status']];
-        $row['shipping_status'] = $_LANG['ss'][$row['shipping_status']];
-        $row['action_time']     = local_date($_CFG['time_format'], $row['log_time']);
-        $act_list[] = $row;
-    }
-    $smarty->assign('action_list', $act_list);
+    // $act_list = array();
+    // $sql = "SELECT * FROM " . $ecs->table('order_action') . " WHERE order_id = '$order[order_id]' ORDER BY log_time DESC,action_id DESC";
+    // $res = $db->query($sql);
+    // while ($row = $db->fetchRow($res))
+    // {
+    //     $row['order_status']    = $_LANG['os'][$row['order_status']];
+    //     $row['pay_status']      = $_LANG['ps'][$row['pay_status']];
+    //     $row['shipping_status'] = $_LANG['ss'][$row['shipping_status']];
+    //     $row['action_time']     = local_date($_CFG['time_format'], $row['log_time']);
+    //     $act_list[] = $row;
+    // }
+    // $smarty->assign('action_list', $act_list);
 
     /* 取得是否存在实体商品 */
-    $smarty->assign('exist_real_goods', exist_real_goods($order['order_id']));
+    // $smarty->assign('exist_real_goods', exist_real_goods($order['order_id']));
 
     /* 是否打印订单，分别赋值 */
     if (isset($_GET['print']))
@@ -454,7 +454,7 @@ elseif ($_REQUEST['act'] == 'info')
             $lable_box['t_shop_province'] = $region_array[$_CFG['shop_province']]; //网店-省份
             $lable_box['t_shop_name'] = $_CFG['shop_name']; //网店-名称
             $lable_box['t_shop_district'] = ''; //网店-区/县
-            $lable_box['t_shop_tel'] = $_CFG['service_phone']; //网店-联系电话
+            $lable_box['t_shop_tel'] = $_CFG['service_phon']; //网店-联系电话
             $lable_box['t_shop_address'] = $_CFG['shop_address']; //网店-地址
             $lable_box['t_customer_country'] = $region_array[$order['country']]; //收件人-国家
             $lable_box['t_customer_province'] = $region_array[$order['province']]; //收件人-省份
@@ -592,6 +592,7 @@ elseif ($_REQUEST['act'] == 'delivery_info')
     admin_priv('delivery_view');
 
     $delivery_id = intval(trim($_REQUEST['delivery_id']));
+    $delivery_order['delivery_id'] = $delivery_id;
 
     /* 根据发货单id查询发货单信息 */
     if (!empty($delivery_id))
@@ -604,30 +605,30 @@ elseif ($_REQUEST['act'] == 'delivery_info')
     }
 
     /* 如果管理员属于某个办事处，检查该订单是否也属于这个办事处 */
-    $sql = "SELECT agency_id FROM " . $ecs->table('admin_user') . " WHERE user_id = '" . $_SESSION['admin_id'] . "'";
-    $agency_id = $db->getOne($sql);
-    if ($agency_id > 0)
-    {
-        if ($delivery_order['agency_id'] != $agency_id)
-        {
-            sys_msg($_LANG['priv_error']);
-        }
-
-        /* 取当前办事处信息 */
-        $sql = "SELECT agency_name FROM " . $ecs->table('agency') . " WHERE agency_id = '$agency_id' LIMIT 0, 1";
-        $agency_name = $db->getOne($sql);
-        $delivery_order['agency_name'] = $agency_name;
-    }
+    // $sql = "SELECT agency_id FROM " . $ecs->table('admin_user') . " WHERE user_id = '" . $_SESSION['admin_id'] . "'";
+    // $agency_id = $db->getOne($sql);
+    // if ($agency_id > 0)
+    // {
+    //     if ($delivery_order['agency_id'] != $agency_id)
+    //     {
+    //         sys_msg($_LANG['priv_error']);
+    //     }
+    //
+    //     /* 取当前办事处信息 */
+    //     $sql = "SELECT agency_name FROM " . $ecs->table('agency') . " WHERE agency_id = '$agency_id' LIMIT 0, 1";
+    //     $agency_name = $db->getOne($sql);
+    //     $delivery_order['agency_name'] = $agency_name;
+    // }
 
     /* 取得用户名 */
-    if ($delivery_order['user_id'] > 0)
-    {
-        $user = user_info($delivery_order['user_id']);
-        if (!empty($user))
-        {
-            $delivery_order['user_name'] = $user['user_name'];
-        }
-    }
+    // if ($delivery_order['user_id'] > 0)
+    // {
+    //     $user = user_info($delivery_order['user_id']);
+    //     if (!empty($user))
+    //     {
+    //         $delivery_order['user_name'] = $user['user_name'];
+    //     }
+    // }
 
     /* 取得区域名 */
     $sql = "SELECT concat(IFNULL(c.region_name, ''), '  ', IFNULL(p.region_name, ''), " .
@@ -641,40 +642,40 @@ elseif ($_REQUEST['act'] == 'delivery_info')
     $delivery_order['region'] = $db->getOne($sql);
 
     /* 是否保价 */
-    $order['insure_yn'] = empty($order['insure_fee']) ? 0 : 1;
+    // $order['insure_yn'] = empty($order['insure_fee']) ? 0 : 1;
 
     /* 取得发货单商品 */
     $goods_sql = "SELECT *
-                  FROM " . $ecs->table('delivery_goods') . "
-                  WHERE delivery_id = " . $delivery_order['delivery_id'];
+                  FROM " . $ecs->table('order_goods') . "
+                  WHERE order_id = " . $delivery_id;
     $goods_list = $GLOBALS['db']->getAll($goods_sql);
 
     /* 是否存在实体商品 */
-    $exist_real_goods = 0;
-    if ($goods_list)
-    {
-        foreach ($goods_list as $value)
-        {
-            if ($value['is_real'])
-            {
-                $exist_real_goods++;
-            }
-        }
-    }
+    // $exist_real_goods = 0;
+    // if ($goods_list)
+    // {
+    //     foreach ($goods_list as $value)
+    //     {
+    //         if ($value['is_real'])
+    //         {
+    //             $exist_real_goods++;
+    //         }
+    //     }
+    // }
 
     /* 取得订单操作记录 */
-    $act_list = array();
-    $sql = "SELECT * FROM " . $ecs->table('order_action') . " WHERE order_id = '" . $delivery_order['order_id'] . "' AND action_place = 1 ORDER BY log_time DESC,action_id DESC";
-    $res = $db->query($sql);
-    while ($row = $db->fetchRow($res))
-    {
-        $row['order_status']    = $_LANG['os'][$row['order_status']];
-        $row['pay_status']      = $_LANG['ps'][$row['pay_status']];
-        $row['shipping_status'] = ($row['shipping_status'] == SS_SHIPPED_ING) ? $_LANG['ss_admin'][SS_SHIPPED_ING] : $_LANG['ss'][$row['shipping_status']];
-        $row['action_time']     = local_date($_CFG['time_format'], $row['log_time']);
-        $act_list[] = $row;
-    }
-    $smarty->assign('action_list', $act_list);
+    // $act_list = array();
+    // $sql = "SELECT * FROM " . $ecs->table('order_action') . " WHERE order_id = '" . $delivery_order['order_id'] . "' AND action_place = 1 ORDER BY log_time DESC,action_id DESC";
+    // $res = $db->query($sql);
+    // while ($row = $db->fetchRow($res))
+    // {
+    //     $row['order_status']    = $_LANG['os'][$row['order_status']];
+    //     $row['pay_status']      = $_LANG['ps'][$row['pay_status']];
+    //     $row['shipping_status'] = ($row['shipping_status'] == SS_SHIPPED_ING) ? $_LANG['ss_admin'][SS_SHIPPED_ING] : $_LANG['ss'][$row['shipping_status']];
+    //     $row['action_time']     = local_date($_CFG['time_format'], $row['log_time']);
+    //     $act_list[] = $row;
+    // }
+    // $smarty->assign('action_list', $act_list);
 
     /* 模板赋值 */
     $smarty->assign('delivery_order', $delivery_order);
@@ -4853,24 +4854,24 @@ function order_list()
             //$_REQUEST['address'] = json_str_iconv($_REQUEST['address']);
         }
         $filter['consignee'] = empty($_REQUEST['consignee']) ? '' : trim($_REQUEST['consignee']);
-        $filter['email'] = empty($_REQUEST['email']) ? '' : trim($_REQUEST['email']);
-        $filter['address'] = empty($_REQUEST['address']) ? '' : trim($_REQUEST['address']);
-        $filter['zipcode'] = empty($_REQUEST['zipcode']) ? '' : trim($_REQUEST['zipcode']);
-        $filter['tel'] = empty($_REQUEST['tel']) ? '' : trim($_REQUEST['tel']);
+        // $filter['email'] = empty($_REQUEST['email']) ? '' : trim($_REQUEST['email']);
+        // $filter['address'] = empty($_REQUEST['address']) ? '' : trim($_REQUEST['address']);
+        // $filter['zipcode'] = empty($_REQUEST['zipcode']) ? '' : trim($_REQUEST['zipcode']);
+        // $filter['tel'] = empty($_REQUEST['tel']) ? '' : trim($_REQUEST['tel']);
         $filter['mobile'] = empty($_REQUEST['mobile']) ? 0 : intval($_REQUEST['mobile']);
-        $filter['country'] = empty($_REQUEST['country']) ? 0 : intval($_REQUEST['country']);
-        $filter['province'] = empty($_REQUEST['province']) ? 0 : intval($_REQUEST['province']);
-        $filter['city'] = empty($_REQUEST['city']) ? 0 : intval($_REQUEST['city']);
-        $filter['district'] = empty($_REQUEST['district']) ? 0 : intval($_REQUEST['district']);
-        $filter['shipping_id'] = empty($_REQUEST['shipping_id']) ? 0 : intval($_REQUEST['shipping_id']);
-        $filter['pay_id'] = empty($_REQUEST['pay_id']) ? 0 : intval($_REQUEST['pay_id']);
+        // $filter['country'] = empty($_REQUEST['country']) ? 0 : intval($_REQUEST['country']);
+        // $filter['province'] = empty($_REQUEST['province']) ? 0 : intval($_REQUEST['province']);
+        // $filter['city'] = empty($_REQUEST['city']) ? 0 : intval($_REQUEST['city']);
+        // $filter['district'] = empty($_REQUEST['district']) ? 0 : intval($_REQUEST['district']);
+        // $filter['shipping_id'] = empty($_REQUEST['shipping_id']) ? 0 : intval($_REQUEST['shipping_id']);
+        // $filter['pay_id'] = empty($_REQUEST['pay_id']) ? 0 : intval($_REQUEST['pay_id']);
         $filter['order_status'] = isset($_REQUEST['order_status']) ? intval($_REQUEST['order_status']) : -1;
         $filter['shipping_status'] = isset($_REQUEST['shipping_status']) ? intval($_REQUEST['shipping_status']) : -1;
         $filter['pay_status'] = isset($_REQUEST['pay_status']) ? intval($_REQUEST['pay_status']) : -1;
         $filter['user_id'] = empty($_REQUEST['user_id']) ? 0 : intval($_REQUEST['user_id']);
         $filter['user_name'] = empty($_REQUEST['user_name']) ? '' : trim($_REQUEST['user_name']);
         $filter['composite_status'] = isset($_REQUEST['composite_status']) ? intval($_REQUEST['composite_status']) : -1;
-        $filter['group_buy_id'] = isset($_REQUEST['group_buy_id']) ? intval($_REQUEST['group_buy_id']) : 0;
+        // $filter['group_buy_id'] = isset($_REQUEST['group_buy_id']) ? intval($_REQUEST['group_buy_id']) : 0;
 
         $filter['sort_by'] = empty($_REQUEST['sort_by']) ? 'add_time' : trim($_REQUEST['sort_by']);
         $filter['sort_order'] = empty($_REQUEST['sort_order']) ? 'DESC' : trim($_REQUEST['sort_order']);
@@ -4887,50 +4888,50 @@ function order_list()
         {
             $where .= " AND o.consignee LIKE '%" . mysql_like_quote($filter['consignee']) . "%'";
         }
-        if ($filter['email'])
-        {
-            $where .= " AND o.email LIKE '%" . mysql_like_quote($filter['email']) . "%'";
-        }
-        if ($filter['address'])
-        {
-            $where .= " AND o.address LIKE '%" . mysql_like_quote($filter['address']) . "%'";
-        }
-        if ($filter['zipcode'])
-        {
-            $where .= " AND o.zipcode LIKE '%" . mysql_like_quote($filter['zipcode']) . "%'";
-        }
-        if ($filter['tel'])
-        {
-            $where .= " AND o.tel LIKE '%" . mysql_like_quote($filter['tel']) . "%'";
-        }
+        // if ($filter['email'])
+        // {
+        //     $where .= " AND o.email LIKE '%" . mysql_like_quote($filter['email']) . "%'";
+        // }
+        // if ($filter['address'])
+        // {
+        //     $where .= " AND o.address LIKE '%" . mysql_like_quote($filter['address']) . "%'";
+        // }
+        // if ($filter['zipcode'])
+        // {
+        //     $where .= " AND o.zipcode LIKE '%" . mysql_like_quote($filter['zipcode']) . "%'";
+        // }
+        // if ($filter['tel'])
+        // {
+        //     $where .= " AND o.tel LIKE '%" . mysql_like_quote($filter['tel']) . "%'";
+        // }
         if ($filter['mobile'])
         {
             $where .= " AND o.mobile LIKE '%" .mysql_like_quote($filter['mobile']) . "%'";
         }
-        if ($filter['country'])
-        {
-            $where .= " AND o.country = '$filter[country]'";
-        }
-        if ($filter['province'])
-        {
-            $where .= " AND o.province = '$filter[province]'";
-        }
-        if ($filter['city'])
-        {
-            $where .= " AND o.city = '$filter[city]'";
-        }
-        if ($filter['district'])
-        {
-            $where .= " AND o.district = '$filter[district]'";
-        }
-        if ($filter['shipping_id'])
-        {
-            $where .= " AND o.shipping_id  = '$filter[shipping_id]'";
-        }
-        if ($filter['pay_id'])
-        {
-            $where .= " AND o.pay_id  = '$filter[pay_id]'";
-        }
+        // if ($filter['country'])
+        // {
+        //     $where .= " AND o.country = '$filter[country]'";
+        // }
+        // if ($filter['province'])
+        // {
+        //     $where .= " AND o.province = '$filter[province]'";
+        // }
+        // if ($filter['city'])
+        // {
+        //     $where .= " AND o.city = '$filter[city]'";
+        // }
+        // if ($filter['district'])
+        // {
+        //     $where .= " AND o.district = '$filter[district]'";
+        // }
+        // if ($filter['shipping_id'])
+        // {
+        //     $where .= " AND o.shipping_id  = '$filter[shipping_id]'";
+        // }
+        // if ($filter['pay_id'])
+        // {
+        //     $where .= " AND o.pay_id  = '$filter[pay_id]'";
+        // }
         if ($filter['order_status'] != -1)
         {
             $where .= " AND o.order_status  = '$filter[order_status]'";
@@ -4994,19 +4995,19 @@ function order_list()
                 }
         }
 
-        /* 团购订单 */
-        if ($filter['group_buy_id'])
-        {
-            $where .= " AND o.extension_code = 'group_buy' AND o.extension_id = '$filter[group_buy_id]' ";
-        }
+        // /* 团购订单 */
+        // if ($filter['group_buy_id'])
+        // {
+        //     $where .= " AND o.extension_code = 'group_buy' AND o.extension_id = '$filter[group_buy_id]' ";
+        // // }
 
-        /* 如果管理员属于某个办事处，只列出这个办事处管辖的订单 */
-        $sql = "SELECT agency_id FROM " . $GLOBALS['ecs']->table('admin_user') . " WHERE user_id = '$_SESSION[admin_id]'";
-        $agency_id = $GLOBALS['db']->getOne($sql);
-        if ($agency_id > 0)
-        {
-            $where .= " AND o.agency_id = '$agency_id' ";
-        }
+        // /* 如果管理员属于某个办事处，只列出这个办事处管辖的订单 */
+        // $sql = "SELECT agency_id FROM " . $GLOBALS['ecs']->table('admin_user') . " WHERE user_id = '$_SESSION[admin_id]'";
+        // $agency_id = $GLOBALS['db']->getOne($sql);
+        // if ($agency_id > 0)
+        // {
+        //     $where .= " AND o.agency_id = '$agency_id' ";
+        // }
 
         /* 分页大小 */
         $filter['page'] = empty($_REQUEST['page']) || (intval($_REQUEST['page']) <= 0) ? 1 : intval($_REQUEST['page']);
@@ -5021,7 +5022,7 @@ function order_list()
         }
         else
         {
-            $filter['page_size'] = 15;
+            $filter['page_size'] = 10;
         }
 
         /* 记录总数 */
@@ -5041,10 +5042,8 @@ function order_list()
         /* 查询 */
         $sql = "SELECT o.order_id, o.order_sn, o.add_time, o.order_status, o.shipping_status, o.order_amount, o.money_paid," .
                     "o.pay_status, o.consignee, o.address, o.email, o.tel, o.extension_code, o.extension_id, " .
-                    "(" . order_amount_field('o.') . ") AS total_fee, " .
-                    "IFNULL(u.user_name, '" .$GLOBALS['_LANG']['anonymous']. "') AS buyer ".
-                " FROM " . $GLOBALS['ecs']->table('order_info') . " AS o " .
-                " LEFT JOIN " .$GLOBALS['ecs']->table('users'). " AS u ON u.user_id=o.user_id ". $where .
+                    "(" . order_amount_field('o.') . ") AS total_fee " .
+                " FROM " . $GLOBALS['ecs']->table('order_info') . " AS o " . $where .
                 " ORDER BY $filter[sort_by] $filter[sort_order] ".
                 " LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ",$filter[page_size]";
 
@@ -5672,7 +5671,7 @@ function delivery_list()
         $aiax = isset($_GET['is_ajax']) ? $_GET['is_ajax'] : 0;
 
         /* 过滤信息 */
-        $filter['delivery_sn'] = empty($_REQUEST['delivery_sn']) ? '' : trim($_REQUEST['delivery_sn']);
+        // $filter['delivery_sn'] = empty($_REQUEST['delivery_sn']) ? '' : trim($_REQUEST['delivery_sn']);
         $filter['order_sn'] = empty($_REQUEST['order_sn']) ? '' : trim($_REQUEST['order_sn']);
         $filter['order_id'] = empty($_REQUEST['order_id']) ? 0 : intval($_REQUEST['order_id']);
         if ($aiax == 1 && !empty($_REQUEST['consignee']))
@@ -5682,7 +5681,7 @@ function delivery_list()
         $filter['consignee'] = empty($_REQUEST['consignee']) ? '' : trim($_REQUEST['consignee']);
         $filter['status'] = isset($_REQUEST['status']) ? $_REQUEST['status'] : -1;
 
-        $filter['sort_by'] = empty($_REQUEST['sort_by']) ? 'update_time' : trim($_REQUEST['sort_by']);
+        $filter['sort_by'] = empty($_REQUEST['sort_by']) ? 'shipping_time' : trim($_REQUEST['sort_by']);
         $filter['sort_order'] = empty($_REQUEST['sort_order']) ? 'DESC' : trim($_REQUEST['sort_order']);
 
         $where = 'WHERE 1 ';
@@ -5696,27 +5695,27 @@ function delivery_list()
         }
         if ($filter['status'] >= 0)
         {
-            $where .= " AND status = '" . mysql_like_quote($filter['status']) . "'";
+            $where .= " AND shipping_status = '" . mysql_like_quote($filter['status']) . "'";
         }
-        if ($filter['delivery_sn'])
-        {
-            $where .= " AND delivery_sn LIKE '%" . mysql_like_quote($filter['delivery_sn']) . "%'";
-        }
+        // if ($filter['delivery_sn'])
+        // {
+        //     $where .= " AND delivery_sn LIKE '%" . mysql_like_quote($filter['delivery_sn']) . "%'";
+        // }
 
         /* 获取管理员信息 */
         $admin_info = admin_info();
 
         /* 如果管理员属于某个办事处，只列出这个办事处管辖的发货单 */
-        if ($admin_info['agency_id'] > 0)
-        {
-            $where .= " AND agency_id = '" . $admin_info['agency_id'] . "' ";
-        }
+        // if ($admin_info['agency_id'] > 0)
+        // {
+        //     $where .= " AND agency_id = '" . $admin_info['agency_id'] . "' ";
+        // }
 
         /* 如果管理员属于某个供货商，只列出这个供货商的发货单 */
-        if ($admin_info['suppliers_id'] > 0)
-        {
-            $where .= " AND suppliers_id = '" . $admin_info['suppliers_id'] . "' ";
-        }
+        // if ($admin_info['suppliers_id'] > 0)
+        // {
+        //     $where .= " AND suppliers_id = '" . $admin_info['suppliers_id'] . "' ";
+        // }
 
         /* 分页大小 */
         $filter['page'] = empty($_REQUEST['page']) || (intval($_REQUEST['page']) <= 0) ? 1 : intval($_REQUEST['page']);
@@ -5735,14 +5734,14 @@ function delivery_list()
         }
 
         /* 记录总数 */
-        $sql = "SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('delivery_order') . $where;
+        $sql = "SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('order_info') . $where;
         $filter['record_count']   = $GLOBALS['db']->getOne($sql);
         $filter['page_count']     = $filter['record_count'] > 0 ? ceil($filter['record_count'] / $filter['page_size']) : 1;
 
         /* 查询 */
-        $sql = "SELECT delivery_id, delivery_sn, order_sn, order_id, add_time, action_user, consignee, country,
-                       province, city, district, tel, status, update_time, email, suppliers_id
-                FROM " . $GLOBALS['ecs']->table("delivery_order") . "
+        $sql = "SELECT invoice_no, order_sn, order_id, add_time, consignee, country,
+                       province, city, district, tel, shipping_status, shipping_time
+                FROM " . $GLOBALS['ecs']->table("order_info") . "
                 $where
                 ORDER BY " . $filter['sort_by'] . " " . $filter['sort_order']. "
                 LIMIT " . ($filter['page'] - 1) * $filter['page_size'] . ", " . $filter['page_size'] . " ";
@@ -5756,12 +5755,12 @@ function delivery_list()
     }
 
     /* 获取供货商列表 */
-    $suppliers_list = get_suppliers_list();
-    $_suppliers_list = array();
-    foreach ($suppliers_list as $value)
-    {
-        $_suppliers_list[$value['suppliers_id']] = $value['suppliers_name'];
-    }
+    // $suppliers_list = get_suppliers_list();
+    // $_suppliers_list = array();
+    // foreach ($suppliers_list as $value)
+    // {
+    //     $_suppliers_list[$value['suppliers_id']] = $value['suppliers_name'];
+    // }
 
     $row = $GLOBALS['db']->getAll($sql);
 
@@ -5769,20 +5768,24 @@ function delivery_list()
     foreach ($row AS $key => $value)
     {
         $row[$key]['add_time'] = local_date($GLOBALS['_CFG']['time_format'], $value['add_time']);
-        $row[$key]['update_time'] = local_date($GLOBALS['_CFG']['time_format'], $value['update_time']);
-        if ($value['status'] == 1)
+        $row[$key]['shipping_time'] = local_date($GLOBALS['_CFG']['time_format'], $value['shipping_time']);
+        if ($value['shipping_status'] == 0)
         {
-            $row[$key]['status_name'] = $GLOBALS['_LANG']['delivery_status'][1];
+            $row[$key]['status_name'] = '未发货';
         }
-        elseif ($value['status'] == 2)
+        elseif ($value['shipping_status'] == 1)
         {
-            $row[$key]['status_name'] = $GLOBALS['_LANG']['delivery_status'][2];
+            $row[$key]['status_name'] = '已发货';
+        }
+        elseif ($value['shipping_status'] == 2)
+        {
+            $row[$key]['status_name'] = '已收货';
         }
         else
         {
         $row[$key]['status_name'] = $GLOBALS['_LANG']['delivery_status'][0];
         }
-        $row[$key]['suppliers_name'] = isset($_suppliers_list[$value['suppliers_id']]) ? $_suppliers_list[$value['suppliers_id']] : '';
+        // $row[$key]['suppliers_name'] = isset($_suppliers_list[$value['suppliers_id']]) ? $_suppliers_list[$value['suppliers_id']] : '';
     }
     $arr = array('delivery' => $row, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
 
@@ -5924,25 +5927,25 @@ function delivery_order_info($delivery_id, $delivery_sn = '')
     $admin_info = admin_info();
 
     /* 如果管理员属于某个办事处，只列出这个办事处管辖的发货单 */
-    if ($admin_info['agency_id'] > 0)
-    {
-        $where .= " AND agency_id = '" . $admin_info['agency_id'] . "' ";
-    }
+    // if ($admin_info['agency_id'] > 0)
+    // {
+    //     $where .= " AND agency_id = '" . $admin_info['agency_id'] . "' ";
+    // }
 
     /* 如果管理员属于某个供货商，只列出这个供货商的发货单 */
-    if ($admin_info['suppliers_id'] > 0)
-    {
-        $where .= " AND suppliers_id = '" . $admin_info['suppliers_id'] . "' ";
-    }
+    // if ($admin_info['suppliers_id'] > 0)
+    // {
+    //     $where .= " AND suppliers_id = '" . $admin_info['suppliers_id'] . "' ";
+    // }
 
-    $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('delivery_order');
+    $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('order_info');
     if ($delivery_id > 0)
     {
-        $sql .= " WHERE delivery_id = '$delivery_id'";
+        $sql .= " WHERE order_id = '$delivery_id'";
     }
     else
     {
-        $sql .= " WHERE delivery_sn = '$delivery_sn'";
+        $sql .= " WHERE order_sn = '$delivery_sn'";
     }
 
     $sql .= $where;
@@ -5956,7 +5959,7 @@ function delivery_order_info($delivery_id, $delivery_sn = '')
 
         /* 格式化时间字段 */
         $delivery['formated_add_time']       = local_date($GLOBALS['_CFG']['time_format'], $delivery['add_time']);
-        $delivery['formated_update_time']    = local_date($GLOBALS['_CFG']['time_format'], $delivery['update_time']);
+        $delivery['formated_shipping_time']    = local_date($GLOBALS['_CFG']['time_format'], $delivery['shipping_time']);
 
         $return_order = $delivery;
     }

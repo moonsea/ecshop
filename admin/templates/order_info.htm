@@ -2,7 +2,7 @@
 
 {include file="pageheader.htm"}
 {insert_scripts files="topbar.js,../js/utils.js,listtable.js,selectzone.js,../js/common.js"}
-{if $user}
+<!-- {if $user}
 <div id="topbar">
   <div align="right"><a href="" onclick="closebar(); return false"><img src="images/close.gif" border="0" /></a></div>
   <table width="100%" border="0">
@@ -35,7 +35,7 @@
 
   {foreach from=$address_list item=address}
   <table width="100%" border="0">
-    <caption><strong> {$lang.consignee} : {$address.consignee|escape} </strong></caption>
+    <caption><strong> {$lang.consignee} : {$address.consignee|escape}qwqw </strong></caption>
     <tr>
       <td> {$lang.email} </td>
       <td> <a href="mailto:{$address.email|escape}">{$address.email|escape}</a> </td>
@@ -59,7 +59,7 @@
   </table>
   {/foreach}
 </div>
-{/if}
+{/if} -->
 
 <form action="order.php?act=operate" method="post" name="theForm">
 <div class="list-div" style="margin-bottom: 5px">
@@ -72,6 +72,7 @@
         <input type="button" onclick="window.open('order.php?act=info&order_id={$order.order_id}&print=1')" class="button" value="{$lang.print_order}" />
     </div></td>
   </tr>
+  <!-- 基本信息 -->
   <tr>
     <th colspan="4">{$lang.base_info}</th>
   </tr>
@@ -83,30 +84,29 @@
   </tr>
   <tr>
     <td><div align="right"><strong>{$lang.label_user_name}</strong></div></td>
-    <td>{$order.user_name|default:$lang.anonymous} {if $order.user_id > 0}[ <a href="" onclick="staticbar();return false;">{$lang.display_buyer}</a> ] [ <a href="user_msg.php?act=add&order_id={$order.order_id}&user_id={$order.user_id}">{$lang.send_message}</a> ]{/if}</td>
+    <td>{$order.user_id}</td>
     <td><div align="right"><strong>{$lang.label_order_time}</strong></div></td>
     <td>{$order.formated_add_time}</td>
   </tr>
   <tr>
     <td><div align="right"><strong>{$lang.label_payment}</strong></div></td>
-    <td>{if $order.pay_id > 0}{$order.pay_name}{else}{$lang.require_field}{/if}<a href="order.php?act=edit&order_id={$order.order_id}&step=payment" class="special">{$lang.edit}</a>
-    ({$lang.action_note}: <span onclick="listTable.edit(this, 'edit_pay_note', {$order.order_id})">{if $order.pay_note}{$order.pay_note}{else}N/A{/if}</span>)</td>
+    <td>{if $order.pay_id > 0}{$order.pay_name}{else}{$lang.require_field}{/if}<a href="order.php?act=edit&order_id={$order.order_id}&step=payment" class="special">{$lang.edit}</a></td>
     <td><div align="right"><strong>{$lang.label_pay_time}</strong></div></td>
     <td>{$order.pay_time}</td>
   </tr>
   <tr>
     <td><div align="right"><strong>{$lang.label_shipping}</strong></div></td>
-    <td>{if $exist_real_goods}{if $order.shipping_id > 0}{$order.shipping_name}{else}{$lang.require_field}{/if}<a href="order.php?act=edit&order_id={$order.order_id}&step=shipping" class="special">{$lang.edit}</a>&nbsp;&nbsp;<input type="button" onclick="window.open('order.php?act=info&order_id={$order.order_id}&shipping_print=1')" class="button" value="{$lang.print_shipping}"> {if $order.insure_fee > 0}（{$lang.label_insure_fee}{$order.formated_insure_fee}）{/if}{/if}</td>
+    <td>{if $order.shipping_id > 0}{$order.shipping_name}{else}{$lang.require_field}{/if}<a href="order.php?act=edit&order_id={$order.order_id}&step=shipping" class="special">{$lang.edit}</a></td>
     <td><div align="right"><strong>{$lang.label_shipping_time}</strong></div></td>
     <td>{$order.shipping_time}</td>
   </tr>
   <tr>
     <td><div align="right"><strong>{$lang.label_invoice_no}</strong></div></td>
-    <td>{if $order.shipping_id>0 and $order.shipping_status>0}<span>{if $order.invoice_no}{$order.invoice_no}{else}N/A{/if}</span><a href="order.php?act=edit&order_id={$order.order_id}&step=shipping" class="special">{$lang.edit}</a>{/if}</td>
-    <td><div align="right"><strong>{$lang.from_order}</strong></div></td>
-    <td>{$order.referer}</td>
+    <td colspan="3">{if $order.shipping_id>0 and $order.shipping_status>0}<span>{if $order.invoice_no}{$order.invoice_no}{else}N/A{/if}</span><a href="order.php?act=edit&order_id={$order.order_id}&step=shipping" class="special">{$lang.edit}</a>{/if}</td>
   </tr>
-  <tr>
+
+  <!-- 其他信息 -->
+  <!-- <tr>
     <th colspan="4">{$lang.other_info}<a href="order.php?act=edit&order_id={$order.order_id}&step=other" class="special">{$lang.edit}</a></th>
     </tr>
   <tr>
@@ -144,7 +144,8 @@
   <tr>
     <td><div align="right"><strong>{$lang.label_to_buyer}</strong></div></td>
     <td colspan="3">{$order.to_buyer}</td>
-  </tr>
+  </tr> -->
+  <!-- 收货人信息 -->
   <tr>
     <th colspan="4">{$lang.consignee_info}<a href="order.php?act=edit&order_id={$order.order_id}&step=consignee" class="special">{$lang.edit}</a></th>
     </tr>
@@ -174,56 +175,43 @@
   </tr>
 </table>
 </div>
-
+<!-- 商品信息 -->
 <div class="list-div" style="margin-bottom: 5px">
 <table width="100%" cellpadding="3" cellspacing="1">
   <tr>
     <th colspan="8" scope="col">{$lang.goods_info}<a href="order.php?act=edit&order_id={$order.order_id}&step=goods" class="special">{$lang.edit}</a></th>
     </tr>
   <tr>
-    <td scope="col"><div align="center"><strong>{$lang.goods_name_brand}</strong></div></td>
+    <td scope="col"><div align="center"><strong>商品名称</strong></div></td>
     <td scope="col"><div align="center"><strong>{$lang.goods_sn}</strong></div></td>
-    <td scope="col"><div align="center"><strong>{$lang.product_sn}</strong></div></td>
+    <!-- <td scope="col"><div align="center"><strong>{$lang.product_sn}</strong></div></td> -->
     <td scope="col"><div align="center"><strong>{$lang.goods_price}</strong></div></td>
     <td scope="col"><div align="center"><strong>{$lang.goods_number}</strong></div></td>
-    <td scope="col"><div align="center"><strong>{$lang.goods_attr}</strong></div></td>
-    <td scope="col"><div align="center"><strong>{$lang.storage}</strong></div></td>
+    <!-- <td scope="col"><div align="center"><strong>{$lang.goods_attr}</strong></div></td> -->
+    <!-- <td scope="col"><div align="center"><strong>{$lang.storage}</strong></div></td> -->
     <td scope="col"><div align="center"><strong>{$lang.subtotal}</strong></div></td>
   </tr>
   {foreach from=$goods_list item=goods}
-  <tr>
-    <td>
-    {if $goods.goods_id gt 0 && $goods.extension_code neq 'package_buy'}
-    <a href="../goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name} {if $goods.brand_name}[ {$goods.brand_name} ]{/if}
-    {if $goods.is_gift}{if $goods.goods_price > 0}{$lang.remark_favourable}{else}{$lang.remark_gift}{/if}{/if}
-    {if $goods.parent_id > 0}{$lang.remark_fittings}{/if}</a>
-    {elseif $goods.goods_id gt 0 && $goods.extension_code eq 'package_buy'}
-    <a href="javascript:void(0)" onclick="setSuitShow({$goods.goods_id})">{$goods.goods_name}<span style="color:#FF0000;">{$lang.remark_package}</span></a>
-    <div id="suit_{$goods.goods_id}" style="display:none">
-        {foreach from=$goods.package_goods_list item=package_goods_list}
-          <a href="../goods.php?id={$package_goods_list.goods_id}" target="_blank">{$package_goods_list.goods_name}</a><br />
-        {/foreach}
-    </div>
-    {/if}
-    </td>
+  <tr align="center">
+    <td>{$goods.goods_name}</td>
     <td>{$goods.goods_sn}</td>
-    <td>{$goods.product_sn}</td>
-    <td><div align="right">{$goods.formated_goods_price}</div></td>
-    <td><div align="right">{$goods.goods_number}
+    <!-- <td>{$goods.product_sn}</td> -->
+    <td><div align="center">{$goods.formated_goods_price}</div></td>
+    <td><div align="center">{$goods.goods_number}
     </div></td>
-    <td>{$goods.goods_attr|nl2br}</td>
-    <td><div align="right">{$goods.storage}</div></td>
-    <td><div align="right">{$goods.formated_subtotal}</div></td>
+    <!-- <td>{$goods.goods_attr|nl2br}</td> -->
+    <!-- <td><div align="center">{$goods.storage}</div></td> -->
+    <td><div align="center">{$goods.formated_subtotal}</div></td>
   </tr>
   {/foreach}
   <tr>
     <td></td>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>{if $order.total_weight}<div align="right"><strong>{$lang.label_total_weight}
-    </strong></div>{/if}</td>
-    <td>{if $order.total_weight}<div align="right">{$order.total_weight}
-    </div>{/if}</td>
+    <!-- <td>&nbsp;</td> -->
+    <!-- <td>{if $order.total_weight}<div align="right"><strong>{$lang.label_total_weight}
+    </strong></div>{/if}</td> -->
+    <!-- <td>{if $order.total_weight}<div align="right">{$order.total_weight}
+    </div>{/if}</td> -->
     <td>&nbsp;</td>
     <td><div align="right"><strong>{$lang.label_total}</strong></div></td>
     <td><div align="right">{$order.formated_goods_amount}</div></td>
@@ -231,7 +219,8 @@
 </table>
 </div>
 
-<div class="list-div" style="margin-bottom: 5px">
+<!-- 费用信息 -->
+<!-- <div class="list-div" style="margin-bottom: 5px">
 <table width="100%" cellpadding="3" cellspacing="1">
   <tr>
     <th>{$lang.fee_info}<a href="order.php?act=edit&order_id={$order.order_id}&step=money" class="special">{$lang.edit}</a></th>
@@ -260,9 +249,10 @@
       {/if}{if $order.extension_code eq "group_buy"}<br />{$lang.notice_gb_order_amount}{/if}</div></td>
   </tr>
 </table>
-</div>
+</div> -->
 
-<div class="list-div" style="margin-bottom: 5px">
+<!-- 操作信息 -->
+<!-- <div class="list-div" style="margin-bottom: 5px">
 <table cellpadding="3" cellspacing="1">
   <tr>
     <th colspan="6">{$lang.action_info}</th>
@@ -330,7 +320,7 @@
   </tr>
   {/foreach}
 </table>
-</div>
+</div> -->
 </form>
 {literal}
 <script language="JavaScript">
