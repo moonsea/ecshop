@@ -136,7 +136,7 @@
             <td>
             	<select name="goods_bind_type" onchange="hideCatDiv()">
             	<!--{foreach from=$bind_type_list name=bind_type_list item=item}-->
-            	<option value="{$item.type_id}">{$item.type_name}</option>
+            	<option value="{$item.type_id}"{if}selected{/if}>{$item.type_name}</option>
                 <!--{/foreach}-->
                	</select>
             </td>

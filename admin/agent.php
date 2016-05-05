@@ -249,7 +249,31 @@ elseif($_REQUEST['act'] == 'detail_week')
     }
      
 }
+elseif ($_REQUEST['act'] == 'info')
+{
+    /* 权限判断 */
+    admin_priv('agent_personal_info');
 
+    $user_id = $_SESSION['admin_id'];
+
+    /* 获取管理员信息 */
+    $sql = "SELECT * FROM " .$ecs->table('admin_user').
+           " WHERE user_id = '".$user_id."'";
+    $user_info = $db->getRow($sql);
+
+    /* 模板赋值 */
+    $smarty->assign('ur_here',     '信息编辑');
+    $smarty->assign('user', $user_info);    
+
+    $smarty->assign('form_act',    'change_info');
+
+    /*pageheader父标题*/
+    $smarty->assign('pageheader_title',  $_LANG['12_agent']);
+
+
+    assign_query_info();
+    $smarty->display('agent_info.htm');
+}
 /*------------------------------------------------------ */
 //-- 修改密码
 /*------------------------------------------------------ */

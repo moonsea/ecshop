@@ -182,7 +182,7 @@ elseif($_REQUEST['act'] == 'confirm')
 elseif ($_REQUEST['act'] == 'change_pwd')
 {
 
-    $user_id = $_SESSION['post_change_passwd'];
+    $user_id = $_SESSION['admin_id'];
 
     /* 获取管理员信息 */
     $sql = "SELECT * FROM " .$ecs->table('admin_user').
@@ -198,7 +198,7 @@ elseif ($_REQUEST['act'] == 'change_pwd')
     // $smarty->assign('action',      'edit');
 
     /*pageheader父标题*/
-    $smarty->assign('pageheader_title',  $_LANG['13_print']);
+    $smarty->assign('pageheader_title',  $_LANG['14_post']);
 
     assign_query_info();
     $smarty->display('agent_change_passwd.htm');
