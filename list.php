@@ -20,7 +20,6 @@ curl_close($ch);
 $output = json_decode($output,true);
 $img_prev = $output["data"]["qiniu_host"];
 $smarty->assign('prev',$img_prev);
-
 /*
  *Add By KingDragon
  *2016-04-19
@@ -29,7 +28,7 @@ $smarty->assign('prev',$img_prev);
 $url = "http://app.itimepost.com/member/login";
 $post_data = array(
 			"phone" => "15245012931" , 
-			"password" => "545234", 
+			"password" => "zxc545234", 
 			"device" => 0,
 			"imei" => "12354647243",
 			"longitude" => "23.03,113.75");
@@ -56,6 +55,9 @@ setcookie("userimg",$img_prev.'/'.$user_img,time()+3600);
 setcookie("username",$user_name,time()+3600);
 setcookie("userid",$mem_id,time()+3600);
 
+$count = $db->getOne("SELECT COUNT(*) FROM " .$ecs->table('userproduct_yzldiy'). " WHERE userId = '$mem_id' and status=1");
+$smarty->assign("undone",$count);
+
 /*
  *Add By KingDragon
  *2016-04-19
@@ -73,6 +75,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
 $output = curl_exec($ch);
 curl_close($ch);
 $output = json_decode($output,true);
+
 
 $smarty->assign('photo_list',$output["data"]["album_list"]);
 

@@ -69,6 +69,9 @@ setcookie("userimg",$img_prev.'/'.$user_img,time()+3600);
 setcookie("username",$user_name,time()+3600);
 setcookie("userid",$mem_id,time()+3600);
 
+$count = $db->getOne("SELECT COUNT(*) FROM " .$ecs->table('userproduct_yzldiy'). " WHERE userId = '$mem_id' and status=1");
+$smarty->assign("undone",$count);
+
 /*
  *Add By KingDragon
  *2016-04-19

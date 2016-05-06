@@ -209,7 +209,10 @@ class alipay
         {
             /* 改变订单状态 */
             order_paid($order_sn, 2);
-
+			/* 改变用户产品状态 */
+			$savedid = $_COOKIE['savedid'];
+			$sql = "update ecs_userproduct_yzldiy set status=2 where id=$savedid";
+			$db->query($sql);
             return true;
         }
         elseif ($_GET['trade_status'] == 'TRADE_FINISHED')

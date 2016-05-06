@@ -16,6 +16,7 @@
 define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
+require(dirname(__FILE__) . '/includes/info.php');
 require(ROOT_PATH . 'includes/lib_order.php');
 
 /* 载入语言文件 */
@@ -41,6 +42,11 @@ $smarty->assign('username',$username);
 $smarty->assign('prev',$prev);
 $smarty->assign('token',$token);
 $smarty->assign('userimg',$userimg);
+
+if(isset($_GET['saveid']))
+{
+	setcookie('savedid',$_GET['savedid'],time()+3600);
+}
 
 
 /*------------------------------------------------------ */

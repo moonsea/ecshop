@@ -2,6 +2,7 @@
 define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
+require(dirname(__FILE__) . '/includes/info.php');
 
 if ((DEBUG_MODE & 2) != 2)
 {

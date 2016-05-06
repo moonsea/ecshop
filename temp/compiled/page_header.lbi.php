@@ -79,9 +79,14 @@ function sw_nav(obj,tag)
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                            	<a href="#">
+                            	<a href="order-list.php">
                                 	<i class="glyphicon glyphicon-bell text-danger">&nbsp;</i>
-                                    <font class="text-danger">未完成(2)</font>
+                                    <font class="text-danger">
+                                    	未完成
+                                        <?php if ($this->_var['undone'] > 0): ?>
+                                        (<?php echo $this->_var['undone']; ?>)
+                                        <?php endif; ?>
+                                    </font>
                             	</a>
                             </li>
                             <li class="divider"></li>
