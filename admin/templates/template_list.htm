@@ -1,0 +1,176 @@
+<!-- $Id: template_list.htm 17126 2010-04-23 10:30:26Z moonsea $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<!-- 商品搜索 -->
+{include file="goods_search.html"}
+<!-- 商品列表 -->
+<form method="post" action="" name="listForm" onsubmit="return confirmSubmit(this)">
+  <!-- start goods list -->
+  <div class="list-div" id="listDiv">
+{/if}
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />
+      模板编号
+    </th>
+    <th>模板图片</th>
+    <th>模板名称</th>
+    <th>模板类别</th>
+    <th>{$lang.handler}</th>
+  <tr>
+  {foreach from=$template_list item=template}
+  <tr>
+    <td align="center">
+      <input type="checkbox" name="checkboxes[]" value="{$template.pid}" />
+      {$template.pid}</td>
+    <td align="center"><img src= "{$template.preview}" width="50" height="50" border="0" /></td>
+    <td align="center"><span onclick="listTable.edit(this, 'edit_template_name', {$template.pid})">{$template.name}</span></td>
+    <td align="center">
+      {foreach from=$category_list name=category_list item=item}
+        {if $template.cid == $item.id}{$item.name}{/if}
+      {/foreach}
+      <!-- <select name="template_category" id="template_category" onchange="change_category(this, 'edit_template_category', {$template.pid})">
+        {foreach from=$category_list name=category_list item=item}
+        <option value="{$item.id}" {if $template.cid == $item.id}selected="true"{/if}>{$item.name}</option>
+          {/foreach}
+      </select> -->
+      <!-- <span onclick="listTable.edit(this, 'edit_template_category', {$template.pid})">{$template.cid}</span></td> -->
+    <td align="center">
+      <!-- <a href="../goods.php?id={$goods.goods_id}" target="_blank" title="{$lang.view}"><img src="images/icon_view.gif" width="21" height="21" border="0" /></a> -->
+      <a href="template.php?act=edit&pid={$template.pid}" title="{$lang.edit}">编辑</a>
+      <!-- <a href="goods.php?act=copy&goods_id={$goods.goods_id}{if $code neq 'real_goods'}&extension_code={$code}{/if}" title="{$lang.copy}"><img src="images/icon_copy.gif" width="21" height="21" border="0" /></a> -->
+      <a href="javascript:;" onclick="listTable.remove({$template.pid}, '确认删除此模板')" title="{$lang.trash}">删除</a>
+      {if $specifications[$goods.goods_type] neq ''}<a href="goods.php?act=product_list&goods_id={$goods.goods_id}" title="{$lang.item_list}"><img src="images/icon_docs.gif" width="21" height="21" border="0" /></a>{else}<img src="images/empty.gif" width="21" height="21" border="0" />{/if}
+      {if $add_handler}
+        |
+        {foreach from=$add_handler item=handler}
+        <a href="{$handler.url}&goods_id={$goods.goods_id}" title="{$handler.title}"><img src="images/{$handler.img}" width="21" height="21" border="0" /></a>
+        {/foreach}
+      {/if}
+    </td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+<!-- end goods list -->
+
+<!-- 分页 -->
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+
+<div>
+  <input type="hidden" name="act" value="batch" />
+  <select name="type" id="selAction" onchange="changeAction()">
+    <option value="">{$lang.select_please}</option>
+    <option value="trash">{$lang.trash}</option>
+    <option value="on_sale">{$lang.on_sale}</option>
+    <option value="not_on_sale">{$lang.not_on_sale}</option>
+    <option value="best">{$lang.best}</option>
+    <option value="not_best">{$lang.not_best}</option>
+    <option value="new">{$lang.new}</option>
+    <option value="not_new">{$lang.not_new}</option>
+    <option value="hot">{$lang.hot}</option>
+    <option value="not_hot">{$lang.not_hot}</option>
+    <option value="move_to">{$lang.move_to}</option>
+	{if $suppliers_list > 0}
+    <option value="suppliers_move_to">{$lang.suppliers_move_to}</option>
+	{/if}
+  </select>
+  <select name="target_cat" style="display:none">
+    <option value="0">{$lang.select_please}</option>{$cat_list}
+  </select>
+	{if $suppliers_list > 0}
+  <!--二级主菜单：转移供货商-->
+  <select name="suppliers_id" style="display:none">
+    <option value="-1">{$lang.select_please}</option>
+    <option value="0">{$lang.lab_to_shopex}</option>
+    {foreach name=sln from=$suppliers_list item=sl}
+      <option value="{$sl.suppliers_id}">{$sl.suppliers_name}</option>
+    {/foreach}
+  </select>
+  <!--end!-->
+	{/if}
+  {if $code neq 'real_goods'}
+  <input type="hidden" name="extension_code" value="{$code}" />
+  {/if}
+  <input type="submit" value="{$lang.button_submit}" id="btnSubmit" name="btnSubmit" class="button" disabled="true" />
+</div>
+</form>
+
+<script type="text/javascript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+
+  {literal}
+  onload = function()
+  {
+    startCheckOrder(); // 开始检查订单
+    document.forms['listForm'].reset();
+  }
+
+  /**
+   * @param: bool ext 其他条件：用于转移分类
+   */
+  function confirmSubmit(frm, ext)
+  {
+      if (frm.elements['type'].value == 'trash')
+      {
+          return confirm(batch_trash_confirm);
+      }
+      else if (frm.elements['type'].value == 'not_on_sale')
+      {
+          return confirm(batch_no_on_sale);
+      }
+      else if (frm.elements['type'].value == 'move_to')
+      {
+          ext = (ext == undefined) ? true : ext;
+          return ext && frm.elements['target_cat'].value != 0;
+      }
+      else if (frm.elements['type'].value == '')
+      {
+          return false;
+      }
+      else
+      {
+          return true;
+      }
+  }
+
+  function changeAction()
+  {
+      var frm = document.forms['listForm'];
+
+      // 切换分类列表的显示
+      frm.elements['target_cat'].style.display = frm.elements['type'].value == 'move_to' ? '' : 'none';
+
+			{if $suppliers_list > 0}
+      frm.elements['suppliers_id'].style.display = frm.elements['type'].value == 'suppliers_move_to' ? '' : 'none';
+			{/if}
+
+      if (!document.getElementById('btnSubmit').disabled &&
+          confirmSubmit(frm, false))
+      {
+          frm.submit();
+      }
+  }
+{/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

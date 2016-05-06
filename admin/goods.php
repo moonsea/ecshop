@@ -21,8 +21,6 @@ include_once(ROOT_PATH . '/includes/cls_image.php');
 $image = new cls_image($_CFG['bgcolor']);
 $exc = new exchange($ecs->table('goods'), $db, 'goods_id', 'goods_name');
 
-	
-
 /*------------------------------------------------------ */
 //-- 商品列表，商品回收站
 /*------------------------------------------------------ */
@@ -69,7 +67,7 @@ if ($_REQUEST['act'] == 'list' || $_REQUEST['act'] == 'trash')
     $smarty->assign('action_link',  $action_link);
     $smarty->assign('code',     $code);
     $smarty->assign('cat_list',     cat_list(0, $cat_id));
-	
+
     $smarty->assign('brand_list',   get_brand_list());
     $smarty->assign('intro_list',   get_intro_list());
     $smarty->assign('lang',         $_LANG);
@@ -86,7 +84,7 @@ if ($_REQUEST['act'] == 'list' || $_REQUEST['act'] == 'trash')
     $smarty->assign('record_count', $goods_list['record_count']);
     $smarty->assign('page_count',   $goods_list['page_count']);
     $smarty->assign('full_page',    1);
-    
+
     /*pageheader父标题*/
     $smarty->assign('pageheader_title',  $_LANG['02_cat_and_goods']);
 
@@ -124,7 +122,7 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
     // }
     // else
     // {
-        
+
     // }
 
     admin_priv('goods_manage'); // 检查权限
@@ -168,8 +166,8 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
         $bind_type_list[] = $temp_row;
     }
     $smarty->assign('bind_type_list',     $bind_type_list);
-    
-    
+
+
     // 内页材质类型
     $inner_type_list = array();
     $sql = "SELECT type_id,type_name FROM " . $ecs->table('material_type') . " ORDER BY type_id";
@@ -304,7 +302,7 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
         //     $goods['promote_end_date'] = local_date('Y-m-d', $goods['promote_end_date']);
         // }
 
-        
+
         // $link_goods_list    = get_linked_goods($goods['goods_id']); // 关联商品
         // $group_goods_list   = get_group_goods($goods['goods_id']); // 配件
         // $goods_article_list = get_goods_articles($goods['goods_id']);   // 关联文章
@@ -565,12 +563,12 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
         }
         elseif ($_POST['goods_img_url'])
         {
-            
+
             if(preg_match('/(.jpg|.png|.gif|.jpeg)$/',$_POST['goods_img_url']) && copy(trim($_POST['goods_img_url']), ROOT_PATH . 'temp/' . basename($_POST['goods_img_url'])))
             {
                   $original_img = 'temp/' . basename($_POST['goods_img_url']);
             }
-            
+
         }
 
         if ($original_img === false)
@@ -741,7 +739,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     /* 入库 */
     if ($is_insert)
     {
-        
+
         $sql = "INSERT INTO " . $ecs->table('goods') . " (goods_name, goods_sn, " .
                     "shop_price," .
                     "goods_img, goods_thumb, goods_brief, " .
@@ -757,7 +755,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                     "', '$goods_bind_type', '$goods_add_page_max', '$goods_composite_page', '$goods_composite_pic', '$goods_gray',".
                     "'$goods_composite_pdf','$goods_inner_type','$goods_size_width','$goods_size_length' " .
                     ")";
-        
+
         // if ($code == '')
         // {
         //     $sql = "INSERT INTO " . $ecs->table('goods') . " (goods_name, goods_sn, " .
