@@ -25,6 +25,10 @@ else
 /*------------------------------------------------------ */
 if ($_REQUEST['act'] == 'list')
 {
+
+    /* 权限检查 */
+    admin_priv('template_category');
+
     /* 模板类型列表 */
     $temp_sql = "select * from ".$ecs->table('product_category_yzldiy')."order by id asc";
     $temp_arr = $db->query($temp_sql);
@@ -75,7 +79,7 @@ elseif ($_REQUEST['act'] == 'query')
 
 if ($_REQUEST['act'] == 'edit_name')
 {
-    // check_authz_json('cat_manage');
+    check_authz_json('template_category');
 
     $id = intval($_POST['id']);
     $val = $_POST['val'];
@@ -99,7 +103,7 @@ if ($_REQUEST['act'] == 'edit_name')
 if ($_REQUEST['act'] == 'add')
 {
     /* 权限检查 */
-    admin_priv('cat_manage');
+    admin_priv('template_category');
 
     /* 模板赋值 */
     $smarty->assign('ur_here',      '添加模板分类');
@@ -123,7 +127,7 @@ if ($_REQUEST['act'] == 'add')
 if ($_REQUEST['act'] == 'insert')
 {
     /* 权限检查 */
-    admin_priv('cat_manage');
+    admin_priv('template_category');
 
     /* 初始化变量 */
     $category['type_id']       = !empty($_POST['type_id'])       ? trim($_POST['type_id'])     : '0';
@@ -161,7 +165,7 @@ if ($_REQUEST['act'] == 'insert')
 /*------------------------------------------------------ */
 if ($_REQUEST['act'] == 'edit')
 {
-    admin_priv('cat_manage');   // 权限检查
+    admin_priv('template_category');   // 权限检查
     $type_id = $_REQUEST['id'];
     $category_info = get_category_info($type_id);  // 查询分类信息数据
     // $attr_list = get_attr_list();
@@ -188,7 +192,7 @@ if ($_REQUEST['act'] == 'edit')
 if ($_REQUEST['act'] == 'update')
 {
     /* 权限检查 */
-    admin_priv('cat_manage');
+    admin_priv('template_category');
 
     /* 初始化变量 */
     $type_id              = !empty($_POST['old_type_id'])       ? intval($_POST['old_type_id'])     : 0;
@@ -223,7 +227,7 @@ if ($_REQUEST['act'] == 'update')
 /*------------------------------------------------------ */
 if ($_REQUEST['act'] == 'remove')
 {
-    check_authz_json('cat_manage');
+    check_authz_json('template_category');
 
     /* 初始化分类ID并取得分类名称 */
     $type_id   = intval($_GET['id']);
