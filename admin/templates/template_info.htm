@@ -60,6 +60,10 @@
           <tr>
             <td class="label">模板预览图:</td>
             <td>
+              {if $template.preview}
+                <img src="{$template.preview}" height="200" height="200"></img>
+                <br/>
+              {/if}
               <input type="file" name="priview" size="35" />
               {if $template.preview}
                 <a href="template.php?act=show_image&img_url={$template.preview}" target="_blank"><img src="images/yes.gif" border="0" /></a>
