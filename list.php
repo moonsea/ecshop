@@ -27,7 +27,11 @@ $smarty->assign('prev',$img_prev);
 */
 $url = "http://app.itimepost.com/member/login";
 $post_data = array(
+<<<<<<< HEAD
 			"phone" => "15245012931" , 
+=======
+			"phone" => "15245012931" ,
+>>>>>>> origin/master
 			"password" => "zxc545234", 
 			"device" => 0,
 			"imei" => "12354647243",
@@ -90,7 +94,7 @@ $smarty->assign('brand_id',         $brand);
 $smarty->assign('price_max',        $price_max);
 $smarty->assign('price_min',        $price_min);
 $smarty->assign('filter_attr',      $filter_attr_str);
-$smarty->assign('feed_url',         ($_CFG['rewrite'] == 1) ? "feed-c$cat_id.xml" : 'feed.php?cat=' . $cat_id); 
+$smarty->assign('feed_url',         ($_CFG['rewrite'] == 1) ? "feed-c$cat_id.xml" : 'feed.php?cat=' . $cat_id);
 
 $count = $output["data"]["pageinfo"]["total"];
 $max_page = $output["data"]["pageinfo"]["maxpage"];

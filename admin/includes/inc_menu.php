@@ -72,7 +72,7 @@ $modules['04_order']['10_back_order']               = 'order.php?act=back_list';
 $modules['06_stats']['flow_stats']                  = 'flow_stats.php?act=view';
 // $modules['06_stats']['searchengine_stats']          = 'searchengine_stats.php?act=view';
 // $modules['06_stats']['z_clicks_stats']              = 'adsense.php?act=list';
-$modules['06_stats']['report_guest']                = 'guest_stats.php?act=list';
+// $modules['06_stats']['report_guest']                = 'guest_stats.php?act=list';
 $modules['06_stats']['report_order']                = 'order_stats.php?act=list';
 // $modules['06_stats']['report_sell']                 = 'sale_general.php?act=list';
 // $modules['06_stats']['sale_list']                   = 'sale_list.php?act=list';

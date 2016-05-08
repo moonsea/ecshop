@@ -1,0 +1,298 @@
+<!-- $Id: template_info.htm 17126 2010-04-23 10:30:26Z moonsea $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,selectzone.js,colorselector.js,listtable.js"}
+
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/qiniu.js"></script>
+<script type="text/javascript" src="../js/plupload.full.min.js"></script>
+<script type="text/javascript" src="../js/json2.js"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+
+{if $warning}
+<ul style="padding:0; margin: 0; list-style-type:none; color: #CC0000;">
+  <li style="border: 1px solid #CC0000; background: #FFFFCC; padding: 10px; margin-bottom: 5px;" >{$warning}</li>
+</ul>
+{/if}
+
+<!-- start goods form -->
+<div class="tab-div">
+    <!-- tab bar -->
+    <!-- <div id="tabbar-div">
+      <p>
+        <span class="tab-front" id="general-tab">通用信息</span>
+      </p>
+    </div> -->
+
+    <!-- tab body -->
+    <!-- <div id="tabbody-div"> -->
+      <form enctype="multipart/form-data" action="" method="post" name="theForm" >
+        <!-- 通用信息 -->
+        <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
+
+        <table width="90%" id="general-table" align="center">
+          <!-- 模板编号 -->
+          <tr>
+            <td class="label">模板编号:</td>
+            <td><input type="text" name="pid" value="{$template.pid|escape}" size="20" onblur="checkGoodsSn(this.value,'{$goods.goods_id}')" {if !$info_act}readonly="readonly"{/if} />
+            </td>
+          </tr>
+          <!-- 模板名称 -->
+          <tr>
+            <td class="label">模板名称:</td>
+            <td>
+              <input type="text" name="template_name" value="{$template.name|escape}" size="30" />
+            </td>
+          </tr>
+          <!-- 模板简介 -->
+          <tr>
+            <td class="label">模板介绍:</td>
+            <td><textarea name="mbDes" cols="40" rows="3">{$template.mbDes|escape}</textarea></td>
+          </tr
+          <!-- 模板类型 -->
+          <tr>
+            <td class="label">模板类型:</td>
+            <td>
+            	<select name="template_category" onchange="hideCatDiv()">
+              	{foreach from=$category_list name=category_list item=item}
+                	<option value="{$item.id}" {if $template.cid == $item.id}selected="true"{/if}>{$item.name}</option>
+                {/foreach}
+             	</select>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">模板预览图:</td>
+            <td>
+                <a href="template.php?act=show_image&img_url={$template.preview}" target="_blank" id="preview_href"><img src="{$template.preview}" height="200" height="200" id="preview_img" {if !$template.preview}hidden="hidden"{/if}></img></a>
+                <br id="template_preview_br" {if !$template.preview}hidden="hidden"{/if}/>
+              <!-- <input type="button" onclick="choose_img" id="browse" value="上传图片"/> -->
+              <button id="browse" onclick="choose_img()" type="button">上传图片</button>
+            </td>
+          </tr>
+        </table>
+        </div>
+        <div class="button-div">
+          <input type="hidden" name="template_id" value="{$template.pid}" />
+          <input type="hidden" name="template_preview" id="template_preview" value="{$template.pid}" />
+          <input type="button" value="{$lang.button_submit}" class="button" onclick="validate('{$template.pid}')" />
+          <input type="reset" value="{$lang.button_reset}" class="button" />
+        </div>
+        <input type="hidden" name="act" value="{$form_act}" />
+      </form>
+</div>
+<!-- end goods form -->
+{insert_scripts files="validator.js,tab.js"}
+
+<script language="JavaScript">
+  var template_id = '{$template.pid}';
+  var form_act = '{$form_act}';
+  // alert(form_act);
+  var uptoken = "";
+  var publish_id = "";
+  var domain = "";
+
+  {literal}
+  onload = function()
+  {
+      // 初始加载
+      startCheckOrder();
+      get_uptoken();
+      get_domain();
+      // {/literal}
+      // {foreach from=$user_rank_list item=item}
+      // set_price_note({$item.rank_id});
+      // {/foreach}
+      {literal}
+      // document.forms['theForm'].reset();
+  }
+
+  function validate(goods_id)
+  {
+      var validator = new Validator('theForm');
+      var pid  = document.forms['theForm'].elements['pid'].value;
+      var info_act = '{$template.info_act}';
+
+      validator.required('template_name', '模板名称不能为空');
+
+      // alert(info_act);
+      if(!info_act)
+      {
+        document.forms['theForm'].submit();
+      }
+      else {
+        Ajax.call('template.php?is_ajax=1&act=check_template_id', "pid=" + pid, callback, "GET", "JSON");
+      }
+
+      var callback = function(res)
+     {
+      if (res.error > 0)
+      {
+        alert("模板编号已经存在");
+      }
+      else
+      {
+         if(validator.passed())
+         {
+           document.forms['theForm'].submit();
+         }
+      }
+    }
+
+}
+
+  /* 搜索模板 */
+  function searchGoods(szObject, catId, brandId, keyword)
+  {
+      var filters = new Object;
+
+      filters.cat_id = elements[catId].value;
+      filters.brand_id = elements[brandId].value;
+      filters.keyword = Utils.trim(elements[keyword].value);
+      filters.exclude = document.forms['theForm'].elements['goods_id'].value;
+
+      szObject.loadOptions('get_goods_list', filters);
+  }
+
+  function get_uptoken()
+  {
+      $.ajax({
+          url:"http://app.itimepost.com/image/uptoken",
+          type:'POST',
+          data:{type:0,token:"c210dd8b50e9e232c908c43d2e266c7d"},
+          dataType:"jsonp",
+          success: function(data){
+            //   console.log(data);
+              uptoken = data.data.uptoken;
+              publish_id = data.data.publish_id;
+              },
+          error:function(e1,e2,e3){alert(e1.status);}
+      });
+  }
+
+  function get_domain()
+  {
+      $.ajax({
+          url:"http://app.itimepost.com/image/host",
+          type:'GET',
+          data:{type:0,token:"c210dd8b50e9e232c908c43d2e266c7d"},
+          dataType:"jsonp",
+          success: function(data){
+      // 		  console.log(data);
+              domain = data.data.host;
+              },
+          error:function(e1,e2,e3){alert(e1.status);}
+      });
+  }
+
+  function choose_img()
+  {
+
+      var uploader = Qiniu.uploader({
+      runtimes: 'html5,flash,html4',      // 上传模式,依次退化
+      browse_button: 'browse',         // 上传选择的点选按钮，**必需**
+      uptoken : uptoken, // uptoken 是上传凭证，由其他程序生成
+      get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的 uptoken
+      domain: domain,     // bucket 域名，下载资源时用到，**必需**
+      auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+      max_retries: 3,                     // 上传失败最大重试次数
+      unique_names: true,
+
+      init: {
+          'FilesAdded': function(up, files) {
+              plupload.each(files, function(file) {
+                  // 文件添加进队列后,处理相关的事情
+              });
+          },
+          'BeforeUpload': function(up, file) {
+                 // 每个文件上传前,处理相关的事情
+          },
+          'UploadProgress': function(up, file) {
+                 // 每个文件上传时,处理相关的事情
+          },
+          'FileUploaded': function(up, file, info) {
+
+              var res = JSON.parse(info);
+              var domain = up.getOption('domain');
+              var sourceLink = "http://"+domain +"/"+ res.key; //获取上传成功后的文件的Url
+            //   console.log(sourceLink);
+            var obj = document.getElementById('template_preview')
+            obj.value = sourceLink;
+
+            if(form_act == "update")
+            {
+                res = Ajax.call('template.php', "act=edit_template_preview&val=" + encodeURIComponent(Utils.trim(sourceLink)) + "&id=" +template_id, null, "POST", "JSON", false);
+                console.log(res);
+
+                 if (res.message)
+                {
+                  alert(res.message);
+                }
+
+                obj = document.getElementById('preview_img');
+                obj.src = (res.error == 0) ? res.content : obj.src;
+
+                obj = document.getElementById('preview_href');
+                obj.href = (res.error == 0) ? "template.php?act=show_image&img_url="+res.content : obj.href;
+
+            }
+            else if (form_act == "insert") {
+
+
+
+
+                obj = document.getElementById('preview_img');
+                obj.hidden = "";
+                obj.src = sourceLink;
+
+                obj = document.getElementById('preview_href');
+                obj.href = "template.php?act=show_image&img_url="+sourceLink;
+
+                obj = document.getElementById('template_preview_br');
+                obj.hidden = "";
+            }
+
+          },
+          'Error': function(up, err, errTip) {
+                 //上传出错时,处理相关的事情
+              //    console.log(up+"-"+err+"-"+errTip);
+                 alert(errTip);
+              //    upload_ok.push(false);
+          },
+          'UploadComplete': function() {
+                 //队列文件处理完毕后,处理相关的事情
+          },
+          'Key': function(up, file) {
+              // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+              // 该配置必须要在 unique_names: false , save_key: false 时才生效
+
+              var key = "";
+              // do something with key here
+              return key;
+              }
+          }
+      });
+  }
+
+    /*校验模板编号*/
+      function checkTemplateId(template_id)
+      {
+
+        var callback = function(res)
+        {
+          if (res.error > 0)
+          {
+            document.getElementById('goods_sn_notice').innerHTML = res.message;
+            document.getElementById('goods_sn_notice').style.color = "red";
+          }
+          else
+          {
+            document.getElementById('goods_sn_notice').innerHTML = "";
+          }
+        }
+        Ajax.call('goods.php?is_ajax=1&act=check_goods_sn', "goods_sn=" + goods_sn + "&goods_id=" + goods_id, callback, "GET", "JSON");
+      }
+
+  {/literal}
+</script>
+{include file="pagefooter.htm"}

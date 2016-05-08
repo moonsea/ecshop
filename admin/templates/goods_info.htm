@@ -28,7 +28,7 @@
       <form enctype="multipart/form-data" action="" method="post" name="theForm" >
         <!-- 通用信息 -->
         <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
-        
+
         <table width="90%" id="general-table" align="center">
           <!-- 所属类目 -->
           <!--<tr>
@@ -42,7 +42,7 @@
                <a href="javascript:void(0)" onclick="return goCatPage()" title="{$lang.category_manage}" class="special" >{$lang.category_manage}</a>
                <a href="javascript:void(0)" onclick="hideCatDiv()" title="{$lang.hide}" class="special" ><<</a>
                </span>
-               {/if} 
+               {/if}
             </td>
           </tr>-->
           <!-- 商品编号 -->
@@ -136,7 +136,11 @@
             <td>
             	<select name="goods_bind_type" onchange="hideCatDiv()">
             	<!--{foreach from=$bind_type_list name=bind_type_list item=item}-->
+<<<<<<< HEAD
             	<option value="{$item.type_id}">{$item.type_name}</option>
+=======
+            	<option value="{$item.type_id}" {if $goods.goods_bind_type == $item.type_id}selected="true"{/if}>{$item.type_name}</option>
+>>>>>>> origin/master
                 <!--{/foreach}-->
                	</select>
             </td>
@@ -153,7 +157,7 @@
             <td>
             	<select name="goods_inner_type" onchange="hideCatDiv()">
             	<!--{foreach from=$inner_type_list name=inner_type_list item=item}-->
-            	<option value="{$item.type_id}">{$item.type_name}</option>
+            	<option value="{$item.type_id}" {if $goods.goods_inner_type == $item.type_id}selected="true"{/if}>{$item.type_name}</option>
                 <!--{/foreach}-->
                	</select>
             </td>
@@ -190,7 +194,7 @@
               <span class="notice-span" id="giveIntegral">{$lang.notice_give_integral}</span>
             </td>
           </tr>-->
-         
+
           <!--<tr>-->
 <!--             <td class="label">{$lang.lab_goods_cat}</td>
             <td><select name="cat_id" onchange="hideCatDiv()" ><option value="0">{$lang.select_please}</option>{$cat_list}</select>
@@ -239,7 +243,7 @@
       </select></td>
           </tr>
          {/if}
-          
+
           {if $user_rank_list}
           <tr>
             <td class="label"><a href="javascript:showNotice('noticeUserPrice');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.lab_user_price}</td>
@@ -468,7 +472,7 @@
             <td class="label">{$lang.lab_goods_defination}</td>
             <td><input type="text" name="goods_defination" value="{$goods.goods_defination}" size="20" /></td>
           </tr>-->
-         
+
           <!-- 出血 -->
           <!--<tr>
             <td class="label">{$lang.lab_goods_blood}</td>
@@ -495,7 +499,7 @@
             <td id="tbody-goodsAttr" colspan="2" style="padding:0">{$goods_attr_html}</td>
           </tr> -->
         </table>
-        
+
 
 
         <!-- 鍏朵粬淇℃伅 -->
@@ -545,10 +549,10 @@
           </tr>
         </table>-->
 
-        
 
-<!--        
-         鍏宠仈鍟嗗搧 
+
+<!--
+         鍏宠仈鍟嗗搧
         <table width="90%" id="linkgoods-table" style="display:none" align="center">-->
           <!-- 鍟嗗搧鎼滅储 -->
           <!--<tr>
@@ -758,7 +762,7 @@
          }
       }
     }
-    
+
     Ajax.call('goods.php?is_ajax=1&act=check_goods_sn', "goods_sn=" + goods_sn + "&goods_id=" + goods_id, callback, "GET", "JSON");
 }
 

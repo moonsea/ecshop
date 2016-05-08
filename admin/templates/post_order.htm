@@ -47,7 +47,22 @@
       </tr>
       <tr align="center">
         <td>{$goods.goods_name}</td>
-        <td>装订方式:{$goods.bind_type}&nbsp;材质:{$goods.material_type}&nbsp;尺寸:{$goods.goods_height}*{$goods.goods_width}&nbsp;页数:{$goods.goods_page_count}</td>
+        <td>
+            <div style="float:left">
+                装订方式:{$goods.bind_type}
+            </div>
+            <div>
+                材质:{$goods.material_type}
+            </div>
+            <!-- <br/> -->
+            <div style="float:left">
+                装订方式:{$goods.bind_type}
+            </div>
+            <div>
+                材质:{$goods.material_type}
+            </div>
+            <!-- 装订方式:{$goods.bind_type}&nbsp;材质:{$goods.material_type}&nbsp;尺寸:{$goods.goods_height}*{$goods.goods_width}&nbsp;页数:{$goods.goods_page_count} -->
+        </td>
         <td>{$goods.goods_number}/本</td>
       </tr>
     </table>
@@ -61,24 +76,24 @@
     <input type="button" value="确认订单" class="button" onclick="confirm()" {if $order_status}style="display:none"{/if}/>
   {/if}
   </div>
-  {/foreach}  
+  {/foreach}
 </form>
   <p align="center">只有完成填写快递单号才可以确认订单</p>
 {/if}
 <script>
-  
+
 function confirm()
 {
   var order_sn  = document.forms['theForm'].elements['order_sn'].value;
   var invoice_no  = document.forms['theForm'].elements['invoice_no'].value;
-  
+
   // alert(invoice_no);
   if(invoice_no == null || invoice_no == "" || invoice_no == "输入快递单号")
   {
     alert("只有完成填写快递单号才可以确认订单!");
     exit;
   }
-  
+
   // alert(order_sn);
   var callback = function(res)
   {
@@ -92,7 +107,8 @@ function confirm()
         if(res.result == 'success')
         {
           alert('订单处理成功');
-          location.reload('post.php?act=unfinished_list');
+          location.assign('post.php?act=unfinished_list')
+
         }
         else{
           alert(res.result);
@@ -134,7 +150,7 @@ function getDownUrl()
 {
   var aTags = document.getElementsByTagName('A');
   for (var i = 0; i < aTags.length; i++)
-  { 
+  {
     if (aTags[i].href.indexOf('download') >= 0)
     {
       if (listTable.filter['start_date'] == "")
