@@ -24,7 +24,7 @@
     <th>{$lang.is_best}{$sort_is_best}</th>
     <th>{$lang.is_hot}{$sort_is_hot}</th>
     <th>{$lang.is_on_sale}{$sort_is_on_sale}</th>
-<!--     
+<!--
     <th>{$lang.sort_order}{$sort_sort_order}</th>
     {if $use_storage}
     <th>{$lang.goods_number}{$sort_goods_number}</th>
@@ -94,7 +94,7 @@
     <option value="move_to">{$lang.move_to}</option>
 	{if $suppliers_list > 0}
     <option value="suppliers_move_to">{$lang.suppliers_move_to}</option>
-	{/if}    
+	{/if}
   </select>
   <select name="target_cat" style="display:none">
     <option value="0">{$lang.select_please}</option>{$cat_list}
@@ -109,7 +109,7 @@
     {/foreach}
   </select>
   <!--end!-->
-	{/if}  
+	{/if}
   {if $code neq 'real_goods'}
   <input type="hidden" name="extension_code" value="{$code}" />
   {/if}
@@ -166,7 +166,7 @@
 
       // 切换分类列表的显示
       frm.elements['target_cat'].style.display = frm.elements['type'].value == 'move_to' ? '' : 'none';
-			
+
 			{if $suppliers_list > 0}
       frm.elements['suppliers_id'].style.display = frm.elements['type'].value == 'suppliers_move_to' ? '' : 'none';
 			{/if}

@@ -603,7 +603,10 @@ function order_detail($order_sn,$stauts){
     $sql = "SELECT og.goods_name,og.goods_number,og.goods_url, ";
 
     /* 查询商品规格信息 */
-    $sql = $sql . " bt.type_name as bind_type,mt.type_name as material_type,og.goods_height,og.goods_width,og.goods_page_count ";
+    $sql = $sql . " bt.type_name as bind_type,mt.type_name as material_type, ";
+
+    /* 查询规格信息 */
+    $sql = $sql . " gd.goods_size_length as goods_height,gd.goods_size_width as goods_width,gd.goods_add_page_max asgoods_page_count ";
 
     /* 查询用户条件 */
     // $where = " WHERE oi.user_id = u.user_id ";
@@ -617,11 +620,14 @@ function order_detail($order_sn,$stauts){
     /* 查询材质条件 */
     $where = $where . " AND og.material_type = mt.type_id ";
 
+    /* 查询规格条件 */
+    $where = $where . " AND og.goods_id = gd.goods_id ";
+
     /* 查询 */
     $sql = $sql . " FROM " .
            $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
            $GLOBALS['ecs']->table('order_goods') . ' AS og,'.
-        //    $GLOBALS['ecs']->table('users') . ' AS u, '.
+           $GLOBALS['ecs']->table('goods') . ' AS gd, '.
            $GLOBALS['ecs']->table('goods_bind_type') . ' AS bt,'.
            $GLOBALS['ecs']->table('material_type') . ' AS mt'.
            $where . " ORDER BY og.goods_id";

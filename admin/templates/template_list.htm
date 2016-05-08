@@ -33,12 +33,6 @@
       {foreach from=$category_list name=category_list item=item}
         {if $template.cid == $item.id}{$item.name}{/if}
       {/foreach}
-      <!-- <select name="template_category" id="template_category" onchange="change_category(this, 'edit_template_category', {$template.pid})">
-        {foreach from=$category_list name=category_list item=item}
-        <option value="{$item.id}" {if $template.cid == $item.id}selected="true"{/if}>{$item.name}</option>
-          {/foreach}
-      </select> -->
-      <!-- <span onclick="listTable.edit(this, 'edit_template_category', {$template.pid})">{$template.cid}</span></td> -->
     <td align="center">
       <!-- <a href="../goods.php?id={$goods.goods_id}" target="_blank" title="{$lang.view}"><img src="images/icon_view.gif" width="21" height="21" border="0" /></a> -->
       <a href="template.php?act=edit&pid={$template.pid}" title="{$lang.edit}">编辑</a>
@@ -46,7 +40,6 @@
       <a href="javascript:;" onclick="listTable.remove({$template.pid}, '确认删除此模板')" title="{$lang.trash}">删除</a>
       {if $specifications[$goods.goods_type] neq ''}<a href="goods.php?act=product_list&goods_id={$goods.goods_id}" title="{$lang.item_list}"><img src="images/icon_docs.gif" width="21" height="21" border="0" /></a>{else}<img src="images/empty.gif" width="21" height="21" border="0" />{/if}
       {if $add_handler}
-        |
         {foreach from=$add_handler item=handler}
         <a href="{$handler.url}&goods_id={$goods.goods_id}" title="{$handler.title}"><img src="images/{$handler.img}" width="21" height="21" border="0" /></a>
         {/foreach}

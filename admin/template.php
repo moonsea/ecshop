@@ -602,9 +602,8 @@ elseif ($_REQUEST['act'] == 'query')
     // }
     // $smarty->assign('code',         $code);
     $template_list = get_template_list();
-    // var_dump($template_list);
-    // exit();
-    $smarty->assign('$template_list',   $template_list['$template_list_data']);
+
+    $smarty->assign('template_list',   $template_list['template_list_data']);
     $smarty->assign('filter',       $template_list['filter']);
     $smarty->assign('record_count', $template_list['record_count']);
     $smarty->assign('page_count',   $template_list['page_count']);

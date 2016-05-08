@@ -235,6 +235,7 @@ listTable.listCallback = function(result, txt)
     {
       document.getElementById('listDiv').innerHTML = result.content;
 
+      console.log(result.content);
       if (typeof result.filter == "object")
       {
         listTable.filter = result.filter;
@@ -286,7 +287,6 @@ listTable.getPageSize = function()
   var ps = 15;
 
   pageSize = document.getElementById("pageSize");
-
   if (pageSize)
   {
     ps = Utils.isInt(pageSize.value) ? pageSize.value : 15;

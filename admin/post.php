@@ -540,7 +540,10 @@ function order_detail($order_sn,$stauts){
     $sql = "SELECT og.goods_name,og.goods_number,og.goods_url, ";
 
     /* 查询商品规格信息 */
-    $sql = $sql . " bt.type_name as bind_type,mt.type_name as material_type,og.goods_height,og.goods_width,og.goods_page_count ";
+    $sql = $sql . " bt.type_name as bind_type,mt.type_name as material_type, ";
+
+    /* 查询规格信息 */
+    $sql = $sql . " gd.goods_size_length as goods_height,gd.goods_size_width as goods_width,gd.goods_add_page_max asgoods_page_count ";
 
     /* 查询用户条件 */
     // $where = " WHERE oi.user_id = u.user_id ";
@@ -554,11 +557,14 @@ function order_detail($order_sn,$stauts){
     /* 查询材质条件 */
     $where = $where . " AND og.material_type = mt.type_id ";
 
+    /* 查询规格条件 */
+    $where = $where . " AND og.goods_id = gd.goods_id ";
+
     /* 查询 */
     $sql = $sql . " FROM " .
            $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
            $GLOBALS['ecs']->table('order_goods') . ' AS og,'.
-        //    $GLOBALS['ecs']->table('users') . ' AS u, '.
+           $GLOBALS['ecs']->table('goods') . ' AS gd, '.
            $GLOBALS['ecs']->table('goods_bind_type') . ' AS bt,'.
            $GLOBALS['ecs']->table('material_type') . ' AS mt'.
            $where . " ORDER BY og.goods_id";
@@ -566,155 +572,6 @@ function order_detail($order_sn,$stauts){
     $goods_list_data = $GLOBALS['db']->getAll($sql);
 
     $arr = array('order_list_data' => $order_list_data,'goods_list_data' => $goods_list_data);
-
-    return $arr;
-}
-
-/*------------------------------------------------------ */
-//-- 按周查询获取每日订单列表
-/*------------------------------------------------------ */
-/**
- * 取得销售明细数据信息
- * @param   bool  $is_pagination  是否分页
- * @return  array   销售明细数据
- */
-function get_sale_list_week_day($week_num){
-
-    /* 按周查询 */
-
-    /*获取当前登录用户的id*/
-    $user_id = $_SESSION['admin_id'];
-
-    /* 添加邀请码查询条件 */
-    $where = " WHERE au.user_id = '" . $user_id . "' AND au.invitation_code = oi.invitation_code";
-
-    /* 添加已经付款的查询条件 */
-    $where = $where . " AND oi.pay_status = 2";
-
-    /* 添加已经确认的查询条件 */
-    $where = $where . " AND oi.order_status = 1";
-
-    /* 添加制定周的查询条件 */
-    $where = $where . " AND CEIL((oi.pay_time - au.add_time)/(3600*24*7)) = ". $week_num;
-
-    /* 添加按照付款时间每日分组 */
-    $group = " GROUP BY FROM_UNIXTIME(oi.pay_time - au.add_time,'%Y%m%d')";
-
-    /* 按照付款时间按周数分组查询记录数 */
-    $sql = "SELECT COUNT(oi.order_id) FROM " .
-           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
-           $GLOBALS['ecs']->table('admin_user') . ' AS au '.
-           $where .
-           $group;
-    $filter['record_count'] = $GLOBALS['db']->getOne($sql);
-
-    /* 分页大小 */
-    $filter = page_and_size($filter);
-
-    $new_week = $week_num - 1;
-
-    /* 查询距添加代理用户第几周 */
-    $sql = "SELECT CEIL(((oi.pay_time - au.add_time)-(604800 * " . $new_week ."))/(86400)) AS day_num, ";
-
-    /* 查询每日订单数 */
-    $sql = $sql . " COUNT(oi.order_id) AS order_sum, ";
-
-    /* 查询每日产品数 */
-    $sql = $sql . " COUNT(og.goods_id) AS product_sum ";
-
-    /* 查询条件 */
-    $where = $where . " AND og.order_id = oi.order_id ";
-
-    /* 查询 */
-    $sql = $sql . " FROM " .
-           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
-           $GLOBALS['ecs']->table('order_goods') . ' AS og, '.
-           $GLOBALS['ecs']->table('admin_user') . ' AS au'.
-           $where .
-           $group . " ORDER BY day_num";
-
-    $is_pagination = true;
-    if ($is_pagination)
-    {
-        $sql .= " LIMIT " . $filter['start'] . ', ' . $filter['page_size'];
-    }
-
-    $order_list_data = $GLOBALS['db']->getAll($sql);
-
-    $arr = array('order_list_data' => $order_list_data, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
-
-    return $arr;
-}
-
-/*------------------------------------------------------ */
-//-- 按月查询获取每日订单列表
-/*------------------------------------------------------ */
-/**
- * 取得销售明细数据信息
- * @param   bool  $is_pagination  是否分页
- * @return  array   销售明细数据
- */
-function get_sale_list_month_day($month_num){
-
-    /* 按周查询 */
-
-    /*获取当前登录用户的id*/
-    $user_id = $_SESSION['admin_id'];
-
-    /* 添加邀请码查询条件 */
-    $where = " WHERE au.user_id = '" . $user_id . "' AND au.invitation_code = oi.invitation_code";
-
-    /* 添加已经付款的查询条件 */
-    $where = $where . " AND oi.pay_status = 2";
-
-    /* 添加制定周的查询条件 */
-    $where = $where . " AND CEIL((oi.pay_time - au.add_time)/(2592000)) = ". $month_num;
-
-    /* 添加按照付款时间每日分组 */
-    $group = " GROUP BY FROM_UNIXTIME(oi.pay_time - au.add_time,'%Y%m%d')";
-
-    /* 按照付款时间按周数分组查询记录数 */
-    $sql = "SELECT COUNT(oi.order_id) FROM " .
-           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
-           $GLOBALS['ecs']->table('admin_user') . ' AS au '.
-           $where .
-           $group;
-    $filter['record_count'] = $GLOBALS['db']->getOne($sql);
-
-    /* 分页大小 */
-    $filter = page_and_size($filter);
-
-    $new_month = $month_num - 1;
-
-    /* 查询距添加代理用户第几周 */
-    $sql = "SELECT CEIL(((oi.pay_time - au.add_time)-(604800 * " . $new_month ."))/(86400)) AS day_num, ";
-
-    /* 查询每日订单数 */
-    $sql = $sql . " COUNT(oi.order_id) AS order_sum, ";
-
-    /* 查询每日产品数 */
-    $sql = $sql . " COUNT(og.goods_id) AS product_sum ";
-
-    /* 查询条件 */
-    $where = $where . " AND og.order_id = oi.order_id ";
-
-    /* 查询 */
-    $sql = $sql . " FROM " .
-           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
-           $GLOBALS['ecs']->table('order_goods') . ' AS og, '.
-           $GLOBALS['ecs']->table('admin_user') . ' AS au'.
-           $where .
-           $group . " ORDER BY day_num";
-
-    $is_pagination = true;
-    if ($is_pagination)
-    {
-        $sql .= " LIMIT " . $filter['start'] . ', ' . $filter['page_size'];
-    }
-
-    $order_list_data = $GLOBALS['db']->getAll($sql);
-
-    $arr = array('order_list_data' => $order_list_data, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
 
     return $arr;
 }
