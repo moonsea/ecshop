@@ -45,7 +45,7 @@ if($_REQUEST['act'] == 'unfinished_list')
     $smarty->assign('record_count', $sale_list_data['record_count']);
     $smarty->assign('page_count',   $sale_list_data['page_count']);
     $smarty->assign('order_list_data', $sale_list_data['sale_list_data']);
-    $smarty->assign('ur_here',          $_LANG['01_unfinished']);
+    $smarty->assign('ur_here',          '未处理');
     $smarty->assign('full_page',        1);
     $smarty->assign('start_date',       local_date('Y-m-d', $start_date));
     $smarty->assign('end_date',         local_date('Y-m-d', $end_date));
@@ -80,7 +80,7 @@ elseif($_REQUEST['act'] == 'finished_list')
     $smarty->assign('record_count', $sale_list_data['record_count']);
     $smarty->assign('page_count',   $sale_list_data['page_count']);
     $smarty->assign('order_list_data', $sale_list_data['sale_list_data']);
-    $smarty->assign('ur_here',          $_LANG['02_finished']);
+    $smarty->assign('ur_here',          '已处理');
     $smarty->assign('full_page',        1);
     // $smarty->assign('start_date',       local_date('Y-m-d', $start_date));
     // $smarty->assign('end_date',         local_date('Y-m-d', $end_date));
@@ -123,9 +123,9 @@ elseif($_REQUEST['act'] == 'order_datail')
     $smarty->assign('goods_list_data', $order_list_data['goods_list_data']);
     if($status == '1')
     {
-        $smarty->assign('ur_here',          $_LANG['02_finished']);
+        $smarty->assign('ur_here',          '已处理');
     }else {
-        $smarty->assign('ur_here',          $_LANG['01_unfinished']);
+        $smarty->assign('ur_here',          '未处理');
     }
     $smarty->assign('full_page',        1);
     // $smarty->assign('start_date',       local_date('Y-m-d', $start_date));
@@ -521,17 +521,17 @@ function get_sale_list_month($is_pagination = true){
 function order_detail($order_sn,$stauts){
 
     /* 查询订单信息 */
-    $sql = "SELECT oi.order_sn,u.user_name,oi.add_time,oi.consignee,oi.address,oi.mobile,oi.zipcode,oi.postscript,oi.invoice_no ";
+    $sql = "SELECT oi.order_sn,oi.user_name,oi.add_time,oi.consignee,oi.address,oi.mobile,oi.zipcode,oi.postscript,oi.invoice_no ";
 
-    $where = " WHERE oi.order_sn = '" . $order_sn . "' AND oi.user_id = u.user_id ";
+    $where = " WHERE oi.order_sn = '" . $order_sn . "'";
 
     /* 印刷厂条件 */
     $where = $where . " AND oi.shipping_status = '".$stauts."' ";
 
     /* 查询 */
     $sql = $sql . " FROM " .
-           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
-           $GLOBALS['ecs']->table('users') . ' AS u '.
+           $GLOBALS['ecs']->table('order_info') . ' AS oi '.
+        //    $GLOBALS['ecs']->table('users') . ' AS u '.
            $where;
 
     $order_list_data = $GLOBALS['db']->getAll($sql);
@@ -558,7 +558,7 @@ function order_detail($order_sn,$stauts){
     $sql = $sql . " FROM " .
            $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
            $GLOBALS['ecs']->table('order_goods') . ' AS og,'.
-           $GLOBALS['ecs']->table('users') . ' AS u, '.
+        //    $GLOBALS['ecs']->table('users') . ' AS u, '.
            $GLOBALS['ecs']->table('goods_bind_type') . ' AS bt,'.
            $GLOBALS['ecs']->table('material_type') . ' AS mt'.
            $where . " ORDER BY og.goods_id";
@@ -590,6 +590,9 @@ function get_sale_list_week_day($week_num){
 
     /* 添加已经付款的查询条件 */
     $where = $where . " AND oi.pay_status = 2";
+
+    /* 添加已经确认的查询条件 */
+    $where = $where . " AND oi.order_status = 1";
 
     /* 添加制定周的查询条件 */
     $where = $where . " AND CEIL((oi.pay_time - au.add_time)/(3600*24*7)) = ". $week_num;

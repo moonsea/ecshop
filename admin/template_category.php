@@ -21,7 +21,7 @@ else
 }
 
 /*------------------------------------------------------ */
-//-- 商品分类列表
+//-- 模板分类列表
 /*------------------------------------------------------ */
 if ($_REQUEST['act'] == 'list')
 {
@@ -38,7 +38,7 @@ if ($_REQUEST['act'] == 'list')
     {
         $template_category_list[] = $temp_row;
     }
-    $smarty->assign('$template_category_list',     $template_category_list);
+    $smarty->assign('template_category_list',     $template_category_list);
 
     /* 模板赋值 */
     $smarty->assign('ur_here',      '模板分类');
@@ -68,7 +68,7 @@ elseif ($_REQUEST['act'] == 'query')
     {
         $template_category_list[] = $temp_row;
     }
-    $smarty->assign('$template_category_list',     $template_category_list);
+    $smarty->assign('template_category_list',     $template_category_list);
 
     make_json_result($smarty->fetch('template_category_list.htm'));
 }
@@ -107,14 +107,9 @@ if ($_REQUEST['act'] == 'add')
 
     /* 模板赋值 */
     $smarty->assign('ur_here',      '添加模板分类');
-    $smarty->assign('action_link',  array('href' => 'template_category.php?act=list', '模板分类列表'));
-
-    // $smarty->assign('goods_type_list',  goods_type_list(0)); // 取得商品类型
-    // $smarty->assign('attr_list',        get_attr_list()); // 取得商品属性
-
-    // $smarty->assign('cat_select',   cat_list(0, 0, true));
+    $smarty->assign('action_link', array('text' => '模板分类列表', 'href' => 'template_category.php?act=list'));
+    $smarty->assign('full_page',    1);
     $smarty->assign('form_act',     'insert');
-    // $smarty->assign('cat_info',     array('is_show' => 1));
 
     /* 显示页面 */
     assign_query_info();
@@ -140,6 +135,13 @@ if ($_REQUEST['act'] == 'insert')
        sys_msg('模板分类重复', 0, $link);
     }
 
+    if (type_id_exists($category['type_id']))
+    {
+        /* 不能有重复的类型编号 */
+       $link[] = array('text' => $_LANG['go_back'], 'href' => 'javascript:history.back(-1)');
+       sys_msg('模板分类编号重复', 0, $link);
+    }
+
     /* 入库的操作 */
     $sql = "INSERT INTO " . $ecs->table('product_category_yzldiy') .
                 " (id,name) ".
@@ -153,7 +155,7 @@ if ($_REQUEST['act'] == 'insert')
     $link[0]['text'] = '继续添加';
     $link[0]['href'] = 'template_category.php?act=add';
 
-    $link[1]['text'] = '回到装订类型列表';
+    $link[1]['text'] = '回到模板分类列表';
     $link[1]['href'] = 'template_category.php?act=list';
 
     sys_msg('模板分类添加成功', 0, $link);
@@ -231,7 +233,7 @@ if ($_REQUEST['act'] == 'remove')
 
     /* 初始化分类ID并取得分类名称 */
     $type_id   = intval($_GET['id']);
-    $type_name = $db->getOne('SELECT type_name FROM ' .$ecs->table('product_category_yzldiy'). " WHERE id='$typet_id'");
+    $type_name = $db->getOne('SELECT name FROM ' .$ecs->table('product_category_yzldiy'). " WHERE id='$typet_id'");
 
     /* 当前分类下是否存在商品 */
     $goods_count = $db->getOne('SELECT COUNT(*) FROM ' .$ecs->table('product_yzldiy'). " WHERE cid='$type_id'");
@@ -250,7 +252,7 @@ if ($_REQUEST['act'] == 'remove')
     }
     else
     {
-        make_json_error($type_name .' '. '存在模板');
+        make_json_error($type_name .' '. '此分类下存在模板');
     }
 
     $url = 'template_category.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
@@ -275,7 +277,14 @@ if ($_REQUEST['act'] == 'remove')
 function type_exists($type_name,$type_id = 0)
 {
    $sql = "SELECT COUNT(*) FROM " .$GLOBALS['ecs']->table('product_category_yzldiy').
-          " WHERE name = '$type_name' AND type_id<>'$type_id'";
+          " WHERE name = '$type_name' AND id<>'$type_id'";
+   return ($GLOBALS['db']->getOne($sql) > 0) ? true : false;
+}
+
+function type_id_exists($type_id)
+{
+   $sql = "SELECT COUNT(*) FROM " .$GLOBALS['ecs']->table('product_category_yzldiy').
+          " WHERE id = '$type_id'";
    return ($GLOBALS['db']->getOne($sql) > 0) ? true : false;
 }
 

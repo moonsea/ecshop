@@ -24,7 +24,7 @@
     </tr>
     </tr>
     <tr align="center">
-      <td>收货人电话:{$list.mobile_phone}</td>
+      <td>收货人电话:{$list.mobile}</td>
       <td>邮政编码:{$list.zipcode}</td>
     </tr>
     </tr>
@@ -48,7 +48,23 @@
       </tr>
       <tr align="center">
         <td>{$goods.goods_name}</td>
-        <td>装订方式:{$goods.bind_type}&nbsp;材质:{$goods.material_type}&nbsp;尺寸:{$goods.goods_height}*{$goods.goods_width}&nbsp;页数:{$goods.goods_page_count}</td>
+        <td align="center">
+            <div style="float:left">
+                装订方式:{$goods.bind_type}
+            </div>
+            <div>
+                材质:{$goods.material_type}
+            </div>
+            <!-- <br/> -->
+            <div style="float:left">
+                装订方式:{$goods.bind_type}
+            </div>
+            <div>
+                材质:{$goods.material_type}
+            </div>
+
+            <!-- 装订方式:{$goods.bind_type}&nbsp;材质:{$goods.material_type}&nbsp;<br/>尺寸:{$goods.goods_height}*{$goods.goods_width}&nbsp;页数:{$goods.goods_page_count} -->
+        </td>
         <td>{$goods.goods_number}/本</td>
         <input value="{$goods.goods_url}" type="hidden" name="goods_url"/>
         <td><input type="button" name="act" class="button" value="下载文件" onclick="download_order()"/></td>
@@ -64,12 +80,12 @@
   {/if}
   </div>
   <input type="hidden" name="status" value="{$order_status}" />
-  {/foreach}  
+  {/foreach}
 </form>
   <p align="center">只有完成下载电子稿和打印订单才可以确认订单</p>
 {/if}
 <script>
-  
+
 function confirm()
 {
   var order_sn  = document.forms['theForm'].elements['order_sn'].value;
@@ -86,7 +102,7 @@ function confirm()
         if(res.result == 'success')
         {
           alert('确认成功');
-          location.reload('print.php?act=unfinished_list');
+          location.assign('print.php?act=unfinished_list')
         }
         else{
           alert(res.result);
@@ -97,7 +113,7 @@ function confirm()
   Ajax.call('print.php?is_ajax=1&act=confirm', "order_sn=" + order_sn, callback, "GET", "JSON");
 
 }
-  
+
 function print_order()
 {
   var order_sn  = document.forms['theForm'].elements['order_sn'].value;
@@ -181,7 +197,7 @@ function getDownUrl()
 {
   var aTags = document.getElementsByTagName('A');
   for (var i = 0; i < aTags.length; i++)
-  { 
+  {
     if (aTags[i].href.indexOf('download') >= 0)
     {
       if (listTable.filter['start_date'] == "")
