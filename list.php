@@ -27,11 +27,7 @@ $smarty->assign('prev',$img_prev);
 */
 $url = "http://app.itimepost.com/member/login";
 $post_data = array(
-<<<<<<< HEAD
 			"phone" => "15245012931" , 
-=======
-			"phone" => "15245012931" ,
->>>>>>> origin/master
 			"password" => "zxc545234", 
 			"device" => 0,
 			"imei" => "12354647243",

@@ -44,6 +44,10 @@ if($step == 1)//选择规格
     while ($row = $db->FetchRow($res))
     {
 		$row['pictures'] = get_goods_gallery($row['goods_id']);
+		$sql = "select type_name from ecs_material_type where type_id=".$row['goods_inner_type'];
+		$row['goods_inner_type'] = $db->getOne($sql);
+		$sql = "select type_name from ecs_goods_bind_type where type_id=".$row['goods_bind_type'];
+		$row['goods_bind_type'] = $db->getOne($sql);
 		$arr[] = $row;
     }
 	$smarty->assign("list",$arr);

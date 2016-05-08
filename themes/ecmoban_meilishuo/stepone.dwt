@@ -42,10 +42,10 @@
         <div class="col-lg-7 col-md-7 col-sm-6 col-xs-6" style="padding-left:50px;">
         	<h3>{$item.goods_name}</h3><br />
             <p class="f14">{$item.goods_brief}</p><br /><br />
-            <p>尺寸:暂缺字段</p><br />
-            <p>内页:暂缺字段</p><br />
-            <p>装订:暂缺字段</p><br />
-            <p>页数:暂缺字段</p><br />
+            <p>尺寸:{$item.goods_size_width}*{$item.goods_size_length}</p><br />
+            <p>内页:{$item.goods_inner_type}</p><br />
+            <p>装订:{$item.goods_bind_type}</p><br />
+            <p>页数:{$item.goods_add_page_max}</p><br />
             <h3 class="pull-left">￥{$item.shop_price}</h3>
             <span style="float:left; margin-left:160px; margin-top:30px;">
             	<a href="javascript:;" data="do.php?step=2&album={$album_id}&goods_id={$item.goods_id}" class="mylabel-900 f14" onclick="addToCart({$item.goods_id},this)">开始制作</a>
