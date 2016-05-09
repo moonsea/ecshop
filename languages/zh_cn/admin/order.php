@@ -22,11 +22,11 @@ $_LANG['cs'][OS_UNCONFIRMED] = '待确认';
 $_LANG['cs'][CS_AWAIT_PAY] = '待付款';
 $_LANG['cs'][CS_AWAIT_SHIP] = '待发货';
 $_LANG['cs'][CS_FINISHED] = '已完成';
-$_LANG['cs'][PS_PAYING] = '付款中';
-$_LANG['cs'][OS_CANCELED] = '取消';
-$_LANG['cs'][OS_INVALID] = '无效';
-$_LANG['cs'][OS_RETURNED] = '退货';
-$_LANG['cs'][OS_SHIPPED_PART] = '部分发货';
+// $_LANG['cs'][PS_PAYING] = '付款中';
+// $_LANG['cs'][OS_CANCELED] = '取消';
+// $_LANG['cs'][OS_INVALID] = '无效';
+// $_LANG['cs'][OS_RETURNED] = '退货';
+// $_LANG['cs'][OS_SHIPPED_PART] = '部分发货';
 
 /* 订单状态 */
 $_LANG['os'][OS_UNCONFIRMED] = '未确认';
