@@ -42,11 +42,7 @@
 </form>
 
 <script type="Text/Javascript" language="JavaScript">
-listTable.recordCount = {$record_count};
-listTable.pageCount = {$page_count};
-{foreach from=$filter item=item key=key}
-listTable.filter.{$key} = '{$item}';
-{/foreach}
+listTable.query = '{$page_query}';
 {literal}
 <!--
 onload = function()
@@ -70,7 +66,7 @@ function getDownUrl()
 {
   var aTags = document.getElementsByTagName('A');
   for (var i = 0; i < aTags.length; i++)
-  { 
+  {
     if (aTags[i].href.indexOf('download') >= 0)
     {
       if (listTable.filter['start_date'] == "")

@@ -1,14 +1,6 @@
 <?php
 
 /**
- * ECSHOP 商品管理程序
- * ============================================================================
- * * 版权所有 2005-2012 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
  * $Author: moonsea $
  * $Id: print.php 17217 2011-01-19 06:29:08Z moonsea $
 */
@@ -41,6 +33,7 @@ if($_REQUEST['act'] == 'unfinished_list')
     $sale_list_data = get_sale_list('0');
 
     /* 赋值到模板 */
+    $smarty->assign('page_query',   'unfinished_query');
     $smarty->assign('filter',       $sale_list_data['filter']);
     $smarty->assign('record_count', $sale_list_data['record_count']);
     $smarty->assign('page_count',   $sale_list_data['page_count']);
@@ -76,6 +69,7 @@ elseif($_REQUEST['act'] == 'finished_list')
     /* 查询 */
     $sale_list_data = get_sale_list('1');
     /* 赋值到模板 */
+    $smarty->assign('page_query',   'finished_query');
     $smarty->assign('filter',       $sale_list_data['filter']);
     $smarty->assign('record_count', $sale_list_data['record_count']);
     $smarty->assign('page_count',   $sale_list_data['page_count']);
@@ -93,6 +87,41 @@ elseif($_REQUEST['act'] == 'finished_list')
     /* 显示页面 */
     assign_query_info();
     $smarty->display('post_list.htm');
+}
+/*------------------------------------------------------ */
+//-- 分页、查询
+/*------------------------------------------------------ */
+elseif ($_REQUEST['act'] == 'unfinished_query')
+{
+    /* 检查权限 */
+    // admin_priv('order_view');
+
+    /* 查询 */
+    $sale_list_data = get_sale_list('0');
+
+    /* 赋值到模板 */
+    $smarty->assign('filter',       $sale_list_data['filter']);
+    $smarty->assign('record_count', $sale_list_data['record_count']);
+    $smarty->assign('page_count',   $sale_list_data['page_count']);
+    $smarty->assign('order_list_data', $sale_list_data['sale_list_data']);
+
+    make_json_result($smarty->fetch('post_list.htm'), '', array('filter' => $sale_list_data['filter'], 'page_count' => $sale_list_data['page_count']));
+}
+elseif ($_REQUEST['act'] == 'finished_query')
+{
+    /* 检查权限 */
+    // admin_priv('order_view');
+
+    /* 查询 */
+    $sale_list_data = get_sale_list('1');
+
+    /* 赋值到模板 */
+    $smarty->assign('filter',       $sale_list_data['filter']);
+    $smarty->assign('record_count', $sale_list_data['record_count']);
+    $smarty->assign('page_count',   $sale_list_data['page_count']);
+    $smarty->assign('order_list_data', $sale_list_data['sale_list_data']);
+
+    make_json_result($smarty->fetch('post_list.htm'), '', array('filter' => $sale_list_data['filter'], 'page_count' => $sale_list_data['page_count']));
 }
 /*------------------------------------------------------ */
 //--每日商品明细列表

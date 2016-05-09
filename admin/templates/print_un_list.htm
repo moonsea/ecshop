@@ -39,11 +39,11 @@
 </form>
 
 <script type="Text/Javascript" language="JavaScript">
-listTable.recordCount = {$record_count};
-listTable.pageCount = {$page_count};
-{foreach from=$filter item=item key=key}
-listTable.filter.{$key} = '{$item}';
-{/foreach}
+listTable.query = '{$page_query}';
+// listTable.pageCount = {$page_count};
+// {foreach from=$filter item=item key=key}
+// listTable.filter.{$key} = '{$item}';
+// {/foreach}
 {literal}
 <!--
 onload = function()
@@ -53,33 +53,33 @@ onload = function()
   getDownUrl();
 }
 
-function getList()
-{
-    var frm =  document.forms['TimeInterval'];
-    listTable.filter['start_date'] = frm.elements['start_date'].value;
-    listTable.filter['end_date'] = frm.elements['end_date'].value;
-    listTable.filter['page'] = 1;
-    listTable.loadList();
-    getDownUrl();
-}
+// function getList()
+// {
+//     var frm =  document.forms['TimeInterval'];
+//     // listTable.filter['start_date'] = frm.elements['start_date'].value;
+//     // listTable.filter['end_date'] = frm.elements['end_date'].value;
+//     listTable.filter['page'] = 1;
+//     listTable.loadList();
+//     // getDownUrl();
+// }
 
-function getDownUrl()
-{
-  var aTags = document.getElementsByTagName('A');
-  for (var i = 0; i < aTags.length; i++)
-  { 
-    if (aTags[i].href.indexOf('download') >= 0)
-    {
-      if (listTable.filter['start_date'] == "")
-      {
-        var frm =  document.forms['TimeInterval'];
-        listTable.filter['start_date'] = frm.elements['start_date'].value;
-        listTable.filter['end_date'] = frm.elements['end_date'].value;
-      }
-      aTags[i].href = "sale_list.php?act=download&start_date=" + listTable.filter['start_date'] + "&end_date=" + listTable.filter['end_date'];
-    }
-  }
-}
+// function getDownUrl()
+// {
+//   var aTags = document.getElementsByTagName('A');
+//   for (var i = 0; i < aTags.length; i++)
+//   {
+//     if (aTags[i].href.indexOf('download') >= 0)
+//     {
+//       if (listTable.filter['start_date'] == "")
+//       {
+//         var frm =  document.forms['TimeInterval'];
+//         listTable.filter['start_date'] = frm.elements['start_date'].value;
+//         listTable.filter['end_date'] = frm.elements['end_date'].value;
+//       }
+//       aTags[i].href = "sale_list.php?act=download&start_date=" + listTable.filter['start_date'] + "&end_date=" + listTable.filter['end_date'];
+//     }
+//   }
+// }
 //-->
 </script>
 {/literal}
