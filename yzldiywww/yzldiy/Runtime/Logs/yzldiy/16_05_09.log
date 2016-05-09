@@ -1,0 +1,877 @@
+[ 2016-05-09T21:43:52+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=100
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004583s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005335s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000973s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001050s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0068s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=100 ) LIMIT 1   [ RunTime:0.0008s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001027s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001089s ]
+
+[ 2016-05-09T21:44:15+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002791s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003211s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000912s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001017s ]
+SQL: SHOW COLUMNS FROM `ecs_userproduct_yzldiy` [ RunTime:0.0081s ]
+SQL: SELECT `id`,`preview` FROM `ecs_userproduct_yzldiy` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: INSERT INTO `ecs_userproduct_yzldiy` (`userId`,`pid`,`tid`,`type`,`preview`,`info`,`name`,`retailprice`) VALUES ('73','100','00001','1','./Uploads/userProductPreview/1ebd8daf0260fe3b0a6cb239e95c70a9/1ebd8daf0260fe3b0a6cb239e95c70a9.jpg','<pages printDpi=\\\"250\\\" version=\\\"1.0\\\" client=\\\"Windows 10;zh-CN;WIN 21,0,0,216;Google Pepper;PlugIn\\\">
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14628014353646436142\\\" x=\\\"2712.78\\\" y=\\\"1492.00\\\" width=\\\"1548.44\\\" height=\\\"961.00\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>4355</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462563489131GMizHrLVIKYefVAkkQk.jpg-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462563489131GMizHrLVIKYefVAkkQk.jpg</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462563489131GMizHrLVIKYefVAkkQk.jpg</b>
+      <crop>26.219536757301057;0;1496;961</crop>
+    </image>
+    <image timeId=\\\"14628014353676436144\\\" x=\\\"722.00\\\" y=\\\"840.13\\\" width=\\\"981.00\\\" height=\\\"736.73\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>4697</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641841386yXDsrxrYPkSGzOyfsFV.jpg-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641841386yXDsrxrYPkSGzOyfsFV.jpg</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641841386yXDsrxrYPkSGzOyfsFV.jpg</b>
+      <crop>0;51.8655;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14628014353706436146\\\" x=\\\"2739.00\\\" y=\\\"1474.33\\\" width=\\\"1496.00\\\" height=\\\"996.34\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>4698</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641859662CYvqbUGSkAPDEZFhZLo.jpg-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641859662CYvqbUGSkAPDEZFhZLo.jpg</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641859662CYvqbUGSkAPDEZFhZLo.jpg</b>
+      <crop>0;17.668000000000006;1496;961</crop>
+    </image>
+    <image timeId=\\\"14628014353726436148\\\" x=\\\"722.00\\\" y=\\\"840.63\\\" width=\\\"981.00\\\" height=\\\"735.75\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>4790</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/qe1vx80tjbvktzhmkywyjqu79cs9mus9.jpg-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/qe1vx80tjbvktzhmkywyjqu79cs9mus9.jpg</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/qe1vx80tjbvktzhmkywyjqu79cs9mus9.jpg</b>
+      <crop>0;51.375;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14628014353746436150\\\" x=\\\"2739.00\\\" y=\\\"846.28\\\" width=\\\"1496.00\\\" height=\\\"2252.44\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>4871</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/wzja8nulqoft5mrxd1zpdg93jftc2nc6.jpg-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/wzja8nulqoft5mrxd1zpdg93jftc2nc6.jpg</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/wzja8nulqoft5mrxd1zpdg93jftc2nc6.jpg</b>
+      <crop>0;645.7212189616253;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+</pages>','啦啦啦','') [ RunTime:0.0012s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001077s ]
+
+[ 2016-05-09T21:44:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003355s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003981s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000896s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000985s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001072s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001186s ]
+
+[ 2016-05-09T21:44:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002237s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002674s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000598s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000667s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000656s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000752s ]
+
+[ 2016-05-09T21:44:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002743s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003217s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000749s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000825s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000771s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000875s ]
+
+[ 2016-05-09T21:44:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002506s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003067s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000614s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000675s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000825s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000925s ]
+
+[ 2016-05-09T21:44:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002203s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002592s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000574s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000628s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000801s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000893s ]
+
+[ 2016-05-09T21:44:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002303s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002759s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000638s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000709s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000700s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000848s ]
+
+[ 2016-05-09T21:44:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003002s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003469s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000615s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000676s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000808s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000901s ]
+
+[ 2016-05-09T21:44:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002336s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002785s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000572s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000641s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000673s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000759s ]
+
+[ 2016-05-09T21:44:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002240s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002655s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000612s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000671s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000696s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000784s ]
+
+[ 2016-05-09T21:44:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002142s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002545s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000633s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000697s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000737s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000841s ]
+
+[ 2016-05-09T21:45:47+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004085s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004707s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001162s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001270s ]
+SQL: SHOW COLUMNS FROM `ecs_userproduct_yzldiy` [ RunTime:0.0063s ]
+SQL: SELECT `id`,`preview` FROM `ecs_userproduct_yzldiy` WHERE ( id=11 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: INSERT INTO `ecs_userproduct_yzldiy` (`userId`,`pid`,`tid`,`type`,`preview`,`info`,`name`,`retailprice`) VALUES ('73','100','00001','1','./Uploads/userProductPreview/2b1fcdacde8765ecc2248ed995395a25/2b1fcdacde8765ecc2248ed995395a25.jpg','<pages printDpi=\\\"250\\\" version=\\\"1.0\\\" client=\\\"Windows 10;zh-CN;WIN 21,0,0,216;Google Pepper;PlugIn\\\">
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14628014353646436142\\\" x=\\\"2712.78\\\" y=\\\"1492.00\\\" width=\\\"1548.44\\\" height=\\\"961.00\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>4355</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462563489131GMizHrLVIKYefVAkkQk.jpg-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462563489131GMizHrLVIKYefVAkkQk.jpg</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462563489131GMizHrLVIKYefVAkkQk.jpg</b>
+      <crop>26.219536757301057;0;1496;961</crop>
+    </image>
+    <image timeId=\\\"14628014353676436144\\\" x=\\\"722.00\\\" y=\\\"840.13\\\" width=\\\"981.00\\\" height=\\\"736.73\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>4697</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641841386yXDsrxrYPkSGzOyfsFV.jpg-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641841386yXDsrxrYPkSGzOyfsFV.jpg</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641841386yXDsrxrYPkSGzOyfsFV.jpg</b>
+      <crop>0;51.8655;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14628014353706436146\\\" x=\\\"2739.00\\\" y=\\\"1474.33\\\" width=\\\"1496.00\\\" height=\\\"996.34\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>4698</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641859662CYvqbUGSkAPDEZFhZLo.jpg-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641859662CYvqbUGSkAPDEZFhZLo.jpg</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/1462641859662CYvqbUGSkAPDEZFhZLo.jpg</b>
+      <crop>0;17.668000000000006;1496;961</crop>
+    </image>
+    <image timeId=\\\"14628014353726436148\\\" x=\\\"722.00\\\" y=\\\"840.63\\\" width=\\\"981.00\\\" height=\\\"735.75\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>4790</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/qe1vx80tjbvktzhmkywyjqu79cs9mus9.jpg-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/qe1vx80tjbvktzhmkywyjqu79cs9mus9.jpg</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/qe1vx80tjbvktzhmkywyjqu79cs9mus9.jpg</b>
+      <crop>0;51.375;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14628014353746436150\\\" x=\\\"2739.00\\\" y=\\\"846.28\\\" width=\\\"1496.00\\\" height=\\\"2252.44\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>4871</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/wzja8nulqoft5mrxd1zpdg93jftc2nc6.jpg-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/wzja8nulqoft5mrxd1zpdg93jftc2nc6.jpg</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/wzja8nulqoft5mrxd1zpdg93jftc2nc6.jpg</b>
+      <crop>0;645.7212189616253;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"1333678882082\\\" x=\\\"2739.00\\\" y=\\\"1332.00\\\" width=\\\"1496.00\\\" height=\\\"1123.00\\\" rotation=\\\"1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>2448</bh>
+      <bw>3264</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;160;1496;961</crop>
+    </image>
+    <image timeId=\\\"1333679986373\\\" x=\\\"722.00\\\" y=\\\"836.00\\\" width=\\\"981.00\\\" height=\\\"735.00\\\" rotation=\\\"-1.00\\\" color=\\\"-1\\\" crc32=\\\"0\\\">
+      <photoid>-1</photoid>
+      <bh>768</bh>
+      <bw>1024</bw>
+      <s/>
+      <m/>
+      <b>http://127.0.0.1/ecshop/yzldiywww/yzldiy/Uploads/yzldiy/assets/drophere.jpg</b>
+      <crop>0;56;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+</pages>','啦啦啦啦啦','') [ RunTime:0.0006s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000927s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000989s ]
+
+[ 2016-05-09T21:45:48+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004598s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005261s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001061s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001178s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001084s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001194s ]
+
+[ 2016-05-09T21:45:48+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002906s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003379s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001071s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001173s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001525s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001774s ]
+
+[ 2016-05-09T21:45:48+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002722s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003196s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000724s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000799s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000807s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000889s ]
+
+[ 2016-05-09T21:45:48+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003849s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004437s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000699s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000763s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001160s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001275s ]
+
+[ 2016-05-09T21:45:48+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002586s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003006s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000983s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001078s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000722s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000796s ]
+
+[ 2016-05-09T21:45:48+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002481s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002901s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000801s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000874s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000739s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000827s ]
+
+[ 2016-05-09T21:45:48+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003127s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003595s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001173s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001139s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001254s ]
+
+[ 2016-05-09T21:45:48+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004256s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005114s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000680s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000747s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001156s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001255s ]
+
+[ 2016-05-09T21:45:48+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003981s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005299s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000982s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001069s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001190s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001298s ]
+
+[ 2016-05-09T21:45:48+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004719s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005451s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001317s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001447s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000846s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000947s ]
+

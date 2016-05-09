@@ -54,7 +54,7 @@ $modules['04_order']['03_order_query']              = 'order.php?act=order_query
 $modules['04_order']['05_edit_order_print']         = 'order.php?act=templates';
 // $modules['04_order']['06_undispose_booking']        = 'goods_booking.php?act=list_all';
 //$modules['04_order']['07_repay_application']        = 'repay.php?act=list_all';
-$modules['04_order']['08_add_order']                = 'order.php?act=add';
+// $modules['04_order']['08_add_order']                = 'order.php?act=add';
 $modules['04_order']['09_delivery_order']           = 'order.php?act=delivery_list';
 // $modules['04_order']['10_back_order']               = 'order.php?act=back_list';
 // $modules['05_banner']['ad_position']                = 'ad_position.php?act=list';

@@ -31,21 +31,21 @@ $_LANG['cs'][CS_FINISHED] = '已完成';
 /* 订单状态 */
 $_LANG['os'][OS_UNCONFIRMED] = '未确认';
 $_LANG['os'][OS_CONFIRMED] = '已确认';
-$_LANG['os'][OS_CANCELED] = '<font color="red"> 取消</font>';
-$_LANG['os'][OS_INVALID] = '<font color="red">无效</font>';
-$_LANG['os'][OS_RETURNED] = '<font color="red">退货</font>';
-$_LANG['os'][OS_SPLITED] = '已分单';
-$_LANG['os'][OS_SPLITING_PART] = '部分分单';
+// $_LANG['os'][OS_CANCELED] = '<font color="red"> 取消</font>';
+// $_LANG['os'][OS_INVALID] = '<font color="red">无效</font>';
+// $_LANG['os'][OS_RETURNED] = '<font color="red">退货</font>';
+// $_LANG['os'][OS_SPLITED] = '已分单';
+// $_LANG['os'][OS_SPLITING_PART] = '部分分单';
 
 $_LANG['ss'][SS_UNSHIPPED] = '未发货';
-$_LANG['ss'][SS_PREPARING] = '配货中';
+// $_LANG['ss'][SS_PREPARING] = '配货中';
 $_LANG['ss'][SS_SHIPPED] = '已发货';
-$_LANG['ss'][SS_RECEIVED] = '收货确认';
-$_LANG['ss'][SS_SHIPPED_PART] = '已发货(部分商品)';
-$_LANG['ss'][SS_SHIPPED_ING] = '发货中';
+// $_LANG['ss'][SS_RECEIVED] = '收货确认';
+// $_LANG['ss'][SS_SHIPPED_PART] = '已发货(部分商品)';
+// $_LANG['ss'][SS_SHIPPED_ING] = '发货中';
 
 $_LANG['ps'][PS_UNPAYED] = '未付款';
-$_LANG['ps'][PS_PAYING] = '付款中';
+// $_LANG['ps'][PS_PAYING] = '付款中';
 $_LANG['ps'][PS_PAYED] = '已付款';
 
 $_LANG['ss_admin'][SS_SHIPPED_ING] = '发货中（前台状态：未发货）';
@@ -374,9 +374,9 @@ $_LANG['invoice_no_sms'] = '请填写发货单号！';
 $_LANG['delivery_sn'] = '发货单';
 
 /* 发货单状态 */
-$_LANG['delivery_status'][0] = '已发货';
-$_LANG['delivery_status'][1] = '退货';
-$_LANG['delivery_status'][2] = '正常';
+$_LANG['delivery_status'][0] = '未发货';
+$_LANG['delivery_status'][1] = '已发货';
+// $_LANG['delivery_status'][2] = '正常';
 
 /* 发货单标签 */
 $_LANG['label_delivery_status'] = '发货单状态';

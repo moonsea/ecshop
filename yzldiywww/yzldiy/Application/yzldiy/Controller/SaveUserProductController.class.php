@@ -22,12 +22,24 @@ class SaveUserProductController extends Controller {
 		$preview = I('post.preview');
 		$info = I('post.info');
 		$name = I('post.name');
+		$title = I('post.title');
 		$retailprice = I('post.retailprice');
 		
 		$productId = I('post.productId');
 		
-		$file_name = $upload_path.md5($uid.date("Y-m-d h:i:s")).".jpg";
+		
+		$save = $upload_path.md5($uid.date("Y-m-d h:i:s"));
+		
+		if(!file_exists($save))
+		{
+			mkdir($save);
+		}
+		
+		
+		$file_name = $save.'/'.md5($uid.date("Y-m-d h:i:s")).".jpg";
 		file_put_contents($file_name,base64_decode($preview));
+		
+		
 		$data['userId'] = $uid;
 		$data['pid'] = $pid;
 		$data['tid'] = $tid;
@@ -44,7 +56,9 @@ class SaveUserProductController extends Controller {
 		if($checkProduct)
 		{
 			@unlink($checkProduct['preview']);
+			
 			$model->where("id=".$productId)->save($data);
+			
 			echo $productId;
 		}
 		else
@@ -58,41 +72,24 @@ class SaveUserProductController extends Controller {
 	{
 		$username = I('post.username');
 		$title = I('post.title');
-		$name = I('post.name');
+		$photoId = I('post.photoId');
 		$preview = I('post.preview');
 		
 		$upload_path = "./Uploads/userProductPreview/";
 		
-		$file_name = $upload_path.$name.".jpg";
+		$save = $upload_path.md5($title);
+		
+		if(!file_exists($save))
+		{
+			mkdir($save);
+		}
+		
+		
+		$file_name = $save.'/'.$photoId.".jpg";
 		file_put_contents($file_name,base64_decode($preview));
 		echo $file_name;
 	}
 	
-	
-	public function sizeImage()
-	{
-		//图片的等比缩放
-		$imageimage = I('post.img');
-		$imgstream = file_get_contents($image);
-		$im = imagecreatefromstring($imgstream);
-		$x = imagesx($im);
-		$y = imagesy($im);
-		
-		//放大200%,缩小雷同
-		$thumbw = $x*2; // 期望的目标图宽
-		$thumbh = $y*2; // 期望的目标图高
-		
-		if(function_exists("imagecreatetruecolor"))
-		  $dim = imagecreatetruecolor($thumbw, $thumbh); // 创建目标图gd2
-		else
-		  $dim = imagecreate($thumbw, $thumbh); // 创建目标图gd1
-		imagecopyresized ($dim,$im,0,0,0,0,$thumbw,$thumbh,$x,$y);
-		
-		header ("Content-type: image/jpeg");
-		imagejpeg ($dim);
-
-		echo "ok";
-	}
 	public function loadUserProduct($uid,$pid)
 	{
 		$model = M("userproduct_yzldiy");
