@@ -1,0 +1,347 @@
+[ 2016-05-11T00:07:01+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=63
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002814s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003299s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000839s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000913s ]
+ERR: SQLSTATE[42000] [1049] Unknown database 'root'
+
+[ 2016-05-11T00:07:51+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=63
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004251s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004978s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001261s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001368s ]
+ERR: SQLSTATE[42000] [1049] Unknown database 'root'
+
+[ 2016-05-11T00:08:01+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=63
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.007365s ]
+INFO: [ app_init ] --END-- [ RunTime:0.008774s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002285s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002469s ]
+ERR: SQLSTATE[42000] [1049] Unknown database 'root'
+
+[ 2016-05-11T00:09:07+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=63
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.005476s ]
+INFO: [ app_init ] --END-- [ RunTime:0.007125s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001310s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001433s ]
+ERR: SQLSTATE[42000] [1049] Unknown database 'root'
+
+[ 2016-05-11T00:09:38+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=59
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003988s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004633s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000967s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001072s ]
+ERR: SQLSTATE[42000] [1049] Unknown database 'root'
+
+[ 2016-05-11T00:10:38+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=60
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002565s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003013s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000578s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000639s ]
+ERR: SQLSTATE[42000] [1049] Unknown database 'root'
+
+[ 2016-05-11T00:12:34+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=60
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004637s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005405s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001361s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001459s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0168s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=60 ) LIMIT 1   [ RunTime:0.0019s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002069s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002242s ]
+
+[ 2016-05-11T00:12:37+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003176s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003616s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000611s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000701s ]
+NOTIC: [2] imagettftext() [<a href='function.imagettftext'>function.imagettftext</a>]: Invalid font filename D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Controller\FontController.class.php 第 53 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000925s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001022s ]
+
+[ 2016-05-11T00:38:16+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.008147s ]
+INFO: [ app_init ] --END-- [ RunTime:0.009564s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002236s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002484s ]
+NOTIC: [2] imagettftext() [<a href='function.imagettftext'>function.imagettftext</a>]: Invalid font filename D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Controller\FontController.class.php 第 53 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001348s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001496s ]
+
+[ 2016-05-11T00:38:26+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=Decorate&a=getDecorate&category=0&page=1&limit=12
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003837s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004509s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001121s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001217s ]
+SQL: SHOW COLUMNS FROM `ecs_decorate_yzldiy` [ RunTime:0.0152s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ecs_decorate_yzldiy` WHERE `category` > 0 AND ( status=1 ) LIMIT 1   [ RunTime:0.0024s ]
+SQL: SELECT * FROM `ecs_decorate_yzldiy` WHERE `category` > 0 AND ( status=1 ) LIMIT 0,12   [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002074s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002261s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001635s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001807s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001986s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002142s ]
+
+[ 2016-05-11T00:38:36+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=Decorate&a=getDecorate&category=0&page=1&limit=12
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003953s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004621s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001034s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001174s ]
+SQL: SHOW COLUMNS FROM `ecs_decorate_yzldiy` [ RunTime:0.0146s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ecs_decorate_yzldiy` WHERE `category` > 0 AND ( status=1 ) LIMIT 1   [ RunTime:0.0023s ]
+SQL: SELECT * FROM `ecs_decorate_yzldiy` WHERE `category` > 0 AND ( status=1 ) LIMIT 0,12   [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001341s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.001548s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000987s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001137s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002113s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002276s ]
+
+[ 2016-05-11T00:38:41+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=Decorate&a=getFrame&category=0&page=1&limit=12
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003509s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004195s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000970s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001067s ]
+SQL: SHOW COLUMNS FROM `ecs_frame_yzldiy` [ RunTime:0.0138s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ecs_frame_yzldiy` WHERE `category` > 0 AND ( status=1 ) LIMIT 1   [ RunTime:0.0021s ]
+SQL: SELECT * FROM `ecs_frame_yzldiy` WHERE `category` > 0 AND ( status=1 ) LIMIT 0,12   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001843s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002033s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000988s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001135s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001943s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002099s ]
+
+[ 2016-05-11T00:38:47+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=Decorate&a=getBackground&category=0&page=1&limit=12
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002330s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002790s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000652s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000720s ]
+SQL: SHOW COLUMNS FROM `ecs_background_yzldiy` [ RunTime:0.0145s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ecs_background_yzldiy` WHERE `category` > 0 AND ( status=1 ) LIMIT 1   [ RunTime:0.0024s ]
+SQL: SELECT * FROM `ecs_background_yzldiy` WHERE `category` > 0 AND ( status=1 ) LIMIT 0,12   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001856s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002047s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000994s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001142s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001895s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002047s ]
+
+[ 2016-05-11T00:39:03+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.008855s ]
+INFO: [ app_init ] --END-- [ RunTime:0.009625s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001439s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001659s ]
+NOTIC: [2] imagettftext() [<a href='function.imagettftext'>function.imagettftext</a>]: Invalid font filename D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Controller\FontController.class.php 第 53 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001829s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002813s ]
+
+[ 2016-05-11T00:39:03+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000059s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004601s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005731s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000885s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000992s ]
+NOTIC: [2] imagettftext() [<a href='function.imagettftext'>function.imagettftext</a>]: Invalid font filename D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Controller\FontController.class.php 第 53 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000990s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001079s ]
+
+[ 2016-05-11T00:39:08+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.005179s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005902s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000564s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000643s ]
+NOTIC: [2] imagettftext() [<a href='function.imagettftext'>function.imagettftext</a>]: Invalid font filename D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Controller\FontController.class.php 第 53 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001642s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001800s ]
+
+[ 2016-05-11T00:39:08+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004752s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005477s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002855s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003192s ]
+NOTIC: [2] imagettftext() [<a href='function.imagettftext'>function.imagettftext</a>]: Invalid font filename D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Controller\FontController.class.php 第 53 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001876s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002070s ]
+
+[ 2016-05-11T00:39:15+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.005004s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005830s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000908s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001034s ]
+NOTIC: [2] imagettftext() [<a href='function.imagettftext'>function.imagettftext</a>]: Invalid font filename D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Controller\FontController.class.php 第 53 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001217s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001331s ]
+
+[ 2016-05-11T00:39:15+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003121s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003616s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000521s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000585s ]
+NOTIC: [2] imagettftext() [<a href='function.imagettftext'>function.imagettftext</a>]: Invalid font filename D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Controller\FontController.class.php 第 53 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000658s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000712s ]
+
+[ 2016-05-11T00:40:53+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=Decorate&a=getDecorate&category=0&page=1&limit=12
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000063s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.014291s ]
+INFO: [ app_init ] --END-- [ RunTime:0.016275s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001712s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001878s ]
+SQL: SHOW COLUMNS FROM `ecs_decorate_yzldiy` [ RunTime:0.0138s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ecs_decorate_yzldiy` WHERE `category` > 0 AND ( status=1 ) LIMIT 1   [ RunTime:0.0019s ]
+SQL: SELECT * FROM `ecs_decorate_yzldiy` WHERE `category` > 0 AND ( status=1 ) LIMIT 0,12   [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001087s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.001254s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000834s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000978s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001701s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001851s ]
+
+[ 2016-05-11T00:41:22+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=60
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003722s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004701s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000855s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000956s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0139s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=60 ) LIMIT 1   [ RunTime:0.0026s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001619s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001789s ]
+
+[ 2016-05-11T00:41:24+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=font&a=getFontToImg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001912s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002373s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000467s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000537s ]
+NOTIC: [2] imagettftext() [<a href='function.imagettftext'>function.imagettftext</a>]: Invalid font filename D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Controller\FontController.class.php 第 53 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000509s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000568s ]
+
+[ 2016-05-11T00:41:32+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001596s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001998s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000527s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000591s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0148s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=1 ) LIMIT 1   [ RunTime:0.0021s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000795s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000880s ]
+

@@ -1,0 +1,57 @@
+[ 2016-05-10T23:03:04+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=63
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.009288s ]
+INFO: [ app_init ] --END-- [ RunTime:0.011797s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001358s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001474s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0146s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=63 ) LIMIT 1   [ RunTime:0.0015s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002419s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002603s ]
+
+[ 2016-05-10T23:03:41+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002166s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002877s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000689s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000773s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0136s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+
+[ 2016-05-10T23:03:52+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=63
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002941s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003642s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000910s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001019s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0092s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=63 ) LIMIT 1   [ RunTime:0.0008s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000735s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000808s ]
+
+[ 2016-05-10T23:04:03+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=63
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003924s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004902s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000941s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001081s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0069s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=63 ) LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000739s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000825s ]
+

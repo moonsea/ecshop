@@ -601,6 +601,18 @@ elseif ($_REQUEST['act'] == 'query')
     //     $smarty->assign('add_handler',      $handler_list[$code]);
     // }
     // $smarty->assign('code',         $code);
+
+    /* 模板分类列表 */
+    $temp_sql = "select * from ".$ecs->table('product_category_yzldiy')."order by id asc";
+    $temp_arr = $db->query($temp_sql);
+
+    $category_list = array();
+    while ($temp_row = $db->fetchRow($temp_arr))
+    {
+        $category_list[] = $temp_row;
+    }
+    $smarty->assign('category_list',  $category_list);
+    
     $template_list = get_template_list();
 
     $smarty->assign('template_list',   $template_list['template_list_data']);

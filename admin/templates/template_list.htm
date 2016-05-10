@@ -64,43 +64,6 @@
 {if $full_page}
 </div>
 
-<div>
-  <input type="hidden" name="act" value="batch" />
-  <select name="type" id="selAction" onchange="changeAction()">
-    <option value="">{$lang.select_please}</option>
-    <option value="trash">{$lang.trash}</option>
-    <option value="on_sale">{$lang.on_sale}</option>
-    <option value="not_on_sale">{$lang.not_on_sale}</option>
-    <option value="best">{$lang.best}</option>
-    <option value="not_best">{$lang.not_best}</option>
-    <option value="new">{$lang.new}</option>
-    <option value="not_new">{$lang.not_new}</option>
-    <option value="hot">{$lang.hot}</option>
-    <option value="not_hot">{$lang.not_hot}</option>
-    <option value="move_to">{$lang.move_to}</option>
-	{if $suppliers_list > 0}
-    <option value="suppliers_move_to">{$lang.suppliers_move_to}</option>
-	{/if}
-  </select>
-  <select name="target_cat" style="display:none">
-    <option value="0">{$lang.select_please}</option>{$cat_list}
-  </select>
-	{if $suppliers_list > 0}
-  <!--二级主菜单：转移供货商-->
-  <select name="suppliers_id" style="display:none">
-    <option value="-1">{$lang.select_please}</option>
-    <option value="0">{$lang.lab_to_shopex}</option>
-    {foreach name=sln from=$suppliers_list item=sl}
-      <option value="{$sl.suppliers_id}">{$sl.suppliers_name}</option>
-    {/foreach}
-  </select>
-  <!--end!-->
-	{/if}
-  {if $code neq 'real_goods'}
-  <input type="hidden" name="extension_code" value="{$code}" />
-  {/if}
-  <input type="submit" value="{$lang.button_submit}" id="btnSubmit" name="btnSubmit" class="button" disabled="true" />
-</div>
 </form>
 
 <script type="text/javascript">
