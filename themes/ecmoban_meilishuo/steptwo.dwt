@@ -44,7 +44,7 @@ a,a:hover,a:active,a:focus,a:visited{text-decoration:none;}
     	<ul>
         {foreach from=$categories name=nav item=nav}
 			<li {if $category eq $nav.id}class="active"{/if}>
-            	<a href="do.php?step=2&album={$album_id}&category={$nav.id}">{$nav.name}</a>
+            	<a href="do.php?step=2&album={$album_id}&category={$nav.id}&goods_id={$goods_id}">{$nav.name}</a>
             </li>            
         {/foreach}
     	</ul>
@@ -66,7 +66,7 @@ a,a:hover,a:active,a:focus,a:visited{text-decoration:none;}
       <!-- {if $current_page eq $item} -->
       <li class="active"><a href="javascript:;">{$item}</a></li>
       <!-- {else} -->
-      <li><a href="do.php?step=2&album={$album_id}&page={$item}&category={$category}">{$item}</a></li>
+      <li><a href="do.php?step=2&album={$album_id}&page={$item}&category={$category}&goods_id={$goods_id}">{$item}</a></li>
       <!-- {/if} -->
     <!--{/foreach}-->
 </ul>
