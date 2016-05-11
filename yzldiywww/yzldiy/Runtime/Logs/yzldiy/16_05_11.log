@@ -345,3 +345,654 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000795s ]
 INFO: [ app_end ] --END-- [ RunTime:0.000880s ]
 
+[ 2016-05-11T14:45:20+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=product&a=getProductInfo&pid=63
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.007481s ]
+INFO: [ app_init ] --END-- [ RunTime:0.008819s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001628s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001757s ]
+SQL: SHOW COLUMNS FROM `ecs_product_yzldiy` [ RunTime:0.0081s ]
+SQL: SELECT `tid`,`type`,`pageCount`,`name`,`retailprice`,`preview` FROM `ecs_product_yzldiy` WHERE (  status=1 and pid=63 ) LIMIT 1   [ RunTime:0.0013s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001503s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001632s ]
+
+[ 2016-05-11T14:45:38+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002688s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003205s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000684s ]
+SQL: SHOW COLUMNS FROM `ecs_userproduct_yzldiy` [ RunTime:0.0154s ]
+SQL: SELECT `id`,`preview` FROM `ecs_userproduct_yzldiy` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `ecs_userproduct_yzldiy` SET `userId`='117',`pid`='63',`tid`='00001',`type`='1',`preview`='./Uploads/userProductPreview/30dd386fae3dccbe854c4151840471be/30dd386fae3dccbe854c4151840471be.jpg',`info`='<pages printDpi=\\\"250\\\" version=\\\"1.0\\\" client=\\\"Windows 10;zh-CN;WIN 21,0,0,216;Google Pepper;PlugIn\\\">
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491301884356287\\\" x=\\\"2739.00\\\" y=\\\"975.17\\\" width=\\\"1496.00\\\" height=\\\"1994.67\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1757</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/67d32d7e6b4c48da89797c96b2467ffa.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/67d32d7e6b4c48da89797c96b2467ffa.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/67d32d7e6b4c48da89797c96b2467ffa.jpg?ratio=0.75</b>
+      <crop>0;516.8333333333334;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302044356289\\\" x=\\\"722.00\\\" y=\\\"554.50\\\" width=\\\"981.00\\\" height=\\\"1308.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1758</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/4eaf9c7f606646868c4e669910b26d6c.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/4eaf9c7f606646868c4e669910b26d6c.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/4eaf9c7f606646868c4e669910b26d6c.jpg?ratio=0.75</b>
+      <crop>0;337.5;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302044356291\\\" x=\\\"2739.00\\\" y=\\\"975.17\\\" width=\\\"1496.00\\\" height=\\\"1994.67\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1759</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/9d189f1eea9645a980eb777836fb6b41.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/9d189f1eea9645a980eb777836fb6b41.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/9d189f1eea9645a980eb777836fb6b41.jpg?ratio=0.75</b>
+      <crop>0;516.8333333333334;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302044356293\\\" x=\\\"722.00\\\" y=\\\"554.50\\\" width=\\\"981.00\\\" height=\\\"1308.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1760</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/271be5cab8a04ae28f4dc5afbc81e098.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/271be5cab8a04ae28f4dc5afbc81e098.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/271be5cab8a04ae28f4dc5afbc81e098.jpg?ratio=0.75</b>
+      <crop>0;337.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302044356295\\\" x=\\\"2739.00\\\" y=\\\"975.17\\\" width=\\\"1496.00\\\" height=\\\"1994.67\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1761</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/7314aeaf0ef843ad85b749c7bafa3c78.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/7314aeaf0ef843ad85b749c7bafa3c78.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/7314aeaf0ef843ad85b749c7bafa3c78.jpg?ratio=0.75</b>
+      <crop>0;516.8333333333334;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302044356297\\\" x=\\\"722.00\\\" y=\\\"554.50\\\" width=\\\"981.00\\\" height=\\\"1308.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1762</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/30d5b468fe7d4d909f2e60cee1783713.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/30d5b468fe7d4d909f2e60cee1783713.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/30d5b468fe7d4d909f2e60cee1783713.jpg?ratio=0.75</b>
+      <crop>0;337.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302044356299\\\" x=\\\"2739.00\\\" y=\\\"975.17\\\" width=\\\"1496.00\\\" height=\\\"1994.67\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1763</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/0835d8e3e331451d8a2bdb96e93bbc86.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/0835d8e3e331451d8a2bdb96e93bbc86.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/0835d8e3e331451d8a2bdb96e93bbc86.jpg?ratio=0.75</b>
+      <crop>0;516.8333333333334;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302204356301\\\" x=\\\"722.00\\\" y=\\\"554.50\\\" width=\\\"981.00\\\" height=\\\"1308.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1764</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/e574c77616cd4b7a8e0361f3d0e329e2.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/e574c77616cd4b7a8e0361f3d0e329e2.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/e574c77616cd4b7a8e0361f3d0e329e2.jpg?ratio=0.75</b>
+      <crop>0;337.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302204356303\\\" x=\\\"2739.00\\\" y=\\\"975.17\\\" width=\\\"1496.00\\\" height=\\\"1994.67\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1765</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/d7a8c462f442478290113ec28637c208.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/d7a8c462f442478290113ec28637c208.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/d7a8c462f442478290113ec28637c208.jpg?ratio=0.75</b>
+      <crop>0;516.8333333333334;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302204356305\\\" x=\\\"722.00\\\" y=\\\"472.75\\\" width=\\\"981.00\\\" height=\\\"1471.50\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1813</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/2751a15852e04662bfe4d599304664e9.jpg?ratio=0.67-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/2751a15852e04662bfe4d599304664e9.jpg?ratio=0.67</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/2751a15852e04662bfe4d599304664e9.jpg?ratio=0.67</b>
+      <crop>0;419.25;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302204356307\\\" x=\\\"2739.00\\\" y=\\\"1473.83\\\" width=\\\"1496.00\\\" height=\\\"997.33\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1815</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/3cdd7eff123e41a7980a45a9dcd2c515.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/3cdd7eff123e41a7980a45a9dcd2c515.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/3cdd7eff123e41a7980a45a9dcd2c515.jpg?ratio=1.5</b>
+      <crop>0;18.16666666666663;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302204356309\\\" x=\\\"722.00\\\" y=\\\"881.50\\\" width=\\\"981.00\\\" height=\\\"654.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1816</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/68a22b4accfc4ee08ff479ef28ef13e9.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/68a22b4accfc4ee08ff479ef28ef13e9.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/68a22b4accfc4ee08ff479ef28ef13e9.jpg?ratio=1.5</b>
+      <crop>0;10.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302204356311\\\" x=\\\"2739.00\\\" y=\\\"1473.83\\\" width=\\\"1496.00\\\" height=\\\"997.33\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1817</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/91eaeeed36db4d68aa5a57842f4f3cde.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/91eaeeed36db4d68aa5a57842f4f3cde.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/91eaeeed36db4d68aa5a57842f4f3cde.jpg?ratio=1.5</b>
+      <crop>0;18.16666666666663;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302204356313\\\" x=\\\"722.00\\\" y=\\\"881.50\\\" width=\\\"981.00\\\" height=\\\"654.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1818</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/d8763e70d58046bf8e288361fae35f57.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/d8763e70d58046bf8e288361fae35f57.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/d8763e70d58046bf8e288361fae35f57.jpg?ratio=1.5</b>
+      <crop>0;10.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302204356315\\\" x=\\\"2739.00\\\" y=\\\"1473.83\\\" width=\\\"1496.00\\\" height=\\\"997.33\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1821</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/0e8ddca4ce734d30945b377e388c315d.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/0e8ddca4ce734d30945b377e388c315d.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/0e8ddca4ce734d30945b377e388c315d.jpg?ratio=1.5</b>
+      <crop>0;18.16666666666663;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302354356317\\\" x=\\\"722.00\\\" y=\\\"881.50\\\" width=\\\"981.00\\\" height=\\\"654.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1881</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/b447a0c3f5a9457dab3cc3e0a036e697.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/b447a0c3f5a9457dab3cc3e0a036e697.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/b447a0c3f5a9457dab3cc3e0a036e697.jpg?ratio=1.5</b>
+      <crop>0;10.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302354356319\\\" x=\\\"2739.00\\\" y=\\\"1473.83\\\" width=\\\"1496.00\\\" height=\\\"997.33\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1882</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/187bb4417ffc4eb58cce4add1ea55c26.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/187bb4417ffc4eb58cce4add1ea55c26.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/187bb4417ffc4eb58cce4add1ea55c26.jpg?ratio=1.5</b>
+      <crop>0;18.16666666666663;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302354356321\\\" x=\\\"722.00\\\" y=\\\"472.75\\\" width=\\\"981.00\\\" height=\\\"1471.50\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1883</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/55d6aab2431e49f5871ff9d1f1279601.jpg?ratio=0.67-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/55d6aab2431e49f5871ff9d1f1279601.jpg?ratio=0.67</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/55d6aab2431e49f5871ff9d1f1279601.jpg?ratio=0.67</b>
+      <crop>0;419.25;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302354356323\\\" x=\\\"2739.00\\\" y=\\\"850.50\\\" width=\\\"1496.00\\\" height=\\\"2244.00\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1884</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/e5a0eabf58a945e5add0f44df5ee9620.jpg?ratio=0.67-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/e5a0eabf58a945e5add0f44df5ee9620.jpg?ratio=0.67</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/e5a0eabf58a945e5add0f44df5ee9620.jpg?ratio=0.67</b>
+      <crop>0;641.5;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302354356325\\\" x=\\\"722.00\\\" y=\\\"881.50\\\" width=\\\"981.00\\\" height=\\\"654.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1885</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/07e4fcd474504e88943b51e6e7effc63.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/07e4fcd474504e88943b51e6e7effc63.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/07e4fcd474504e88943b51e6e7effc63.jpg?ratio=1.5</b>
+      <crop>0;10.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+</pages>',`name`='时光慢递团队风采',`retailprice`='' WHERE ( id=1 ) [ RunTime:0.0024s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003187s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003370s ]
+
+[ 2016-05-11T14:45:41+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.005602s ]
+INFO: [ app_init ] --END-- [ RunTime:0.006494s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000764s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000845s ]
+SQL: SHOW COLUMNS FROM `ecs_userproduct_yzldiy` [ RunTime:0.0153s ]
+SQL: SELECT `id`,`preview` FROM `ecs_userproduct_yzldiy` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `ecs_userproduct_yzldiy` SET `userId`='117',`pid`='63',`tid`='00001',`type`='1',`preview`='./Uploads/userProductPreview/d28b19db100f7243add979b873861fe5/d28b19db100f7243add979b873861fe5.jpg',`info`='<pages printDpi=\\\"250\\\" version=\\\"1.0\\\" client=\\\"Windows 10;zh-CN;WIN 21,0,0,216;Google Pepper;PlugIn\\\">
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491301884356287\\\" x=\\\"2739.00\\\" y=\\\"975.17\\\" width=\\\"1496.00\\\" height=\\\"1994.67\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1757</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/67d32d7e6b4c48da89797c96b2467ffa.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/67d32d7e6b4c48da89797c96b2467ffa.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/67d32d7e6b4c48da89797c96b2467ffa.jpg?ratio=0.75</b>
+      <crop>0;516.8333333333334;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302044356289\\\" x=\\\"722.00\\\" y=\\\"554.50\\\" width=\\\"981.00\\\" height=\\\"1308.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1758</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/4eaf9c7f606646868c4e669910b26d6c.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/4eaf9c7f606646868c4e669910b26d6c.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/4eaf9c7f606646868c4e669910b26d6c.jpg?ratio=0.75</b>
+      <crop>0;337.5;981;633</crop>
+      <frame id=\\\"10001\\\">
+        <cornerLT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerLB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRB offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+        <cornerRT offsetX=\\\"0\\\" offsetY=\\\"0\\\" pw=\\\"0\\\" ph=\\\"0\\\"/>
+      </frame>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302044356291\\\" x=\\\"2739.00\\\" y=\\\"975.17\\\" width=\\\"1496.00\\\" height=\\\"1994.67\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1759</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/9d189f1eea9645a980eb777836fb6b41.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/9d189f1eea9645a980eb777836fb6b41.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/9d189f1eea9645a980eb777836fb6b41.jpg?ratio=0.75</b>
+      <crop>0;516.8333333333334;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302044356293\\\" x=\\\"722.00\\\" y=\\\"554.50\\\" width=\\\"981.00\\\" height=\\\"1308.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1760</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/271be5cab8a04ae28f4dc5afbc81e098.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/271be5cab8a04ae28f4dc5afbc81e098.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/271be5cab8a04ae28f4dc5afbc81e098.jpg?ratio=0.75</b>
+      <crop>0;337.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302044356295\\\" x=\\\"2739.00\\\" y=\\\"975.17\\\" width=\\\"1496.00\\\" height=\\\"1994.67\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1761</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/7314aeaf0ef843ad85b749c7bafa3c78.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/7314aeaf0ef843ad85b749c7bafa3c78.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/7314aeaf0ef843ad85b749c7bafa3c78.jpg?ratio=0.75</b>
+      <crop>0;516.8333333333334;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302044356297\\\" x=\\\"722.00\\\" y=\\\"554.50\\\" width=\\\"981.00\\\" height=\\\"1308.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1762</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/30d5b468fe7d4d909f2e60cee1783713.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/30d5b468fe7d4d909f2e60cee1783713.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/30d5b468fe7d4d909f2e60cee1783713.jpg?ratio=0.75</b>
+      <crop>0;337.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302044356299\\\" x=\\\"2739.00\\\" y=\\\"975.17\\\" width=\\\"1496.00\\\" height=\\\"1994.67\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1763</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/0835d8e3e331451d8a2bdb96e93bbc86.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/0835d8e3e331451d8a2bdb96e93bbc86.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/0835d8e3e331451d8a2bdb96e93bbc86.jpg?ratio=0.75</b>
+      <crop>0;516.8333333333334;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302204356301\\\" x=\\\"722.00\\\" y=\\\"554.50\\\" width=\\\"981.00\\\" height=\\\"1308.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1764</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/e574c77616cd4b7a8e0361f3d0e329e2.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/e574c77616cd4b7a8e0361f3d0e329e2.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/e574c77616cd4b7a8e0361f3d0e329e2.jpg?ratio=0.75</b>
+      <crop>0;337.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302204356303\\\" x=\\\"2739.00\\\" y=\\\"975.17\\\" width=\\\"1496.00\\\" height=\\\"1994.67\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1765</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/d7a8c462f442478290113ec28637c208.jpg?ratio=0.75-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/d7a8c462f442478290113ec28637c208.jpg?ratio=0.75</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/d7a8c462f442478290113ec28637c208.jpg?ratio=0.75</b>
+      <crop>0;516.8333333333334;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302204356305\\\" x=\\\"722.00\\\" y=\\\"472.75\\\" width=\\\"981.00\\\" height=\\\"1471.50\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1813</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/2751a15852e04662bfe4d599304664e9.jpg?ratio=0.67-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/2751a15852e04662bfe4d599304664e9.jpg?ratio=0.67</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/2751a15852e04662bfe4d599304664e9.jpg?ratio=0.67</b>
+      <crop>0;419.25;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302204356307\\\" x=\\\"2739.00\\\" y=\\\"1473.83\\\" width=\\\"1496.00\\\" height=\\\"997.33\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1815</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/3cdd7eff123e41a7980a45a9dcd2c515.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/3cdd7eff123e41a7980a45a9dcd2c515.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/3cdd7eff123e41a7980a45a9dcd2c515.jpg?ratio=1.5</b>
+      <crop>0;18.16666666666663;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302204356309\\\" x=\\\"722.00\\\" y=\\\"881.50\\\" width=\\\"981.00\\\" height=\\\"654.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1816</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/68a22b4accfc4ee08ff479ef28ef13e9.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/68a22b4accfc4ee08ff479ef28ef13e9.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/68a22b4accfc4ee08ff479ef28ef13e9.jpg?ratio=1.5</b>
+      <crop>0;10.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302204356311\\\" x=\\\"2739.00\\\" y=\\\"1473.83\\\" width=\\\"1496.00\\\" height=\\\"997.33\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1817</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/91eaeeed36db4d68aa5a57842f4f3cde.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/91eaeeed36db4d68aa5a57842f4f3cde.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/91eaeeed36db4d68aa5a57842f4f3cde.jpg?ratio=1.5</b>
+      <crop>0;18.16666666666663;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302204356313\\\" x=\\\"722.00\\\" y=\\\"881.50\\\" width=\\\"981.00\\\" height=\\\"654.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1818</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/d8763e70d58046bf8e288361fae35f57.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/d8763e70d58046bf8e288361fae35f57.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/d8763e70d58046bf8e288361fae35f57.jpg?ratio=1.5</b>
+      <crop>0;10.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302204356315\\\" x=\\\"2739.00\\\" y=\\\"1473.83\\\" width=\\\"1496.00\\\" height=\\\"997.33\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1821</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/0e8ddca4ce734d30945b377e388c315d.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/0e8ddca4ce734d30945b377e388c315d.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/0e8ddca4ce734d30945b377e388c315d.jpg?ratio=1.5</b>
+      <crop>0;18.16666666666663;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302354356317\\\" x=\\\"722.00\\\" y=\\\"881.50\\\" width=\\\"981.00\\\" height=\\\"654.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1881</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/b447a0c3f5a9457dab3cc3e0a036e697.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/b447a0c3f5a9457dab3cc3e0a036e697.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/b447a0c3f5a9457dab3cc3e0a036e697.jpg?ratio=1.5</b>
+      <crop>0;10.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302354356319\\\" x=\\\"2739.00\\\" y=\\\"1473.83\\\" width=\\\"1496.00\\\" height=\\\"997.33\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1882</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/187bb4417ffc4eb58cce4add1ea55c26.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/187bb4417ffc4eb58cce4add1ea55c26.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/187bb4417ffc4eb58cce4add1ea55c26.jpg?ratio=1.5</b>
+      <crop>0;18.16666666666663;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302354356321\\\" x=\\\"722.00\\\" y=\\\"472.75\\\" width=\\\"981.00\\\" height=\\\"1471.50\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1883</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/55d6aab2431e49f5871ff9d1f1279601.jpg?ratio=0.67-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/55d6aab2431e49f5871ff9d1f1279601.jpg?ratio=0.67</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/55d6aab2431e49f5871ff9d1f1279601.jpg?ratio=0.67</b>
+      <crop>0;419.25;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+  <page width=\\\"4647\\\" height=\\\"3153\\\" preview=\\\"http://st2.yxp.126.net/flash2/images/huace/112/52001/cover.jpg\\\">
+    <background timeId=\\\"1269489065282\\\" x=\\\"0.00\\\" y=\\\"0.00\\\" width=\\\"4647.00\\\" height=\\\"3153.00\\\" layer=\\\"2\\\" id=\\\"4229\\\" ext=\\\".jpg\\\" color=\\\"0x0\\\"/>
+    <image timeId=\\\"14629491302354356323\\\" x=\\\"2739.00\\\" y=\\\"850.50\\\" width=\\\"1496.00\\\" height=\\\"2244.00\\\" rotation=\\\"1.00\\\" crc32=\\\"0\\\">
+      <photoid>1884</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/e5a0eabf58a945e5add0f44df5ee9620.jpg?ratio=0.67-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/e5a0eabf58a945e5add0f44df5ee9620.jpg?ratio=0.67</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/e5a0eabf58a945e5add0f44df5ee9620.jpg?ratio=0.67</b>
+      <crop>0;641.5;1496;961</crop>
+    </image>
+    <image timeId=\\\"14629491302354356325\\\" x=\\\"722.00\\\" y=\\\"881.50\\\" width=\\\"981.00\\\" height=\\\"654.00\\\" rotation=\\\"-1.00\\\" crc32=\\\"0\\\">
+      <photoid>1885</photoid>
+      <bh>0</bh>
+      <bw>0</bw>
+      <s>http://7xsxxm.com2.z0.glb.qiniucdn.com/07e4fcd474504e88943b51e6e7effc63.jpg?ratio=1.5-mobile200</s>
+      <m>http://7xsxxm.com2.z0.glb.qiniucdn.com/07e4fcd474504e88943b51e6e7effc63.jpg?ratio=1.5</m>
+      <b>http://7xsxxm.com2.z0.glb.qiniucdn.com/07e4fcd474504e88943b51e6e7effc63.jpg?ratio=1.5</b>
+      <crop>0;10.5;981;633</crop>
+    </image>
+    <decorator timeId=\\\"1333678786408\\\" x=\\\"2410.00\\\" y=\\\"1269.00\\\" width=\\\"2062.00\\\" height=\\\"1591.00\\\" id=\\\"15992\\\" ext=\\\".png\\\"/>
+    <decorator timeId=\\\"1333679932761\\\" x=\\\"690.00\\\" y=\\\"847.00\\\" width=\\\"1082.00\\\" height=\\\"725.00\\\" id=\\\"15991\\\" ext=\\\".png\\\"/>
+  </page>
+</pages>',`name`='时光慢递团队风采',`retailprice`='' WHERE ( id=1 ) [ RunTime:0.0019s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003238s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003419s ]
+
+[ 2016-05-11T14:45:42+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004346s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000863s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000962s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000899s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001006s ]
+
+[ 2016-05-11T14:45:42+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003367s ]
+INFO: [ app_init ] --END-- [ RunTime:0.006099s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001168s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001266s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001599s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001734s ]
+
+[ 2016-05-11T14:45:43+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004649s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005392s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000988s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001099s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000977s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001079s ]
+
+[ 2016-05-11T14:45:43+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.076313s ]
+INFO: [ app_init ] --END-- [ RunTime:0.076966s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001780s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001892s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000985s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001097s ]
+
+[ 2016-05-11T14:45:43+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003774s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005059s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000972s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001080s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001015s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001128s ]
+
+[ 2016-05-11T14:45:43+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.048100s ]
+INFO: [ app_init ] --END-- [ RunTime:0.048780s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000896s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000992s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000987s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001094s ]
+
+[ 2016-05-11T14:45:43+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003738s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004417s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000837s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001009s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000977s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001092s ]
+
+[ 2016-05-11T14:45:43+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003512s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004434s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001027s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001143s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001131s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001243s ]
+
+[ 2016-05-11T14:45:43+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002226s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002838s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000755s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000853s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000864s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001016s ]
+
+[ 2016-05-11T14:45:43+08:00 ] 127.0.0.1 /ecshop/yzldiywww/yzldiy/yzldiy.php?m=yzldiy&c=saveUserProduct&a=saveListStart
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003733s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004395s ]
+NOTIC: [8] Use of undefined constant ’SHOW_PAGE_TRACE’ - assumed '’SHOW_PAGE_TRACE’' D:\Codes\Project\Server\PHPnow\htdocs\ecshop\yzldiywww\yzldiy\Application\yzldiy\Conf\config.php 第 4 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001002s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001128s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001279s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001419s ]
+

@@ -211,7 +211,7 @@ elseif($_REQUEST['act'] == 'confirm')
 elseif ($_REQUEST['act'] == 'change_pwd')
 {
 
-    $user_id = $_SESSION['post_change_passwd'];
+    $user_id = $_SESSION['admin_id'];
 
     /* 获取管理员信息 */
     $sql = "SELECT * FROM " .$ecs->table('admin_user').
@@ -227,7 +227,7 @@ elseif ($_REQUEST['act'] == 'change_pwd')
     // $smarty->assign('action',      'edit');
 
     /*pageheader父标题*/
-    $smarty->assign('pageheader_title',  $_LANG['13_print']);
+    $smarty->assign('pageheader_title',  $_LANG['14_post']);
 
     assign_query_info();
     $smarty->display('agent_change_passwd.htm');
@@ -349,8 +349,11 @@ function get_sale_list($shipping_status){
     /* 添加邀请码查询条件 */
     // $where = " WHERE au.user_id = '" . $user_id . "' AND au.invitation_code = oi.invitation_code";
 
-    /* 添加印刷厂未处理的查询条件 */
+    /* 添加邮局未处理的查询条件 */
     $where = " WHERE ( oi.shipping_status = '". $shipping_status ."')";
+
+    /* 添加印刷厂已处理的查询条件 */
+    $where = $where . " AND ( oi.order_status = '1') ";
 
     /* 添加按照付款时间每日分组 */
     // $group = " GROUP BY FROM_UNIXTIME(oi.pay_time,'%y-%m-%d')";

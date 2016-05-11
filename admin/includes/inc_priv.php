@@ -95,9 +95,9 @@ if (!defined('IN_ECS'))
     $purview['021_reg_fields']       = 'reg_fields';
 
 //广告管理
-    $purview['z_clicks_stats']       = 'ad_manage';
-    $purview['ad_position']          = 'ad_manage';
-    $purview['ad_list']              = 'ad_manage';
+    // $purview['z_clicks_stats']       = 'ad_manage';
+    // $purview['ad_position']          = 'ad_manage';
+    // $purview['ad_list']              = 'ad_manage';
 
 //订单管理权限
     $purview['02_order_list']        = 'order_view';
@@ -122,35 +122,35 @@ if (!defined('IN_ECS'))
 
 
 //模板管理
-    $purview['02_template_select']   = 'template_select';
-    $purview['03_template_setup']    = 'template_setup';
-    $purview['04_template_library']  = 'library_manage';
-    $purview['05_edit_languages']    = 'lang_edit';
-    $purview['06_template_backup']   = 'backup_setting';
-    $purview['mail_template_manage'] = 'mail_template';
+    // $purview['02_template_select']   = 'template_select';
+    // $purview['03_template_setup']    = 'template_setup';
+    // $purview['04_template_library']  = 'library_manage';
+    // $purview['05_edit_languages']    = 'lang_edit';
+    // $purview['06_template_backup']   = 'backup_setting';
+    // $purview['mail_template_manage'] = 'mail_template';
 
 //数据库管理
-    $purview['02_db_manage']         = array('db_backup', 'db_renew');
-    $purview['03_db_optimize']       = 'db_optimize';
-    $purview['04_sql_query']         = 'sql_query';
-    $purview['convert']              = 'convert';
+    // $purview['02_db_manage']         = array('db_backup', 'db_renew');
+    // $purview['03_db_optimize']       = 'db_optimize';
+    // $purview['04_sql_query']         = 'sql_query';
+    // $purview['convert']              = 'convert';
 
 //短信管理
-    $purview['02_sms_my_info']       = 'my_info';
-    $purview['03_sms_send']          = 'sms_send';
-    $purview['04_sms_charge']        = 'sms_charge';
-    $purview['05_sms_send_history']  = 'send_history';
-    $purview['06_sms_charge_history']= 'charge_history';
+    // $purview['02_sms_my_info']       = 'my_info';
+    // $purview['03_sms_send']          = 'sms_send';
+    // $purview['04_sms_charge']        = 'sms_charge';
+    // $purview['05_sms_send_history']  = 'send_history';
+    // $purview['06_sms_charge_history']= 'charge_history';
 
 //推荐管理
-    $purview['affiliate']            = 'affiliate';
-    $purview['affiliate_ck']         = 'affiliate_ck';
+    // $purview['affiliate']            = 'affiliate';
+    // $purview['affiliate_ck']         = 'affiliate_ck';
 
 //邮件群发管理
-    $purview['attention_list']       = 'attention_list';
-    $purview['email_list']           = 'email_list';
-    $purview['magazine_list']        = 'magazine_list';
-    $purview['view_sendlist']        = 'view_sendlist';
+    // $purview['attention_list']       = 'attention_list';
+    // $purview['email_list']           = 'email_list';
+    // $purview['magazine_list']        = 'magazine_list';
+    // $purview['view_sendlist']        = 'view_sendlist';
 
 // 代理
     $purview['01_statistics']       = 'agent_statistics';

@@ -604,7 +604,7 @@ function get_sale_list_month($is_pagination = true){
 function order_detail($order_sn,$stauts){
 
     /* 查询订单信息 */
-    $sql = "SELECT oi.order_sn,oi.user_name,oi.add_time,oi.consignee,oi.address,oi.mobile,oi.zipcode,oi.postscript ";
+    $sql = "SELECT oi.order_sn,oi.user_name,oi.user_id,oi.add_time,oi.consignee,oi.address,oi.mobile,oi.zipcode,oi.postscript ";
 
     $where = " WHERE oi.order_sn = '" . $order_sn ."'";
 
@@ -613,8 +613,7 @@ function order_detail($order_sn,$stauts){
 
     /* 查询 */
     $sql = $sql . " FROM " .
-           $GLOBALS['ecs']->table('order_info') . ' AS oi,'.
-           $GLOBALS['ecs']->table('users') . ' AS u '.
+           $GLOBALS['ecs']->table('order_info') . ' AS oi'.
            $where;
 
     $order_list_data = $GLOBALS['db']->getAll($sql);

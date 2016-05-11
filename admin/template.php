@@ -16,7 +16,6 @@ $exc = new exchange($ecs->table('product_yzldiy'), $db, 'pid', 'name');
 /*------------------------------------------------------ */
 //-- 模板列表
 /*------------------------------------------------------ */
-
 if ($_REQUEST['act'] == 'list')
 {
     admin_priv('template_manage');
@@ -612,7 +611,7 @@ elseif ($_REQUEST['act'] == 'query')
         $category_list[] = $temp_row;
     }
     $smarty->assign('category_list',  $category_list);
-    
+
     $template_list = get_template_list();
 
     $smarty->assign('template_list',   $template_list['template_list_data']);
