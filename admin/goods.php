@@ -743,7 +743,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                     "'$shop_price', ".
                     "'$goods_img', '$goods_thumb', ".
                     "'$_POST[goods_brief]',".
-                    gmtime() . "', '". gmtime() .
+                    "'".gmtime() . "', '". gmtime() .
                     "', '$goods_bind_type', '$goods_add_page_max', '$goods_composite_page', '$goods_composite_pic', '$goods_gray',".
                     "'$goods_composite_pdf','$goods_inner_type','$goods_size_width','$goods_size_length' " .
                     ")";
