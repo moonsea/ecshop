@@ -714,6 +714,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     }
 
     /* 处理商品数据 */
+    $goods_unit = !empty($_POST['goods_unit']) ? $_POST['goods_unit'] : "件";
     $shop_price = !empty($_POST['shop_price']) ? $_POST['shop_price'] : 0;
     $goods_bind_type = !empty($_POST['goods_bind_type']) ? $_POST['goods_bind_type'] : "1";
     $goods_add_page_max = !empty($_POST['goods_add_page_max']) ? $_POST['goods_add_page_max'] : "1";
@@ -733,14 +734,14 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     {
 
         $sql = "INSERT INTO " . $ecs->table('goods') . " (goods_name, goods_sn, " .
-                    "shop_price," .
+                    "shop_price,unit," .
                     "goods_img, goods_thumb, goods_brief, " .
                     "add_time, last_update, " .
                     "goods_bind_type, goods_add_page_max,goods_composite_page, goods_composite_pic, goods_gray," .
                     "goods_composite_pdf, goods_inner_type,goods_size_width, goods_size_length " .
                     ")" .
                 "VALUES ('$_POST[goods_name]', '$goods_sn', " .
-                    "'$shop_price', ".
+                    "'$shop_price', '$goods_unit',".
                     "'$goods_img', '$goods_thumb', ".
                     "'$_POST[goods_brief]',".
                     "'".gmtime() . "', '". gmtime() .
@@ -770,6 +771,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                 "goods_name = '$_POST[goods_name]', " .
                 "goods_sn = '$goods_sn', " .
                 "shop_price = '$shop_price', " .
+                "unit = '$goods_unit', " .
                 "goods_brief = '$_POST[goods_brief]',".
                 "goods_bind_type = '$goods_bind_type'," .
                 "goods_add_page_max = '$goods_add_page_max',".
@@ -907,31 +909,31 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     }
 
     /* 处理会员价格 */
-    if (isset($_POST['user_rank']) && isset($_POST['user_price']))
-    {
-        handle_member_price($goods_id, $_POST['user_rank'], $_POST['user_price']);
-    }
+    // if (isset($_POST['user_rank']) && isset($_POST['user_price']))
+    // {
+    //     handle_member_price($goods_id, $_POST['user_rank'], $_POST['user_price']);
+    // }
 
     /* 处理优惠价格 */
-    if (isset($_POST['volume_number']) && isset($_POST['volume_price']))
-    {
-        $temp_num = array_count_values($_POST['volume_number']);
-        foreach($temp_num as $v)
-        {
-            if ($v > 1)
-            {
-                sys_msg($_LANG['volume_number_continuous'], 1, array(), false);
-                break;
-            }
-        }
-        handle_volume_price($goods_id, $_POST['volume_number'], $_POST['volume_price']);
-    }
+    // if (isset($_POST['volume_number']) && isset($_POST['volume_price']))
+    // {
+    //     $temp_num = array_count_values($_POST['volume_number']);
+    //     foreach($temp_num as $v)
+    //     {
+    //         if ($v > 1)
+    //         {
+    //             sys_msg($_LANG['volume_number_continuous'], 1, array(), false);
+    //             break;
+    //         }
+    //     }
+    //     handle_volume_price($goods_id, $_POST['volume_number'], $_POST['volume_price']);
+    // }
 
-    /* 处理扩展分类 */
-    if (isset($_POST['other_cat']))
-    {
-        handle_other_cat($goods_id, array_unique($_POST['other_cat']));
-    }
+    // /* 处理扩展分类 */
+    // if (isset($_POST['other_cat']))
+    // {
+    //     handle_other_cat($goods_id, array_unique($_POST['other_cat']));
+    // }
 
     if ($is_insert)
     {
@@ -1039,6 +1041,55 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
 
 
     sys_msg($is_insert ? $_LANG['add_goods_ok'] : $_LANG['edit_goods_ok'], 0, $link);
+}
+
+/*------------------------------------------------------ */
+//-- 修改商品大图url
+/*------------------------------------------------------ */
+elseif ($_REQUEST['act'] == 'edit_goods_img')
+{
+    check_authz_json('goods_manage');
+
+    $goods_id = intval($_POST['id']);
+
+    $goods_img = json_str_iconv(trim($_POST['val']));
+
+    $sql = "UPDATE ". $ecs->table('goods'). " SET goods_img = '".$goods_img."' WHERE goods_id = '".$goods_id."'";
+
+    if ($db->query($sql))
+    {
+        clear_cache_files();
+        make_json_result(stripslashes($goods_img));
+    }
+}
+
+/*------------------------------------------------------ */
+//-- 添加商品小图
+/*------------------------------------------------------ */
+elseif ($_REQUEST['act'] == 'add_gallery_img')
+{
+    check_authz_json('goods_manage');
+
+    $goods_id = intval($_POST['id']);
+
+    $img_url = json_str_iconv(trim($_POST['val']));
+
+    /* 查询gallery表中最大id */
+
+    $sql = "SELECT MAX(img_id)+1 FROM ". $ecs->table('goods_gallery');
+    $img_id = $db->getOne($sql);
+
+    $sql = "INSERT INTO ". $ecs->table('goods_gallery'). " ( ".
+                " img_id, goods_id,img_url ".
+                " ) VALUES ( ".
+                "'$img_id','$goods_id','$img_url'".
+                " )";
+
+    if ($db->query($sql))
+    {
+        clear_cache_files();
+        make_json_result(stripslashes($img_id));
+    }
 }
 
 /*------------------------------------------------------ */
@@ -1227,29 +1278,19 @@ elseif ($_REQUEST['act'] == 'edit_goods_name')
 }
 
 /*------------------------------------------------------ */
-//-- 修改商品货号
+//-- 修改商品单位
 /*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'edit_goods_sn')
+elseif ($_REQUEST['act'] == 'edit_goods_unit')
 {
     check_authz_json('goods_manage');
 
-    $goods_id = intval($_POST['id']);
-    $goods_sn = json_str_iconv(trim($_POST['val']));
+    $goods_id   = intval($_POST['id']);
+    $goods_unit = json_str_iconv(trim($_POST['val']));
 
-    /* 检查是否重复 */
-    if (!$exc->is_only('goods_sn', $goods_sn, $goods_id))
-    {
-        make_json_error($_LANG['goods_sn_exists']);
-    }
-    $sql="SELECT goods_id FROM ". $ecs->table('products')."WHERE product_sn='$goods_sn'";
-    if($db->getOne($sql))
-    {
-        make_json_error($_LANG['goods_sn_exists']);
-    }
-    if ($exc->edit("goods_sn = '$goods_sn', last_update=" .gmtime(), $goods_id))
+    if ($exc->edit("unit = '$goods_unit', last_update=" .gmtime(), $goods_id))
     {
         clear_cache_files();
-        make_json_result(stripslashes($goods_sn));
+        make_json_result(stripslashes($goods_unit));
     }
 }
 

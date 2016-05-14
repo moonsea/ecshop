@@ -3,6 +3,9 @@
 {insert_scripts files="../js/utils.js,selectzone.js,colorselector.js"}
 <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/qiniu.js"></script>
+<script type="text/javascript" src="../js/plupload.full.min.js"></script>
+<script type="text/javascript" src="../js/json2.js"></script>
 <link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
 
 {if $warning}
@@ -30,21 +33,6 @@
         <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
 
         <table width="90%" id="general-table" align="center">
-          <!-- 所属类目 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_goods_cat}</td>
-            <td><select name="cat_id" onchange="hideCatDiv()" ><option value="0">{$lang.select_please}</option>{$cat_list}</select>
-               {if $is_add}
-              <a href="javascript:void(0)" onclick="rapidCatAdd()" title="{$lang.rapid_add_cat}" class="special">{$lang.rapid_add_cat}</a>
-              <span id="category_add" style="display:none;">
-              <input class="text" size="10" name="addedCategoryName" />
-               <a href="javascript:void(0)" onclick="addCategory()" title="{$lang.button_submit}" class="special" >{$lang.button_submit}</a>
-               <a href="javascript:void(0)" onclick="return goCatPage()" title="{$lang.category_manage}" class="special" >{$lang.category_manage}</a>
-               <a href="javascript:void(0)" onclick="hideCatDiv()" title="{$lang.hide}" class="special" ><<</a>
-               </span>
-               {/if}
-            </td>
-          </tr>-->
           <!-- 商品编号 -->
           <tr>
             <td class="label">
@@ -53,13 +41,6 @@
             <!-- <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeGoodsSN">{$lang.notice_goods_sn}</span> -->
             </td>
           </tr>
-          <!-- 条形码 -->
-          <!--<tr>
-            <td class="label">
-            {$lang.goods_bar_code} </td>
-            <td><input type="text" name="goods_bar_code" value="{$goods.goods_bar_code|escape}" size="20"/>
-            </td>
-          </tr>-->
           <!-- 商品名称 -->
           <tr>
             <td class="label">{$lang.lab_goods_name}</td>
@@ -71,76 +52,20 @@
             <td class="label">{$lang.lab_goods_brief}</td>
             <td><textarea name="goods_brief" cols="40" rows="3">{$goods.goods_brief|escape}</textarea></td>
           </tr
-          <!-- 关键字 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_keywords}</td>
-            <td>
-              <span class="notice-span">{$lang.notice_keywords}</span>
-              <br />
-              <input type="text" name="keywords" value="{$goods.keywords|escape}" size="40" />
-            </td>
-          </tr>-->
           <!-- 产品单位 -->
-          <!--<tr>
+          <tr>
             <td class="label">
             {$lang.lab_goods_unit} </td>
             <td><input type="text" name="goods_unit" value="{$goods.unit|escape}" size="20"/>
             </td>
-          </tr>-->
-          <!-- 产品重量 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_goods_weight}</td>
-            <td><input type="text" name="goods_weight" value="{$goods.goods_weight_by_unit}" size="20" /> <select name="weight_unit">{html_options options=$unit_list selected=$weight_unit}</select></td>
-          </tr>-->
-          <!-- 限购数量 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_goods_max_buy}</td>
-            <td>
-              <input type="text" name="goods_max_buy" value="{$goods.goods_max_buy|escape}" size="40" />
-              <span class="notice-span">{$lang.notice_goods_max_buy}</span>
-            </td>
-          </tr>-->
-          <!-- 最低购买数量 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_goods_min_buy}</td>
-            <td>
-              <input type="text" name="goods_min_buy" value="{$goods.goods_min_buy|escape}" size="40" />
-              <span class="notice-span">{$lang.notice_goods_min_buy}</span>
-            </td>
-          </tr>-->
-          <!-- 库存数量 -->
-          <!--{if $cfg.use_storage}-->
-            <!--<tr>
-              <td class="label">{$lang.lab_goods_number}</td>
-              <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" /></td>
-            </tr>-->
-            <!-- 库存报警下限 -->
-            <!--<tr>
-              <td class="label">{$lang.lab_warn_number}</td>
-              <td><input type="text" name="warn_number" value="{$goods.warn_number}" size="20" /></td>
-            </tr>-->
-          <!--{/if}-->
-          <!-- 点击数 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_click_count}</td>
-            <td><input type="text" name="click_count" value="{$goods.click_count}" size="20" /></td>
-          </tr>-->
-          <!-- 属性设置 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_intro}</td>
-            <td><input type="checkbox" name="is_new" value="1" {if $goods.is_new}checked="checked"{/if} />{$lang.is_new} <input type="checkbox" name="is_hot" value="1" {if $goods.is_hot}checked="checked"{/if} />{$lang.is_hot} <input type="checkbox" name="is_best" value="1" {if $goods.is_best}checked="checked"{/if} />{$lang.is_best} <input type="checkbox" name="is_promote" value="1" {if $goods.is_promote}checked="checked"{/if} />{$lang.is_promote}</td>
-          </tr>-->
+          </tr>
           <!-- 装订类型 -->
           <tr>
             <td class="label">{$lang.lab_bind_type}</td>
             <td>
             	<select name="goods_bind_type" onchange="hideCatDiv()">
             	<!--{foreach from=$bind_type_list name=bind_type_list item=item}-->
-<<<<<<< HEAD
-            	<option value="{$item.type_id}">{$item.type_name}</option>
-=======
             	<option value="{$item.type_id}" {if $goods.goods_bind_type == $item.type_id}selected="true"{/if}>{$item.type_name}</option>
->>>>>>> origin/master
                 <!--{/foreach}-->
                	</select>
             </td>
@@ -167,192 +92,27 @@
             <td class="label">页数</td>
             <td><input type="text" name="goods_add_page_max" value="{$goods.goods_add_page_max}" size="10" /></td>
           </tr>
-          <!-- 销售操作 -->
-          <!--<tr id="alone_sale_1">
-            <td class="label" id="alone_sale_2">{$lang.lab_is_on_sale}</td>
-            <td id="alone_sale_3"><input type="checkbox" name="is_on_sale" value="1" {if $goods.is_on_sale}checked="checked"{/if} /> {$lang.on_sale_desc}</td>
-          </tr>-->
-          <!-- 市场参考价 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_market_price}</td>
-            <td><input type="text" name="market_price" value="{$goods.market_price}" size="20" /><span class="notice-span">{$lang.lab_market_price_unit}</span>
-            </td>
-          </tr>-->
           <!-- 实际销售价 -->
           <tr>
             <td class="label">{$lang.lab_shop_price}</td>
             <td><input type="text" name="shop_price" value="{$goods.shop_price}" size="20" onblur="priceSetted()"/></td>
           </tr>
-          <!-- 赠送积分 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_give_integral}</td>
-            <td>
-              <span class="notice-span">{$lang.notice_give_integral_desc_1}</span>
-              <input type="text" name="give_integral" value="{$goods.give_integral}" size="20" />
-              <span class="notice-span">{$lang.notice_give_integral_desc_2}</span>
-              <br/>
-              <span class="notice-span" id="giveIntegral">{$lang.notice_give_integral}</span>
-            </td>
-          </tr>-->
-
-          <!--<tr>-->
-<!--             <td class="label">{$lang.lab_goods_cat}</td>
-            <td><select name="cat_id" onchange="hideCatDiv()" ><option value="0">{$lang.select_please}</option>{$cat_list}</select>
- -->              <!-- {if $is_add}
-              <a href="javascript:void(0)" onclick="rapidCatAdd()" title="{$lang.rapid_add_cat}" class="special">{$lang.rapid_add_cat}</a>
-              <span id="category_add" style="display:none;">
-              <input class="text" size="10" name="addedCategoryName" />
-               <a href="javascript:void(0)" onclick="addCategory()" title="{$lang.button_submit}" class="special" >{$lang.button_submit}</a>
-               <a href="javascript:void(0)" onclick="return goCatPage()" title="{$lang.category_manage}" class="special" >{$lang.category_manage}</a>
-               <a href="javascript:void(0)" onclick="hideCatDiv()" title="{$lang.hide}" class="special" ><<</a>
-               </span>
-               {/if} -->
-               <!-- {$lang.require_field} -->
-            <!--</td>-->
-          <!--</tr>-->
-
-        <!--   <tr>
-            <td class="label">{$lang.lab_other_cat}</td>
-            <td>
-              <input type="button" value="{$lang.add}" onclick="addOtherCat(this.parentNode)" class="button" />
-              {foreach from=$goods.other_cat item=cat_id}
-              <select name="other_cat[]"><option value="0">{$lang.select_please}</option>{$other_cat_list.$cat_id}</select>
-              {/foreach}
-            </td>
-          </tr>
-          <tr>
-            <td class="label">{$lang.lab_goods_brand}</td>
-            <td><select name="brand_id" onchange="hideBrandDiv()" ><option value="0">{$lang.select_please}{html_options options=$brand_list selected=$goods.brand_id}</select>
-              {if $is_add}
-              <a href="javascript:void(0)" title="{$lang.rapid_add_brand}" onclick="rapidBrandAdd()" class="special" >{$lang.rapid_add_brand}</a>
-              <span id="brand_add" style="display:none;">
-              <input class="text" size="15" name="addedBrandName" />
-               <a href="javascript:void(0)" onclick="addBrand()" class="special" >{$lang.button_submit}</a>
-               <a href="javascript:void(0)" onclick="return goBrandPage()" title="{$lang.brand_manage}" class="special" >{$lang.brand_manage}</a>
-               <a href="javascript:void(0)" onclick="hideBrandDiv()" title="{$lang.hide}" class="special" ><<</a>
-               </span>
-               {/if}
-            </td>
-          </tr>
-         {if $suppliers_exists eq 1}
-          <tr>
-            <td class="label">{$lang.label_suppliers}</td>
-            <td><select name="suppliers_id" id="suppliers_id">
-        <option value="0">{$lang.suppliers_no}</option>
-        {html_options options=$suppliers_list_name selected=$goods.suppliers_id}
-      </select></td>
-          </tr>
-         {/if}
-
-          {if $user_rank_list}
-          <tr>
-            <td class="label"><a href="javascript:showNotice('noticeUserPrice');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.lab_user_price}</td>
-            <td>
-              {foreach from=$user_rank_list item=user_rank}
-              {$user_rank.rank_name}<span id="nrank_{$user_rank.rank_id}"></span><input type="text" id="rank_{$user_rank.rank_id}" name="user_price[]" value="{$member_price_list[$user_rank.rank_id]|default:-1}" onkeyup="if(parseInt(this.value)<-1){this.value='-1';};set_price_note({$user_rank.rank_id})" size="8" />
-              <input type="hidden" name="user_rank[]" value="{$user_rank.rank_id}" />
-              {/foreach}
-              <br />
-              <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeUserPrice">{$lang.notice_user_price}</span>
-            </td>
-          </tr>
-          {/if} -->
-
-          <!--鍟嗗搧浼樻儬浠锋牸-->
-          <!-- <tr>
-            <td class="label"><a href="javascript:showNotice('volumePrice');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.lab_volume_price}</td>
-            <td>
-              <table width="100%" id="tbody-volume" align="center">
-                {foreach from=$volume_price_list item=volume_price name="volume_price_tab"}
-                <tr>
-                  <td>
-                     {if $smarty.foreach.volume_price_tab.iteration eq 1}
-                       <a href="javascript:;" onclick="addVolumePrice(this)">[+]</a>
-                     {else}
-                       <a href="javascript:;" onclick="removeVolumePrice(this)">[-]</a>
-                     {/if}
-                     {$lang.volume_number} <input type="text" name="volume_number[]" size="8" value="{$volume_price.number}"/>
-                     {$lang.volume_price} <input type="text" name="volume_price[]" size="8" value="{$volume_price.price}"/>
-                  </td>
-                </tr>
-                {/foreach}
-              </table>
-              <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="volumePrice">{$lang.notice_volume_price}</span>
-            </td>
-          </tr> -->
-          <!--鍟嗗搧浼樻儬浠锋牸 end -->
-
-          <!-- <tr>
-            <td class="label">{$lang.lab_market_price}</td>
-            <td><input type="text" name="market_price" value="{$goods.market_price}" size="20" />
-              <input type="button" value="{$lang.integral_market_price}" onclick="integral_market_price()" />
-            </td>
-          </tr> -->
-          <!-- <tr>
-            <td class="label"><a href="javascript:showNotice('giveIntegral');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_give_integral}</td>
-            <td><input type="text" name="give_integral" value="{$goods.give_integral}" size="20" />
-            <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="giveIntegral">{$lang.notice_give_integral}</span></td>
-          </tr> -->
-          <!-- <tr>
-            <td class="label"><a href="javascript:showNotice('rankIntegral');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_rank_integral}</td>
-            <td><input type="text" name="rank_integral" value="{$goods.rank_integral}" size="20" />
-            <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="rankIntegral">{$lang.notice_rank_integral}</span></td>
-          </tr>
-          <tr>
-            <td class="label"><a href="javascript:showNotice('noticPoints');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_integral}</td>
-            <td><input type="text" name="integral" value="{$goods.integral}" size="20" onblur="parseint_integral()";/>
-              <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticPoints">{$lang.notice_integral}</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="label"><label for="is_promote"><input type="checkbox" id="is_promote" name="is_promote" value="1" {if $goods.is_promote}checked="checked"{/if} onclick="handlePromote(this.checked);" /> {$lang.lab_promote_price}</label></td>
-            <td id="promote_3"><input type="text" id="promote_1" name="promote_price" value="{$goods.promote_price}" size="20" /></td>
-          </tr>
-          <tr id="promote_4">
-            <td class="label" id="promote_5">{$lang.lab_promote_date}</td>
-            <td id="promote_6">
-              <input name="promote_start_date" type="text" id="promote_start_date" size="12" value='{$goods.promote_start_date}' readonly="readonly" /><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('promote_start_date', '%Y-%m-%d', false, false, 'selbtn1');" value="{$lang.btn_select}" class="button"/> - <input name="promote_end_date" type="text" id="promote_end_date" size="12" value='{$goods.promote_end_date}' readonly="readonly" /><input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('promote_end_date', '%Y-%m-%d', false, false, 'selbtn2');" value="{$lang.btn_select}" class="button"/>
-            </td>
-          </tr>
-          <tr>
-            <td class="label">{$lang.lab_picture}</td>
-            <td>
-              <input type="file" name="goods_img" size="35" />
-              {if $goods.goods_img}
-                <a href="goods.php?act=show_image&img_url={$goods.goods_img}" target="_blank"><img src="images/yes.gif" border="0" /></a>
-              {else}
-                <img src="images/no.gif" />
-              {/if}
-              <br /><input type="text" size="40" value="{$lang.lab_picture_url}" style="color:#aaa;" onfocus="if (this.value == '{$lang.lab_picture_url}'){this.value='http://';this.style.color='#000';}" name="goods_img_url"/>
-            </td>
-          </tr>
-          <tr id="auto_thumb_1">
-            <td class="label"> {$lang.lab_thumb}</td>
-            <td id="auto_thumb_3">
-              <input type="file" name="goods_thumb" size="35" />
-              {if $goods.goods_thumb}
-                <a href="goods.php?act=show_image&img_url={$goods.goods_thumb}" target="_blank"><img src="images/yes.gif" border="0" /></a>
-              {else}
-                <img src="images/no.gif" />
-              {/if}
-              <br /><input type="text" size="40" value="{$lang.lab_thumb_url}" style="color:#aaa;" onfocus="if (this.value == '{$lang.lab_thumb_url}'){this.value='http://';this.style.color='#000';}" name="goods_thumb_url"/>
-              {if $gd > 0}
-              <br /><label for="auto_thumb"><input type="checkbox" id="auto_thumb" name="auto_thumb" checked="true" value="1" onclick="handleAutoThumb(this.checked)" />{$lang.auto_thumb}</label>{/if}
-            </td>
-          </tr> -->
         </table>
-
-        <!-- 详细信息 -->
-        <!--<table width="90%" id="detail-table" style="display:none" align="center">
-          <tr>
-            <td>{$FCKeditor}</td>
-          </tr>
-        </table>-->
 
         <!-- 商品相册 -->
         <table width="90%" id="gallery-table" style="display:none" align="center">
+            <!-- 商品大图 -->
+            <tr>
+              <td class="label">商品大图:</td>
+              <td>
+                  <a href="goods.php?act=show_image&img_url={$goods.goods_img}" target="_blank" id="goods_preview"><img src="{$goods.goods_img}" height="200" height="200" id="goods_img" {if !$goods.goods_img}hidden="hidden"{/if}></img></a>
+                  <br id="goods_preview_br" {if !$goods.goods_img}hidden="hidden"{/if}/>
+                <!-- <input type="button" onclick="choose_img" id="browse" value="上传图片"/> -->
+                <button id="browse" onclick="choose_img()" type="button">上传图片</button>
+              </td>
+            </tr>
           <!-- 商品图片 -->
-          <tr>
+          <!-- <tr>
             <td class="label">上传商品大图</td>
             <td>
               <input type="file" name="goods_img" size="35" />
@@ -363,47 +123,33 @@
               {/if}
               <br /><input type="text" size="40" value="{$lang.lab_picture_url}" style="color:#aaa;" onfocus="if (this.value == '{$lang.lab_picture_url}'){this.value='http://';this.style.color='#000';}" name="goods_img_url"/>
             </td>
-          </tr>
+          </tr> -->
           <!-- 商品相册 -->
           <tr>
-            <td class="label">上传商品小图</td>
-            <td>
+            <td class="label">商品小图</td>
+            <td id="goods_gallery">
               {foreach from=$img_list item=img key=i}
               <div id="gallery_{$img.img_id}" style="float:left; text-align:center; border: 1px solid #DADADA; margin: 4px; padding:2px;">
                 <a href="javascript:;" onclick="if (confirm('{$lang.drop_img_confirm}')) dropImg('{$img.img_id}')">[-]</a><br />
                 <a href="goods.php?act=show_image&img_url={$img.img_url}" target="_blank">
-                <img src="../{if $img.thumb_url}{$img.thumb_url}{else}{$img.img_url}{/if}" {if $thumb_width neq 0}width="{$thumb_width}"{/if} {if $thumb_height neq 0}height="{$thumb_height}"{/if} border="0" />
-                </a><br />
-                <input type="text" value="{$img.img_desc|escape}" size="15" name="old_img_desc[{$img.img_id}]" />
+                <img src="{$img.img_url}" {if $thumb_width neq 0}width="{$thumb_width}"{/if} {if $thumb_height neq 0}height="{$thumb_height}"{/if} border="0" />
+                </a>
               </div>
               {/foreach}
             </td>
           </tr>
-          <tr><td>&nbsp;</td></tr>
           <!-- 添加图片 -->
           <tr>
             <td>&nbsp;</td>
             <td>
-              <a href="javascript:;" onclick="addImg(this)">[+]</a>
-              {$lang.img_desc} <input type="text" name="img_desc[]" size="20" />
-              {$lang.img_url} <input type="file" name="img_url[]" />
-              <input type="text" size="40" value="{$lang.img_file}" style="color:#aaa;" onfocus="if (this.value == '{$lang.img_file}'){this.value='http://';this.style.color='#000';}" name="img_file[]"/>
+                <button id="gallery_browse" onclick="add_img()" type="button">新增图片</button>
+                <!-- <button id="gallery_browse" onclick="add_img()" type="button">[+]</button> -->
             </td>
           </tr>
         </table>
 
         <!-- 商品属性 -->
         <table width="90%" id="properties-table" style="display:none" align="center">
-          <!-- 商品类型 -->
-          <!--<tr>
-              <td class="label">{$lang.lab_goods_type}</td>
-              <td>
-                <select name="goods_type" onchange="getAttrList({$goods.goods_id})">
-                  <option value="0">{$lang.sel_goods_type}</option>
-                  {$goods_type_list}
-                </select>
-              </td>
-          </tr>-->
           <!-- 合成图片格式 -->
           <tr>
               <td class="label">{$lang.lab_goods_composite_page}</td>
@@ -429,38 +175,6 @@
               <td><input type="radio" name="pdf_is_on" value="1" {if $goods.goods_composite_pdf}checked="checked"{/if} />{$lang.pdf_is_on}
               </td>
           </tr>
-          <!-- 画册选项 -->
-          <!--<tr>
-              <td class="label">{$lang.lab_goods_album}</td>
-              <td><input type="radio" name="album_type" value="0" {if !$goods.goods_album}checked="checked"{/if} />{$lang.album_is_soft}<input type="radio" name="album_type" value="1" {if ($goods.goods_album == 1)} checked="checked"{/if} />{$lang.album_is_hard}<input type="radio" name="album_type" value="2" {if ($goods.goods_album == 2)} checked="checked"{/if} />{$lang.album_is_leather}</td>
-              </td>
-          </tr>-->
-          <!-- 加页价格 -->
-          <!--<tr>
-              <td class="label">{$lang.lab_goods_price_add_page}</td>
-              <td id="goods_price_add_page">
-            {$lang.lab_goods_add_page_start}
-            <select name="tpagestart" id="goods_add_page_start">
-            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option></select>
-            {$lang.lab_goods_add_page_max}-->
-            <!-- <input type="hidden" name="temp_tpagemax" value="32"> -->
-            <!--<select name="tpagemax">
-            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option></select>
-            {$lang.lab_goods_add_page_unit}-->
-            <!-- <input type="hidden" name="temp_tpageaddunit" value="4"> -->
-            <!--<select name="tpageaddunit">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="4">4</option>
-              <option value="8">8</option>
-            </select>
-          </td>
-          </tr>-->
-          <!-- 功能素材 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_goods_material}</td>
-            <td><input type="checkbox" name="is_text_on" value="1" {if $goods.is_text_on} checked="checked"{/if} />{$lang.is_text_on} <input type="checkbox" name="is_pic" value="1" {if $goods.is_pic}checked="checked"{/if} />{$lang.is_pic} <input type="checkbox" name="is_background" value="1" {if $goods.is_background}checked="checked"{/if} />{$lang.is_background} <input type="checkbox" name="is_gif" value="1" {if $goods.is_gif}checked="checked"{/if} />{$lang.is_gif}<input type="checkbox" name="is_border" value="1" {if $goods.is_border}checked="checked"{/if} />{$lang.is_border}<input type="checkbox" name="is_mask" value="1" {if $goods.is_mask}checked="checked"{/if} />{$lang.is_mask}<input type="checkbox" name="is_format" value="1" {if $goods.is_format}checked="checked"{/if} />{$lang.is_format}<input type="checkbox" name="is_textvr" value="1" {if $goods.is_textvr}checked="checked"{/if} />{$lang.is_textvr}</td>
-          </tr>-->
           <!-- 字号和行距设置 -->
           <!--<tr>
             <td class="label">{$lang.lab_goods_font_size}</td>
@@ -472,202 +186,7 @@
             <td class="label">{$lang.lab_goods_defination}</td>
             <td><input type="text" name="goods_defination" value="{$goods.goods_defination}" size="20" /></td>
           </tr>-->
-
-          <!-- 出血 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_goods_blood}</td>
-            <td><span class="notice-span">{$lang.lab_goods_blood_h}</span><input type="text" name="goods_blood_h" value="{$goods.goods_blood_h}" size="20" /><span class="notice-span">{$lang.lab_goods_blood_v}</span><input type="text" name="lab_goods_blood_v" value="{$goods.lab_goods_blood_v}" size="20" />
-            </td>
-          </tr>-->
-          <!-- 安全线 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_goods_safe_line}</td>
-            <td><input type="text" name="goods_safe_line" value="{$goods.goods_safe_line}" size="20" />
-            </td>
-          </tr>-->
-          <!-- 其他参数 -->
-          <!--<tr>
-            <td class="label">{$lang.lab_goods_other_parameter}</td>
-            <td><input type="text" name="goods_safe_line" value="{$goods.goods_safe_line}" size="20" />
-            </td>
-          </tr>
-          <tr>
-            <td id="num">
-            </td>
-          </tr>-->
-          <!-- <tr>
-            <td id="tbody-goodsAttr" colspan="2" style="padding:0">{$goods_attr_html}</td>
-          </tr> -->
         </table>
-
-
-
-        <!-- 鍏朵粬淇℃伅 -->
-        <!--<table width="90%" id="mix-table" style="display:none" align="center">-->
-
-          <!--{if $cfg.use_storage}-->
-          <!-- <tr>
-            <td class="label"><a href="javascript:showNotice('noticeStorage');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_goods_number}</td>
-            <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" {if $code neq '' || $goods._attribute neq ''}readonly="readonly"{/if} /><br />
-            <td><input type="text" name="goods_number" value="{$goods.goods_number}" size="20" /><br />
-            <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeStorage">{$lang.notice_storage}</span></td>
-          </tr> -->
-          <!-- <tr>
-            <td class="label">{$lang.lab_warn_number}</td>
-            <td><input type="text" name="warn_number" value="{$goods.warn_number}" size="20" /></td>
-          </tr> -->
-          <!--{/if}-->
-          <!-- <tr>
-            <td class="label">{$lang.lab_intro}</td>
-            <td><input type="checkbox" name="is_best" value="1" {if $goods.is_best}checked="checked"{/if} />{$lang.is_best} <input type="checkbox" name="is_new" value="1" {if $goods.is_new}checked="checked"{/if} />{$lang.is_new} <input type="checkbox" name="is_hot" value="1" {if $goods.is_hot}checked="checked"{/if} />{$lang.is_hot}</td>
-          </tr> -->
-          <!-- <tr id="alone_sale_1">
-=======
-          <tr id="alone_sale_1">
->>>>>>> origin/master
-            <td class="label" id="alone_sale_2">{$lang.lab_is_on_sale}</td>
-            <td id="alone_sale_3"><input type="checkbox" name="is_on_sale" value="1" {if $goods.is_on_sale}checked="checked"{/if} /> {$lang.on_sale_desc}</td>
-          </tr> -->
-          <!--<tr>
-            <td class="label">{$lang.lab_is_alone_sale}</td>
-            <td><input type="checkbox" name="is_alone_sale" value="1" {if $goods.is_alone_sale}checked="checked"{/if} /> {$lang.alone_sale}</td>
-          </tr>
-          <tr>
-            <td class="label">{$lang.lab_is_free_shipping}</td>
-            <td><input type="checkbox" name="is_shipping" value="1" {if $goods.is_shipping}checked="checked"{/if} /> {$lang.free_shipping}</td>
-          </tr>
-
-          <tr>
-            <td class="label">{$lang.lab_goods_brief}</td>
-            <td><textarea name="goods_brief" cols="40" rows="3">{$goods.goods_brief|escape}</textarea></td>
-          </tr>
-          <tr>
-            <td class="label">
-            <a href="javascript:showNotice('noticeSellerNote');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_seller_note} </td>
-            <td><textarea name="seller_note" cols="40" rows="3">{$goods.seller_note}</textarea><br />
-            <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeSellerNote">{$lang.notice_seller_note}</span></td>
-          </tr>
-        </table>-->
-
-
-
-<!--
-         鍏宠仈鍟嗗搧
-        <table width="90%" id="linkgoods-table" style="display:none" align="center">-->
-          <!-- 鍟嗗搧鎼滅储 -->
-          <!--<tr>
-            <td colspan="3">
-              <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
-              <select name="cat_id1"><option value="0">{$lang.all_category}{$cat_list}</select>
-              <select name="brand_id1"><option value="0">{$lang.all_brand}{html_options options=$brand_list}</select>
-              <input type="text" name="keyword1" />
-              <input type="button" value="{$lang.button_search}"  class="button"
-                onclick="searchGoods(sz1, 'cat_id1','brand_id1','keyword1')" />
-            </td>
-          </tr>-->
-          <!-- 鍟嗗搧鍒楄〃 -->
-          <!--<tr>
-            <th>{$lang.all_goods}</th>
-            <th>{$lang.handler}</th>
-            <th>{$lang.link_goods}</th>
-          </tr>
-          <tr>
-            <td width="42%">
-              <select name="source_select1" size="20" style="width:100%" ondblclick="sz1.addItem(false, 'add_link_goods', goodsId, this.form.elements['is_single'][0].checked)" multiple="true">
-              </select>
-            </td>
-            <td align="center">
-              <p><input name="is_single" type="radio" value="1" checked="checked" />{$lang.single}<br /><input name="is_single" type="radio" value="0" />{$lang.double}</p>
-              <p><input type="button" value=">>" onclick="sz1.addItem(true, 'add_link_goods', goodsId, this.form.elements['is_single'][0].checked)" class="button" /></p>
-              <p><input type="button" value=">" onclick="sz1.addItem(false, 'add_link_goods', goodsId, this.form.elements['is_single'][0].checked)" class="button" /></p>
-              <p><input type="button" value="<" onclick="sz1.dropItem(false, 'drop_link_goods', goodsId, elements['is_single'][0].checked)" class="button" /></p>
-              <p><input type="button" value="<<" onclick="sz1.dropItem(true, 'drop_link_goods', goodsId, elements['is_single'][0].checked)" class="button" /></p>
-            </td>
-            <td width="42%">
-              <select name="target_select1" size="20" style="width:100%" multiple ondblclick="sz1.dropItem(false, 'drop_link_goods', goodsId, elements['is_single'][0].checked)">
-                {foreach from=$link_goods_list item=link_goods}
-                <option value="{$link_goods.goods_id}">{$link_goods.goods_name}</option>
-                {/foreach}
-              </select>
-            </td>
-          </tr>
-        </table>-->
-
-        <!-- 閰嶄欢 -->
-        <!--<table width="90%" id="groupgoods-table" style="display:none" align="center">-->
-          <!-- 鍟嗗搧鎼滅储 -->
-          <!--<tr>
-            <td colspan="3">
-              <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
-              <select name="cat_id2"><option value="0">{$lang.all_category}{$cat_list}</select>
-              <select name="brand_id2"><option value="0">{$lang.all_brand}{html_options options=$brand_list}</select>
-              <input type="text" name="keyword2" />
-              <input type="button" value="{$lang.button_search}" onclick="searchGoods(sz2, 'cat_id2', 'brand_id2', 'keyword2')" class="button" />
-            </td>
-          </tr>-->
-          <!-- 鍟嗗搧鍒楄〃 -->
-          <!--<tr>
-            <th>{$lang.all_goods}</th>
-            <th>{$lang.handler}</th>
-            <th>{$lang.group_goods}</th>
-          </tr>
-          <tr>
-            <td width="42%">
-              <select name="source_select2" size="20" style="width:100%" onchange="sz2.priceObj.value = this.options[this.selectedIndex].id" ondblclick="sz2.addItem(false, 'add_group_goods', goodsId, this.form.elements['price2'].value)">
-              </select>
-            </td>
-            <td align="center">
-              <p>{$lang.price}<br /><input name="price2" type="text" size="6" /></p>
-              <p><input type="button" value=">" onclick="sz2.addItem(false, 'add_group_goods', goodsId, this.form.elements['price2'].value)" class="button" /></p>
-              <p><input type="button" value="<" onclick="sz2.dropItem(false, 'drop_group_goods', goodsId, elements['is_single'][0].checked)" class="button" /></p>
-              <p><input type="button" value="<<" onclick="sz2.dropItem(true, 'drop_group_goods', goodsId, elements['is_single'][0].checked)" class="button" /></p>
-            </td>
-            <td width="42%">
-              <select name="target_select2" size="20" style="width:100%" multiple ondblclick="sz2.dropItem(false, 'drop_group_goods', goodsId, elements['is_single'][0].checked)">
-                {foreach from=$group_goods_list item=group_goods}
-                <option value="{$group_goods.goods_id}">{$group_goods.goods_name}</option>
-                {/foreach}
-              </select>
-            </td>
-          </tr>
-        </table>-->
-
-        <!-- 鍏宠仈鏂囩珷 -->
-        <!--<table width="90%" id="article-table" style="display:none" align="center">-->
-          <!-- 鏂囩珷鎼滅储 -->
-          <!--<tr>
-            <td colspan="3">
-              <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
-              {$lang.article_title} <input type="text" name="article_title" />
-              <input type="button" value="{$lang.button_search}" onclick="searchArticle()" class="button" />
-            </td>
-          </tr>-->
-          <!-- 鏂囩珷鍒楄〃 -->
-          <!--<tr>
-            <th>{$lang.all_article}</th>
-            <th>{$lang.handler}</th>
-            <th>{$lang.goods_article}</th>
-          </tr>
-          <tr>
-            <td width="45%">
-              <select name="source_select3" size="20" style="width:100%" multiple ondblclick="sz3.addItem(false, 'add_goods_article', goodsId, this.form.elements['price2'].value)">
-              </select>
-            </td>
-            <td align="center">
-              <p><input type="button" value=">>" onclick="sz3.addItem(true, 'add_goods_article', goodsId, this.form.elements['price2'].value)" class="button" /></p>
-              <p><input type="button" value=">" onclick="sz3.addItem(false, 'add_goods_article', goodsId, this.form.elements['price2'].value)" class="button" /></p>
-              <p><input type="button" value="<" onclick="sz3.dropItem(false, 'drop_goods_article', goodsId, elements['is_single'][0].checked)" class="button" /></p>
-              <p><input type="button" value="<<" onclick="sz3.dropItem(true, 'drop_goods_article', goodsId, elements['is_single'][0].checked)" class="button" /></p>
-            </td>
-            <td width="45%">
-              <select name="target_select3" size="20" style="width:100%" multiple ondblclick="sz3.dropItem(false, 'drop_goods_article', goodsId, elements['is_single'][0].checked)">
-                {foreach from=$goods_article_list item=goods_article}
-                <option value="{$goods_article.article_id}">{$goods_article.title}</option>
-                {/foreach}
-              </select>
-            </td>
-          </tr>
-        </table>-->
 
         <div class="button-div">
           <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
@@ -686,6 +205,9 @@
 
 <script language="JavaScript">
   var goodsId = '{$goods.goods_id}';
+  var form_act = '{$form_act}';
+  var thumb_width = '{$thumb_width}';
+  var thumb_height = '{$thumb_height}';
   var elements = document.forms['theForm'].elements;
   var sz1 = new SelectZone(1, elements['source_select1'], elements['target_select1']);
   var sz2 = new SelectZone(2, elements['source_select2'], elements['target_select2'], elements['price2']);
@@ -696,7 +218,7 @@
   {literal}
   onload = function()
   {
-      handlePromote(document.forms['theForm'].elements['is_promote'].checked);
+    //   handlePromote(document.forms['theForm'].elements['is_promote'].checked);
 
       if (document.forms['theForm'].elements['auto_thumb'])
       {
@@ -705,6 +227,8 @@
 
       // 初始加载
       startCheckOrder();
+      get_uptoken();
+      get_domain();
       {/literal}
       {foreach from=$user_rank_list item=item}
       set_price_note({$item.rank_id});
@@ -719,10 +243,6 @@
       var goods_sn  = document.forms['theForm'].elements['goods_sn'].value;
 
       validator.required('goods_name', goods_name_not_null);
-      // if (document.forms['theForm'].elements['cat_id'].value == 0)
-      // {
-      //     validator.addErrorMsg(goods_cat_not_null);
-      // }
 
       checkVolumeData("1",validator);
 
@@ -734,19 +254,6 @@
       validator.isNumber('goods_size_length', `尺寸长度必须为数字`, true);
       validator.required('goods_add_page_max', `最大页数不能为空`);
       validator.isNumber('goods_add_page_max', `最大页数必须为数字`, true);
-      // validator.isNumber('market_price', market_price_not_number, false);
-      // if (document.forms['theForm'].elements['is_promote'].checked)
-      // {
-      //     validator.required('promote_start_date', promote_start_not_null);
-      //     validator.required('promote_end_date', promote_end_not_null);
-      //     validator.islt('promote_start_date', 'promote_end_date', promote_not_lt);
-      // }
-
-      // if (document.forms['theForm'].elements['goods_number'] != undefined)
-      // {
-      //     validator.isInt('goods_number', goods_number_not_int, false);
-      //     validator.isInt('warn_number', warn_number_not_int, false);
-      // }
 
       var callback = function(res)
      {
@@ -766,133 +273,222 @@
     Ajax.call('goods.php?is_ajax=1&act=check_goods_sn', "goods_sn=" + goods_sn + "&goods_id=" + goods_id, callback, "GET", "JSON");
 }
 
-  /**
-   * 鍒囨崲鍟嗗搧绫诲瀷
-   */
-  function getAttrList(goodsId)
-  {
-      var selGoodsType = document.forms['theForm'].elements['goods_type'];
+function get_uptoken()
+{
+    $.ajax({
+        url:"http://app.itimepost.com/image/uptoken",
+        type:'POST',
+        data:{type:0,token:"c210dd8b50e9e232c908c43d2e266c7d"},
+        dataType:"jsonp",
+        success: function(data){
+          //   console.log(data);
+            uptoken = data.data.uptoken;
+            publish_id = data.data.publish_id;
+            },
+        error:function(e1,e2,e3){alert(e1.status);}
+    });
+}
 
-      if (selGoodsType != undefined)
-      {
-          var goodsType = selGoodsType.options[selGoodsType.selectedIndex].value;
+function get_domain()
+{
+    $.ajax({
+        url:"http://app.itimepost.com/image/host",
+        type:'GET',
+        data:{type:0,token:"c210dd8b50e9e232c908c43d2e266c7d"},
+        dataType:"jsonp",
+        success: function(data){
+    // 		  console.log(data);
+            domain = data.data.host;
+            },
+        error:function(e1,e2,e3){alert(e1.status);}
+    });
+}
 
-          Ajax.call('goods.php?is_ajax=1&act=get_attr', 'goods_id=' + goodsId + "&goods_type=" + goodsType, setAttrList, "GET", "JSON");
-      }
-  }
+function choose_img()
+{
 
-  function setAttrList(result, text_result)
-  {
-    document.getElementById('tbody-goodsAttr').innerHTML = result.content;
-  }
+    var uploader = Qiniu.uploader({
+    runtimes: 'html5,flash,html4',      // 上传模式,依次退化
+    browse_button: 'browse',         // 上传选择的点选按钮，**必需**
+    uptoken : uptoken, // uptoken 是上传凭证，由其他程序生成
+    get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的 uptoken
+    domain: domain,     // bucket 域名，下载资源时用到，**必需**
+    auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+    max_retries: 3,                     // 上传失败最大重试次数
+    unique_names: true,
 
-  /**
-   * 鎸夋瘮渚嬭?绠椾环鏍
-   * @param   string  inputName   杈撳叆妗嗗悕绉
-   * @param   float   rate        姣斾緥
-   * @param   string  priceName   浠锋牸杈撳叆妗嗗悕绉帮紙濡傛灉娌℃湁锛屽彇shop_price锛
-   */
-  function computePrice(inputName, rate, priceName)
-  {
-      var shopPrice = priceName == undefined ? document.forms['theForm'].elements['shop_price'].value : document.forms['theForm'].elements[priceName].value;
-      shopPrice = Utils.trim(shopPrice) != '' ? parseFloat(shopPrice)* rate : 0;
-      if(inputName == 'integral')
-      {
-          shopPrice = parseInt(shopPrice);
-      }
-      shopPrice += "";
+    init: {
+        'FilesAdded': function(up, files) {
+            plupload.each(files, function(file) {
+                // 文件添加进队列后,处理相关的事情
+            });
+        },
+        'BeforeUpload': function(up, file) {
+               // 每个文件上传前,处理相关的事情
+        },
+        'UploadProgress': function(up, file) {
+               // 每个文件上传时,处理相关的事情
+        },
+        'FileUploaded': function(up, file, info) {
 
-      n = shopPrice.lastIndexOf(".");
-      if (n > -1)
-      {
-          shopPrice = shopPrice.substr(0, n + 3);
-      }
+            var res = JSON.parse(info);
+            var domain = up.getOption('domain');
+            var sourceLink = "http://"+domain +"/"+ res.key; //获取上传成功后的文件的Url
+          //   console.log(sourceLink);
+          var obj = document.getElementById('goods_preview')
+          obj.value = sourceLink;
 
-      if (document.forms['theForm'].elements[inputName] != undefined)
-      {
-          document.forms['theForm'].elements[inputName].value = shopPrice;
-      }
-      else
-      {
-          document.getElementById(inputName).value = shopPrice;
-      }
-  }
+          if(form_act == "update")
+          {
+              res = Ajax.call('goods.php', "act=edit_goods_img&val=" + encodeURIComponent(Utils.trim(sourceLink)) + "&id=" +goodsId, null, "POST", "JSON", false);
+              console.log(res);
 
-  /**
-   * 璁剧疆浜嗕竴涓?晢鍝佷环鏍硷紝鏀瑰彉甯傚満浠锋牸銆佺Н鍒嗕互鍙婁細鍛樹环鏍
-   */
-  function priceSetted()
-  {
-    computePrice('market_price', marketPriceRate);
-    computePrice('integral', integralPercent / 100);
-    {/literal}
-    {foreach from=$user_rank_list item=item}
-    set_price_note({$item.rank_id});
-    {/foreach}
-    {literal}
-  }
+               if (res.message)
+              {
+                alert(res.message);
+              }
 
-  /**
-   * 璁剧疆浼氬憳浠锋牸娉ㄩ噴
-   */
-  function set_price_note(rank_id)
-  {
-    var shop_price = parseFloat(document.forms['theForm'].elements['shop_price'].value);
+              obj = document.getElementById('goods_img');
+              obj.src = (res.error == 0) ? res.content : obj.src;
 
-    var rank = new Array();
-    {/literal}
-    {foreach from=$user_rank_list item=item}
-    rank[{$item.rank_id}] = {$item.discount|default:100};
-    {/foreach}
-    {literal}
-    if (shop_price >0 && rank[rank_id] && document.getElementById('rank_' + rank_id) && parseInt(document.getElementById('rank_' + rank_id).value) == -1)
-    {
-      var price = parseInt(shop_price * rank[rank_id] + 0.5) / 100;
-      if (document.getElementById('nrank_' + rank_id))
-      {
-        document.getElementById('nrank_' + rank_id).innerHTML = '(' + price + ')';
-      }
-    }
-    else
-    {
-      if (document.getElementById('nrank_' + rank_id))
-      {
-        document.getElementById('nrank_' + rank_id).innerHTML = '';
-      }
-    }
-  }
+              obj = document.getElementById('goods_preview');
+              obj.href = (res.error == 0) ? "goods.php?act=show_image&img_url="+res.content : obj.href;
 
-  /**
-   * 鏍规嵁甯傚満浠锋牸锛岃?绠楀苟鏀瑰彉鍟嗗簵浠锋牸銆佺Н鍒嗕互鍙婁細鍛樹环鏍
-   */
-  function marketPriceSetted()
-  {
-    computePrice('shop_price', 1/marketPriceRate, 'market_price');
-    computePrice('integral', integralPercent / 100);
-    {/literal}
-    {foreach from=$user_rank_list item=item}
-    set_price_note({$item.rank_id});
-    {/foreach}
-    {literal}
-  }
+          }
+          else if (form_act == "insert") {
 
-  /**
-   * 鏂板?涓€涓??鏍
-   */
-  function addSpec(obj)
-  {
-      var src   = obj.parentNode.parentNode;
-      var idx   = rowindex(src);
-      var tbl   = document.getElementById('attrTable');
-      var row   = tbl.insertRow(idx + 1);
-      var cell1 = row.insertCell(-1);
-      var cell2 = row.insertCell(-1);
-      var regx  = /<a([^>]+)<\/a>/i;
+              obj = document.getElementById('goods_img');
+              obj.hidden = "";
+              obj.src = sourceLink;
 
-      cell1.className = 'label';
-      cell1.innerHTML = src.childNodes[0].innerHTML.replace(/(.*)(addSpec)(.*)(\[)(\+)/i, "$1removeSpec$3$4-");
-      cell2.innerHTML = src.childNodes[1].innerHTML.replace(/readOnly([^\s|>]*)/i, '');
-  }
+              obj = document.getElementById('goods_preview');
+              obj.href = "goods.php?act=show_image&img_url="+sourceLink;
+
+              obj = document.getElementById('goods_preview_br');
+              obj.hidden = "";
+          }
+
+        },
+        'Error': function(up, err, errTip) {
+               //上传出错时,处理相关的事情
+            //    console.log(up+"-"+err+"-"+errTip);
+               alert(errTip);
+            //    upload_ok.push(false);
+        },
+        'UploadComplete': function() {
+               //队列文件处理完毕后,处理相关的事情
+        },
+        'Key': function(up, file) {
+            // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+            // 该配置必须要在 unique_names: false , save_key: false 时才生效
+
+            var key = "";
+            // do something with key here
+            return key;
+            }
+        }
+    });
+}
+
+function add_img()
+{
+
+    var uploader = Qiniu.uploader({
+    runtimes: 'html5,flash,html4',      // 上传模式,依次退化
+    browse_button: 'gallery_browse',         // 上传选择的点选按钮，**必需**
+    uptoken : uptoken, // uptoken 是上传凭证，由其他程序生成
+    get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的 uptoken
+    domain: domain,     // bucket 域名，下载资源时用到，**必需**
+    auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+    max_retries: 3,                     // 上传失败最大重试次数
+    unique_names: true,
+
+    init: {
+        'FilesAdded': function(up, files) {
+            plupload.each(files, function(file) {
+                // 文件添加进队列后,处理相关的事情
+            });
+        },
+        'BeforeUpload': function(up, file) {
+               // 每个文件上传前,处理相关的事情
+        },
+        'UploadProgress': function(up, file) {
+               // 每个文件上传时,处理相关的事情
+        },
+        'FileUploaded': function(up, file, info) {
+
+            var res = JSON.parse(info);
+            var domain = up.getOption('domain');
+            var sourceLink = "http://"+domain +"/"+ res.key; //获取上传成功后的文件的Url
+          //   console.log(sourceLink);
+        //   var obj = document.getElementById('goods_preview')
+        //   obj.value = sourceLink;
+
+          res = Ajax.call('goods.php', "act=add_gallery_img&val=" + encodeURIComponent(Utils.trim(sourceLink)) + "&id=" +goodsId, null, "POST", "JSON", false);
+          console.log(res);
+
+           if (res.message)
+          {
+            alert(res.message);
+          }
+          else{
+
+            var obj = document.getElementById('goods_gallery');
+
+            var node = document.createElement("div");
+            node.id = "gallery_"+res.content;
+            node.style= "float:left; text-align:center; border: 1px solid #DADADA; margin: 4px; padding:2px;";
+            var node_a = document.createElement("a");
+            node_a.href = "javascript:;";
+            node_a.id = "gallery_add_"+res.content;
+            node_a.innerText = "[-]";
+            node.appendChild(node_a);
+            node_a = document.createElement("br");
+            node.appendChild(node_a);
+            node_a = document.createElement("a");
+            node_a.href = "goods.php?act=show_image&img_url="+sourceLink;
+            node_a.target = "_blank";
+            node_img = document.createElement("img");
+            node_img.src = sourceLink;
+            node_img.border = "0";
+            if(thumb_width)
+                node_img.width = thumb_width;
+            if(thumb_height)
+                node_img.height = thumb_width;
+            node_a.appendChild(node_img);
+            node.appendChild(node_a);
+            obj.appendChild(node);
+
+            obj  = document.getElementById("gallery_add_"+res.content);
+            obj.onclick = function(){
+                if (confirm('您确实要删除该图片吗？')) dropImg(res.content);
+            }
+
+          }
+
+        },
+        'Error': function(up, err, errTip) {
+               //上传出错时,处理相关的事情
+            //    console.log(up+"-"+err+"-"+errTip);
+               alert(errTip);
+            //    upload_ok.push(false);
+        },
+        'UploadComplete': function() {
+               //队列文件处理完毕后,处理相关的事情
+        },
+        'Key': function(up, file) {
+            // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+            // 该配置必须要在 unique_names: false , save_key: false 时才生效
+
+            var key = "";
+            // do something with key here
+            return key;
+            }
+        }
+    });
+}
+
+
 
   /**
    * 鍒犻櫎瑙勬牸鍊
