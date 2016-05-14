@@ -107,7 +107,7 @@
               <td>
                   <a href="goods.php?act=show_image&img_url={$goods.goods_img}" target="_blank" id="goods_preview"><img src="{$goods.goods_img}" height="200" height="200" id="goods_img" {if !$goods.goods_img}hidden="hidden"{/if}></img></a>
                   <br id="goods_preview_br" {if !$goods.goods_img}hidden="hidden"{/if}/>
-                <!-- <input type="button" onclick="choose_img" id="browse" value="上传图片"/> -->
+                <input type="text" id="goods_img_input" name="goods_img" value="{$goods.goods_img}" hidden="true"/>
                 <button id="browse" onclick="choose_img()" type="button">上传图片</button>
               </td>
             </tr>
@@ -134,6 +134,7 @@
                 <a href="goods.php?act=show_image&img_url={$img.img_url}" target="_blank">
                 <img src="{$img.img_url}" {if $thumb_width neq 0}width="{$thumb_width}"{/if} {if $thumb_height neq 0}height="{$thumb_height}"{/if} border="0" />
                 </a>
+                <input type="text" hidden="hidden" value="{$img.img_url}" size="15" name="gallery_img_list[{$img.img_url}]" />
               </div>
               {/foreach}
             </td>
@@ -190,9 +191,7 @@
 
         <div class="button-div">
           <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
-          <!--{if $code neq ''}
-          <input type="hidden" name="extension_code" value="{$code}" />
-          {/if}-->
+
           <input type="button" value="{$lang.button_submit}" class="button" onclick="validate('{$goods.goods_id}')" />
           <input type="reset" value="{$lang.button_reset}" class="button" />
         </div>
@@ -367,6 +366,8 @@ function choose_img()
               obj = document.getElementById('goods_preview_br');
               obj.hidden = "";
           }
+          obj = document.getElementById('goods_img_input');
+          obj.value = sourceLink;
 
         },
         'Error': function(up, err, errTip) {
@@ -377,6 +378,7 @@ function choose_img()
         },
         'UploadComplete': function() {
                //队列文件处理完毕后,处理相关的事情
+               alert("上传成功！");
         },
         'Key': function(up, file) {
             // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
@@ -457,6 +459,15 @@ function add_img()
                 node_img.height = thumb_width;
             node_a.appendChild(node_img);
             node.appendChild(node_a);
+            node_a = document.createElement('br');
+            node_a.hidden = "hidden";
+            node.appendChild(node_a);
+            node_a = document.createElement("input");
+            node_a.type = "text";
+            node_a.hidden = "hidden";
+            node_a.value = sourceLink;
+            node_a.name = "gallery_img_list["+sourceLink+"]";
+            node.appendChild(node_a);
             obj.appendChild(node);
 
             obj  = document.getElementById("gallery_add_"+res.content);
@@ -475,6 +486,7 @@ function add_img()
         },
         'UploadComplete': function() {
                //队列文件处理完毕后,处理相关的事情
+               alert("上传成功！");
         },
         'Key': function(up, file) {
             // 若想在前端对每个文件的key进行个性化处理，可以配置该函数

@@ -106,46 +106,25 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
 
     $is_add = $_REQUEST['act'] == 'add'; // 添加还是编辑的标识
     $is_copy = $_REQUEST['act'] == 'copy'; //是否复制
-    // $code = empty($_REQUEST['extension_code']) ? '' : trim($_REQUEST['extension_code']);
-    // $code=$code=='virual_card' ? 'virual_card': '';
-    // if ($code == 'virual_card')
-    // {
-    //     admin_priv('virualcard'); // 检查权限
-    // }
-    // else
-    // {
-
-    // }
 
     admin_priv('goods_manage'); // 检查权限
 
-    // /* 供货商名 */
-    // $suppliers_list_name = suppliers_list_name();
-    // $suppliers_exists = 1;
-    // if (empty($suppliers_list_name))
-    // {
-    //     $suppliers_exists = 0;
-    // }
-    // $smarty->assign('suppliers_exists', $suppliers_exists);
-    // $smarty->assign('suppliers_list_name', $suppliers_list_name);
-    // unset($suppliers_list_name, $suppliers_exists);
-
     /* 如果是安全模式，检查目录是否存在 */
-    if (ini_get('safe_mode') == 1 && (!file_exists('../' . IMAGE_DIR . '/'.date('Ym')) || !is_dir('../' . IMAGE_DIR . '/'.date('Ym'))))
-    {
-        if (@!mkdir('../' . IMAGE_DIR . '/'.date('Ym'), 0777))
-        {
-            $warning = sprintf($_LANG['safe_mode_warning'], '../' . IMAGE_DIR . '/'.date('Ym'));
-            $smarty->assign('warning', $warning);
-        }
-    }
+    // if (ini_get('safe_mode') == 1 && (!file_exists('../' . IMAGE_DIR . '/'.date('Ym')) || !is_dir('../' . IMAGE_DIR . '/'.date('Ym'))))
+    // {
+    //     if (@!mkdir('../' . IMAGE_DIR . '/'.date('Ym'), 0777))
+    //     {
+    //         $warning = sprintf($_LANG['safe_mode_warning'], '../' . IMAGE_DIR . '/'.date('Ym'));
+    //         $smarty->assign('warning', $warning);
+    //     }
+    // }
 
     /* 如果目录存在但不可写，提示用户 */
-    elseif (file_exists('../' . IMAGE_DIR . '/'.date('Ym')) && file_mode_info('../' . IMAGE_DIR . '/'.date('Ym')) < 2)
-    {
-        $warning = sprintf($_LANG['not_writable_warning'], '../' . IMAGE_DIR . '/'.date('Ym'));
-        $smarty->assign('warning', $warning);
-    }
+    // elseif (file_exists('../' . IMAGE_DIR . '/'.date('Ym')) && file_mode_info('../' . IMAGE_DIR . '/'.date('Ym')) < 2)
+    // {
+    //     $warning = sprintf($_LANG['not_writable_warning'], '../' . IMAGE_DIR . '/'.date('Ym'));
+    //     $smarty->assign('warning', $warning);
+    // }
 
 
     /* 装订类型列表 */
@@ -158,7 +137,6 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
         $bind_type_list[] = $temp_row;
     }
     $smarty->assign('bind_type_list',     $bind_type_list);
-
 
     // 内页材质类型
     $inner_type_list = array();
@@ -182,6 +160,7 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
         $goods = array(
             'goods_id'      => 0,
             'goods_desc'    => '',
+            'unit'          => '件',
             'cat_id'        => $last_choose[0],
             'brand_id'      => $last_choose[1],
             'is_on_sale'    => '1',
@@ -202,34 +181,6 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
             'rank_integral' => -1
         );
 
-        // if ($code != '')
-        // {
-        //     $goods['goods_number'] = 0;
-        // }
-
-        /* 关联商品 */
-        // $link_goods_list = array();
-        // $sql = "DELETE FROM " . $ecs->table('link_goods') .
-        //         " WHERE (goods_id = 0 OR link_goods_id = 0)" .
-        //         " AND admin_id = '$_SESSION[admin_id]'";
-        // $db->query($sql);
-
-        /* 组合商品 */
-        // $group_goods_list = array();
-        // $sql = "DELETE FROM " . $ecs->table('group_goods') .
-        //         " WHERE parent_id = 0 AND admin_id = '$_SESSION[admin_id]'";
-        // $db->query($sql);
-
-        /* 关联文章 */
-        // $goods_article_list = array();
-        // $sql = "DELETE FROM " . $ecs->table('goods_article') .
-        //         " WHERE goods_id = 0 AND admin_id = '$_SESSION[admin_id]'";
-        // $db->query($sql);
-
-        /* 属性 */
-        // $sql = "DELETE FROM " . $ecs->table('goods_attr') . " WHERE goods_id = 0";
-        // $db->query($sql);
-
         /* 图片列表 */
         $img_list = array();
     }
@@ -238,12 +189,6 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
         /* 商品信息 */
         $sql = "SELECT * FROM " . $ecs->table('goods') . " WHERE goods_id = '$_REQUEST[goods_id]'";
         $goods = $db->getRow($sql);
-
-        // /* 虚拟卡商品复制时, 将其库存置为0*/
-        // if ($is_copy && $code != '')
-        // {
-        //     $goods['goods_number'] = 0;
-        // }
 
         if (empty($goods) === true)
         {
@@ -259,80 +204,16 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
             );
         }
 
-        /* 获取商品类型存在规格的类型 */
-        // $specifications = get_goods_type_specifications();
-        // $goods['specifications_id'] = $specifications[$goods['goods_type']];
-        // $_attribute = get_goods_specifications_list($goods['goods_id']);
-        // $goods['_attribute'] = empty($_attribute) ? '' : 1;
-
-        /* 根据商品重量的单位重新计算 */
-        // if ($goods['goods_weight'] > 0)
-        // {
-        //     $goods['goods_weight_by_unit'] = ($goods['goods_weight'] >= 1) ? $goods['goods_weight'] : ($goods['goods_weight'] / 0.001);
-        // }
-
         if (!empty($goods['goods_brief']))
         {
             //$goods['goods_brief'] = trim_right($goods['goods_brief']);
             $goods['goods_brief'] = $goods['goods_brief'];
         }
-        // if (!empty($goods['keywords']))
-        // {
-        //     //$goods['keywords']    = trim_right($goods['keywords']);
-        //     $goods['keywords']    = $goods['keywords'];
-        // }
 
-        /* 如果不是促销，处理促销日期 */
-        // if (isset($goods['is_promote']) && $goods['is_promote'] == '0')
-        // {
-        //     unset($goods['promote_start_date']);
-        //     unset($goods['promote_end_date']);
-        // }
-        // else
-        // {
-        //     $goods['promote_start_date'] = local_date('Y-m-d', $goods['promote_start_date']);
-        //     $goods['promote_end_date'] = local_date('Y-m-d', $goods['promote_end_date']);
-        // }
-
-
-        // $link_goods_list    = get_linked_goods($goods['goods_id']); // 关联商品
-        // $group_goods_list   = get_group_goods($goods['goods_id']); // 配件
-        // $goods_article_list = get_goods_articles($goods['goods_id']);   // 关联文章
-
-        /* 商品图片路径 */
-        if (isset($GLOBALS['shop_id']) && ($GLOBALS['shop_id'] > 10) && !empty($goods['original_img']))
-        {
-            $goods['goods_img'] = get_image_path($_REQUEST['goods_id'], $goods['goods_img']);
-            $goods['goods_thumb'] = get_image_path($_REQUEST['goods_id'], $goods['goods_thumb'], true);
-        }
-
-        /* 图片列表 */
+        /* 商品小图列表 */
         $sql = "SELECT * FROM " . $ecs->table('goods_gallery') . " WHERE goods_id = '$goods[goods_id]'";
         $img_list = $db->getAll($sql);
-
-        /* 格式化相册图片路径 */
-        if (isset($GLOBALS['shop_id']) && ($GLOBALS['shop_id'] > 0))
-        {
-            foreach ($img_list as $key => $gallery_img)
-            {
-                $gallery_img[$key]['img_url'] = get_image_path($gallery_img['goods_id'], $gallery_img['img_original'], false, 'gallery');
-                $gallery_img[$key]['thumb_url'] = get_image_path($gallery_img['goods_id'], $gallery_img['img_original'], true, 'gallery');
-            }
-        }
-        else
-        {
-            foreach ($img_list as $key => $gallery_img)
-            {
-                $gallery_img[$key]['thumb_url'] = '../' . (empty($gallery_img['thumb_url']) ? $gallery_img['img_url'] : $gallery_img['thumb_url']);
-            }
-        }
     }
-
-    /* 拆分商品名称样式 */
-    // $goods_name_style = explode('+', empty($goods['goods_name_style']) ? '+' : $goods['goods_name_style']);
-
-    /* 创建 html editor */
-    // create_html_editor('goods_desc', $goods['goods_desc']);
 
     /* 模板赋值 */
     // $smarty->assign('code',    $code);
@@ -340,44 +221,21 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
     $smarty->assign('ur_here', ($_REQUEST['act'] == 'edit' ? $_LANG['edit_goods'] : $_LANG['02_goods_add']));
     $smarty->assign('action_link', list_link($is_add, $code));
     $smarty->assign('goods', $goods);
-    // $smarty->assign('goods_name_color', $goods_name_style[0]);
-    // $smarty->assign('goods_name_style', $goods_name_style[1]);
     $smarty->assign('cat_list', cat_list(0, $goods['cat_id']));
-    // $smarty->assign('brand_list', get_brand_list());
-    // $smarty->assign('unit_list', get_unit_list());
-    // $smarty->assign('user_rank_list', get_user_rank_list());
-    // $smarty->assign('weight_unit', $is_add ? '1' : ($goods['goods_weight'] >= 1 ? '1' : '0.001'));
     $smarty->assign('cfg', $_CFG);
     $smarty->assign('form_act', $is_add ? 'insert' : ($_REQUEST['act'] == 'edit' ? 'update' : 'insert'));
     if ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit')
     {
         $smarty->assign('is_add', true);
     }
-    // if(!$is_add)
-    // {
-    //     $smarty->assign('member_price_list', get_member_price_list($_REQUEST['goods_id']));
-    // }
-    // $smarty->assign('link_goods_list', $link_goods_list);
-    // $smarty->assign('group_goods_list', $group_goods_list);
-    // $smarty->assign('goods_article_list', $goods_article_list);
     $smarty->assign('img_list', $img_list);
-    // $smarty->assign('goods_type_list', goods_type_list($goods['goods_type']));
     $smarty->assign('gd', gd_version());
     $smarty->assign('thumb_width', $_CFG['thumb_width']);
     $smarty->assign('thumb_height', $_CFG['thumb_height']);
-    // $smarty->assign('goods_attr_html', build_attr_html($goods['goods_type'], $goods['goods_id']));
-    // $volume_price_list = '';
-    // if(isset($_REQUEST['goods_id']))
-    // {
-    // $volume_price_list = get_volume_price_list($_REQUEST['goods_id']);
-    // }
-    // if (empty($volume_price_list))
-    // {
-    //     $volume_price_list = array('0'=>array('number'=>'','price'=>''));
-    // }
-    // $smarty->assign('volume_price_list', $volume_price_list);
-     /*pageheader父标题*/
+
+    /*pageheader父标题*/
     $smarty->assign('pageheader_title',  $_LANG['02_cat_and_goods']);
+
     /* 显示商品信息页面 */
     assign_query_info();
     $smarty->display('goods_info.htm');
@@ -389,10 +247,10 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
 
 elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
 {
-    $code = empty($_REQUEST['extension_code']) ? '' : trim($_REQUEST['extension_code']);
+    // $code = empty($_REQUEST['extension_code']) ? '' : trim($_REQUEST['extension_code']);
 
     /* 是否处理缩略图 */
-    $proc_thumb = (isset($GLOBALS['shop_id']) && $GLOBALS['shop_id'] > 0)? false : true;
+    // $proc_thumb = (isset($GLOBALS['shop_id']) && $GLOBALS['shop_id'] > 0)? false : true;
 
     admin_priv('goods_manage'); // 检查权限
 
@@ -408,106 +266,106 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     }
 
     /* 检查图片：如果有错误，检查尺寸是否超过最大值；否则，检查文件类型 */
-    if (isset($_FILES['goods_img']['error'])) // php 4.2 版本才支持 error
-    {
-        // 最大上传文件大小
-        $php_maxsize = ini_get('upload_max_filesize');
-        $htm_maxsize = '2M';
-
-        // 商品图片
-        if ($_FILES['goods_img']['error'] == 0)
-        {
-            if (!$image->check_img_type($_FILES['goods_img']['type']))
-            {
-                sys_msg($_LANG['invalid_goods_img'], 1, array(), false);
-            }
-        }
-        elseif ($_FILES['goods_img']['error'] == 1)
-        {
-            sys_msg(sprintf($_LANG['goods_img_too_big'], $php_maxsize), 1, array(), false);
-        }
-        elseif ($_FILES['goods_img']['error'] == 2)
-        {
-            sys_msg(sprintf($_LANG['goods_img_too_big'], $htm_maxsize), 1, array(), false);
-        }
-
-        // 商品缩略图
-        if (isset($_FILES['goods_thumb']))
-        {
-            if ($_FILES['goods_thumb']['error'] == 0)
-            {
-                if (!$image->check_img_type($_FILES['goods_thumb']['type']))
-                {
-                    sys_msg($_LANG['invalid_goods_thumb'], 1, array(), false);
-                }
-            }
-            elseif ($_FILES['goods_thumb']['error'] == 1)
-            {
-                sys_msg(sprintf($_LANG['goods_thumb_too_big'], $php_maxsize), 1, array(), false);
-            }
-            elseif ($_FILES['goods_thumb']['error'] == 2)
-            {
-                sys_msg(sprintf($_LANG['goods_thumb_too_big'], $htm_maxsize), 1, array(), false);
-            }
-        }
-
-        // 相册图片
-        foreach ($_FILES['img_url']['error'] AS $key => $value)
-        {
-            if ($value == 0)
-            {
-                if (!$image->check_img_type($_FILES['img_url']['type'][$key]))
-                {
-                    sys_msg(sprintf($_LANG['invalid_img_url'], $key + 1), 1, array(), false);
-                }
-            }
-            elseif ($value == 1)
-            {
-                sys_msg(sprintf($_LANG['img_url_too_big'], $key + 1, $php_maxsize), 1, array(), false);
-            }
-            elseif ($_FILES['img_url']['error'] == 2)
-            {
-                sys_msg(sprintf($_LANG['img_url_too_big'], $key + 1, $htm_maxsize), 1, array(), false);
-            }
-        }
-    }
-    /* 4.1版本 */
-    else
-    {
-        // 商品图片
-        if ($_FILES['goods_img']['tmp_name'] != 'none')
-        {
-            if (!$image->check_img_type($_FILES['goods_img']['type']))
-            {
-
-                sys_msg($_LANG['invalid_goods_img'], 1, array(), false);
-            }
-        }
-
-        // 商品缩略图
-        if (isset($_FILES['goods_thumb']))
-        {
-            if ($_FILES['goods_thumb']['tmp_name'] != 'none')
-            {
-                if (!$image->check_img_type($_FILES['goods_thumb']['type']))
-                {
-                    sys_msg($_LANG['invalid_goods_thumb'], 1, array(), false);
-                }
-            }
-        }
-
-        // 相册图片
-        foreach ($_FILES['img_url']['tmp_name'] AS $key => $value)
-        {
-            if ($value != 'none')
-            {
-                if (!$image->check_img_type($_FILES['img_url']['type'][$key]))
-                {
-                    sys_msg(sprintf($_LANG['invalid_img_url'], $key + 1), 1, array(), false);
-                }
-            }
-        }
-    }
+    // if (isset($_FILES['goods_img']['error'])) // php 4.2 版本才支持 error
+    // {
+    //     // 最大上传文件大小
+    //     // $php_maxsize = ini_get('upload_max_filesize');
+    //     // $htm_maxsize = '2M';
+    //
+    //     // 商品图片
+    //     // if ($_FILES['goods_img']['error'] == 0)
+    //     // {
+    //     //     if (!$image->check_img_type($_FILES['goods_img']['type']))
+    //     //     {
+    //     //         sys_msg($_LANG['invalid_goods_img'], 1, array(), false);
+    //     //     }
+    //     // }
+    //     // elseif ($_FILES['goods_img']['error'] == 1)
+    //     // {
+    //     //     sys_msg(sprintf($_LANG['goods_img_too_big'], $php_maxsize), 1, array(), false);
+    //     // }
+    //     // elseif ($_FILES['goods_img']['error'] == 2)
+    //     // {
+    //     //     sys_msg(sprintf($_LANG['goods_img_too_big'], $htm_maxsize), 1, array(), false);
+    //     // }
+    //
+    //     // 商品缩略图
+    //     // if (isset($_FILES['goods_thumb']))
+    //     // {
+    //     //     if ($_FILES['goods_thumb']['error'] == 0)
+    //     //     {
+    //     //         if (!$image->check_img_type($_FILES['goods_thumb']['type']))
+    //     //         {
+    //     //             sys_msg($_LANG['invalid_goods_thumb'], 1, array(), false);
+    //     //         }
+    //     //     }
+    //     //     elseif ($_FILES['goods_thumb']['error'] == 1)
+    //     //     {
+    //     //         sys_msg(sprintf($_LANG['goods_thumb_too_big'], $php_maxsize), 1, array(), false);
+    //     //     }
+    //     //     elseif ($_FILES['goods_thumb']['error'] == 2)
+    //     //     {
+    //     //         sys_msg(sprintf($_LANG['goods_thumb_too_big'], $htm_maxsize), 1, array(), false);
+    //     //     }
+    //     // }
+    //
+    //     // 相册图片
+    //     // foreach ($_FILES['img_url']['error'] AS $key => $value)
+    //     // {
+    //     //     if ($value == 0)
+    //     //     {
+    //     //         if (!$image->check_img_type($_FILES['img_url']['type'][$key]))
+    //     //         {
+    //     //             sys_msg(sprintf($_LANG['invalid_img_url'], $key + 1), 1, array(), false);
+    //     //         }
+    //     //     }
+    //     //     elseif ($value == 1)
+    //     //     {
+    //     //         sys_msg(sprintf($_LANG['img_url_too_big'], $key + 1, $php_maxsize), 1, array(), false);
+    //     //     }
+    //     //     elseif ($_FILES['img_url']['error'] == 2)
+    //     //     {
+    //     //         sys_msg(sprintf($_LANG['img_url_too_big'], $key + 1, $htm_maxsize), 1, array(), false);
+    //     //     }
+    //     // }
+    // }
+    // /* 4.1版本 */
+    // else
+    // {
+    //     // 商品图片
+    //     // if ($_FILES['goods_img']['tmp_name'] != 'none')
+    //     // {
+    //     //     if (!$image->check_img_type($_FILES['goods_img']['type']))
+    //     //     {
+    //     //
+    //     //         sys_msg($_LANG['invalid_goods_img'], 1, array(), false);
+    //     //     }
+    //     // }
+    //
+    //     // 商品缩略图
+    //     // if (isset($_FILES['goods_thumb']))
+    //     // {
+    //     //     if ($_FILES['goods_thumb']['tmp_name'] != 'none')
+    //     //     {
+    //     //         if (!$image->check_img_type($_FILES['goods_thumb']['type']))
+    //     //         {
+    //     //             sys_msg($_LANG['invalid_goods_thumb'], 1, array(), false);
+    //     //         }
+    //     //     }
+    //     // }
+    //
+    //     // 相册图片
+    //     // foreach ($_FILES['img_url']['tmp_name'] AS $key => $value)
+    //     // {
+    //     //     if ($value != 'none')
+    //     //     {
+    //     //         if (!$image->check_img_type($_FILES['img_url']['type'][$key]))
+    //     //         {
+    //     //             sys_msg(sprintf($_LANG['invalid_img_url'], $key + 1), 1, array(), false);
+    //     //         }
+    //     //     }
+    //     // }
+    // }
 
     /* 插入还是更新的标识 */
     $is_insert = $_REQUEST['act'] == 'insert';
@@ -519,187 +377,187 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     $old_original_img = '';  // 初始化原始图片旧图
 
     // 如果上传了商品图片，相应处理
-    if (($_FILES['goods_img']['tmp_name'] != '' && $_FILES['goods_img']['tmp_name'] != 'none') or (($_POST['goods_img_url'] != $_LANG['lab_picture_url'] && $_POST['goods_img_url'] != 'http://') && $is_url_goods_img = 1))
-    {
-        if ($_REQUEST['goods_id'] > 0)
-        {
-            /* 删除原来的图片文件 */
-            $sql = "SELECT goods_thumb, goods_img, original_img " .
-                    " FROM " . $ecs->table('goods') .
-                    " WHERE goods_id = '$_REQUEST[goods_id]'";
-            $row = $db->getRow($sql);
-            if ($row['goods_thumb'] != '' && is_file('../' . $row['goods_thumb']))
-            {
-                @unlink('../' . $row['goods_thumb']);
-            }
-            if ($row['goods_img'] != '' && is_file('../' . $row['goods_img']))
-            {
-                @unlink('../' . $row['goods_img']);
-            }
-            if ($row['original_img'] != '' && is_file('../' . $row['original_img']))
-            {
-                /* 先不处理，以防止程序中途出错停止 */
-                //$old_original_img = $row['original_img']; //记录旧图路径
-            }
-            /* 清除原来商品图片 */
-            if ($proc_thumb === false)
-            {
-                get_image_path($_REQUEST[goods_id], $row['goods_img'], false, 'goods', true);
-                get_image_path($_REQUEST[goods_id], $row['goods_thumb'], true, 'goods', true);
-            }
-        }
-
-        if (empty($is_url_goods_img))
-        {
-            $original_img   = $image->upload_image($_FILES['goods_img']); // 原始图片
-        }
-        elseif ($_POST['goods_img_url'])
-        {
-
-            if(preg_match('/(.jpg|.png|.gif|.jpeg)$/',$_POST['goods_img_url']) && copy(trim($_POST['goods_img_url']), ROOT_PATH . 'temp/' . basename($_POST['goods_img_url'])))
-            {
-                  $original_img = 'temp/' . basename($_POST['goods_img_url']);
-            }
-
-        }
-
-        if ($original_img === false)
-        {
-            sys_msg($image->error_msg(), 1, array(), false);
-        }
-        $goods_img      = $original_img;   // 商品图片
-
-        /* 复制一份相册图片 */
-        /* 添加判断是否自动生成相册图片 */
-        if ($_CFG['auto_generate_gallery'])
-        {
-            $img        = $original_img;   // 相册图片
-            $pos        = strpos(basename($img), '.');
-            $newname    = dirname($img) . '/' . $image->random_filename() . substr(basename($img), $pos);
-            if (!copy('../' . $img, '../' . $newname))
-            {
-                sys_msg('fail to copy file: ' . realpath('../' . $img), 1, array(), false);
-            }
-            $img        = $newname;
-
-            $gallery_img    = $img;
-            $gallery_thumb  = $img;
-        }
-
-        // 如果系统支持GD，缩放商品图片，且给商品图片和相册图片加水印
-        if ($proc_thumb && $image->gd_version() > 0 && $image->check_img_function($_FILES['goods_img']['type']) || $is_url_goods_img)
-        {
-
-            if (empty($is_url_goods_img))
-            {
-                // 如果设置大小不为0，缩放图片
-                if ($_CFG['image_width'] != 0 || $_CFG['image_height'] != 0)
-                {
-                    $goods_img = $image->make_thumb('../'. $goods_img , $GLOBALS['_CFG']['image_width'],  $GLOBALS['_CFG']['image_height']);
-                    if ($goods_img === false)
-                    {
-                        sys_msg($image->error_msg(), 1, array(), false);
-                    }
-                }
-
-                /* 添加判断是否自动生成相册图片 */
-                if ($_CFG['auto_generate_gallery'])
-                {
-                    $newname    = dirname($img) . '/' . $image->random_filename() . substr(basename($img), $pos);
-                    if (!copy('../' . $img, '../' . $newname))
-                    {
-                        sys_msg('fail to copy file: ' . realpath('../' . $img), 1, array(), false);
-                    }
-                    $gallery_img        = $newname;
-                }
-
-                // 加水印
-                if (intval($_CFG['watermark_place']) > 0 && !empty($GLOBALS['_CFG']['watermark']))
-                {
-                    if ($image->add_watermark('../'.$goods_img,'',$GLOBALS['_CFG']['watermark'], $GLOBALS['_CFG']['watermark_place'], $GLOBALS['_CFG']['watermark_alpha']) === false)
-                    {
-                        sys_msg($image->error_msg(), 1, array(), false);
-                    }
-                    /* 添加判断是否自动生成相册图片 */
-                    if ($_CFG['auto_generate_gallery'])
-                    {
-                        if ($image->add_watermark('../'. $gallery_img,'',$GLOBALS['_CFG']['watermark'], $GLOBALS['_CFG']['watermark_place'], $GLOBALS['_CFG']['watermark_alpha']) === false)
-                        {
-                            sys_msg($image->error_msg(), 1, array(), false);
-                        }
-                    }
-                }
-            }
-
-            // 相册缩略图
-            /* 添加判断是否自动生成相册图片 */
-            if ($_CFG['auto_generate_gallery'])
-            {
-                if ($_CFG['thumb_width'] != 0 || $_CFG['thumb_height'] != 0)
-                {
-                    $gallery_thumb = $image->make_thumb('../' . $img, $GLOBALS['_CFG']['thumb_width'],  $GLOBALS['_CFG']['thumb_height']);
-                    if ($gallery_thumb === false)
-                    {
-                        sys_msg($image->error_msg(), 1, array(), false);
-                    }
-                }
-            }
-        }
-        /* 取消该原图复制流程 */
-        // else
-        // {
-        //     /* 复制一份原图 */
-        //     $pos        = strpos(basename($img), '.');
-        //     $gallery_img = dirname($img) . '/' . $image->random_filename() . // substr(basename($img), $pos);
-        //     if (!copy('../' . $img, '../' . $gallery_img))
-        //     {
-        //         sys_msg('fail to copy file: ' . realpath('../' . $img), 1, array(), false);
-        //     }
-        //     $gallery_thumb = '';
-        // }
-    }
+    // if (($_FILES['goods_img']['tmp_name'] != '' && $_FILES['goods_img']['tmp_name'] != 'none') or (($_POST['goods_img_url'] != $_LANG['lab_picture_url'] && $_POST['goods_img_url'] != 'http://') && $is_url_goods_img = 1))
+    // {
+    //     if ($_REQUEST['goods_id'] > 0)
+    //     {
+    //         /* 删除原来的图片文件 */
+    //         $sql = "SELECT goods_thumb, goods_img, original_img " .
+    //                 " FROM " . $ecs->table('goods') .
+    //                 " WHERE goods_id = '$_REQUEST[goods_id]'";
+    //         $row = $db->getRow($sql);
+    //         if ($row['goods_thumb'] != '' && is_file('../' . $row['goods_thumb']))
+    //         {
+    //             @unlink('../' . $row['goods_thumb']);
+    //         }
+    //         if ($row['goods_img'] != '' && is_file('../' . $row['goods_img']))
+    //         {
+    //             @unlink('../' . $row['goods_img']);
+    //         }
+    //         if ($row['original_img'] != '' && is_file('../' . $row['original_img']))
+    //         {
+    //             /* 先不处理，以防止程序中途出错停止 */
+    //             //$old_original_img = $row['original_img']; //记录旧图路径
+    //         }
+    //         /* 清除原来商品图片 */
+    //         if ($proc_thumb === false)
+    //         {
+    //             get_image_path($_REQUEST[goods_id], $row['goods_img'], false, 'goods', true);
+    //             get_image_path($_REQUEST[goods_id], $row['goods_thumb'], true, 'goods', true);
+    //         }
+    //     }
+    //
+    //     if (empty($is_url_goods_img))
+    //     {
+    //         $original_img   = $image->upload_image($_FILES['goods_img']); // 原始图片
+    //     }
+    //     elseif ($_POST['goods_img_url'])
+    //     {
+    //
+    //         if(preg_match('/(.jpg|.png|.gif|.jpeg)$/',$_POST['goods_img_url']) && copy(trim($_POST['goods_img_url']), ROOT_PATH . 'temp/' . basename($_POST['goods_img_url'])))
+    //         {
+    //               $original_img = 'temp/' . basename($_POST['goods_img_url']);
+    //         }
+    //
+    //     }
+    //
+    //     if ($original_img === false)
+    //     {
+    //         sys_msg($image->error_msg(), 1, array(), false);
+    //     }
+    //     $goods_img      = $original_img;   // 商品图片
+    //
+    //     /* 复制一份相册图片 */
+    //     /* 添加判断是否自动生成相册图片 */
+    //     if ($_CFG['auto_generate_gallery'])
+    //     {
+    //         $img        = $original_img;   // 相册图片
+    //         $pos        = strpos(basename($img), '.');
+    //         $newname    = dirname($img) . '/' . $image->random_filename() . substr(basename($img), $pos);
+    //         if (!copy('../' . $img, '../' . $newname))
+    //         {
+    //             sys_msg('fail to copy file: ' . realpath('../' . $img), 1, array(), false);
+    //         }
+    //         $img        = $newname;
+    //
+    //         $gallery_img    = $img;
+    //         $gallery_thumb  = $img;
+    //     }
+    //
+    //     // 如果系统支持GD，缩放商品图片，且给商品图片和相册图片加水印
+    //     if ($proc_thumb && $image->gd_version() > 0 && $image->check_img_function($_FILES['goods_img']['type']) || $is_url_goods_img)
+    //     {
+    //
+    //         if (empty($is_url_goods_img))
+    //         {
+    //             // 如果设置大小不为0，缩放图片
+    //             if ($_CFG['image_width'] != 0 || $_CFG['image_height'] != 0)
+    //             {
+    //                 $goods_img = $image->make_thumb('../'. $goods_img , $GLOBALS['_CFG']['image_width'],  $GLOBALS['_CFG']['image_height']);
+    //                 if ($goods_img === false)
+    //                 {
+    //                     sys_msg($image->error_msg(), 1, array(), false);
+    //                 }
+    //             }
+    //
+    //             /* 添加判断是否自动生成相册图片 */
+    //             if ($_CFG['auto_generate_gallery'])
+    //             {
+    //                 $newname    = dirname($img) . '/' . $image->random_filename() . substr(basename($img), $pos);
+    //                 if (!copy('../' . $img, '../' . $newname))
+    //                 {
+    //                     sys_msg('fail to copy file: ' . realpath('../' . $img), 1, array(), false);
+    //                 }
+    //                 $gallery_img        = $newname;
+    //             }
+    //
+    //             // 加水印
+    //             if (intval($_CFG['watermark_place']) > 0 && !empty($GLOBALS['_CFG']['watermark']))
+    //             {
+    //                 if ($image->add_watermark('../'.$goods_img,'',$GLOBALS['_CFG']['watermark'], $GLOBALS['_CFG']['watermark_place'], $GLOBALS['_CFG']['watermark_alpha']) === false)
+    //                 {
+    //                     sys_msg($image->error_msg(), 1, array(), false);
+    //                 }
+    //                 /* 添加判断是否自动生成相册图片 */
+    //                 if ($_CFG['auto_generate_gallery'])
+    //                 {
+    //                     if ($image->add_watermark('../'. $gallery_img,'',$GLOBALS['_CFG']['watermark'], $GLOBALS['_CFG']['watermark_place'], $GLOBALS['_CFG']['watermark_alpha']) === false)
+    //                     {
+    //                         sys_msg($image->error_msg(), 1, array(), false);
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //
+    //         // 相册缩略图
+    //         /* 添加判断是否自动生成相册图片 */
+    //         if ($_CFG['auto_generate_gallery'])
+    //         {
+    //             if ($_CFG['thumb_width'] != 0 || $_CFG['thumb_height'] != 0)
+    //             {
+    //                 $gallery_thumb = $image->make_thumb('../' . $img, $GLOBALS['_CFG']['thumb_width'],  $GLOBALS['_CFG']['thumb_height']);
+    //                 if ($gallery_thumb === false)
+    //                 {
+    //                     sys_msg($image->error_msg(), 1, array(), false);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     /* 取消该原图复制流程 */
+    //     // else
+    //     // {
+    //     //     /* 复制一份原图 */
+    //     //     $pos        = strpos(basename($img), '.');
+    //     //     $gallery_img = dirname($img) . '/' . $image->random_filename() . // substr(basename($img), $pos);
+    //     //     if (!copy('../' . $img, '../' . $gallery_img))
+    //     //     {
+    //     //         sys_msg('fail to copy file: ' . realpath('../' . $img), 1, array(), false);
+    //     //     }
+    //     //     $gallery_thumb = '';
+    //     // }
+    // }
 
 
     // 是否上传商品缩略图
-    if (isset($_FILES['goods_thumb']) && $_FILES['goods_thumb']['tmp_name'] != '' &&
-        isset($_FILES['goods_thumb']['tmp_name']) &&$_FILES['goods_thumb']['tmp_name'] != 'none')
-    {
-        // 上传了，直接使用，原始大小
-        $goods_thumb = $image->upload_image($_FILES['goods_thumb']);
-        if ($goods_thumb === false)
-        {
-            sys_msg($image->error_msg(), 1, array(), false);
-        }
-    }
-    else
-    {
-        // 未上传，如果自动选择生成，且上传了商品图片，生成所略图
-        if ($proc_thumb && isset($_POST['auto_thumb']) && !empty($original_img))
-        {
-            // 如果设置缩略图大小不为0，生成缩略图
-            if ($_CFG['thumb_width'] != 0 || $_CFG['thumb_height'] != 0)
-            {
-                $goods_thumb = $image->make_thumb('../' . $original_img, $GLOBALS['_CFG']['thumb_width'],  $GLOBALS['_CFG']['thumb_height']);
-                if ($goods_thumb === false)
-                {
-                    sys_msg($image->error_msg(), 1, array(), false);
-                }
-            }
-            else
-            {
-                $goods_thumb = $original_img;
-            }
-        }
-    }
+    // if (isset($_FILES['goods_thumb']) && $_FILES['goods_thumb']['tmp_name'] != '' &&
+    //     isset($_FILES['goods_thumb']['tmp_name']) &&$_FILES['goods_thumb']['tmp_name'] != 'none')
+    // {
+    //     // 上传了，直接使用，原始大小
+    //     $goods_thumb = $image->upload_image($_FILES['goods_thumb']);
+    //     if ($goods_thumb === false)
+    //     {
+    //         sys_msg($image->error_msg(), 1, array(), false);
+    //     }
+    // }
+    // else
+    // {
+    //     // 未上传，如果自动选择生成，且上传了商品图片，生成所略图
+    //     if ($proc_thumb && isset($_POST['auto_thumb']) && !empty($original_img))
+    //     {
+    //         // 如果设置缩略图大小不为0，生成缩略图
+    //         if ($_CFG['thumb_width'] != 0 || $_CFG['thumb_height'] != 0)
+    //         {
+    //             $goods_thumb = $image->make_thumb('../' . $original_img, $GLOBALS['_CFG']['thumb_width'],  $GLOBALS['_CFG']['thumb_height']);
+    //             if ($goods_thumb === false)
+    //             {
+    //                 sys_msg($image->error_msg(), 1, array(), false);
+    //             }
+    //         }
+    //         else
+    //         {
+    //             $goods_thumb = $original_img;
+    //         }
+    //     }
+    // }
 
 
     /* 删除下载的外链原图 */
-    if (!empty($is_url_goods_img))
-    {
-        unlink(ROOT_PATH . $original_img);
-        empty($newname) || unlink(ROOT_PATH . $newname);
-        $url_goods_img = $goods_img = $original_img = htmlspecialchars(trim($_POST['goods_img_url']));
-    }
+    // if (!empty($is_url_goods_img))
+    // {
+    //     unlink(ROOT_PATH . $original_img);
+    //     empty($newname) || unlink(ROOT_PATH . $newname);
+    //     $url_goods_img = $goods_img = $original_img = htmlspecialchars(trim($_POST['goods_img_url']));
+    // }
 
 
     /* 如果没有输入商品货号则自动生成一个商品货号 */
@@ -726,23 +584,28 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     $goods_size_width = !empty($_POST['goods_size_width']) ? $_POST['goods_size_width'] : "0";
     $goods_size_length = !empty($_POST['goods_size_length']) ? $_POST['goods_size_length'] : "0";
 
-    $goods_thumb = (empty($goods_thumb) && !empty($_POST['goods_thumb_url']) && goods_parse_url($_POST['goods_thumb_url'])) ? htmlspecialchars(trim($_POST['goods_thumb_url'])) : $goods_thumb;
-    $goods_thumb = (empty($goods_thumb) && isset($_POST['auto_thumb']))? $goods_img : $goods_thumb;
+    // $goods_thumb = (empty($goods_thumb) && !empty($_POST['goods_thumb_url']) && goods_parse_url($_POST['goods_thumb_url'])) ? htmlspecialchars(trim($_POST['goods_thumb_url'])) : $goods_thumb;
+    // $goods_thumb = (empty($goods_thumb) && isset($_POST['auto_thumb']))? $goods_img : $goods_thumb;
 
     /* 入库 */
     if ($is_insert)
     {
+        /* 处理商品大图 */
+        $goods_img = (!empty($_POST['goods_img']) && goods_parse_url($_POST['goods_img']))? htmlspecialchars(trim($_POST['goods_img'])) : "";
 
         $sql = "INSERT INTO " . $ecs->table('goods') . " (goods_name, goods_sn, " .
                     "shop_price,unit," .
-                    "goods_img, goods_thumb, goods_brief, " .
+                    "goods_img,".
+                    // "goods_thumb,".
+                    "goods_brief, " .
                     "add_time, last_update, " .
                     "goods_bind_type, goods_add_page_max,goods_composite_page, goods_composite_pic, goods_gray," .
                     "goods_composite_pdf, goods_inner_type,goods_size_width, goods_size_length " .
                     ")" .
                 "VALUES ('$_POST[goods_name]', '$goods_sn', " .
                     "'$shop_price', '$goods_unit',".
-                    "'$goods_img', '$goods_thumb', ".
+                    "'$goods_img',".
+                    // " '$goods_thumb', ".
                     "'$_POST[goods_brief]',".
                     "'".gmtime() . "', '". gmtime() .
                     "', '$goods_bind_type', '$goods_add_page_max', '$goods_composite_page', '$goods_composite_pic', '$goods_gray',".
@@ -751,22 +614,6 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     }
     else
     {
-        /* 如果有上传图片，删除原来的商品图 */
-        $sql = "SELECT goods_thumb, goods_img, original_img " .
-                    " FROM " . $ecs->table('goods') .
-                    " WHERE goods_id = '$_REQUEST[goods_id]'";
-        $row = $db->getRow($sql);
-        if ($proc_thumb && $goods_img && $row['goods_img'] && !goods_parse_url($row['goods_img']))
-        {
-            @unlink(ROOT_PATH . $row['goods_img']);
-            @unlink(ROOT_PATH . $row['original_img']);
-        }
-
-        if ($proc_thumb && $goods_thumb && $row['goods_thumb'] && !goods_parse_url($row['goods_thumb']))
-        {
-            @unlink(ROOT_PATH . $row['goods_thumb']);
-        }
-
         $sql = "UPDATE " . $ecs->table('goods') . " SET " .
                 "goods_name = '$_POST[goods_name]', " .
                 "goods_sn = '$goods_sn', " .
@@ -783,15 +630,6 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                 "goods_size_width = '$goods_size_width',".
                 "goods_size_length = '$goods_size_length',";
 
-        /* 如果有上传图片，需要更新数据库 */
-        if ($goods_img)
-        {
-            $sql .= "goods_img = '$goods_img', original_img = '$original_img', ";
-        }
-        if ($goods_thumb)
-        {
-            $sql .= "goods_thumb = '$goods_thumb', ";
-        }
         $sql .= "last_update = '". gmtime() ."'".
                 "WHERE goods_id = '$_REQUEST[goods_id]' LIMIT 1";
     }
@@ -799,6 +637,22 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
 
     /* 商品编号 */
     $goods_id = $is_insert ? $db->insert_id() : $_REQUEST['goods_id'];
+
+    if ($is_insert)
+    {
+        /* 处理商品小图 */
+        $gallery_img = (!empty($_POST['gallery_img_list']) && isset($_POST['gallery_img_list']))? $_POST['gallery_img_list'] : "";
+
+        foreach ($gallery_img as $img) {
+            $sql = "INSERT INTO " . $ecs->table('goods_gallery') . " ( ".
+                    "goods_id,img_url".
+                    " ) VALUES (".
+                    "'$goods_id','$img'".
+                    ")";
+            $db->query($sql);
+        }
+
+    }
 
     /* 记录日志 */
     if ($is_insert)
@@ -810,131 +664,6 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
         admin_log($_POST['goods_name'], 'edit', 'goods');
     }
 
-    /* 处理属性 */
-    if ((isset($_POST['attr_id_list']) && isset($_POST['attr_value_list'])) || (empty($_POST['attr_id_list']) && empty($_POST['attr_value_list'])))
-    {
-        // 取得原有的属性值
-        $goods_attr_list = array();
-
-        $keywords_arr = explode(" ", $_POST['keywords']);
-
-        $keywords_arr = array_flip($keywords_arr);
-        if (isset($keywords_arr['']))
-        {
-            unset($keywords_arr['']);
-        }
-
-        $sql = "SELECT attr_id, attr_index FROM " . $ecs->table('attribute') . " WHERE cat_id = '$goods_type'";
-
-        $attr_res = $db->query($sql);
-
-        $attr_list = array();
-
-        while ($row = $db->fetchRow($attr_res))
-        {
-            $attr_list[$row['attr_id']] = $row['attr_index'];
-        }
-
-        $sql = "SELECT g.*, a.attr_type
-                FROM " . $ecs->table('goods_attr') . " AS g
-                    LEFT JOIN " . $ecs->table('attribute') . " AS a
-                        ON a.attr_id = g.attr_id
-                WHERE g.goods_id = '$goods_id'";
-
-        $res = $db->query($sql);
-
-        while ($row = $db->fetchRow($res))
-        {
-            $goods_attr_list[$row['attr_id']][$row['attr_value']] = array('sign' => 'delete', 'goods_attr_id' => $row['goods_attr_id']);
-        }
-        // 循环现有的，根据原有的做相应处理
-        if(isset($_POST['attr_id_list']))
-        {
-            foreach ($_POST['attr_id_list'] AS $key => $attr_id)
-            {
-                $attr_value = $_POST['attr_value_list'][$key];
-                $attr_price = $_POST['attr_price_list'][$key];
-                if (!empty($attr_value))
-                {
-                    if (isset($goods_attr_list[$attr_id][$attr_value]))
-                    {
-                        // 如果原来有，标记为更新
-                        $goods_attr_list[$attr_id][$attr_value]['sign'] = 'update';
-                        $goods_attr_list[$attr_id][$attr_value]['attr_price'] = $attr_price;
-                    }
-                    else
-                    {
-                        // 如果原来没有，标记为新增
-                        $goods_attr_list[$attr_id][$attr_value]['sign'] = 'insert';
-                        $goods_attr_list[$attr_id][$attr_value]['attr_price'] = $attr_price;
-                    }
-                    $val_arr = explode(' ', $attr_value);
-                    foreach ($val_arr AS $k => $v)
-                    {
-                        if (!isset($keywords_arr[$v]) && $attr_list[$attr_id] == "1")
-                        {
-                            $keywords_arr[$v] = $v;
-                        }
-                    }
-                }
-            }
-        }
-        $keywords = join(' ', array_flip($keywords_arr));
-
-        $sql = "UPDATE " .$ecs->table('goods'). " SET keywords = '$keywords' WHERE goods_id = '$goods_id' LIMIT 1";
-
-        $db->query($sql);
-
-        /* 插入、更新、删除数据 */
-        foreach ($goods_attr_list as $attr_id => $attr_value_list)
-        {
-            foreach ($attr_value_list as $attr_value => $info)
-            {
-                if ($info['sign'] == 'insert')
-                {
-                    $sql = "INSERT INTO " .$ecs->table('goods_attr'). " (attr_id, goods_id, attr_value, attr_price)".
-                            "VALUES ('$attr_id', '$goods_id', '$attr_value', '$info[attr_price]')";
-                }
-                elseif ($info['sign'] == 'update')
-                {
-                    $sql = "UPDATE " .$ecs->table('goods_attr'). " SET attr_price = '$info[attr_price]' WHERE goods_attr_id = '$info[goods_attr_id]' LIMIT 1";
-                }
-                else
-                {
-                    $sql = "DELETE FROM " .$ecs->table('goods_attr'). " WHERE goods_attr_id = '$info[goods_attr_id]' LIMIT 1";
-                }
-                $db->query($sql);
-            }
-        }
-    }
-
-    /* 处理会员价格 */
-    // if (isset($_POST['user_rank']) && isset($_POST['user_price']))
-    // {
-    //     handle_member_price($goods_id, $_POST['user_rank'], $_POST['user_price']);
-    // }
-
-    /* 处理优惠价格 */
-    // if (isset($_POST['volume_number']) && isset($_POST['volume_price']))
-    // {
-    //     $temp_num = array_count_values($_POST['volume_number']);
-    //     foreach($temp_num as $v)
-    //     {
-    //         if ($v > 1)
-    //         {
-    //             sys_msg($_LANG['volume_number_continuous'], 1, array(), false);
-    //             break;
-    //         }
-    //     }
-    //     handle_volume_price($goods_id, $_POST['volume_number'], $_POST['volume_price']);
-    // }
-
-    // /* 处理扩展分类 */
-    // if (isset($_POST['other_cat']))
-    // {
-    //     handle_other_cat($goods_id, array_unique($_POST['other_cat']));
-    // }
-
     if ($is_insert)
     {
         /* 处理关联商品 */
@@ -945,68 +674,6 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
 
         /* 处理关联文章 */
         handle_goods_article($goods_id);
-    }
-
-    /* 重新格式化图片名称 */
-    $original_img = reformat_image_name('goods', $goods_id, $original_img, 'source');
-    $goods_img = reformat_image_name('goods', $goods_id, $goods_img, 'goods');
-    $goods_thumb = reformat_image_name('goods_thumb', $goods_id, $goods_thumb, 'thumb');
-    if ($goods_img !== false)
-    {
-        $db->query("UPDATE " . $ecs->table('goods') . " SET goods_img = '$goods_img' WHERE goods_id='$goods_id'");
-    }
-
-    if ($original_img !== false)
-    {
-        $db->query("UPDATE " . $ecs->table('goods') . " SET original_img = '$original_img' WHERE goods_id='$goods_id'");
-    }
-
-    if ($goods_thumb !== false)
-    {
-        $db->query("UPDATE " . $ecs->table('goods') . " SET goods_thumb = '$goods_thumb' WHERE goods_id='$goods_id'");
-    }
-
-    /* 如果有图片，把商品图片加入图片相册 */
-    if (isset($img))
-    {
-        /* 重新格式化图片名称 */
-        if (empty($is_url_goods_img))
-        {
-            $img = reformat_image_name('gallery', $goods_id, $img, 'source');
-            $gallery_img = reformat_image_name('gallery', $goods_id, $gallery_img, 'goods');
-        }
-        else
-        {
-            $img = $url_goods_img;
-            $gallery_img = $url_goods_img;
-        }
-
-        $gallery_thumb = reformat_image_name('gallery_thumb', $goods_id, $gallery_thumb, 'thumb');
-        $sql = "INSERT INTO " . $ecs->table('goods_gallery') . " (goods_id, img_url, img_desc, thumb_url, img_original) " .
-                "VALUES ('$goods_id', '$gallery_img', '', '$gallery_thumb', '$img')";
-        $db->query($sql);
-    }
-
-    /* 处理相册图片 */
-    handle_gallery_image($goods_id, $_FILES['img_url'], $_POST['img_desc'], $_POST['img_file']);
-
-    /* 编辑时处理相册图片描述 */
-    if (!$is_insert && isset($_POST['old_img_desc']))
-    {
-        foreach ($_POST['old_img_desc'] AS $img_id => $img_desc)
-        {
-            $sql = "UPDATE " . $ecs->table('goods_gallery') . " SET img_desc = '$img_desc' WHERE img_id = '$img_id' LIMIT 1";
-            $db->query($sql);
-        }
-    }
-
-    /* 不保留商品原图的时候删除原图 */
-    if ($proc_thumb && !$_CFG['retain_original_img'] && !empty($original_img))
-    {
-        $db->query("UPDATE " . $ecs->table('goods') . " SET original_img='' WHERE `goods_id`='{$goods_id}'");
-        $db->query("UPDATE " . $ecs->table('goods_gallery') . " SET img_original='' WHERE `goods_id`='{$goods_id}'");
-        @unlink('../' . $original_img);
-        @unlink('../' . $img);
     }
 
     /* 记录上一次选择的分类和品牌 */
@@ -1029,7 +696,6 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
         $link[2] = add_link($code);
     }
     $link[3] = list_link($is_insert, $code);
-
 
     //$key_array = array_keys($link);
     for($i=0;$i<count($link);$i++)
@@ -1054,7 +720,10 @@ elseif ($_REQUEST['act'] == 'edit_goods_img')
 
     $goods_img = json_str_iconv(trim($_POST['val']));
 
-    $sql = "UPDATE ". $ecs->table('goods'). " SET goods_img = '".$goods_img."' WHERE goods_id = '".$goods_id."'";
+    if($goods_id)
+    {
+        $sql = "UPDATE ". $ecs->table('goods'). " SET goods_img = '".$goods_img."' WHERE goods_id = '".$goods_id."'";
+    }
 
     if ($db->query($sql))
     {
@@ -1079,11 +748,13 @@ elseif ($_REQUEST['act'] == 'add_gallery_img')
     $sql = "SELECT MAX(img_id)+1 FROM ". $ecs->table('goods_gallery');
     $img_id = $db->getOne($sql);
 
-    $sql = "INSERT INTO ". $ecs->table('goods_gallery'). " ( ".
-                " img_id, goods_id,img_url ".
-                " ) VALUES ( ".
-                "'$img_id','$goods_id','$img_url'".
-                " )";
+    if($goods_id){
+        $sql = "INSERT INTO ". $ecs->table('goods_gallery'). " ( ".
+                    " img_id, goods_id,img_url ".
+                    " ) VALUES ( ".
+                    "'$img_id','$goods_id','$img_url'".
+                    " )";
+    }
 
     if ($db->query($sql))
     {
@@ -1784,278 +1455,6 @@ elseif ($_REQUEST['act'] == 'get_goods_list')
 }
 
 /*------------------------------------------------------ */
-//-- 把商品加入关联
-/*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'add_link_goods')
-{
-    include_once(ROOT_PATH . 'includes/cls_json.php');
-    $json = new JSON;
-
-    check_authz_json('goods_manage');
-
-    $linked_array   = $json->decode($_GET['add_ids']);
-    $linked_goods   = $json->decode($_GET['JSON']);
-    $goods_id       = $linked_goods[0];
-    $is_double      = $linked_goods[1] == true ? 0 : 1;
-
-    foreach ($linked_array AS $val)
-    {
-        if ($is_double)
-        {
-            /* 双向关联 */
-            $sql = "INSERT INTO " . $ecs->table('link_goods') . " (goods_id, link_goods_id, is_double, admin_id) " .
-                    "VALUES ('$val', '$goods_id', '$is_double', '$_SESSION[admin_id]')";
-            $db->query($sql, 'SILENT');
-        }
-
-        $sql = "INSERT INTO " . $ecs->table('link_goods') . " (goods_id, link_goods_id, is_double, admin_id) " .
-                "VALUES ('$goods_id', '$val', '$is_double', '$_SESSION[admin_id]')";
-        $db->query($sql, 'SILENT');
-    }
-
-    $linked_goods   = get_linked_goods($goods_id);
-    $options        = array();
-
-    foreach ($linked_goods AS $val)
-    {
-        $options[] = array('value'  => $val['goods_id'],
-                        'text'      => $val['goods_name'],
-                        'data'      => '');
-    }
-
-    clear_cache_files();
-    make_json_result($options);
-}
-
-/*------------------------------------------------------ */
-//-- 删除关联商品
-/*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'drop_link_goods')
-{
-    include_once(ROOT_PATH . 'includes/cls_json.php');
-    $json = new JSON;
-
-    check_authz_json('goods_manage');
-
-    $drop_goods     = $json->decode($_GET['drop_ids']);
-    $drop_goods_ids = db_create_in($drop_goods);
-    $linked_goods   = $json->decode($_GET['JSON']);
-    $goods_id       = $linked_goods[0];
-    $is_signle      = $linked_goods[1];
-
-    if (!$is_signle)
-    {
-        $sql = "DELETE FROM " .$ecs->table('link_goods') .
-                " WHERE link_goods_id = '$goods_id' AND goods_id " . $drop_goods_ids;
-    }
-    else
-    {
-        $sql = "UPDATE " .$ecs->table('link_goods') . " SET is_double = 0 ".
-                " WHERE link_goods_id = '$goods_id' AND goods_id " . $drop_goods_ids;
-    }
-    if ($goods_id == 0)
-    {
-        $sql .= " AND admin_id = '$_SESSION[admin_id]'";
-    }
-    $db->query($sql);
-
-    $sql = "DELETE FROM " .$ecs->table('link_goods') .
-            " WHERE goods_id = '$goods_id' AND link_goods_id " . $drop_goods_ids;
-    if ($goods_id == 0)
-    {
-        $sql .= " AND admin_id = '$_SESSION[admin_id]'";
-    }
-    $db->query($sql);
-
-    $linked_goods = get_linked_goods($goods_id);
-    $options      = array();
-
-    foreach ($linked_goods AS $val)
-    {
-        $options[] = array(
-                        'value' => $val['goods_id'],
-                        'text'  => $val['goods_name'],
-                        'data'  => '');
-    }
-
-    clear_cache_files();
-    make_json_result($options);
-}
-
-/*------------------------------------------------------ */
-//-- 增加一个配件
-/*------------------------------------------------------ */
-
-elseif ($_REQUEST['act'] == 'add_group_goods')
-{
-    include_once(ROOT_PATH . 'includes/cls_json.php');
-    $json = new JSON;
-
-    check_authz_json('goods_manage');
-
-    $fittings   = $json->decode($_GET['add_ids']);
-    $arguments  = $json->decode($_GET['JSON']);
-    $goods_id   = $arguments[0];
-    $price      = $arguments[1];
-
-    foreach ($fittings AS $val)
-    {
-        $sql = "INSERT INTO " . $ecs->table('group_goods') . " (parent_id, goods_id, goods_price, admin_id) " .
-                "VALUES ('$goods_id', '$val', '$price', '$_SESSION[admin_id]')";
-        $db->query($sql, 'SILENT');
-    }
-
-    $arr = get_group_goods($goods_id);
-    $opt = array();
-
-    foreach ($arr AS $val)
-    {
-        $opt[] = array('value'      => $val['goods_id'],
-                        'text'      => $val['goods_name'],
-                        'data'      => '');
-    }
-
-    clear_cache_files();
-    make_json_result($opt);
-}
-
-/*------------------------------------------------------ */
-//-- 删除一个配件
-/*------------------------------------------------------ */
-
-elseif ($_REQUEST['act'] == 'drop_group_goods')
-{
-    include_once(ROOT_PATH . 'includes/cls_json.php');
-    $json = new JSON;
-
-    check_authz_json('goods_manage');
-
-    $fittings   = $json->decode($_GET['drop_ids']);
-    $arguments  = $json->decode($_GET['JSON']);
-    $goods_id   = $arguments[0];
-    $price      = $arguments[1];
-
-    $sql = "DELETE FROM " .$ecs->table('group_goods') .
-            " WHERE parent_id='$goods_id' AND " .db_create_in($fittings, 'goods_id');
-    if ($goods_id == 0)
-    {
-        $sql .= " AND admin_id = '$_SESSION[admin_id]'";
-    }
-    $db->query($sql);
-
-    $arr = get_group_goods($goods_id);
-    $opt = array();
-
-    foreach ($arr AS $val)
-    {
-        $opt[] = array('value'      => $val['goods_id'],
-                        'text'      => $val['goods_name'],
-                        'data'      => '');
-    }
-
-    clear_cache_files();
-    make_json_result($opt);
-}
-
-/*------------------------------------------------------ */
-//-- 搜索文章
-/*------------------------------------------------------ */
-
-elseif ($_REQUEST['act'] == 'get_article_list')
-{
-    include_once(ROOT_PATH . 'includes/cls_json.php');
-    $json = new JSON;
-
-    $filters =(array) $json->decode(json_str_iconv($_GET['JSON']));
-
-    $where = " WHERE cat_id > 0 ";
-    if (!empty($filters['title']))
-    {
-        $keyword  = trim($filters['title']);
-        $where   .=  " AND title LIKE '%" . mysql_like_quote($keyword) . "%' ";
-    }
-
-    $sql        = 'SELECT article_id, title FROM ' .$ecs->table('article'). $where.
-                  'ORDER BY article_id DESC LIMIT 50';
-    $res        = $db->query($sql);
-    $arr        = array();
-
-    while ($row = $db->fetchRow($res))
-    {
-        $arr[]  = array('value' => $row['article_id'], 'text' => $row['title'], 'data'=>'');
-    }
-
-    make_json_result($arr);
-}
-
-/*------------------------------------------------------ */
-//-- 添加关联文章
-/*------------------------------------------------------ */
-
-elseif ($_REQUEST['act'] == 'add_goods_article')
-{
-    include_once(ROOT_PATH . 'includes/cls_json.php');
-    $json = new JSON;
-
-    check_authz_json('goods_manage');
-
-    $articles   = $json->decode($_GET['add_ids']);
-    $arguments  = $json->decode($_GET['JSON']);
-    $goods_id   = $arguments[0];
-
-    foreach ($articles AS $val)
-    {
-        $sql = "INSERT INTO " . $ecs->table('goods_article') . " (goods_id, article_id, admin_id) " .
-                "VALUES ('$goods_id', '$val', '$_SESSION[admin_id]')";
-        $db->query($sql);
-    }
-
-    $arr = get_goods_articles($goods_id);
-    $opt = array();
-
-    foreach ($arr AS $val)
-    {
-        $opt[] = array('value'      => $val['article_id'],
-                        'text'      => $val['title'],
-                        'data'      => '');
-    }
-
-    clear_cache_files();
-    make_json_result($opt);
-}
-
-/*------------------------------------------------------ */
-//-- 删除关联文章
-/*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'drop_goods_article')
-{
-    include_once(ROOT_PATH . 'includes/cls_json.php');
-    $json = new JSON;
-
-    check_authz_json('goods_manage');
-
-    $articles   = $json->decode($_GET['drop_ids']);
-    $arguments  = $json->decode($_GET['JSON']);
-    $goods_id   = $arguments[0];
-
-    $sql = "DELETE FROM " .$ecs->table('goods_article') . " WHERE " . db_create_in($articles, "article_id") . " AND goods_id = '$goods_id'";
-    $db->query($sql);
-
-    $arr = get_goods_articles($goods_id);
-    $opt = array();
-
-    foreach ($arr AS $val)
-    {
-        $opt[] = array('value'      => $val['article_id'],
-                        'text'      => $val['title'],
-                        'data'      => '');
-    }
-
-    clear_cache_files();
-    make_json_result($opt);
-}
-
-/*------------------------------------------------------ */
 //-- 货品列表
 /*------------------------------------------------------ */
 elseif ($_REQUEST['act'] == 'product_list')
@@ -2260,33 +1659,6 @@ elseif ($_REQUEST['act'] == 'edit_product_sn')
     {
         clear_cache_files();
         make_json_result($product_sn);
-    }
-}
-
-/*------------------------------------------------------ */
-//-- 修改货品库存
-/*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'edit_product_number')
-{
-    check_authz_json('goods_manage');
-
-    $product_id       = intval($_POST['id']);
-    $product_number       = intval($_POST['val']);
-
-    /* 货品库存 */
-    $product = get_product_info($product_id, 'product_number, goods_id');
-
-    /* 修改货品库存 */
-    $sql = "UPDATE " . $ecs->table('products') . " SET product_number = '$product_number' WHERE product_id = '$product_id'";
-    $result = $db->query($sql);
-    if ($result)
-    {
-        /* 修改商品库存 */
-        if (update_goods_stock($product['goods_id'], $product_number - $product['product_number']))
-        {
-            clear_cache_files();
-            make_json_result($product_number);
-        }
     }
 }
 
