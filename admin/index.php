@@ -1,13 +1,5 @@
 <?php
 /**
- * ECSHOP 控制台首页
- * ============================================================================
- * * 版权所有 2005-2012 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
  * $Author: liubo $
  * $Id: index.php 17217 2011-01-19 06:29:08Z liubo $
 */
@@ -54,24 +46,24 @@ elseif ($_REQUEST['act'] == 'top')
     $smarty->assign('nav_list', $lst);
     $smarty->assign('admin_id', $_SESSION['admin_id']);
     $smarty->assign('certi', $_CFG['certi']);
-	
+
 	$sql = 'SELECT count(goods_id) FROM '.$GLOBALS['ecs']->table('goods').' WHERE is_delete = 0';
 	$goods_sum = $GLOBALS['db']->getOne($sql);
 	$smarty->assign('goods_sum', $goods_sum);
-	
+
 	$sql = 'SELECT count(order_id) FROM '.$GLOBALS['ecs']->table('order_info');
 	$order_sum = $GLOBALS['db']->getOne($sql);
 	$smarty->assign('order_sum', $order_sum);
-	
+
 	$sql = 'SELECT count(comment_id) FROM '.$GLOBALS['ecs']->table('comment');
 	$comment_sum = $GLOBALS['db']->getOne($sql);
 	$smarty->assign('comment_sum', $comment_sum);
-	
+
 	$sql = 'SELECT count(ad_id) FROM '.$GLOBALS['ecs']->table('ad');
 	$ad_sum = $GLOBALS['db']->getOne($sql);
 	$smarty->assign('ad_sum', $ad_sum);
-	
-	
+
+
     $smarty->display('top.htm');
 }
 
@@ -206,7 +198,7 @@ elseif ($_REQUEST['act'] == 'main')
     {
         $warning[] = $_LANG['remove_upgrade'];
     }
-    
+
     if (file_exists('../demo'))
     {
         $warning[] = $_LANG['remove_demo'];
@@ -315,7 +307,7 @@ elseif ($_REQUEST['act'] == 'main')
     clearstatcache();
 
     $smarty->assign('warning_arr', $warning);
-    
+
 
     /* 管理员留言信息 */
     $sql = 'SELECT message_id, sender_id, receiver_id, sent_time, readed, deleted, title, message, user_name ' .
@@ -542,12 +534,12 @@ elseif ($_REQUEST['act'] == 'main_api')
         $t = new transport;
         $api_comment = $t->request('http://ecshop.ecmoban.com/checkver.php', $apiget);
 
-        $f=ROOT_PATH . 'data/config.php'; 
+        $f=ROOT_PATH . 'data/config.php';
         file_put_contents($f,str_replace("'API_TIME', '".API_TIME."'","'API_TIME', '".date('Y-m-d H:i:s',time())."'",file_get_contents($f)));
-        
+
         write_static_cache('api_str', $api_str);
     }
-    else 
+    else
     {
         echo $data;
     }
@@ -699,7 +691,7 @@ elseif ($_REQUEST['act'] == 'second')
     if(!empty($shipping))
     {
         $shop_add = read_modules('../includes/modules/shipping');
-        
+
         foreach ($shop_add as $val)
         {
             $mod_shop[] = $val['code'];
@@ -709,9 +701,9 @@ elseif ($_REQUEST['act'] == 'second')
         $set_modules = true;
         if(strpos($mod_shop,$shipping) === false)
         {
-            exit;   
+            exit;
         }
-        else 
+        else
         {
             include_once(ROOT_PATH . 'includes/modules/shipping/' . $shipping . '.php');
         }

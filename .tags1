@@ -4,221 +4,32 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-IN_ECS	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^define('IN_ECS', true);$/;"	define	line:8
-image	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^$image = new cls_image($_CFG['bgcolor']);$/;"	variable	line:13
-exc	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^$exc = new exchange($ecs->table('product_yzldiy'), $db, 'pid', 'name');$/;"	variable	line:14
-temp_sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $temp_sql = "select * from ".$ecs->table('product_category_yzldiy')."order by id asc";$/;"	variable	line:24
-temp_arr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $temp_arr = $db->query($temp_sql);$/;"	variable	line:25
-category_list	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $category_list = array();$/;"	variable	line:27
-goods_ur	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    \/\/ $goods_ur = array('' => $_LANG['01_goods_list'], 'virtual_card'=>$_LANG['50_virtual_card_list']);$/;"	variable	line:35
-ur_here	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $ur_here = $_LANG['01_template_manage'];$/;"	variable	line:36
-action_link	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $action_link = array('href' => 'template.php?act=add', 'text' => '添加模板');$/;"	variable	line:39
-template_list	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_list = get_template_list();$/;"	variable	line:43
-htm_file	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $htm_file = 'template_list.htm';$/;"	variable	line:55
-is_add	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $is_add = $_REQUEST['act'] == 'add'; \/\/ 添加还是编辑的标识$/;"	variable	line:66
-temp_sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $temp_sql = "select * from ".$ecs->table('product_category_yzldiy')."order by id asc";$/;"	variable	line:71
-temp_arr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $temp_arr = $db->query($temp_sql);$/;"	variable	line:72
-category_list	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $category_list = array();$/;"	variable	line:74
-last_choose	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $last_choose = array(0, 0);$/;"	variable	line:85
-last_choose	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $last_choose = explode('|', $_COOKIE['ECSCP']['last_choose']);$/;"	variable	line:88
-template	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $template = array($/;"	variable	line:90
-img_list	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $img_list = array();$/;"	variable	line:100
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "SELECT * FROM " . $ecs->table('product_yzldiy') . " WHERE pid = '$_REQUEST[pid]'";$/;"	variable	line:105
-template	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $template = $db->getRow($sql);$/;"	variable	line:106
-template	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $template = array($/;"	variable	line:111
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "SELECT * FROM " . $ecs->table('product_gallery') . " WHERE pid = '$_REQUEST[pid]'";$/;"	variable	line:127
-img_list	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $img_list = $db->getAll($sql);$/;"	variable	line:128
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "SELECT COUNT(*) FROM " . $ecs->table('product_yzldiy') .$/;"	variable	line:167
-is_insert	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $is_insert = $_REQUEST['act'] == 'insert';$/;"	variable	line:176
-priview	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $priview  = '';  \/\/ 初始化商品图片$/;"	variable	line:179
-max_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $max_id     = $is_insert ? $db->getOne("SELECT MAX(pid) + 1 FROM ".$ecs->table('product_yzldiy')) : $_REQUEST['template_id'];$/;"	variable	line:184
-template_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $template_id   = $max_id;$/;"	variable	line:185
-template_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $template_id = $_POST['pid'];$/;"	variable	line:190
-template_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $template_id   = $_POST['template_id'];$/;"	variable	line:192
-name	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $name = !empty($_POST['template_name']) ? $_POST['template_name'] : "";$/;"	variable	line:197
-mbDes	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $mbDes = !empty($_POST['mbDes']) ? $_POST['mbDes'] : "";$/;"	variable	line:198
-template_category	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_category = !empty($_POST['template_category']) ? $_POST['template_category'] : "1";$/;"	variable	line:199
-template_preview	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_preview = !empty($_POST['template_preview']) ? $_POST['template_preview'] : "";$/;"	variable	line:200
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "INSERT INTO " . $ecs->table('product_yzldiy') . " (pid, cid,mbDes,name,preview,status,tid" .$/;"	variable	line:206
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "UPDATE " . $ecs->table('product_yzldiy') . " SET " .$/;"	variable	line:217
-template_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_id = $is_insert ? $db->insert_id() : $_REQUEST['pid'];$/;"	variable	line:227
-gallery_img	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $gallery_img = (!empty($_POST['gallery_img_list']) && isset($_POST['gallery_img_list']))? $_POST['gallery_img_list'] : "";$/;"	variable	line:232
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $sql = "INSERT INTO " . $ecs->table('product_gallery') . " ( ".$/;"	variable	line:235
-link	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $link = array();$/;"	variable	line:261
-key_array	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $key_array = array_keys($link);$/;"	variable	line:269
-link	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    \/\/ $link = array_combine($key_array, $link);$/;"	variable	line:275
-img_url	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $img_url = $_GET['img_url'];$/;"	variable	line:287
-img_url	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $img_url = $_GET['img_url'];$/;"	variable	line:293
-img_url	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $img_url = '..\/' . $_GET['img_url'];$/;"	variable	line:297
-template_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_id   = intval($_POST['id']);$/;"	variable	line:311
-template_name	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_name = json_str_iconv(trim($_POST['val']));$/;"	variable	line:312
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "UPDATE ". $ecs->table('product_yzldiy'). " SET name = '".$template_name."' WHERE pid = '".$template_id."'";$/;"	variable	line:314
-template_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_id = intval($_POST['id']);$/;"	variable	line:330
-preview_url	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $preview_url = json_str_iconv(trim($_POST['val']));$/;"	variable	line:334
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "UPDATE ". $ecs->table('product_yzldiy'). " SET preview = '".$preview_url."' WHERE pid = '".$template_id."'";$/;"	variable	line:336
-template_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_id = intval($_POST['id']);$/;"	variable	line:352
-img_url	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $img_url = json_str_iconv(trim($_POST['val']));$/;"	variable	line:353
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "SELECT MAX(img_id)+1 FROM ". $ecs->table('product_gallery');$/;"	variable	line:356
-img_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $img_id = $db->getOne($sql);$/;"	variable	line:357
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "INSERT INTO ". $ecs->table('product_gallery'). " ( ".$/;"	variable	line:360
-img_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $img_id = empty($_REQUEST['img_id']) ? 0 : intval($_REQUEST['img_id']);$/;"	variable	line:380
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "SELECT img_url " .$/;"	variable	line:383
-row	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $row = $GLOBALS['db']->getRow($sql);$/;"	variable	line:386
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('product_gallery') . " WHERE img_id = '$img_id' LIMIT 1";$/;"	variable	line:389
-pid	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $pid = intval($_REQUEST['pid']);$/;"	variable	line:400
-goods_sn	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    \/\/ $goods_sn = htmlspecialchars(json_str_iconv(trim($_REQUEST['goods_sn'])));$/;"	variable	line:401
-tmpsql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $tmpsql = "SELECT count(*) FROM ".$ecs->table('product_yzldiy')." WHERE pid = '".$pid."'";$/;"	variable	line:403
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods_id = intval($_REQUEST['goods_id']);$/;"	variable	line:418
-goods_sn	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods_sn = json_str_iconv(trim($_REQUEST['goods_sn']));$/;"	variable	line:419
-products_sn	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $products_sn=explode('||',$goods_sn);$/;"	variable	line:420
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $sql="SELECT goods_id FROM ". $ecs->table('products')."WHERE product_sn='$val'";$/;"	variable	line:445
-temp_sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $temp_sql = "select * from ".$ecs->table('product_category_yzldiy')."order by id asc";$/;"	variable	line:463
-temp_arr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $temp_arr = $db->query($temp_sql);$/;"	variable	line:464
-category_list	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $category_list = array();$/;"	variable	line:466
-template_list	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_list = get_template_list();$/;"	variable	line:473
-sort_flag	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    \/\/ $sort_flag  = sort_flag($goods_list['filter']);$/;"	variable	line:483
-specifications	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    \/\/ $specifications = get_goods_type_specifications();$/;"	variable	line:487
-tpl	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $tpl = 'template_list.htm';$/;"	variable	line:490
-template_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_id = intval($_REQUEST['id']);$/;"	variable	line:501
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "DELETE FROM ".$ecs->table('product_yzldiy')." WHERE pid = '".$template_id."'";$/;"	variable	line:506
-name	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $name = $exc->get_name($template_id);$/;"	variable	line:511
-url	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $url = 'template.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);$/;"	variable	line:515
-json	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $json = new JSON;$/;"	variable	line:528
-filters	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $filters = $json->decode($_GET['JSON']);$/;"	variable	line:530
-arr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arr = get_goods_list($filters);$/;"	variable	line:532
-opt	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $opt = array();$/;"	variable	line:533
-key	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    foreach ($arr AS $key => $val)$/;"	variable	line:535
-json	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $json = new JSON;$/;"	variable	line:551
-linked_array	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $linked_array   = $json->decode($_GET['add_ids']);$/;"	variable	line:555
-linked_goods	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $linked_goods   = $json->decode($_GET['JSON']);$/;"	variable	line:556
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods_id       = $linked_goods[0];$/;"	variable	line:557
-is_double	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $is_double      = $linked_goods[1] == true ? 0 : 1;$/;"	variable	line:558
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $sql = "INSERT INTO " . $ecs->table('link_goods') . " (goods_id, link_goods_id, is_double, admin_id) " .$/;"	variable	line:565
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "INSERT INTO " . $ecs->table('link_goods') . " (goods_id, link_goods_id, is_double, admin_id) " .$/;"	variable	line:570
-linked_goods	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $linked_goods   = get_linked_goods($goods_id);$/;"	variable	line:575
-options	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $options        = array();$/;"	variable	line:576
-json	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $json = new JSON;$/;"	variable	line:595
-drop_goods	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $drop_goods     = $json->decode($_GET['drop_ids']);$/;"	variable	line:599
-drop_goods_ids	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $drop_goods_ids = db_create_in($drop_goods);$/;"	variable	line:600
-linked_goods	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $linked_goods   = $json->decode($_GET['JSON']);$/;"	variable	line:601
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods_id       = $linked_goods[0];$/;"	variable	line:602
-is_signle	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $is_signle      = $linked_goods[1];$/;"	variable	line:603
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "DELETE FROM " .$ecs->table('link_goods') .$/;"	variable	line:607
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "UPDATE " .$ecs->table('link_goods') . " SET is_double = 0 ".$/;"	variable	line:612
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "DELETE FROM " .$ecs->table('link_goods') .$/;"	variable	line:621
-linked_goods	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $linked_goods = get_linked_goods($goods_id);$/;"	variable	line:629
-options	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $options      = array();$/;"	variable	line:630
-json	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $json = new JSON;$/;"	variable	line:651
-fittings	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $fittings   = $json->decode($_GET['add_ids']);$/;"	variable	line:655
-arguments	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arguments  = $json->decode($_GET['JSON']);$/;"	variable	line:656
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods_id   = $arguments[0];$/;"	variable	line:657
-price	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $price      = $arguments[1];$/;"	variable	line:658
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "INSERT INTO " . $ecs->table('group_goods') . " (parent_id, goods_id, goods_price, admin_id) " .$/;"	variable	line:662
-arr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arr = get_group_goods($goods_id);$/;"	variable	line:667
-opt	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $opt = array();$/;"	variable	line:668
-json	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $json = new JSON;$/;"	variable	line:688
-fittings	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $fittings   = $json->decode($_GET['drop_ids']);$/;"	variable	line:692
-arguments	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arguments  = $json->decode($_GET['JSON']);$/;"	variable	line:693
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods_id   = $arguments[0];$/;"	variable	line:694
-price	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $price      = $arguments[1];$/;"	variable	line:695
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "DELETE FROM " .$ecs->table('group_goods') .$/;"	variable	line:697
-arr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arr = get_group_goods($goods_id);$/;"	variable	line:705
-opt	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $opt = array();$/;"	variable	line:706
-json	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $json = new JSON;$/;"	variable	line:726
-filters	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $filters =(array) $json->decode(json_str_iconv($_GET['JSON']));$/;"	variable	line:728
-where	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $where = " WHERE cat_id > 0 ";$/;"	variable	line:730
-keyword	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $keyword  = trim($filters['title']);$/;"	variable	line:733
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql        = 'SELECT article_id, title FROM ' .$ecs->table('article'). $where.$/;"	variable	line:737
-res	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $res        = $db->query($sql);$/;"	variable	line:739
-arr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arr        = array();$/;"	variable	line:740
-json	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $json = new JSON;$/;"	variable	line:757
-articles	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $articles   = $json->decode($_GET['add_ids']);$/;"	variable	line:761
-arguments	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arguments  = $json->decode($_GET['JSON']);$/;"	variable	line:762
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods_id   = $arguments[0];$/;"	variable	line:763
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "INSERT INTO " . $ecs->table('goods_article') . " (goods_id, article_id, admin_id) " .$/;"	variable	line:767
-arr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arr = get_goods_articles($goods_id);$/;"	variable	line:772
-opt	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $opt = array();$/;"	variable	line:773
-json	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $json = new JSON;$/;"	variable	line:792
-articles	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $articles   = $json->decode($_GET['drop_ids']);$/;"	variable	line:796
-arguments	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arguments  = $json->decode($_GET['JSON']);$/;"	variable	line:797
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods_id   = $arguments[0];$/;"	variable	line:798
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "DELETE FROM " .$ecs->table('goods_article') . " WHERE " . db_create_in($articles, "article_id") . " AND goods_id = '$goods_id'";$/;"	variable	line:800
-arr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arr = get_goods_articles($goods_id);$/;"	variable	line:803
-opt	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $opt = array();$/;"	variable	line:804
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $goods_id = intval($_GET['goods_id']);$/;"	variable	line:832
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "SELECT goods_sn, goods_name, goods_type, shop_price FROM " . $ecs->table('goods') . " WHERE goods_id = '$goods_id'";$/;"	variable	line:836
-goods	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods = $db->getRow($sql);$/;"	variable	line:837
-attribute	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $attribute = get_goods_specifications_list($goods_id);$/;"	variable	line:850
-attribute_count	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $attribute_count = count($_attribute);$/;"	variable	line:863
-product	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $product = product_list($goods_id, '');$/;"	variable	line:872
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $goods_id = intval($_REQUEST['goods_id']);$/;"	variable	line:901
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "SELECT goods_sn, goods_name, goods_type, shop_price FROM " . $ecs->table('goods') . " WHERE goods_id = '$goods_id'";$/;"	variable	line:905
-goods	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods = $db->getRow($sql);$/;"	variable	line:906
-attribute	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $attribute = get_goods_specifications_list($goods_id);$/;"	variable	line:918
-attribute_count	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $attribute_count = count($_attribute);$/;"	variable	line:930
-product	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $product = product_list($goods_id, '');$/;"	variable	line:939
-sort_flag	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sort_flag  = sort_flag($product['filter']);$/;"	variable	line:949
-product_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $product_id = intval($_REQUEST['id']);$/;"	variable	line:971
-product	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $product = get_product_info($product_id, 'product_number, goods_id');$/;"	variable	line:975
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "DELETE FROM " . $ecs->table('products') . " WHERE product_id = '$product_id'";$/;"	variable	line:978
-result	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $result = $db->query($sql);$/;"	variable	line:979
-url	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $url = 'goods.php?act=product_query&' . str_replace('act=product_remove', '', $_SERVER['QUERY_STRING']);$/;"	variable	line:992
-product_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $product_id       = intval($_POST['id']);$/;"	variable	line:1006
-product_sn	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $product_sn       = json_str_iconv(trim($_POST['val']));$/;"	variable	line:1007
-product_sn	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $product_sn       = ($_LANG['n_a'] == $product_sn) ? '' : $product_sn;$/;"	variable	line:1008
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "UPDATE " . $ecs->table('products') . " SET product_sn = '$product_sn' WHERE product_id = '$product_id'";$/;"	variable	line:1016
-result	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $result = $db->query($sql);$/;"	variable	line:1017
-product_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $product_id       = intval($_POST['id']);$/;"	variable	line:1032
-product_number	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $product_number       = intval($_POST['val']);$/;"	variable	line:1033
-product	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $product = get_product_info($product_id, 'product_number, goods_id');$/;"	variable	line:1036
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "UPDATE " . $ecs->table('products') . " SET product_number = '$product_number' WHERE product_id = '$product_id'";$/;"	variable	line:1039
-result	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $result = $db->query($sql);$/;"	variable	line:1040
-insert	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $insert = true;$/;"	variable	line:1071
-insert	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $insert = false;$/;"	variable	line:1074
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "SELECT goods_sn, goods_name, goods_type, shop_price FROM " . $ecs->table('goods') . " WHERE goods_id = '" . $product['goods_id'] . "'";$/;"	variable	line:1078
-goods	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $goods = $db->getRow($sql);$/;"	variable	line:1079
-key	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    foreach($product['product_sn'] as $key => $value)$/;"	variable	line:1086
-attr_key	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        foreach($product['attr'] as $attr_key => $attr_value)$/;"	variable	line:1092
-goods_attr_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $goods_attr_id = handle_goods_attr($product['goods_id'], $id_list, $is_spec_list, $value_price_list);$/;"	variable	line:1106
-goods_attr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $goods_attr = sort_goods_attr_id_array($goods_attr_id);$/;"	variable	line:1109
-goods_attr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $goods_attr = implode('|', $goods_attr['sort']);$/;"	variable	line:1110
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "INSERT INTO " . $GLOBALS['ecs']->table('products') . " (goods_id, goods_attr, product_sn, product_number)  VALUES ('" . $product['goods_id'] . "', '$goods_attr', '$value', '" . $product['product_number'][$key] . "')";$/;"	variable	line:1133
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $sql = "UPDATE " . $GLOBALS['ecs']->table('products') . "$/;"	variable	line:1143
-product_count	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $product_count = product_number_count($product['goods_id']);$/;"	variable	line:1150
-product_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $product_id = !empty($_POST['checkboxes']) ? join(',', $_POST['checkboxes']) : 0;$/;"	variable	line:1191
-product_bound	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $product_bound = db_create_in($product_id);$/;"	variable	line:1192
-sum	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sum = 0;$/;"	variable	line:1195
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $goods_id = 0;$/;"	variable	line:1196
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "SELECT product_id, goods_id, product_number FROM  " . $GLOBALS['ecs']->table('products') . " WHERE product_id $product_bound";$/;"	variable	line:1197
-product_array	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $product_array = $GLOBALS['db']->getAll($sql);$/;"	variable	line:1198
-goods_id	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $goods_id = $product_array[0]['goods_id'];$/;"	variable	line:1205
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^            $sql = "DELETE FROM " . $ecs->table('products') . " WHERE product_id $product_bound";$/;"	variable	line:1208
-list_link	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^function list_link($is_add = true, $extension_code = '')$/;"	function	line:1242
-extension_code	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^function list_link($is_add = true, $extension_code = '')$/;"	variable	line:1242
-href	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $href = 'template.php?act=list';$/;"	variable	line:1244
-text	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $text = '模板列表';$/;"	variable	line:1250
-add_link	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^function add_link($extension_code = '')$/;"	function	line:1260
-href	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $href = 'template.php?act=add';$/;"	variable	line:1262
-text	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $text = '添加模板';$/;"	variable	line:1264
-goods_parse_url	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^function goods_parse_url($url)$/;"	function	line:1276
-parse_url	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $parse_url = @parse_url($url);$/;"	variable	line:1278
-handle_volume_price	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^\/\/ function handle_volume_price($goods_id, $number_list, $price_list)$/;"	function	line:1289
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^\/\/     $sql = "DELETE FROM " . $GLOBALS['ecs']->table('volume_price') .$/;"	variable	line:1291
-key	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^\/\/     foreach ($price_list AS $key => $price)$/;"	variable	line:1297
-volume_number	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^\/\/         $volume_number = $number_list[$key];$/;"	variable	line:1300
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^\/\/             $sql = "INSERT INTO " . $GLOBALS['ecs']->table('volume_price') .$/;"	variable	line:1304
-update_goods_stock	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^function update_goods_stock($goods_id, $value)$/;"	function	line:1318
-res	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        \/* $res = $goods_number - $old_product_number + $product_number; *\/$/;"	variable	line:1322
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $sql = "UPDATE " . $GLOBALS['ecs']->table('goods') . "$/;"	variable	line:1323
-result	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^        $result = $GLOBALS['db']->query($sql);$/;"	variable	line:1327
-get_template_list	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^function get_template_list(){$/;"	function	line:1345
-where	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    \/\/ $where = " WHERE ";$/;"	variable	line:1348
-where	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $where = " WHERE 1=1 ";$/;"	variable	line:1350
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "SELECT COUNT(*) FROM " .$/;"	variable	line:1353
-filter	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $filter = page_and_size($filter);$/;"	variable	line:1359
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = "SELECT p.*, ";$/;"	variable	line:1362
-group	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $group = " GROUP BY p.pid ";$/;"	variable	line:1368
-sql	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $sql = $sql . " FROM " .$/;"	variable	line:1374
-is_pagination	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $is_pagination = true;$/;"	variable	line:1380
-template_list_data	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $template_list_data = $GLOBALS['db']->getAll($sql);$/;"	variable	line:1386
-arr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\template.php	/^    $arr = array('template_list_data' => $template_list_data, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);$/;"	variable	line:1388
+style	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^<style>$/;"	function	line:2
+form	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^<form method="post" action="" name="listForm" onsubmit="return confirmSubmit(this)">$/;"	function	line:28
+div	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^  <div class="list-div" id="listDiv">$/;"	function	line:30
+table	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^<table cellpadding="3" cellspacing="1">$/;"	function	line:32
+tr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^  <tr>$/;"	function	line:33
+th	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <th>$/;"	function	line:34
+input	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" \/>$/;"	function	line:35
+th	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <th>模板图片<\/th>$/;"	function	line:38
+th	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <th>模板名称<\/th>$/;"	function	line:39
+th	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <th>模板类别<\/th>$/;"	function	line:40
+th	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <th>{$lang.handler}<\/th>$/;"	function	line:41
+tr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^  <tr>$/;"	function	line:42
+tr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^  <tr>$/;"	function	line:44
+td	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <td align="center">$/;"	function	line:45
+input	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^      <input type="checkbox" name="checkboxes[]" value="{$template.pid}" \/>$/;"	function	line:46
+td	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <td align="center"><img src= "{$template.img_url}" width="50" height="50" border="0" \/><\/td>$/;"	function	line:48
+td	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <td align="center"><span onclick="listTable.edit(this, 'edit_template_name', {$template.pid})">{$template.name}<\/span><\/td>$/;"	function	line:49
+td	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <td align="center">$/;"	function	line:50
+td	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <td align="center">$/;"	function	line:54
+a	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^      <a href="template.php?act=edit&pid={$template.pid}" title="{$lang.edit}">编辑<\/a>$/;"	function	line:56
+a	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^      <a href="javascript:;" onclick="listTable.remove({$template.pid}, '确认删除此模板')" title="{$lang.trash}">删除<\/a>$/;"	function	line:58
+a	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^        <a href="{$handler.url}&goods_id={$goods.goods_id}" title="{$handler.title}"><img src="images\/{$handler.img}" width="21" height="21" border="0" \/><\/a>$/;"	function	line:62
+tr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^  <tr><td class="no-records" colspan="10">{$lang.no_records}<\/td><\/tr>$/;"	function	line:68
+table	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^<table id="page-table" cellspacing="0">$/;"	function	line:74
+tr	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^  <tr>$/;"	function	line:75
+td	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^    <td align="right" nowrap="true">$/;"	function	line:76
+script	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^<script type="text\/javascript">$/;"	function	line:87
+confirmSubmit	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^  function confirmSubmit(frm, ext)$/;"	function	line:105
+changeAction	D:\Codes\Project\Server\PHPnow\htdocs\ecshop\admin\templates\template_list.htm	/^  function changeAction()$/;"	function	line:130

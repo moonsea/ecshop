@@ -20,6 +20,7 @@ $smarty->assign('prev',$prev);
 $smarty->assign('token',$token);
 $smarty->assign('userimg',$userimg);
 $smarty->assign('album_id',$album_id);
+setcookie('album_id',$album_id,time()+3600);
 
 $step = isset($_GET['step'])?intval(trim($_GET['step'])):1;
 
@@ -107,6 +108,10 @@ if($step == 2)
 	$arr = array();
     while ($row = $db->FetchRow($res))
     {
+		//获取模板相册
+		$in_sql  = "select img_url from ecs_product_gallery where pid=".$row['pid'];
+		$in_data = $db->getAll($in_sql);
+		$row['gallery'] = $in_data;
 		$arr[] = $row;
     }
 	$smarty->assign("list",$arr);

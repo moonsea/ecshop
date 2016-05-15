@@ -41,6 +41,14 @@ if ($_REQUEST['act'] == 'list')
     $smarty->assign('lang',         $_LANG);
 
     $template_list = get_template_list();
+    $arr = array();
+    foreach ($template_list['template_list_data'] as $key) {
+        $in_sql = "select img_url from ecs_product_gallery where pid=".$key['pid'];
+        $in_data = $db->getAll($in_sql);
+        $key['gallery'] = $in_data;
+        $arr[] = $key;
+    }
+    $template_list['template_list_data'] = $arr;
     $smarty->assign('template_list',   $template_list['template_list_data']);
     $smarty->assign('filter',       $template_list['filter']);
     $smarty->assign('record_count', $template_list['record_count']);

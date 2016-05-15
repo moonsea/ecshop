@@ -55,6 +55,11 @@ a,a:hover,a:active,a:focus,a:visited{text-decoration:none;}
             	<img src="{$data.preview}" data="tid={$data.tid}&pid={$data.pid}&goods_id={$goods_id}" class="img-responsive img" width="100%" onclick="gallery(this)"/>
                 <br />
                 <p>{$data.name}</p>
+                <div class="hide">
+                	{foreach from=$data.gallery item=item}
+                    	<img src="{$item.img_url}" class="img-responsive" style="max-width:800px;"/>
+                    {/foreach}
+                </div>
             </div>
         {/foreach}
     </div>
@@ -76,11 +81,19 @@ a,a:hover,a:active,a:focus,a:visited{text-decoration:none;}
 <div class="gallery_back">
 	<div class="gallery_close" onclick="close_gallery()"><img src="img/close.png" width="24" height="24"/></div>
 	<div class="gallery">
-    		<img src="" class="img-responsive" id="g-img" style="max-width:800px;"/>
-            <a class="go" href="yzldiywww/yzldiy/builder.swf?album_id={$album_id}&username={$username}&token={$token}&">
-            使用模板
-            </a>
+    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" onclick="gallery_pre()" id="gallery-pre">
+    			<img src="img/left.png" style="cursor:pointer;"/>
+            </div>
+    		<div id="gallery_container" class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" onclick="gallery_next()" id="gallery-next">
+        		<img src="img/right.png" style="cursor:pointer;"/>
+            </div>
     </div>
+    
+    <a class="go" href="yzldiywww/yzldiy/builder.swf?album_id={$album_id}&username={$username}&token={$token}&">
+    使用模板
+    </a>
 </div>
 <!-- gallery e -->
 
@@ -93,16 +106,26 @@ a,a:hover,a:active,a:focus,a:visited{text-decoration:none;}
 
 <script type="text/javascript">
 	
-	
-	
+	current = 1;
+	total = 1;
 	function gallery(e)
 	{
 		$("body").css("overflow","hidden");
 		$(".gallery_back").css("top",$(document).scrollTop());
 		$(".gallery_back").css("height",$(window).height());
 		$(".gallery_back").show();
-		var src = $(e).attr("src");
-		$("#g-img").attr("src",src);
+		//大图预览
+		current = 1;
+		total = 0;
+		$(e).parent().find(".hide img").each(function(index, element) {
+            if(index != 0)
+			{
+				$(this).hide();
+			}
+			total++;
+        });
+		$("#gallery_container").html($(e).parent().find(".hide").html());
+		
 		var href = $(".go").attr("href");
 		href += $(e).attr("data");
 		$(".go").attr("href",href);
@@ -113,13 +136,53 @@ a,a:hover,a:active,a:focus,a:visited{text-decoration:none;}
 		var back_height = $(".gallery_back").height();
 		var height = $(".gallery").height();
 		$(".gallery").css("margin-top",(back_height-height)/2);
-		$(".gallery div:first-child").css("margin-top",(height-$(".gallery div:first-child").height())/2);
-		$(".gallery div:last-child").css("margin-top",(height-$(".gallery div:first-child").height())/2);
+		$("#gallery-pre").css("margin-top",(height-$("#gallery-pre").height())/2);
+		$("#gallery-next").css("margin-top",(height-$("#gallery-next").height())/2);
 	}
 	function close_gallery()
 	{
 		$("body").css("overflow","");
 		$(".gallery_back").hide();
+	}
+	function gallery_next()
+	{
+		current ++;
+		if(current <= total)
+		{
+			hideAll();
+			showNow();
+		}
+		else
+		{
+			current = 1;
+			hideAll();
+			showNow();
+		}
+	}
+	function gallery_pre()
+	{
+		current--;
+		if(current>0)
+		{
+			hideAll();	
+			showNow();
+		}
+		else
+		{
+			current = total;
+			hideAll();
+			showNow();
+		}
+	}
+	function hideAll()
+	{
+		$("#gallery_container img").each(function(index, element) {
+                $(this).hide();
+            });
+	}
+	function showNow()
+	{
+		$("#gallery_container img:nth-child("+current+")").fadeIn(500);
 	}
 </script>
 
