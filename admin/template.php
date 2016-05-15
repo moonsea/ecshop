@@ -59,10 +59,9 @@ if ($_REQUEST['act'] == 'list')
 /*------------------------------------------------------ */
 //-- 添加新模板 编辑模板
 /*------------------------------------------------------ */
-
 elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit')
 {
-    include_once(ROOT_PATH . 'includes/fckeditor/fckeditor.php'); // 包含 html editor 类文件
+    // include_once(ROOT_PATH . 'includes/fckeditor/fckeditor.php'); // 包含 html editor 类文件
 
     $is_add = $_REQUEST['act'] == 'add'; // 添加还是编辑的标识
 
@@ -78,23 +77,6 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit')
         $category_list[] = $temp_row;
     }
     $smarty->assign('category_list',  $category_list);
-
-    /* 如果是安全模式，检查目录是否存在 */
-    if (ini_get('safe_mode') == 1 && (!file_exists('../' . IMAGE_DIR . '/'.date('Ym')) || !is_dir('../' . IMAGE_DIR . '/'.date('Ym'))))
-    {
-        if (@!mkdir('../' . IMAGE_DIR . '/'.date('Ym'), 0777))
-        {
-            $warning = sprintf($_LANG['safe_mode_warning'], '../' . IMAGE_DIR . '/'.date('Ym'));
-            $smarty->assign('warning', $warning);
-        }
-    }
-
-    /* 如果目录存在但不可写，提示用户 */
-    elseif (file_exists('../' . IMAGE_DIR . '/'.date('Ym')) && file_mode_info('../' . IMAGE_DIR . '/'.date('Ym')) < 2)
-    {
-        $warning = sprintf($_LANG['not_writable_warning'], '../' . IMAGE_DIR . '/'.date('Ym'));
-        $smarty->assign('warning', $warning);
-    }
 
     /* 添加商品 */
     if ($is_add)
@@ -141,33 +123,10 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit')
             $template['mbDes'] = $template['mbDes'];
         }
 
-        /* 商品图片路径 */
-        if (!empty($template['preview']))
-        {
-            $template['preview'] = get_image_path($_REQUEST['pid'], $template['preview']);
-            // $goods['goods_thumb'] = get_image_path($_REQUEST['goods_id'], $goods['goods_thumb'], true);
-        }
-
-        /* 图片列表 */
-        $sql = "SELECT * FROM " . $ecs->table('goods_gallery') . " WHERE goods_id = '$goods[goods_id]'";
+        /* 模板预览图列表 */
+        $sql = "SELECT * FROM " . $ecs->table('product_gallery') . " WHERE pid = '$_REQUEST[pid]'";
         $img_list = $db->getAll($sql);
 
-        /* 格式化相册图片路径 */
-        // if (isset($GLOBALS['shop_id']) && ($GLOBALS['shop_id'] > 0))
-        // {
-        //     foreach ($img_list as $key => $gallery_img)
-        //     {
-        //         $gallery_img[$key]['img_url'] = get_image_path($gallery_img['goods_id'], $gallery_img['img_original'], false, 'gallery');
-        //         $gallery_img[$key]['thumb_url'] = get_image_path($gallery_img['goods_id'], $gallery_img['img_original'], true, 'gallery');
-        //     }
-        // }
-        // else
-        // {
-        //     foreach ($img_list as $key => $gallery_img)
-        //     {
-        //         $gallery_img[$key]['thumb_url'] = '../' . (empty($gallery_img['thumb_url']) ? $gallery_img['img_url'] : $gallery_img['thumb_url']);
-        //     }
-        // }
     }
 
     /* 模板赋值 */
@@ -198,14 +157,8 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit')
 /*------------------------------------------------------ */
 //-- 插入商品 更新商品
 /*------------------------------------------------------ */
-
 elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
 {
-    // $code = empty($_REQUEST['extension_code']) ? '' : trim($_REQUEST['extension_code']);
-
-    /* 是否处理缩略图 */
-    // $proc_thumb = (isset($GLOBALS['shop_id']) && $GLOBALS['shop_id'] > 0)? false : true;
-
     admin_priv('template_manage'); // 检查权限
 
     /* 检查模板编号是否重复 */
@@ -223,7 +176,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     $is_insert = $_REQUEST['act'] == 'insert';
 
     /* 处理商品图片 */
-    $priview        = '';  // 初始化商品图片
+    $priview  = '';  // 初始化商品图片
 
     /* 如果没有输入商品货号则自动生成一个商品货号 */
     if (empty($_POST['pid']))
@@ -265,12 +218,31 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
                 "name = '$name', " .
                 "cid = '$template_category', " .
                 "mbDes = '$mbDes' ";
-
         $sql .= "WHERE pid = '$_REQUEST[template_id]' LIMIT 1";
     }
     if(!$db->query($sql)){
         sys_msg($is_insert ? '添加模板出现错误' : '修改模板出现错误', 1, array(), false);
     }
+
+    $template_id = $is_insert ? $db->insert_id() : $_REQUEST['pid'];
+
+    if ($is_insert)
+    {
+        /* 处理模板预览图 */
+        $gallery_img = (!empty($_POST['gallery_img_list']) && isset($_POST['gallery_img_list']))? $_POST['gallery_img_list'] : "";
+
+        foreach ($gallery_img as $img) {
+            $sql = "INSERT INTO " . $ecs->table('product_gallery') . " ( ".
+                    "pid,img_url".
+                    " ) VALUES (".
+                    "'$template_id','$img'".
+                    ")";
+            if(!$db->query($sql)){
+                sys_msg('模板预览图写入失败');
+            }
+        }
+    }
+
 
     /* 记录日志 */
     if ($is_insert)
@@ -304,153 +276,9 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
 
     sys_msg($is_insert ? '添加模板成功' : '修改模板成功', 0, $link);
 }
-
-/*------------------------------------------------------ */
-//-- 批量操作
-/*------------------------------------------------------ */
-
-elseif ($_REQUEST['act'] == 'batch')
-{
-    $code = empty($_REQUEST['extension_code'])? '' : trim($_REQUEST['extension_code']);
-
-    /* 取得要操作的商品编号 */
-    $goods_id = !empty($_POST['checkboxes']) ? join(',', $_POST['checkboxes']) : 0;
-
-    if (isset($_POST['type']))
-    {
-        /* 放入回收站 */
-        if ($_POST['type'] == 'trash')
-        {
-            /* 检查权限 */
-            admin_priv('remove_back');
-
-            update_goods($goods_id, 'is_delete', '1');
-
-            /* 记录日志 */
-            admin_log('', 'batch_trash', 'goods');
-        }
-        /* 上架 */
-        elseif ($_POST['type'] == 'on_sale')
-        {
-            /* 检查权限 */
-            admin_priv('goods_manage');
-            update_goods($goods_id, 'is_on_sale', '1');
-        }
-
-        /* 下架 */
-        elseif ($_POST['type'] == 'not_on_sale')
-        {
-            /* 检查权限 */
-            admin_priv('goods_manage');
-            update_goods($goods_id, 'is_on_sale', '0');
-        }
-
-        /* 设为精品 */
-        elseif ($_POST['type'] == 'best')
-        {
-            /* 检查权限 */
-            admin_priv('goods_manage');
-            update_goods($goods_id, 'is_best', '1');
-        }
-
-        /* 取消精品 */
-        elseif ($_POST['type'] == 'not_best')
-        {
-            /* 检查权限 */
-            admin_priv('goods_manage');
-            update_goods($goods_id, 'is_best', '0');
-        }
-
-        /* 设为新品 */
-        elseif ($_POST['type'] == 'new')
-        {
-            /* 检查权限 */
-            admin_priv('goods_manage');
-            update_goods($goods_id, 'is_new', '1');
-        }
-
-        /* 取消新品 */
-        elseif ($_POST['type'] == 'not_new')
-        {
-            /* 检查权限 */
-            admin_priv('goods_manage');
-            update_goods($goods_id, 'is_new', '0');
-        }
-
-        /* 设为热销 */
-        elseif ($_POST['type'] == 'hot')
-        {
-            /* 检查权限 */
-            admin_priv('goods_manage');
-            update_goods($goods_id, 'is_hot', '1');
-        }
-
-        /* 取消热销 */
-        elseif ($_POST['type'] == 'not_hot')
-        {
-            /* 检查权限 */
-            admin_priv('goods_manage');
-            update_goods($goods_id, 'is_hot', '0');
-        }
-
-        /* 转移到分类 */
-        elseif ($_POST['type'] == 'move_to')
-        {
-            /* 检查权限 */
-            admin_priv('goods_manage');
-            update_goods($goods_id, 'cat_id', $_POST['target_cat']);
-        }
-
-        /* 转移到供货商 */
-        elseif ($_POST['type'] == 'suppliers_move_to')
-        {
-            /* 检查权限 */
-            admin_priv('goods_manage');
-            update_goods($goods_id, 'suppliers_id', $_POST['suppliers_id']);
-        }
-
-        /* 还原 */
-        elseif ($_POST['type'] == 'restore')
-        {
-            /* 检查权限 */
-            admin_priv('remove_back');
-
-            update_goods($goods_id, 'is_delete', '0');
-
-            /* 记录日志 */
-            admin_log('', 'batch_restore', 'goods');
-        }
-        /* 删除 */
-        elseif ($_POST['type'] == 'drop')
-        {
-            /* 检查权限 */
-            admin_priv('remove_back');
-
-            delete_goods($goods_id);
-
-            /* 记录日志 */
-            admin_log('', 'batch_remove', 'goods');
-        }
-    }
-
-    /* 清除缓存 */
-    clear_cache_files();
-
-    if ($_POST['type'] == 'drop' || $_POST['type'] == 'restore')
-    {
-        $link[] = array('href' => 'goods.php?act=trash', 'text' => $_LANG['11_goods_trash']);
-    }
-    else
-    {
-        $link[] = list_link(true, $code);
-    }
-    sys_msg($_LANG['batch_handle_ok'], 0, $link);
-}
-
 /*------------------------------------------------------ */
 //-- 显示图片
 /*------------------------------------------------------ */
-
 elseif ($_REQUEST['act'] == 'show_image')
 {
 
@@ -514,6 +342,57 @@ elseif ($_REQUEST['act'] == 'edit_template_preview')
     }
 }
 
+/*------------------------------------------------------ */
+//-- 添加模板预览图
+/*------------------------------------------------------ */
+elseif ($_REQUEST['act'] == 'add_gallery_img')
+{
+    check_authz_json('template_manage');
+
+    $template_id = intval($_POST['id']);
+    $img_url = json_str_iconv(trim($_POST['val']));
+
+    /* 查询gallery表中最大id */
+    $sql = "SELECT MAX(img_id)+1 FROM ". $ecs->table('product_gallery');
+    $img_id = $db->getOne($sql);
+
+    if($template_id){
+        $sql = "INSERT INTO ". $ecs->table('product_gallery'). " ( ".
+                    " img_id, pid,img_url ".
+                    " ) VALUES ( ".
+                    "'$img_id','$template_id','$img_url'".
+                    " )";
+    }
+    if ($db->query($sql))
+    {
+        clear_cache_files();
+        make_json_result(stripslashes($img_id));
+    }
+}
+
+/*------------------------------------------------------ */
+//-- 删除模板预览图
+/*------------------------------------------------------ */
+elseif ($_REQUEST['act'] == 'drop_image')
+{
+    check_authz_json('template_manage');
+
+    $img_id = empty($_REQUEST['img_id']) ? 0 : intval($_REQUEST['img_id']);
+
+    /* 删除图片文件 */
+    $sql = "SELECT img_url " .
+            " FROM " . $GLOBALS['ecs']->table('product_gallery') .
+            " WHERE img_id = '$img_id'";
+    $row = $GLOBALS['db']->getRow($sql);
+
+    /* 删除数据 */
+    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('product_gallery') . " WHERE img_id = '$img_id' LIMIT 1";
+    $GLOBALS['db']->query($sql);
+
+    clear_cache_files();
+    make_json_result($img_id);
+}
+
 elseif ($_REQUEST['act'] == 'check_template_id')
 {
     check_authz_json('template_manage');
@@ -529,15 +408,8 @@ elseif ($_REQUEST['act'] == 'check_template_id')
     {
         make_json_error('此模板编号已经存在');
     }
-    // if(!empty($goods_sn))
-    // {
-    //     $sql="SELECT goods_id FROM ". $ecs->table('products')."WHERE product_sn='$goods_sn'";
-    //     if($db->getOne($sql))
-    //     {
-    //         make_json_error($_LANG['goods_sn_exists']);
-    //     }
-    // }
-    make_json_result('123');
+
+    // make_json_result('123');
 }
 elseif ($_REQUEST['act'] == 'check_products_goods_sn')
 {
@@ -586,20 +458,6 @@ elseif ($_REQUEST['act'] == 'check_products_goods_sn')
 /*------------------------------------------------------ */
 elseif ($_REQUEST['act'] == 'query')
 {
-    // $is_delete = empty($_REQUEST['is_delete']) ? 0 : intval($_REQUEST['is_delete']);
-    // $code = empty($_REQUEST['extension_code']) ? '' : trim($_REQUEST['extension_code']);
-    // $goods_list = goods_list($is_delete, ($code=='') ? 1 : 0);
-
-    // $handler_list = array();
-    // $handler_list['virtual_card'][] = array('url'=>'virtual_card.php?act=card', 'title'=>$_LANG['card'], 'img'=>'icon_send_bonus.gif');
-    // $handler_list['virtual_card'][] = array('url'=>'virtual_card.php?act=replenish', 'title'=>$_LANG['replenish'], 'img'=>'icon_add.gif');
-    // $handler_list['virtual_card'][] = array('url'=>'virtual_card.php?act=batch_card_add', 'title'=>$_LANG['batch_card_add'], 'img'=>'icon_output.gif');
-
-    // if (isset($handler_list[$code]))
-    // {
-    //     $smarty->assign('add_handler',      $handler_list[$code]);
-    // }
-    // $smarty->assign('code',         $code);
 
     /* 模板分类列表 */
     $temp_sql = "select * from ".$ecs->table('product_category_yzldiy')."order by id asc";
@@ -659,207 +517,6 @@ elseif ($_REQUEST['act'] == 'remove')
         ecs_header("Location: $url\n");
         exit;
     }
-}
-
-/*------------------------------------------------------ */
-//-- 还原回收站中的商品
-/*------------------------------------------------------ */
-
-elseif ($_REQUEST['act'] == 'restore_goods')
-{
-    $goods_id = intval($_REQUEST['id']);
-
-    check_authz_json('remove_back'); // 检查权限
-
-    $exc->edit("is_delete = 0, add_time = '" . gmtime() . "'", $goods_id);
-    clear_cache_files();
-
-    $goods_name = $exc->get_name($goods_id);
-
-    admin_log(addslashes($goods_name), 'restore', 'goods'); // 记录日志
-
-    $url = 'goods.php?act=query&' . str_replace('act=restore_goods', '', $_SERVER['QUERY_STRING']);
-
-    ecs_header("Location: $url\n");
-    exit;
-}
-
-/*------------------------------------------------------ */
-//-- 彻底删除商品
-/*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'drop_goods')
-{
-    // 检查权限
-    check_authz_json('remove_back');
-
-    // 取得参数
-    $goods_id = intval($_REQUEST['id']);
-    if ($goods_id <= 0)
-    {
-        make_json_error('invalid params');
-    }
-
-    /* 取得商品信息 */
-    $sql = "SELECT goods_id, goods_name, is_delete, is_real, goods_thumb, " .
-                "goods_img, original_img " .
-            "FROM " . $ecs->table('goods') .
-            " WHERE goods_id = '$goods_id'";
-    $goods = $db->getRow($sql);
-    if (empty($goods))
-    {
-        make_json_error($_LANG['goods_not_exist']);
-    }
-
-    if ($goods['is_delete'] != 1)
-    {
-        make_json_error($_LANG['goods_not_in_recycle_bin']);
-    }
-
-    /* 删除商品图片和轮播图片 */
-    if (!empty($goods['goods_thumb']))
-    {
-        @unlink('../' . $goods['goods_thumb']);
-    }
-    if (!empty($goods['goods_img']))
-    {
-        @unlink('../' . $goods['goods_img']);
-    }
-    if (!empty($goods['original_img']))
-    {
-        @unlink('../' . $goods['original_img']);
-    }
-    /* 删除商品 */
-    $exc->drop($goods_id);
-
-    /* 删除商品的货品记录 */
-    $sql = "DELETE FROM " . $ecs->table('products') .
-            " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-
-    /* 记录日志 */
-    admin_log(addslashes($goods['goods_name']), 'remove', 'goods');
-
-    /* 删除商品相册 */
-    $sql = "SELECT img_url, thumb_url, img_original " .
-            "FROM " . $ecs->table('goods_gallery') .
-            " WHERE goods_id = '$goods_id'";
-    $res = $db->query($sql);
-    while ($row = $db->fetchRow($res))
-    {
-        if (!empty($row['img_url']))
-        {
-            @unlink('../' . $row['img_url']);
-        }
-        if (!empty($row['thumb_url']))
-        {
-            @unlink('../' . $row['thumb_url']);
-        }
-        if (!empty($row['img_original']))
-        {
-            @unlink('../' . $row['img_original']);
-        }
-    }
-
-    $sql = "DELETE FROM " . $ecs->table('goods_gallery') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-
-    /* 删除相关表记录 */
-    $sql = "DELETE FROM " . $ecs->table('collect_goods') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('goods_article') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('goods_attr') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('goods_cat') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('member_price') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('group_goods') . " WHERE parent_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('group_goods') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('link_goods') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('link_goods') . " WHERE link_goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('tag') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('comment') . " WHERE comment_type = 0 AND id_value = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('collect_goods') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('booking_goods') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-    $sql = "DELETE FROM " . $ecs->table('goods_activity') . " WHERE goods_id = '$goods_id'";
-    $db->query($sql);
-
-    /* 如果不是实体商品，删除相应虚拟商品记录 */
-    if ($goods['is_real'] != 1)
-    {
-        $sql = "DELETE FROM " . $ecs->table('virtual_card') . " WHERE goods_id = '$goods_id'";
-        if (!$db->query($sql, 'SILENT') && $db->errno() != 1146)
-        {
-            die($db->error());
-        }
-    }
-
-    clear_cache_files();
-    $url = 'goods.php?act=query&' . str_replace('act=drop_goods', '', $_SERVER['QUERY_STRING']);
-
-    ecs_header("Location: $url\n");
-
-    exit;
-}
-
-/*------------------------------------------------------ */
-//-- 切换商品类型
-/*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'get_attr')
-{
-    check_authz_json('goods_manage');
-
-    $goods_id   = empty($_GET['goods_id']) ? 0 : intval($_GET['goods_id']);
-    $goods_type = empty($_GET['goods_type']) ? 0 : intval($_GET['goods_type']);
-
-    $content    = build_attr_html($goods_type, $goods_id);
-
-    make_json_result($content);
-}
-
-/*------------------------------------------------------ */
-//-- 删除图片
-/*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'drop_image')
-{
-    check_authz_json('goods_manage');
-
-    $img_id = empty($_REQUEST['img_id']) ? 0 : intval($_REQUEST['img_id']);
-
-    /* 删除图片文件 */
-    $sql = "SELECT img_url, thumb_url, img_original " .
-            " FROM " . $GLOBALS['ecs']->table('goods_gallery') .
-            " WHERE img_id = '$img_id'";
-    $row = $GLOBALS['db']->getRow($sql);
-
-    if ($row['img_url'] != '' && is_file('../' . $row['img_url']))
-    {
-        @unlink('../' . $row['img_url']);
-    }
-    if ($row['thumb_url'] != '' && is_file('../' . $row['thumb_url']))
-    {
-        @unlink('../' . $row['thumb_url']);
-    }
-    if ($row['img_original'] != '' && is_file('../' . $row['img_original']))
-    {
-        @unlink('../' . $row['img_original']);
-    }
-
-    /* 删除数据 */
-    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('goods_gallery') . " WHERE img_id = '$img_id' LIMIT 1";
-    $GLOBALS['db']->query($sql);
-
-    clear_cache_files();
-    make_json_result($img_id);
 }
 
 /*------------------------------------------------------ */
@@ -1687,10 +1344,6 @@ function update_goods_stock($goods_id, $value)
  */
 function get_template_list(){
 
-    // /* 时间参数 */
-    // $filter['start_date'] = empty($_REQUEST['start_date']) ? local_strtotime('-7 days') : local_strtotime($_REQUEST['start_date']);
-    // $filter['end_date'] = empty($_REQUEST['end_date']) ? local_strtotime('today') : local_strtotime($_REQUEST['end_date']);
-
     /* 查询数据的条件 */
     // $where = " WHERE ";
 
@@ -1699,26 +1352,30 @@ function get_template_list(){
     /* 按照付款时间每日分组查询记录数 */
     $sql = "SELECT COUNT(*) FROM " .
            $GLOBALS['ecs']->table('product_yzldiy') .
-        //    $GLOBALS['ecs']->table('admin_user') . ' AS au '.
            $where;
-        //    $group;
     $filter['record_count'] = $GLOBALS['db']->getOne($sql);
 
     /* 分页大小 */
     $filter = page_and_size($filter);
 
     /* 查询模板信息 */
-    $sql = "SELECT * ";
+    $sql = "SELECT p.*, ";
 
-    /* 查询条件 */
-    // $where = $where . " AND og.order_id = oi.order_id ";
+    /* 查询模板预览图 */
+    $sql .= " g.img_url ";
+
+    /* 添加分组 */
+    $group = " GROUP BY p.pid ";
+
+    /* 添加模板和预览图关联 */
+    $where .= " AND p.pid = g.pid ";
 
     /* 查询 */
     $sql = $sql . " FROM " .
-           $GLOBALS['ecs']->table('product_yzldiy') .
-        //    $GLOBALS['ecs']->table('order_goods') . ' AS og, '.
-        //    $GLOBALS['ecs']->table('admin_user') . ' AS au'.
-           $where . " ORDER BY pid";
+           $GLOBALS['ecs']->table('product_yzldiy') . ' AS p,'.
+           $GLOBALS['ecs']->table('product_gallery') . ' AS g '.
+           $where . $group .
+           " ORDER BY p.pid";
 
     $is_pagination = true;
     if ($is_pagination)

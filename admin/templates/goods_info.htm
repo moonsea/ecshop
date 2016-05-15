@@ -1,985 +1,1955 @@
 <!-- $Id: goods_info.htm 17126 2010-04-23 10:30:26Z liuhui $ -->
+
 {include file="pageheader.htm"}
+
 {insert_scripts files="../js/utils.js,selectzone.js,colorselector.js"}
+
 <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+
 <script type="text/javascript" src="../js/qiniu.js"></script>
+
 <script type="text/javascript" src="../js/plupload.full.min.js"></script>
+
 <script type="text/javascript" src="../js/json2.js"></script>
+
 <link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
 
+
+
 {if $warning}
+
 <ul style="padding:0; margin: 0; list-style-type:none; color: #CC0000;">
+
   <li style="border: 1px solid #CC0000; background: #FFFFCC; padding: 10px; margin-bottom: 5px;" >{$warning}</li>
+
 </ul>
+
 {/if}
 
+
+
 <!-- start goods form -->
+
 <div class="tab-div">
+
     <!-- tab bar -->
+
     <div id="tabbar-div">
+
       <p>
+
         <span class="tab-front" id="general-tab">{$lang.tab_general}</span>
+
         <!--<span class="tab-back" id="detail-tab">{$lang.tab_detail}</span>-->
+
         <span class="tab-back" id="gallery-tab">{$lang.tab_gallery}</span>
+
         <span class="tab-back" id="properties-tab">{$lang.tab_properties}</span></span>
+
       </p>
+
     </div>
+
+
 
     <!-- tab body -->
+
     <div id="tabbody-div">
+
       <form enctype="multipart/form-data" action="" method="post" name="theForm" >
+
         <!-- 通用信息 -->
+
         <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
 
+
+
         <table width="90%" id="general-table" align="center">
+
           <!-- 商品编号 -->
+
           <tr>
+
             <td class="label">
+
             <!-- <a href="javascript:showNotice('noticeGoodsSN');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>  -->{$lang.lab_goods_sn} </td>
+
             <td><input type="text" name="goods_sn" value="{$goods.goods_sn|escape}" size="20" onblur="checkGoodsSn(this.value,'{$goods.goods_id}')" {if !$info_act}readonly="readonly"{/if} /><span id="goods_sn_notice"></span><br />
+
             <!-- <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeGoodsSN">{$lang.notice_goods_sn}</span> -->
+
             </td>
+
           </tr>
+
           <!-- 商品名称 -->
+
           <tr>
+
             <td class="label">{$lang.lab_goods_name}</td>
+
             <td><input type="text" name="goods_name" value="{$goods.goods_name|escape}" style="float:left;color:{$goods_name_color};" size="30" />
+
             </td>
+
           </tr>
+
           <!-- 商品简介 -->
+
           <tr>
+
             <td class="label">{$lang.lab_goods_brief}</td>
+
             <td><textarea name="goods_brief" cols="40" rows="3">{$goods.goods_brief|escape}</textarea></td>
+
           </tr
-          <!-- 产品单位 -->
+
+          ><!-- 产品单位 -->
+
           <tr>
+
             <td class="label">
+
             {$lang.lab_goods_unit} </td>
+
             <td><input type="text" name="goods_unit" value="{$goods.unit|escape}" size="20"/>
+
             </td>
+
           </tr>
+
+          <tr>
+
+            <td class="label">
+
+            {$lang.lab_goods_number} </td>
+
+            <td><input type="text" name="goods_number" value="{$goods.goods_number|escape}" />
+
+            </td>
+
+          </tr>
+
           <!-- 装订类型 -->
+
           <tr>
+
             <td class="label">{$lang.lab_bind_type}</td>
+
             <td>
+
             	<select name="goods_bind_type" onchange="hideCatDiv()">
+
             	<!--{foreach from=$bind_type_list name=bind_type_list item=item}-->
+
             	<option value="{$item.type_id}" {if $goods.goods_bind_type == $item.type_id}selected="true"{/if}>{$item.type_name}</option>
+
                 <!--{/foreach}-->
+
                	</select>
+
             </td>
+
           </tr>
+
           <!-- 尺寸 -->
+
           <tr>
+
             <td class="label">{$lang.lab_goods_size}</td>
+
             <td><input type="text" name="goods_size_width" placeholder="长" value="{$goods.goods_size_width}" size="7" /><span class="notice-span">x</span><input type="text" name="goods_size_length" placeholder="宽" value="{$goods.goods_size_length}" size="7" />
+
             </td>
+
           </tr>
+
           <!-- 内页材质 -->
+
           <tr>
+
             <td class="label">内页</td>
+
             <td>
+
             	<select name="goods_inner_type" onchange="hideCatDiv()">
+
             	<!--{foreach from=$inner_type_list name=inner_type_list item=item}-->
+
             	<option value="{$item.type_id}" {if $goods.goods_inner_type == $item.type_id}selected="true"{/if}>{$item.type_name}</option>
+
                 <!--{/foreach}-->
+
                	</select>
+
             </td>
+
           </tr>
+
           <!-- 页数 -->
+
           <tr>
+
             <td class="label">页数</td>
+
             <td><input type="text" name="goods_add_page_max" value="{$goods.goods_add_page_max}" size="10" /></td>
+
           </tr>
+
           <!-- 实际销售价 -->
+
           <tr>
+
             <td class="label">{$lang.lab_shop_price}</td>
+
             <td><input type="text" name="shop_price" value="{$goods.shop_price}" size="20" onblur="priceSetted()"/></td>
+
           </tr>
+
         </table>
+
+
 
         <!-- 商品相册 -->
+
         <table width="90%" id="gallery-table" style="display:none" align="center">
+
             <!-- 商品大图 -->
+
             <tr>
+
               <td class="label">商品大图:</td>
+
               <td>
+
                   <a href="goods.php?act=show_image&img_url={$goods.goods_img}" target="_blank" id="goods_preview"><img src="{$goods.goods_img}" height="200" height="200" id="goods_img" {if !$goods.goods_img}hidden="hidden"{/if}></img></a>
+
                   <br id="goods_preview_br" {if !$goods.goods_img}hidden="hidden"{/if}/>
+
                 <input type="text" id="goods_img_input" name="goods_img" value="{$goods.goods_img}" hidden="true"/>
+
                 <button id="browse" onclick="choose_img()" type="button">上传图片</button>
+
               </td>
+
             </tr>
-          <!-- 商品图片 -->
-          <!-- <tr>
-            <td class="label">上传商品大图</td>
-            <td>
-              <input type="file" name="goods_img" size="35" />
-              {if $goods.goods_img}
-                <a href="goods.php?act=show_image&img_url={$goods.goods_img}" target="_blank"><img src="images/yes.gif" border="0" /></a>
-              {else}
-                <img src="images/no.gif" />
-              {/if}
-              <br /><input type="text" size="40" value="{$lang.lab_picture_url}" style="color:#aaa;" onfocus="if (this.value == '{$lang.lab_picture_url}'){this.value='http://';this.style.color='#000';}" name="goods_img_url"/>
-            </td>
-          </tr> -->
+
           <!-- 商品相册 -->
+
           <tr>
+
             <td class="label">商品小图</td>
+
             <td id="goods_gallery">
+
               {foreach from=$img_list item=img key=i}
+
               <div id="gallery_{$img.img_id}" style="float:left; text-align:center; border: 1px solid #DADADA; margin: 4px; padding:2px;">
+
                 <a href="javascript:;" onclick="if (confirm('{$lang.drop_img_confirm}')) dropImg('{$img.img_id}')">[-]</a><br />
+
                 <a href="goods.php?act=show_image&img_url={$img.img_url}" target="_blank">
+
                 <img src="{$img.img_url}" {if $thumb_width neq 0}width="{$thumb_width}"{/if} {if $thumb_height neq 0}height="{$thumb_height}"{/if} border="0" />
+
                 </a>
+
                 <input type="text" hidden="hidden" value="{$img.img_url}" size="15" name="gallery_img_list[{$img.img_url}]" />
+
               </div>
+
               {/foreach}
+
             </td>
+
           </tr>
+
           <!-- 添加图片 -->
+
           <tr>
+
             <td>&nbsp;</td>
+
             <td>
+
                 <button id="gallery_browse" onclick="add_img()" type="button">新增图片</button>
+
                 <!-- <button id="gallery_browse" onclick="add_img()" type="button">[+]</button> -->
+
             </td>
+
           </tr>
+
         </table>
+
+
 
         <!-- 商品属性 -->
+
         <table width="90%" id="properties-table" style="display:none" align="center">
+
           <!-- 合成图片格式 -->
+
           <tr>
+
               <td class="label">{$lang.lab_goods_composite_page}</td>
+
               <td><input type="radio" name="is_zero" value="0" {if !$goods.goods_composite_page}checked="checked"{/if} />{$lang.is_zero} <input type="radio" name="is_zero" value="1" />{$lang.is_not_zero}</td>
+
               </td>
+
           </tr>
+
           <!-- 合成图片格式 -->
+
           <tr>
+
               <td class="label">{$lang.lab_goods_composite_pic}</td>
+
               <td><input type="radio" name="pic_is_zero" value="0" {if !$goods.goods_composite_pic}checked="checked"{/if} />{$lang.pic_is_zero} <input type="radio" name="pic_is_zero" value="1" />{$lang.pic_is_not_zero}</td>
+
               </td>
+
           </tr>
+
           <!-- 灰度特效 -->
+
           <tr>
+
               <td class="label">{$lang.lab_goods_gray}</td>
+
               <td><input type="radio" name="gray_is_on" value="1" {if $goods.goods_gray}checked="checked"{/if} />{$lang.gray_is_on}&nbsp;&nbsp;&nbsp;&nbsp;
+
               <span class="notice-span">{$lang.notice_goods_gray}</span></td>
+
               </td>
+
           </tr>
+
           <!-- 合并为pdf -->
+
           <tr>
+
               <td class="label">{$lang.lab_goods_composite_pdf}</td>
+
               <td><input type="radio" name="pdf_is_on" value="1" {if $goods.goods_composite_pdf}checked="checked"{/if} />{$lang.pdf_is_on}
+
               </td>
+
           </tr>
+
           <!-- 字号和行距设置 -->
+
           <!--<tr>
+
             <td class="label">{$lang.lab_goods_font_size}</td>
+
             <td><span class="notice-span">{$lang.lab_goods_line_min}</span><input type="text" name="goods_line_min" value="{$goods.goods_line_min}" size="20" /><span class="notice-span">{$lang.lab_goods_line_max}</span><input type="text" name="goods_line_max" value="{$goods.goods_line_max}" size="20" /><span class="notice-span">{$lang.lab_goods_line_up_unit}</span><input type="text" name="goods_line_up_unit" value="{$goods.goods_line_up_unit}" size="20" />
+
             </td>
+
           </tr>-->
+
           <!-- 分辨率 -->
+
           <!--<tr>
+
             <td class="label">{$lang.lab_goods_defination}</td>
+
             <td><input type="text" name="goods_defination" value="{$goods.goods_defination}" size="20" /></td>
+
           </tr>-->
+
         </table>
 
+
+
         <div class="button-div">
+
           <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
 
+
+
           <input type="button" value="{$lang.button_submit}" class="button" onclick="validate('{$goods.goods_id}')" />
+
           <input type="reset" value="{$lang.button_reset}" class="button" />
+
         </div>
+
         <input type="hidden" name="act" value="{$form_act}" />
+
       </form>
+
     </div>
+
 </div>
+
 <!-- end goods form -->
+
 {insert_scripts files="validator.js,tab.js"}
 
+
+
 <script language="JavaScript">
+
   var goodsId = '{$goods.goods_id}';
+
   var form_act = '{$form_act}';
+
   var thumb_width = '{$thumb_width}';
+
   var thumb_height = '{$thumb_height}';
+
   var elements = document.forms['theForm'].elements;
+
   var sz1 = new SelectZone(1, elements['source_select1'], elements['target_select1']);
+
   var sz2 = new SelectZone(2, elements['source_select2'], elements['target_select2'], elements['price2']);
+
   var sz3 = new SelectZone(1, elements['source_select3'], elements['target_select3']);
+
   var marketPriceRate = {$cfg.market_price_rate|default:1};
+
   var integralPercent = {$cfg.integral_percent|default:0};
 
+
+
   {literal}
+
   onload = function()
+
   {
+
     //   handlePromote(document.forms['theForm'].elements['is_promote'].checked);
 
+
+
       if (document.forms['theForm'].elements['auto_thumb'])
+
       {
+
           handleAutoThumb(document.forms['theForm'].elements['auto_thumb'].checked);
+
       }
 
+
+
       // 初始加载
+
       startCheckOrder();
+
       get_uptoken();
+
       get_domain();
+
       {/literal}
+
       {foreach from=$user_rank_list item=item}
+
       set_price_note({$item.rank_id});
+
       {/foreach}
+
       {literal}
+
       document.forms['theForm'].reset();
+
   }
 
+
+
   function validate(goods_id)
+
   {
+
       var validator = new Validator('theForm');
+
       var goods_sn  = document.forms['theForm'].elements['goods_sn'].value;
+
+
 
       validator.required('goods_name', goods_name_not_null);
 
+
+
       checkVolumeData("1",validator);
 
+
+
       validator.required('shop_price', '商品价格不能为空');
+
       validator.isNumber('shop_price', `商品价格必须为数字`, true);
+
       validator.required('goods_size_width', `尺寸宽度不能为空`);
+
       validator.isNumber('goods_size_width', `尺寸宽度必须为数字`, true);
+
       validator.required('goods_size_length', `尺寸长度不能为空`);
+
       validator.isNumber('goods_size_length', `尺寸长度必须为数字`, true);
+
       validator.required('goods_add_page_max', `最大页数不能为空`);
+
       validator.isNumber('goods_add_page_max', `最大页数必须为数字`, true);
 
+
+
       var callback = function(res)
+
      {
+
       if (res.error > 0)
+
       {
+
         alert("{$lang.goods_sn_exists}");
+
       }
+
       else
+
       {
+
          if(validator.passed())
+
          {
+
            document.forms['theForm'].submit();
+
          }
+
       }
+
     }
 
+
+
     Ajax.call('goods.php?is_ajax=1&act=check_goods_sn', "goods_sn=" + goods_sn + "&goods_id=" + goods_id, callback, "GET", "JSON");
+
 }
+
+
 
 function get_uptoken()
+
 {
+
     $.ajax({
+
         url:"http://app.itimepost.com/image/uptoken",
+
         type:'POST',
+
         data:{type:0,token:"c210dd8b50e9e232c908c43d2e266c7d"},
+
         dataType:"jsonp",
+
         success: function(data){
+
           //   console.log(data);
+
             uptoken = data.data.uptoken;
+
             publish_id = data.data.publish_id;
+
             },
+
         error:function(e1,e2,e3){alert(e1.status);}
+
     });
+
 }
+
+
 
 function get_domain()
+
 {
+
     $.ajax({
+
         url:"http://app.itimepost.com/image/host",
+
         type:'GET',
+
         data:{type:0,token:"c210dd8b50e9e232c908c43d2e266c7d"},
+
         dataType:"jsonp",
+
         success: function(data){
+
     // 		  console.log(data);
+
             domain = data.data.host;
+
             },
+
         error:function(e1,e2,e3){alert(e1.status);}
+
     });
+
 }
+
+
 
 function choose_img()
+
 {
 
+
+
     var uploader = Qiniu.uploader({
+
     runtimes: 'html5,flash,html4',      // 上传模式,依次退化
+
     browse_button: 'browse',         // 上传选择的点选按钮，**必需**
+
     uptoken : uptoken, // uptoken 是上传凭证，由其他程序生成
+
     get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的 uptoken
+
     domain: domain,     // bucket 域名，下载资源时用到，**必需**
+
     auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+
     max_retries: 3,                     // 上传失败最大重试次数
+
     unique_names: true,
 
+
+
     init: {
+
         'FilesAdded': function(up, files) {
+
             plupload.each(files, function(file) {
+
                 // 文件添加进队列后,处理相关的事情
+
             });
+
         },
+
         'BeforeUpload': function(up, file) {
+
                // 每个文件上传前,处理相关的事情
+
         },
+
         'UploadProgress': function(up, file) {
+
                // 每个文件上传时,处理相关的事情
+
         },
+
         'FileUploaded': function(up, file, info) {
 
+
+
             var res = JSON.parse(info);
+
             var domain = up.getOption('domain');
+
             var sourceLink = "http://"+domain +"/"+ res.key; //获取上传成功后的文件的Url
+
           //   console.log(sourceLink);
+
           var obj = document.getElementById('goods_preview')
+
           obj.value = sourceLink;
+
+
 
           if(form_act == "update")
+
           {
+
               res = Ajax.call('goods.php', "act=edit_goods_img&val=" + encodeURIComponent(Utils.trim(sourceLink)) + "&id=" +goodsId, null, "POST", "JSON", false);
+
               console.log(res);
 
+
+
                if (res.message)
+
               {
+
                 alert(res.message);
+
               }
 
+
+
               obj = document.getElementById('goods_img');
+
               obj.src = (res.error == 0) ? res.content : obj.src;
 
+
+
               obj = document.getElementById('goods_preview');
+
               obj.href = (res.error == 0) ? "goods.php?act=show_image&img_url="+res.content : obj.href;
 
+
+
           }
+
           else if (form_act == "insert") {
 
+
+
               obj = document.getElementById('goods_img');
+
               obj.hidden = "";
+
               obj.src = sourceLink;
 
+
+
               obj = document.getElementById('goods_preview');
+
               obj.href = "goods.php?act=show_image&img_url="+sourceLink;
 
+
+
               obj = document.getElementById('goods_preview_br');
+
               obj.hidden = "";
+
           }
+
           obj = document.getElementById('goods_img_input');
+
           obj.value = sourceLink;
 
+
+
         },
+
         'Error': function(up, err, errTip) {
+
                //上传出错时,处理相关的事情
+
             //    console.log(up+"-"+err+"-"+errTip);
+
                alert(errTip);
+
             //    upload_ok.push(false);
+
         },
+
         'UploadComplete': function() {
+
                //队列文件处理完毕后,处理相关的事情
+
                alert("上传成功！");
+
         },
+
         'Key': function(up, file) {
+
             // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+
             // 该配置必须要在 unique_names: false , save_key: false 时才生效
 
+
+
             var key = "";
+
             // do something with key here
+
             return key;
+
             }
+
         }
+
     });
+
 }
 
+
+
 function add_img()
+
 {
 
+
+
     var uploader = Qiniu.uploader({
+
     runtimes: 'html5,flash,html4',      // 上传模式,依次退化
+
     browse_button: 'gallery_browse',         // 上传选择的点选按钮，**必需**
+
     uptoken : uptoken, // uptoken 是上传凭证，由其他程序生成
+
     get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的 uptoken
+
     domain: domain,     // bucket 域名，下载资源时用到，**必需**
+
     auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+
     max_retries: 3,                     // 上传失败最大重试次数
+
     unique_names: true,
 
+
+
     init: {
+
         'FilesAdded': function(up, files) {
+
             plupload.each(files, function(file) {
+
                 // 文件添加进队列后,处理相关的事情
+
             });
+
         },
+
         'BeforeUpload': function(up, file) {
+
                // 每个文件上传前,处理相关的事情
+
         },
+
         'UploadProgress': function(up, file) {
+
                // 每个文件上传时,处理相关的事情
+
         },
+
         'FileUploaded': function(up, file, info) {
 
+
+
             var res = JSON.parse(info);
+
             var domain = up.getOption('domain');
+
             var sourceLink = "http://"+domain +"/"+ res.key; //获取上传成功后的文件的Url
+
           //   console.log(sourceLink);
+
         //   var obj = document.getElementById('goods_preview')
+
         //   obj.value = sourceLink;
 
+
+
           res = Ajax.call('goods.php', "act=add_gallery_img&val=" + encodeURIComponent(Utils.trim(sourceLink)) + "&id=" +goodsId, null, "POST", "JSON", false);
+
           console.log(res);
 
+
+
            if (res.message)
+
           {
+
             alert(res.message);
+
           }
+
           else{
+
+
 
             var obj = document.getElementById('goods_gallery');
 
+
+
             var node = document.createElement("div");
+
             node.id = "gallery_"+res.content;
+
             node.style= "float:left; text-align:center; border: 1px solid #DADADA; margin: 4px; padding:2px;";
+
             var node_a = document.createElement("a");
+
             node_a.href = "javascript:;";
+
             node_a.id = "gallery_add_"+res.content;
+
             node_a.innerText = "[-]";
+
             node.appendChild(node_a);
+
             node_a = document.createElement("br");
+
             node.appendChild(node_a);
+
             node_a = document.createElement("a");
+
             node_a.href = "goods.php?act=show_image&img_url="+sourceLink;
+
             node_a.target = "_blank";
+
             node_img = document.createElement("img");
+
             node_img.src = sourceLink;
+
             node_img.border = "0";
+
             if(thumb_width)
+
                 node_img.width = thumb_width;
+
             if(thumb_height)
+
                 node_img.height = thumb_width;
+
             node_a.appendChild(node_img);
+
             node.appendChild(node_a);
+
             node_a = document.createElement('br');
+
             node_a.hidden = "hidden";
+
             node.appendChild(node_a);
+
             node_a = document.createElement("input");
+
             node_a.type = "text";
+
             node_a.hidden = "hidden";
+
             node_a.value = sourceLink;
+
             node_a.name = "gallery_img_list["+sourceLink+"]";
+
             node.appendChild(node_a);
+
             obj.appendChild(node);
 
+
+
             obj  = document.getElementById("gallery_add_"+res.content);
+
             obj.onclick = function(){
+
                 if (confirm('您确实要删除该图片吗？')) dropImg(res.content);
+
             }
+
+
 
           }
 
+
+
         },
+
         'Error': function(up, err, errTip) {
+
                //上传出错时,处理相关的事情
+
             //    console.log(up+"-"+err+"-"+errTip);
+
                alert(errTip);
+
             //    upload_ok.push(false);
+
         },
+
         'UploadComplete': function() {
+
                //队列文件处理完毕后,处理相关的事情
+
                alert("上传成功！");
+
         },
+
         'Key': function(up, file) {
+
             // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+
             // 该配置必须要在 unique_names: false , save_key: false 时才生效
 
+
+
             var key = "";
+
             // do something with key here
+
             return key;
+
             }
+
         }
+
     });
+
 }
 
 
 
+
+
+
+
   /**
+
    * 鍒犻櫎瑙勬牸鍊
+
    */
+
   function removeSpec(obj)
+
   {
+
       var row = rowindex(obj.parentNode.parentNode);
+
       var tbl = document.getElementById('attrTable');
 
+
+
       tbl.deleteRow(row);
+
   }
 
+
+
   /**
+
    * 澶勭悊瑙勬牸
+
    */
+
   function handleSpec()
+
   {
+
       var elementCount = document.forms['theForm'].elements.length;
+
       for (var i = 0; i < elementCount; i++)
+
       {
+
           var element = document.forms['theForm'].elements[i];
+
           if (element.id.substr(0, 5) == 'spec_')
+
           {
+
               var optCount = element.options.length;
+
               var value = new Array(optCount);
+
               for (var j = 0; j < optCount; j++)
+
               {
+
                   value[j] = element.options[j].value;
+
               }
+
+
 
               var hiddenSpec = document.getElementById('hidden_' + element.id);
+
               hiddenSpec.value = value.join(String.fromCharCode(13)); // 鐢ㄥ洖杞﹂敭闅斿紑姣忎釜瑙勬牸
+
           }
+
       }
+
       return true;
+
   }
+
+
 
   function handlePromote(checked)
+
   {
+
       document.forms['theForm'].elements['promote_price'].disabled = !checked;
+
       document.forms['theForm'].elements['selbtn1'].disabled = !checked;
+
       document.forms['theForm'].elements['selbtn2'].disabled = !checked;
+
   }
+
+
 
   function handleAutoThumb(checked)
+
   {
+
       document.forms['theForm'].elements['goods_thumb'].disabled = checked;
+
       document.forms['theForm'].elements['goods_thumb_url'].disabled = checked;
+
   }
+
+
 
   /**
+
    * 蹇?€熸坊鍔犲搧鐗
+
    */
+
   function rapidBrandAdd(conObj)
+
   {
+
       var brand_div = document.getElementById("brand_add");
+
+
 
       if(brand_div.style.display != '')
+
       {
+
           var brand =document.forms['theForm'].elements['addedBrandName'];
+
           brand.value = '';
+
           brand_div.style.display = '';
+
       }
+
   }
+
+
 
   function hideBrandDiv()
+
   {
+
       var brand_add_div = document.getElementById("brand_add");
+
       if(brand_add_div.style.display != 'none')
+
       {
+
           brand_add_div.style.display = 'none';
+
       }
+
   }
+
+
 
   function goBrandPage()
+
   {
+
       if(confirm(go_brand_page))
+
       {
+
           window.location.href='brand.php?act=add';
+
       }
+
       else
+
       {
+
           return;
+
       }
+
   }
+
+
 
   function rapidCatAdd()
+
   {
+
       var cat_div = document.getElementById("category_add");
 
+
+
       if(cat_div.style.display != '')
+
       {
+
           var cat =document.forms['theForm'].elements['addedCategoryName'];
+
           cat.value = '';
+
           cat_div.style.display = '';
+
       }
+
   }
+
+
 
   function addBrand()
+
   {
+
       var brand = document.forms['theForm'].elements['addedBrandName'];
+
       if(brand.value.replace(/^\s+|\s+$/g, '') == '')
+
       {
+
           alert(brand_cat_not_null);
+
           return;
+
       }
+
+
 
       var params = 'brand=' + brand.value;
+
       Ajax.call('brand.php?is_ajax=1&act=add_brand', params, addBrandResponse, 'GET', 'JSON');
+
   }
+
+
 
   function addBrandResponse(result)
+
   {
+
       if (result.error == '1' && result.message != '')
+
       {
+
           alert(result.message);
+
           return;
+
       }
+
+
 
       var brand_div = document.getElementById("brand_add");
+
       brand_div.style.display = 'none';
 
+
+
       var response = result.content;
+
+
 
       var selCat = document.forms['theForm'].elements['brand_id'];
+
       var opt = document.createElement("OPTION");
+
       opt.value = response.id;
+
       opt.selected = true;
+
       opt.text = response.brand;
 
+
+
       if (Browser.isIE)
+
       {
+
           selCat.add(opt);
+
       }
+
       else
+
       {
+
           selCat.appendChild(opt);
+
       }
+
+
 
       return;
+
   }
+
+
 
   function addCategory()
+
   {
+
       var parent_id = document.forms['theForm'].elements['cat_id'];
+
       var cat = document.forms['theForm'].elements['addedCategoryName'];
+
       if(cat.value.replace(/^\s+|\s+$/g, '') == '')
+
       {
+
           alert(category_cat_not_null);
+
           return;
+
       }
+
+
 
       var params = 'parent_id=' + parent_id.value;
+
       params += '&cat=' + cat.value;
+
       Ajax.call('category.php?is_ajax=1&act=add_category', params, addCatResponse, 'GET', 'JSON');
+
   }
+
+
 
   function hideCatDiv()
+
   {
+
       var category_add_div = document.getElementById("category_add");
+
       if(category_add_div.style.display != null)
+
       {
+
           category_add_div.style.display = 'none';
+
       }
+
   }
 
+
+
   function addCatResponse(result)
+
   {
+
       if (result.error == '1' && result.message != '')
+
       {
+
           alert(result.message);
+
           return;
+
       }
 
+
+
       var category_add_div = document.getElementById("category_add");
+
       category_add_div.style.display = 'none';
+
+
 
       var response = result.content;
 
+
+
       var selCat = document.forms['theForm'].elements['cat_id'];
+
       var opt = document.createElement("OPTION");
+
       opt.value = response.id;
+
       opt.selected = true;
+
       opt.innerHTML = response.cat;
 
+
+
       //鑾峰彇瀛愬垎绫荤殑绌烘牸鏁
+
       var str = selCat.options[selCat.selectedIndex].text;
+
       var temp = str.replace(/^\s+/g, '');
+
       var lengOfSpace = str.length - temp.length;
+
       if(response.parent_id != 0)
+
       {
+
           lengOfSpace += 4;
+
       }
+
       for (i = 0; i < lengOfSpace; i++)
+
       {
+
           opt.innerHTML = '&nbsp;' + opt.innerHTML;
+
       }
+
+
 
       for (i = 0; i < selCat.length; i++)
+
       {
+
           if(selCat.options[i].value == response.parent_id)
+
           {
+
               if(i == selCat.length)
+
               {
+
                   if (Browser.isIE)
+
                   {
+
                       selCat.add(opt);
+
                   }
+
                   else
+
                   {
+
                       selCat.appendChild(opt);
+
                   }
+
               }
+
               else
+
               {
+
                   selCat.insertBefore(opt, selCat.options[i + 1]);
+
               }
+
               //opt.selected = true;
+
               break;
+
           }
+
+
 
       }
 
+
+
       return;
+
   }
 
+
+
     function goCatPage()
+
     {
+
         if(confirm(go_category_page))
+
         {
+
             window.location.href='category.php?act=add';
+
         }
+
         else
+
         {
+
             return;
+
         }
+
     }
 
 
+
+
+
   /**
+
    * 鍒犻櫎蹇?€熷垎绫
+
    */
+
   function removeCat()
+
   {
+
       if(!document.forms['theForm'].elements['parent_cat'] || !document.forms['theForm'].elements['new_cat_name'])
+
       {
+
           return;
+
       }
+
+
 
       var cat_select = document.forms['theForm'].elements['parent_cat'];
+
       var cat = document.forms['theForm'].elements['new_cat_name'];
 
+
+
       cat.parentNode.removeChild(cat);
+
       cat_select.parentNode.removeChild(cat_select);
+
   }
 
+
+
   /**
+
    * 鍒犻櫎蹇?€熷搧鐗
+
    */
+
   function removeBrand()
+
   {
+
       if (!document.forms['theForm'].elements['new_brand_name'])
+
       {
+
           return;
+
       }
+
+
 
       var brand = document.theForm.new_brand_name;
+
       brand.parentNode.removeChild(brand);
+
   }
 
+
+
   /**
+
    * 娣诲姞鎵╁睍鍒嗙被
+
    */
+
   function addOtherCat(conObj)
+
   {
+
       var sel = document.createElement("SELECT");
+
       var selCat = document.forms['theForm'].elements['cat_id'];
 
+
+
       for (i = 0; i < selCat.length; i++)
+
       {
+
           var opt = document.createElement("OPTION");
+
           opt.text = selCat.options[i].text;
+
           opt.value = selCat.options[i].value;
+
           if (Browser.isIE)
+
           {
+
               sel.add(opt);
+
           }
+
           else
+
           {
+
               sel.appendChild(opt);
+
           }
+
       }
+
       conObj.appendChild(sel);
+
       sel.name = "other_cat[]";
+
       sel.onChange = function() {checkIsLeaf(this);};
+
   }
+
+
 
   /* 鍏宠仈鍟嗗搧鍑芥暟 */
+
   function searchGoods(szObject, catId, brandId, keyword)
+
   {
+
       var filters = new Object;
 
+
+
       filters.cat_id = elements[catId].value;
+
       filters.brand_id = elements[brandId].value;
+
       filters.keyword = Utils.trim(elements[keyword].value);
+
       filters.exclude = document.forms['theForm'].elements['goods_id'].value;
 
+
+
       szObject.loadOptions('get_goods_list', filters);
+
   }
 
+
+
   /**
+
    * 鍏宠仈鏂囩珷鍑芥暟
+
    */
+
   function searchArticle()
+
   {
+
     var filters = new Object;
+
+
 
     filters.title = Utils.trim(elements['article_title'].value);
 
+
+
     sz3.loadOptions('get_article_list', filters);
+
   }
 
+
+
   /**
+
    * 鏂板?涓€涓?浘鐗
+
    */
+
   function addImg(obj)
+
   {
+
       var src  = obj.parentNode.parentNode;
+
       var idx  = rowindex(src);
+
       var tbl  = document.getElementById('gallery-table');
+
       var row  = tbl.insertRow(idx + 1);
+
       var cell = row.insertCell(-1);
+
       cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addImg)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
   }
 
+
+
   /**
+
    * 鍒犻櫎鍥剧墖涓婁紶
+
    */
+
   function removeImg(obj)
+
   {
+
       var row = rowindex(obj.parentNode.parentNode);
+
       var tbl = document.getElementById('gallery-table');
 
+
+
       tbl.deleteRow(row);
+
   }
 
+
+
   /**
+
    * 鍒犻櫎鍥剧墖
+
    */
+
   function dropImg(imgId)
+
   {
+
     Ajax.call('goods.php?is_ajax=1&act=drop_image', "img_id="+imgId, dropImgResponse, "GET", "JSON");
+
   }
+
+
 
   function dropImgResponse(result)
+
   {
+
       if (result.error == 0)
+
       {
+
           document.getElementById('gallery_' + result.content).style.display = 'none';
+
       }
+
   }
 
+
+
   /**
+
    * 灏嗗競鍦轰环鏍煎彇鏁
+
    */
+
   function integral_market_price()
+
   {
+
     document.forms['theForm'].elements['market_price'].value = parseInt(document.forms['theForm'].elements['market_price'].value);
+
   }
+
+
 
    /**
+
    * 灏嗙Н鍒嗚喘涔伴?搴﹀彇鏁
+
    */
+
   function parseint_integral()
+
   {
+
     document.forms['theForm'].elements['integral'].value = parseInt(document.forms['theForm'].elements['integral'].value);
+
   }
 
 
+
+
+
   /**
+
   * 妫€鏌ヨ揣鍙锋槸鍚﹀瓨鍦
+
   */
+
   function checkGoodsSn(goods_sn, goods_id)
+
   {
+
     if (goods_sn == '')
+
     {
+
         document.getElementById('goods_sn_notice').innerHTML = "";
+
         return;
+
     }
+
+
 
     var callback = function(res)
+
     {
+
       if (res.error > 0)
+
       {
+
         document.getElementById('goods_sn_notice').innerHTML = res.message;
+
         document.getElementById('goods_sn_notice').style.color = "red";
+
       }
+
       else
+
       {
+
         document.getElementById('goods_sn_notice').innerHTML = "";
+
       }
+
     }
+
     Ajax.call('goods.php?is_ajax=1&act=check_goods_sn', "goods_sn=" + goods_sn + "&goods_id=" + goods_id, callback, "GET", "JSON");
+
   }
 
+
+
   /**
+
    * 鏂板?涓€涓?紭鎯犱环鏍
+
    */
+
   function addVolumePrice(obj)
+
   {
+
     var src      = obj.parentNode.parentNode;
+
     var tbl      = document.getElementById('tbody-volume');
 
+
+
     var validator  = new Validator('theForm');
+
     checkVolumeData("0",validator);
+
     if (!validator.passed())
+
     {
+
       return false;
+
     }
+
+
 
     var row  = tbl.insertRow(tbl.rows.length);
+
     var cell = row.insertCell(-1);
+
     cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addVolumePrice)(.*)(\[)(\+)/i, "$1removeVolumePrice$3$4-");
 
+
+
     var number_list = document.getElementsByName("volume_number[]");
+
     var price_list  = document.getElementsByName("volume_price[]");
 
+
+
     number_list[number_list.length-1].value = "";
+
     price_list[price_list.length-1].value   = "";
+
   }
 
+
+
   /**
+
    * 鍒犻櫎浼樻儬浠锋牸
+
    */
+
   function removeVolumePrice(obj)
+
   {
+
     var row = rowindex(obj.parentNode.parentNode);
+
     var tbl = document.getElementById('tbody-volume');
 
+
+
     tbl.deleteRow(row);
+
   }
+
+
 
   /**
+
    * 鏍￠獙浼樻儬鏁版嵁鏄?惁姝ｇ‘
+
    */
+
   function checkVolumeData(isSubmit,validator)
+
   {
+
     var volumeNum = document.getElementsByName("volume_number[]");
+
     var volumePri = document.getElementsByName("volume_price[]");
+
     var numErrNum = 0;
+
     var priErrNum = 0;
 
+
+
     for (i = 0 ; i < volumePri.length ; i ++)
+
     {
+
       if ((isSubmit != 1 || volumeNum.length > 1) && numErrNum <= 0 && volumeNum.item(i).value == "")
+
       {
+
         validator.addErrorMsg(volume_num_not_null);
+
         numErrNum++;
+
       }
+
+
 
       if (numErrNum <= 0 && Utils.trim(volumeNum.item(i).value) != "" && ! Utils.isNumber(Utils.trim(volumeNum.item(i).value)))
+
       {
+
         validator.addErrorMsg(volume_num_not_number);
+
         numErrNum++;
+
       }
+
+
 
       if ((isSubmit != 1 || volumePri.length > 1) && priErrNum <= 0 && volumePri.item(i).value == "")
+
       {
+
         validator.addErrorMsg(volume_price_not_null);
+
         priErrNum++;
+
       }
 
+
+
       if (priErrNum <= 0 && Utils.trim(volumePri.item(i).value) != "" && ! Utils.isNumber(Utils.trim(volumePri.item(i).value)))
+
       {
+
         validator.addErrorMsg(volume_price_not_number);
+
         priErrNum++;
+
       }
+
     }
+
   }
+
   {/literal}
+
 </script>
+
 {include file="pagefooter.htm"}

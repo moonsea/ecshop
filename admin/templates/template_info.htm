@@ -61,13 +61,34 @@
             </td>
           </tr>
 
-          <tr>
+          <!-- <tr>
             <td class="label">模板预览图:</td>
             <td>
                 <a href="template.php?act=show_image&img_url={$template.preview}" target="_blank" id="preview_href"><img src="{$template.preview}" height="200" height="200" id="preview_img" {if !$template.preview}hidden="hidden"{/if}></img></a>
                 <br id="template_preview_br" {if !$template.preview}hidden="hidden"{/if}/>
-              <!-- <input type="button" onclick="choose_img" id="browse" value="上传图片"/> -->
               <button id="browse" onclick="choose_img()" type="button">上传图片</button>
+            </td>
+          </tr> -->
+
+          <tr>
+            <td class="label">模板预览图：</td>
+            <td id="template_gallery">
+              {foreach from=$img_list item=img key=i}
+              <div id="gallery_{$img.img_id}" style="float:left; text-align:center; border: 1px solid #DADADA; margin: 4px; padding:2px;">
+                <a href="javascript:;" onclick="if (confirm('您确实要删除该图片吗？')) dropImg('{$img.img_id}')">[-]</a><br />
+                <a href="template.php?act=show_image&img_url={$img.img_url}" target="_blank">
+                <img src="{$img.img_url}" {if $thumb_width neq 0}width="{$thumb_width}"{/if} {if $thumb_height neq 0}height="{$thumb_height}"{/if} border="0" />
+                </a>
+                <input type="text" hidden="hidden" value="{$img.img_url}" size="15" name="gallery_img_list[{$img.img_url}]" />
+              </div>
+              {/foreach}
+            </td>
+          </tr>
+          <!-- 添加图片 -->
+          <tr>
+            <td>&nbsp;</td>
+            <td>
+                <button id="gallery_browse" onclick="add_img()" type="button">新增图片</button>
             </td>
           </tr>
         </table>
@@ -82,7 +103,7 @@
       </form>
 </div>
 <!-- end goods form -->
-{insert_scripts files="validator.js,tab.js"}
+{insert_scripts files="validator.js"}
 
 <script language="JavaScript">
   var template_id = '{$template.pid}';
@@ -91,6 +112,8 @@
   var uptoken = "";
   var publish_id = "";
   var domain = "";
+  var thumb_width = '{$thumb_width}';
+  var thumb_height = '{$thumb_height}';
 
   {literal}
   onload = function()
@@ -185,94 +208,203 @@
       });
   }
 
-  function choose_img()
-  {
 
+  function add_img()
+
+  {
       var uploader = Qiniu.uploader({
+
       runtimes: 'html5,flash,html4',      // 上传模式,依次退化
-      browse_button: 'browse',         // 上传选择的点选按钮，**必需**
+
+      browse_button: 'gallery_browse',         // 上传选择的点选按钮，**必需**
+
       uptoken : uptoken, // uptoken 是上传凭证，由其他程序生成
+
       get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的 uptoken
+
       domain: domain,     // bucket 域名，下载资源时用到，**必需**
+
       auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+
       max_retries: 3,                     // 上传失败最大重试次数
+
       unique_names: true,
 
       init: {
-          'FilesAdded': function(up, files) {
-              plupload.each(files, function(file) {
-                  // 文件添加进队列后,处理相关的事情
-              });
-          },
-          'BeforeUpload': function(up, file) {
-                 // 每个文件上传前,处理相关的事情
-          },
-          'UploadProgress': function(up, file) {
-                 // 每个文件上传时,处理相关的事情
-          },
-          'FileUploaded': function(up, file, info) {
 
+          'FilesAdded': function(up, files) {
+
+              plupload.each(files, function(file) {
+
+                  // 文件添加进队列后,处理相关的事情
+
+              });
+
+          },
+
+          'BeforeUpload': function(up, file) {
+
+                 // 每个文件上传前,处理相关的事情
+
+          },
+
+          'UploadProgress': function(up, file) {
+
+                 // 每个文件上传时,处理相关的事情
+
+          },
+
+          'FileUploaded': function(up, file, info) {
               var res = JSON.parse(info);
               var domain = up.getOption('domain');
               var sourceLink = "http://"+domain +"/"+ res.key; //获取上传成功后的文件的Url
-            //   console.log(sourceLink);
-            var obj = document.getElementById('template_preview')
-            obj.value = sourceLink;
+              res = Ajax.call('template.php', "act=add_gallery_img&val=" + encodeURIComponent(Utils.trim(sourceLink)) + "&id=" +template_id, null, "POST", "JSON", false);
+              console.log(res);
 
-            if(form_act == "update")
+             if (res.message)
+
             {
-                res = Ajax.call('template.php', "act=edit_template_preview&val=" + encodeURIComponent(Utils.trim(sourceLink)) + "&id=" +template_id, null, "POST", "JSON", false);
-                console.log(res);
 
-                 if (res.message)
-                {
-                  alert(res.message);
-                }
-
-                obj = document.getElementById('preview_img');
-                obj.src = (res.error == 0) ? res.content : obj.src;
-
-                obj = document.getElementById('preview_href');
-                obj.href = (res.error == 0) ? "template.php?act=show_image&img_url="+res.content : obj.href;
+              alert(res.message);
 
             }
-            else if (form_act == "insert") {
 
+            else{
 
+              var obj = document.getElementById('template_gallery');
 
+              var node = document.createElement("div");
 
-                obj = document.getElementById('preview_img');
-                obj.hidden = "";
-                obj.src = sourceLink;
+              node.id = "gallery_"+res.content;
 
-                obj = document.getElementById('preview_href');
-                obj.href = "template.php?act=show_image&img_url="+sourceLink;
+              node.style= "float:left; text-align:center; border: 1px solid #DADADA; margin: 4px; padding:2px;";
 
-                obj = document.getElementById('template_preview_br');
-                obj.hidden = "";
+              var node_a = document.createElement("a");
+
+              node_a.href = "javascript:;";
+
+              node_a.id = "gallery_add_"+res.content;
+
+              node_a.innerText = "[-]";
+
+              node.appendChild(node_a);
+
+              node_a = document.createElement("br");
+
+              node.appendChild(node_a);
+
+              node_a = document.createElement("a");
+
+              node_a.href = "template.php?act=show_image&img_url="+sourceLink;
+
+              node_a.target = "_blank";
+
+              node_img = document.createElement("img");
+
+              node_img.src = sourceLink;
+
+              node_img.border = "0";
+
+              if(thumb_width)
+
+                  node_img.width = thumb_width;
+
+              if(thumb_height)
+
+                  node_img.height = thumb_width;
+
+              node_a.appendChild(node_img);
+
+              node.appendChild(node_a);
+
+              node_a = document.createElement('br');
+
+              node_a.hidden = "hidden";
+
+              node.appendChild(node_a);
+
+              node_a = document.createElement("input");
+
+              node_a.type = "text";
+
+              node_a.hidden = "hidden";
+
+              node_a.value = sourceLink;
+
+              node_a.name = "gallery_img_list["+sourceLink+"]";
+
+              node.appendChild(node_a);
+
+              obj.appendChild(node);
+
+              obj  = document.getElementById("gallery_add_"+res.content);
+
+              obj.onclick = function(){
+
+                  if (confirm('您确实要删除该图片吗？')) dropImg(res.content);
+
+              }
+
             }
 
           },
+
           'Error': function(up, err, errTip) {
+
                  //上传出错时,处理相关的事情
+
               //    console.log(up+"-"+err+"-"+errTip);
+
                  alert(errTip);
+
               //    upload_ok.push(false);
+
           },
+
           'UploadComplete': function() {
+
                  //队列文件处理完毕后,处理相关的事情
+
+                 alert("上传成功！");
+
           },
+
           'Key': function(up, file) {
+
               // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+
               // 该配置必须要在 unique_names: false , save_key: false 时才生效
 
+
+
               var key = "";
+
               // do something with key here
+
               return key;
+
               }
+
           }
+
       });
+
   }
+
+      /* 删除模板预览图 */
+      function dropImg(imgId)
+      {
+        Ajax.call('template.php?is_ajax=1&act=drop_image', "img_id="+imgId, dropImgResponse, "GET", "JSON");
+      }
+
+    /* 删除模板预览图回调函数 */
+    function dropImgResponse(result)
+    {
+        if (result.error == 0)
+        {
+            document.getElementById('gallery_' + result.content).style.display = 'none';
+        }
+    }
 
     /*校验模板编号*/
       function checkTemplateId(template_id)
