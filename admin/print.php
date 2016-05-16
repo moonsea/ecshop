@@ -634,10 +634,10 @@ function order_detail($order_sn,$stauts){
     $where = $where . " AND og.order_id = oi.order_id ";
 
     /* 查询装订类型条件 */
-    $where = $where . " AND og.bind_type = bt.type_id ";
+    $where = $where . " AND gd.goods_bind_type = bt.type_id ";
 
     /* 查询材质条件 */
-    $where = $where . " AND og.material_type = mt.type_id ";
+    $where = $where . " AND gd.goods_inner_type = mt.type_id ";
 
     /* 查询规格条件 */
     $where = $where . " AND og.goods_id = gd.goods_id ";
